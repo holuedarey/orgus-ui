@@ -1,0 +1,29 @@
+import { AnimationOptions } from 'ngx-lottie';
+import { Component, OnInit } from '@angular/core';
+import { AnimationItem } from 'lottie-web';
+
+@Component({
+  selector: 'app-unauthorised',
+  templateUrl: './unauthorised.component.html',
+  styleUrls: ['./unauthorised.component.scss']
+})
+export class UnauthorisedComponent implements OnInit {
+
+  options: AnimationOptions = {
+    path: '/assets/animations/27608-security-lock.json'
+  };
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  animationCreated(animationItem: AnimationItem): void {
+    console.log(animationItem);
+    animationItem.setSpeed(0.5);
+    // setTimeout(() => {
+    // animationItem.goToAndStop(animationItem.firstFrame + animationItem.totalFrames-1, true);
+    // }, 3000);
+  }
+
+}

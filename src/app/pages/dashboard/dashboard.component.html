@@ -1,0 +1,7 @@
+<div class="container-fluid p-0 m-0" style="height: 100vh;">
+    <div class="row m-0" [sortablejs]="items" [sortablejsOptions]="{ animation: 150, disabled: draggable }">
+        <div *ngFor="let item of items" [ngStyle]="{'cursor': !draggable ? 'grab' : ''}" class="col-6 m-0">
+            <app-chart [chartId]="item"></app-chart>
+        </div>
+    </div>
+</div>
