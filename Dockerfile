@@ -9,5 +9,5 @@ RUN npm run build:prod
 # Nginx Serve
 FROM nginx:1.18.0-alpine
 COPY /nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /usr/src/app/dist/powertrack-enterprise-hermes-front-end /usr/share/nginx/html
-EXPOSE 6102
+COPY --from=build /usr/src/app/dist/argus-frontend /usr/share/nginx/html
+EXPOSE 6501
