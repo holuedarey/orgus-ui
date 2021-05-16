@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './charti.component.html',
   styleUrls: ['./charti.component.scss']
 })
-export class ChartiComponent implements OnInit {
+export class ChartiComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

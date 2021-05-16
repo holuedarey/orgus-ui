@@ -7,16 +7,13 @@ import { AnimationItem } from 'lottie-web';
   templateUrl: './page-not-found.component.html',
   styleUrls: ['./page-not-found.component.scss']
 })
-export class PageNotFoundComponent implements OnInit {
+export class PageNotFoundComponent {
 
   options: AnimationOptions = {
-    path : '/assets/animations/24454-404.json'
+    path: '/assets/animations/24454-404.json'
   };
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   animationCreated(animationItem: AnimationItem): void {
     console.log(animationItem);

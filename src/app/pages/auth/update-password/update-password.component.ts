@@ -10,7 +10,7 @@ import { AuthExtensionService } from 'src/app/@core/utils/auth-extension.service
   templateUrl: './update-password.component.html',
   styleUrls: ['./update-password.component.scss']
 })
-export class UpdatePasswordComponent implements OnInit {
+export class UpdatePasswordComponent {
 
 
   redirectDelay = 0;
@@ -31,9 +31,6 @@ export class UpdatePasswordComponent implements OnInit {
     this.redirectDelay = this.getConfigValue('forms.resetPassword.redirectDelay');
     this.showMessages = this.getConfigValue('forms.resetPassword.showMessages');
     this.strategy = this.getConfigValue('forms.resetPassword.strategy');
-  }
-
-  ngOnInit(): void {
   }
 
   updatePass(): void {

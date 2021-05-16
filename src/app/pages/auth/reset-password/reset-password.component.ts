@@ -11,7 +11,7 @@ import { AuthExtensionService } from 'src/app/@core/utils/auth-extension.service
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss']
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent {
 
 
   redirectDelay = 0;
@@ -35,8 +35,6 @@ export class ResetPasswordComponent implements OnInit {
     this.strategy = this.getConfigValue('forms.resetPassword.strategy');
   }
 
-  ngOnInit(): void {
-  }
 
   resetPass(): void {
     this.errors = this.messages = [];

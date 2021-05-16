@@ -7,7 +7,7 @@ import { AnimationOptions } from 'ngx-lottie';
   templateUrl: './invalid-device.component.html',
   styleUrls: ['./invalid-device.component.scss']
 })
-export class InvalidDeviceComponent implements OnInit {
+export class InvalidDeviceComponent {
 
   options: AnimationOptions = {
     path: '/assets/animations/37452-mobile-phone-blue.json',
@@ -15,8 +15,6 @@ export class InvalidDeviceComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
 
   animationCreated(animationItem: AnimationItem): void {
     console.log(animationItem);

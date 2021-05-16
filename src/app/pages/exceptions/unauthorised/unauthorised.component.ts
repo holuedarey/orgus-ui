@@ -7,16 +7,13 @@ import { AnimationItem } from 'lottie-web';
   templateUrl: './unauthorised.component.html',
   styleUrls: ['./unauthorised.component.scss']
 })
-export class UnauthorisedComponent implements OnInit {
+export class UnauthorisedComponent {
 
   options: AnimationOptions = {
     path: '/assets/animations/27608-security-lock.json'
   };
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   animationCreated(animationItem: AnimationItem): void {
     console.log(animationItem);

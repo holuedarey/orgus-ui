@@ -7,16 +7,13 @@ import { AnimationOptions } from 'ngx-lottie';
   templateUrl: './user-idle.component.html',
   styleUrls: ['./user-idle.component.scss']
 })
-export class UserIdleComponent implements OnInit {
+export class UserIdleComponent {
 
   options: AnimationOptions = {
     path: '/assets/animations/38063-log-out.json',
   };
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   animationCreated(animationItem: AnimationItem): void {
     console.log(animationItem);
