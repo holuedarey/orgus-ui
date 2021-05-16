@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NbAuthComponent } from '@nebular/auth';
-import { HasPasswordResetTokenGuard } from 'src/app/shared/@core/guards/has-password-reset-token.guard';
+import { HasPasswordResetTokenGuard } from 'src/app/@core/guards/has-password-reset-token.guard';
 
 import { LoginComponent } from './login/login.component';
 import { RequestPasswordComponent } from './request-password/request-password.component';

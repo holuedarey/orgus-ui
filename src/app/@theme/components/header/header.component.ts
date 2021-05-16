@@ -4,7 +4,7 @@ import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeServ
 import { LayoutService } from '../../../@core/utils';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { UserService } from 'src/app/shared/@core/data-services/users.service';
+import { UserService } from 'src/app/@core/data-services/users.service';
 
 @Component({
   selector: 'app-header',
@@ -103,6 +103,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   fullscreenLayout(): void {
-    document.getElementById('layoutColumn').requestFullscreen();
+    document.getElementById('layoutColumn')?.requestFullscreen();
   }
 }

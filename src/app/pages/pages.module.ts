@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { NbMenuModule } from '@nebular/theme';
-import { ThemeModule } from 'src/app/shared/@theme/theme.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { ThemeModule } from '../@theme/theme.module';
 
 
 @NgModule({

@@ -1,14 +1,14 @@
-export const MENU_ITEMS = [
+import { NbMenuItem } from '@nebular/theme';
+
+export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Dashboard',
-    // translation: 'DASHBOARD',
     icon: 'shopping-cart-outline',
     link: '/app/dashboard',
     home: true,
   },
   {
     title: 'Location',
-    // translation: 'OTHERS',
     icon: 'home-outline',
     link: '/other',
   },
@@ -26,7 +26,6 @@ export const MENU_ITEMS = [
       },
       {
         title: 'List',
-        translation: 'OTHERS',
         link: '/pages/layout/list',
       },
       {

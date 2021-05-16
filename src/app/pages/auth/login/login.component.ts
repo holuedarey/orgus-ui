@@ -2,15 +2,16 @@ import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { getDeepFromObject, NbAuthJWTToken, NbTokenService, NB_AUTH_OPTIONS } from '@nebular/auth';
-import { LoginDto } from 'src/app/shared/@core/dtos/login.dto';
-import { ResponseDto } from 'src/app/shared/@core/dtos/response-dto';
-import { IndexedDbKey } from 'src/app/shared/@core/enums/indexed-db-key.enum';
-import { LocalStorageKey } from 'src/app/shared/@core/enums/local-storage-key.enum';
-import { AuthExtensionService } from 'src/app/shared/@core/utils/auth-extension.service';
-import { DbService } from 'src/app/shared/@core/utils/db.service';
-import { SecureLocalStorageService } from 'src/app/shared/@core/utils/secure-local-storage.service';
-import { TokenService } from 'src/app/shared/@core/utils/token.service';
-import { JwtPayloadModel } from 'src/app/shared/classes/models/jwt-payload-model';
+import { LoginDto } from 'src/app/@core/dtos/login.dto';
+import { ResponseDto } from 'src/app/@core/dtos/response-dto';
+import { IndexedDbKey } from 'src/app/@core/enums/indexed-db-key.enum';
+import { LocalStorageKey } from 'src/app/@core/enums/local-storage-key.enum';
+import { JwtPayloadModel } from 'src/app/@core/models/jwt-payload-model';
+import { AuthExtensionService } from 'src/app/@core/utils/auth-extension.service';
+import { DbService } from 'src/app/@core/utils/db.service';
+import { SecureLocalStorageService } from 'src/app/@core/utils/secure-local-storage.service';
+import { TokenService } from 'src/app/@core/utils/token.service';
+
 
 
 @Component({

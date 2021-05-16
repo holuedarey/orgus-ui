@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { getDeepFromObject, NB_AUTH_OPTIONS } from '@nebular/auth';
-import { ResetPasswordDto } from 'src/app/shared/@core/dtos/reset-password.dto';
-import { ResponseDto } from 'src/app/shared/@core/dtos/response-dto';
-import { AuthExtensionService } from 'src/app/shared/@core/utils/auth-extension.service';
+import { ResetPasswordDto } from 'src/app/@core/dtos/reset-password.dto';
+import { ResponseDto } from 'src/app/@core/dtos/response-dto';
+import { AuthExtensionService } from 'src/app/@core/utils/auth-extension.service';
 
 
 @Component({

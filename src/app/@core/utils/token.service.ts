@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { JwtPayloadModel } from 'src/app/shared/classes/models/jwt-payload-model';
 import { LocalStorageKey } from '../enums/local-storage-key.enum';
+import { JwtPayloadModel } from '../models/jwt-payload-model';
 import { TokenExport } from './custom-token-storage/custom-token-storage.module';
 import { SecureLocalStorageService } from './secure-local-storage.service';
 

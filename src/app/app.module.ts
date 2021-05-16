@@ -15,8 +15,8 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { ThemeModule } from 'src/app/shared/@theme/theme.module';
-import { CoreModule } from 'src/app/shared/@core/core.module';
+import { CoreModule } from './@core/core.module';
+import { ThemeModule } from './@theme/theme.module';
 
 @NgModule({
   declarations: [

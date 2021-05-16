@@ -10,12 +10,12 @@ export class ChartComponent implements OnInit {
 
   @Input() data: any;
   @Input() config: any;
-  @Input() chartId: string;
+  @Input() chartId = '';
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.chartId)
+    console.log(this.chartId);
   }
 
 }

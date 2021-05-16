@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   NbActionsModule,
@@ -89,7 +89,7 @@ export class ThemeModule {
           [ DEFAULT_THEME, DARK_THEME ],
           undefined,
           NbLayoutDirection.LTR
-        ).providers,
+        ).providers as Provider[],
       ],
     };
   }

@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { ModuleWithProviders, NgModule, Optional, Provider, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
-import { MockDataModule } from './data-services/mock-data.module';
 import { LocalStorageKey } from './enums/local-storage-key.enum';
 
 import * as SecureLS from 'secure-ls';
@@ -39,7 +38,6 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
 }
 
 export const NB_CORE_PROVIDERS = [
-  ...MockDataModule.forRoot().providers,
   // Auth Module Providers
   ...NbAuthModule.forRoot({
 
@@ -95,7 +93,8 @@ export const NB_CORE_PROVIDERS = [
       register: {
       },
     },
-  }).providers,
+  }).providers as Provider[],
+
   // Security Module Providers
   NbSecurityModule.forRoot({
     accessControl: {
@@ -110,22 +109,25 @@ export const NB_CORE_PROVIDERS = [
       },
     },
   }).providers,
+
   // Animation Module Providers
   LottieModule.forRoot({ player: playerFactory }).providers,
+
   // Translation Module Providers
   TranslateModule.forRoot({
-    defaultLanguage: 'en',
+    defaultLanguage: 'yoruba',
     loader: {
       provide: TranslateLoader,
       useFactory: HttpLoaderFactory,
       deps: [HttpClient]
     }
   }).providers,
+
   // Role Auth Module Providers
   {
     provide: NbRoleProvider, useClass: NbSimpleRoleProvider,
   },
-];
+] as Provider[];
 
 @NgModule({
   imports: [

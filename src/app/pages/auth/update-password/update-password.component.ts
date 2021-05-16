@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NB_AUTH_OPTIONS, getDeepFromObject } from '@nebular/auth';
-import { ResponseDto } from 'src/app/shared/@core/dtos/response-dto';
-import { AuthExtensionService } from 'src/app/shared/@core/utils/auth-extension.service';
+import { ResponseDto } from 'src/app/@core/dtos/response-dto';
+import { AuthExtensionService } from 'src/app/@core/utils/auth-extension.service';
 
 
 @Component({

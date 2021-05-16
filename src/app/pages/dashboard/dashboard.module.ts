@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { ThemeModule } from 'src/app/shared/@theme/theme.module';
 import { NbCardModule } from '@nebular/theme';
 import { SortablejsModule } from 'ngx-sortablejs';
-import { ChartModule } from 'src/app/chart/chart.module';
+import { ChartModule } from 'src/app/@charts/chart.module';
+import { ThemeModule } from 'src/app/@theme/theme.module';
 
 
 @NgModule({
