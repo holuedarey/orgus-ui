@@ -1,19 +1,20 @@
 import { NbMenuItem } from '@nebular/theme';
+import { GlobalPermissions } from '../app-permissions';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Dashboard',
     icon: 'shopping-cart-outline',
-    link: '/app/dashboard',
+    link: GlobalPermissions.get('pages:dashboard')?.route,
     home: true,
   },
   {
     title: 'Location',
     icon: 'home-outline',
-    link: '/other',
+    link: GlobalPermissions.get('pages:other')?.route,
   },
   {
-    title: 'FEATURES',
+    title: 'MODULES',
     group: true,
   },
   {
@@ -22,7 +23,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Stepper',
-        link: '/pages/layout/stepper',
+        link: GlobalPermissions.get('pages:other')?.route,
       },
       {
         title: 'List',

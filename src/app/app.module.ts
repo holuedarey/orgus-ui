@@ -47,7 +47,7 @@ import { DARK_THEME } from './@theme/styles/theme.dark';
       [DEFAULT_THEME, DARK_THEME],
       undefined,
       NbLayoutDirection.LTR),
-      ThemeModule,
+    ThemeModule,
     // Global Imports
     CoreModule.forRoot(),
   ],
