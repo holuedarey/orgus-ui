@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   NbActionsModule,
@@ -11,8 +11,6 @@ import {
   NbButtonModule,
   NbSelectModule,
   NbIconModule,
-  NbThemeModule,
-  NbLayoutDirection,
   NbTooltipModule,
   NbCardModule,
 } from '@nebular/theme';
@@ -35,12 +33,6 @@ import {
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
 } from './layouts';
-import { DEFAULT_THEME } from './styles/theme.default';
-import { DARK_THEME } from './styles/theme.dark';
-import * as SecureLS from 'secure-ls';
-import { LocalStorageKey } from '../@core/enums/local-storage-key.enum';
-
-const ls = new SecureLS({ encodingType: 'aes' });
 
 
 const NB_MODULES = [
@@ -80,17 +72,4 @@ const PIPES = [
   declarations: [...COMPONENTS, ...PIPES],
 })
 export class ThemeModule {
-  static forRoot(): ModuleWithProviders<ThemeModule> {
-    return {
-      ngModule: ThemeModule,
-      providers: [
-        ...NbThemeModule.forRoot(
-          { name: ls.get(LocalStorageKey.THEME.toString()) || 'light' },
-          [ DEFAULT_THEME, DARK_THEME ],
-          undefined,
-          NbLayoutDirection.LTR
-        ).providers as Provider[],
-      ],
-    };
-  }
 }

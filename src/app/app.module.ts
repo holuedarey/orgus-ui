@@ -6,8 +6,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   NbDialogModule,
+  NbLayoutDirection,
   NbMenuModule,
   NbSidebarModule,
+  NbThemeModule,
   NbToastrModule,
   NbWindowModule
 } from '@nebular/theme';
@@ -17,6 +19,8 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
+import { DEFAULT_THEME } from './@theme/styles/theme.default';
+import { DARK_THEME } from './@theme/styles/theme.dark';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,12 @@ import { ThemeModule } from './@theme/theme.module';
     NbDialogModule.forRoot(),
     NbSidebarModule.forRoot(),
     // Theming
-    ThemeModule.forRoot(),
+    NbThemeModule.forRoot(
+      { name: 'default' },
+      [DEFAULT_THEME, DARK_THEME],
+      undefined,
+      NbLayoutDirection.LTR),
+      ThemeModule,
     // Global Imports
     CoreModule.forRoot(),
   ],
