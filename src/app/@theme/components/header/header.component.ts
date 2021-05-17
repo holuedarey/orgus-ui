@@ -3,8 +3,9 @@ import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeServ
 
 import { LayoutService } from '../../../@core/utils';
 import { filter, map, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { UserService } from 'src/app/@core/data-services/users.service';
+import { ServiceWorkerService } from 'src/app/@core/utils/service-worker.service';
 
 @Component({
   selector: 'app-header',
@@ -37,13 +38,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { title: 'Log out' }
   ];
 
+  canInstall$: BehaviorSubject<boolean>;
+
   constructor(
+    private sw: ServiceWorkerService,
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
     private themeService: NbThemeService,
     private userService: UserService,
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService) {
+    this.canInstall$ = this.sw.readyForInstall;
   }
 
   ngOnInit(): void {
@@ -100,6 +105,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome(): boolean {
     this.menuService.navigateHome();
     return false;
+  }
+
+  installPwa() {
+    this.sw.installPwa();
   }
 
   fullscreenLayout(): void {

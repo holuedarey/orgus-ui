@@ -5,9 +5,14 @@
     </a>
     <a class="logo font-weight-bold" href="#" (click)="navigateHome()">Argus</a>
   </div>
-  <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
-    <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
-  </nb-select>
+  <div *ngIf="!userPictureOnly" class="item-group">
+    <button *ngIf="(canInstall$ | async)" (click)="installPwa()" class="square xyz-in" nbButton hero
+      nbTooltipStatus="basic" nbTooltip="Install Argus" nbTooltipPlacement="bottom">
+      <nb-icon icon="download-outline">
+      </nb-icon>
+      Install
+    </button>
+  </div>
 </div>
 
 <div class="header-container">
@@ -15,14 +20,14 @@
     <nb-action nbTooltip="Global Search" nbTooltipPlacement="bottom" nbTooltipStatus="basic" class="control-item">
       <nb-search type="rotate-layout"></nb-search>
     </nb-action>
-    <nb-action (click)="fullscreenLayout()" nbTooltip="Fullscreen Mode" nbTooltipPlacement="bottom" nbTooltipStatus="basic" class="control-item"
-      icon="expand-outline"></nb-action>
-    <nb-action class="control-item" icon="external-link-outline" nbTooltip="Fullscreen Mode"
-      nbTooltipPlacement="bottom" nbTooltipStatus="basic"></nb-action>
-    <nb-action class="control-item" icon="bell-outline" nbTooltip="Notifications" nbTooltipPlacement="bottom" nbTooltipStatus="basic">
+    <nb-action (click)="fullscreenLayout()" nbTooltip="Fullscreen Mode" nbTooltipPlacement="bottom"
+      nbTooltipStatus="basic" class="control-item" icon="expand-outline"></nb-action>
+    <nb-action class="control-item" icon="bell-outline" nbTooltip="Notifications" nbTooltipPlacement="bottom"
+      nbTooltipStatus="basic">
     </nb-action>
     <nb-action class="user-action" *nbIsGranted="['read', 'pages:dashboard']">
-      <nb-user [nbContextMenu]="userMenu" nbContextMenuTag="user-menu" [onlyPicture]="userPictureOnly" [name]="user?.name" [picture]="''">
+      <nb-user [nbContextMenu]="userMenu" nbContextMenuTag="user-menu" [onlyPicture]="userPictureOnly"
+        [name]="user?.name" [picture]="''">
       </nb-user>
     </nb-action>
   </nb-actions>

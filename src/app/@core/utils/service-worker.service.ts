@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { interval, Subject } from 'rxjs';
+import { BehaviorSubject, interval, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -10,6 +10,9 @@ export class ServiceWorkerService {
 
   updateRequired = new Subject<boolean>();
   errorOccured = new Subject<boolean>();
+  readyForInstall = new BehaviorSubject<boolean>(false);
+
+  deferredPrompt: any;
 
   constructor(
     private updates: SwUpdate,
@@ -45,5 +48,19 @@ export class ServiceWorkerService {
         this.updates.activateUpdate().then(() => document.location.reload());
       }, 5000);
     });
+  }
+
+  initInstallPrompt(e: any) {
+    this.deferredPrompt = e;
+    this.readyForInstall.next(true);
+  }
+
+  async installPwa() {
+    this.deferredPrompt.prompt();
+    const { outcome } = await this.deferredPrompt.userChoice;
+    if ('accepted' === outcome) {
+      this.deferredPrompt = null;
+      this.readyForInstall.next(false);
+    }
   }
 }
