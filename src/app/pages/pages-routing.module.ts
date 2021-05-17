@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HasPermissionGuard } from '../@core/guards/has-permission.guard';
 import { PagesPermissionID, PagesPermissions } from './pages-permissions';
 import { PagesComponent } from './pages.component';
 
@@ -7,6 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
+    // canActivateChild: [HasPermissionGuard],
     children: [
       {
         path: '',

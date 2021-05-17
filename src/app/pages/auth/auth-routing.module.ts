@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NbAuthComponent } from '@nebular/auth';
 import { HasPasswordResetTokenGuard } from 'src/app/@core/guards/has-password-reset-token.guard';
+import { AuthPermissions, AuthPermissionID } from './auth-permissions';
 
 import { LoginComponent } from './login/login.component';
 import { RequestPasswordComponent } from './request-password/request-password.component';
@@ -15,23 +16,23 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'login'
+        redirectTo: AuthPermissions.get(AuthPermissionID.Login)?.path
       },
       {
-        path: 'login',
+        path: AuthPermissions.get(AuthPermissionID.Login)?.path,
         component: LoginComponent
       },
       {
-        path: 'request-password',
+        path: AuthPermissions.get(AuthPermissionID.RequestPassword)?.path,
         component: RequestPasswordComponent,
       },
       {
-        path: 'reset-password',
+        path: AuthPermissions.get(AuthPermissionID.ResetPassword)?.path,
         component: ResetPasswordComponent,
         canActivate: [HasPasswordResetTokenGuard]
       },
       {
-        path: 'update-password',
+        path: AuthPermissions.get(AuthPermissionID.UpdatePassword)?.path,
         component: UpdatePasswordComponent,
       },
     ]

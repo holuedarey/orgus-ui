@@ -1,17 +1,18 @@
 import { NbMenuItem } from '@nebular/theme';
-import { GlobalPermissions } from '../app-permissions';
+import { GlobalPermissions } from '../@core/maps/global-permissions';
+import { PagesPermissionID } from './pages-permissions';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Dashboard',
     icon: 'shopping-cart-outline',
-    link: GlobalPermissions.get('pages:dashboard')?.route,
+    link: GlobalPermissions.get(PagesPermissionID.Dashboard)?.route,
     home: true,
   },
   {
     title: 'Location',
     icon: 'home-outline',
-    link: GlobalPermissions.get('pages:other')?.route,
+    link: GlobalPermissions.get(PagesPermissionID.Other)?.route,
   },
   {
     title: 'MODULES',

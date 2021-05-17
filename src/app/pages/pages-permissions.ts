@@ -9,7 +9,7 @@ export const PagesPermissions = new Map<string, PermissionModel>([
     [
         PagesPermissionID.Dashboard,
         {
-            route: '/app/dashboard',
+            route: `/app/dashboard`,
             path: 'dashboard'
         }
     ],

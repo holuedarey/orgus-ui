@@ -1,10 +1,10 @@
 import { PermissionModel } from "./@core/models/permission.model";
-import { PagesPermissions } from "./pages/pages-permissions";
 
 export enum AppPermissionID {
     Landing = 'app:landing',
     Auth = 'app:auth',
-    App = 'app:app'
+    App = 'app:app',
+    Error = 'app:error'
 }
 
 export const AppPermissions = new Map<string, PermissionModel>([
@@ -29,9 +29,11 @@ export const AppPermissions = new Map<string, PermissionModel>([
             path: 'app'
         }
     ],
+    [
+        AppPermissionID.Error,
+        {
+            route: '/error',
+            path: 'error'
+        }
+    ],
 ]);
-
-export const GlobalPermissions = new Map<string, PermissionModel>([
-    ...AppPermissions,
-    ...PagesPermissions
-])

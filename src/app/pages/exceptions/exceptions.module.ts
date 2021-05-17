@@ -5,20 +5,23 @@ import { ExceptionsRoutingModule } from './exceptions-routing.module';
 import { UnauthorisedComponent } from './unauthorised/unauthorised.component';
 import { UserIdleComponent } from './user-idle/user-idle.component';
 import { InvalidDeviceComponent } from './invalid-device/invalid-device.component';
-import { NbLayoutModule, NbButtonModule, NbIconModule } from '@nebular/theme';
+import { NbLayoutModule, NbButtonModule, NbIconModule, NbCardModule } from '@nebular/theme';
 import { LottieModule } from 'ngx-lottie';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ExceptionsComponent } from './exceptions.component';
+import { ExceptionBlockComponent } from './exception-block/exception-block.component';
 
 
 @NgModule({
-  declarations: [UnauthorisedComponent, UserIdleComponent, InvalidDeviceComponent, PageNotFoundComponent],
+  declarations: [UnauthorisedComponent, UserIdleComponent, InvalidDeviceComponent, PageNotFoundComponent, ExceptionsComponent, ExceptionBlockComponent],
   imports: [
     CommonModule,
     ExceptionsRoutingModule,
     NbLayoutModule,
     NbButtonModule,
     NbIconModule,
-    LottieModule
+    LottieModule,
+    NbCardModule
   ]
 })
 export class ExceptionsModule { }

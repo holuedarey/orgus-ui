@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { NbAccessChecker, NbAclService } from '@nebular/security';
-import { of } from 'rxjs';
-import { GlobalPermissions } from 'src/app/app-permissions';
+import { NbAclService } from '@nebular/security';
+import { GlobalPermissions } from '../maps/global-permissions';
 import { RoleProvider } from './role-provider.service';
 
 @Injectable({
@@ -15,44 +14,27 @@ export class PermissionService {
   ) { }
 
   canCreate(route: string): boolean {
-    const role = this.roleProvider.getRoleSync();
-    const permission = Array.from(GlobalPermissions.entries())
-      .find(p => p[1].route === route)?.[0];
-    if (permission) {
-      return this.accessChecker.can(role, 'create', permission);
-    } else {
-      return false;
-    }
+    return this.canAccess(route, 'create');
   }
 
   canRead(route: string): boolean {
-    const role = this.roleProvider.getRoleSync();
-    const permission = Array.from(GlobalPermissions.entries())
-      .find(p => p[1].route === route)?.[0];
-    if (permission) {
-      return this.accessChecker.can(role, 'read', permission);
-    } else {
-      return false;
-    }
+    return this.canAccess(route, 'read');
   }
 
   canUpdate(route: string): boolean {
-    const role = this.roleProvider.getRoleSync();
-    const permission = Array.from(GlobalPermissions.entries())
-      .find(p => p[1].route === route)?.[0];
-    if (permission) {
-      return this.accessChecker.can(role, 'update', permission);
-    } else {
-      return false;
-    }
+    return this.canAccess(route, 'update');
   }
 
   canDelete(route: string): boolean {
+    return this.canAccess(route, 'delete');
+  }
+
+  private canAccess(route: string, permission: string): boolean {
     const role = this.roleProvider.getRoleSync();
-    const permission = Array.from(GlobalPermissions.entries())
+    const resource = Array.from(GlobalPermissions.entries())
       .find(p => p[1].route === route)?.[0];
-    if (permission) {
-      return this.accessChecker.can(role, 'delete', permission);
+    if (resource) {
+      return this.accessChecker.can(role, permission, resource);
     } else {
       return false;
     }
