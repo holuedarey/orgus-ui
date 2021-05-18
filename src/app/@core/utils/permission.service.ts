@@ -14,25 +14,34 @@ export class PermissionService {
   ) { }
 
   canCreate(route: string): boolean {
-    return this.canAccess(route, 'create');
+    return this.canAccessByRoute(route, 'create');
   }
 
   canRead(route: string): boolean {
-    return this.canAccess(route, 'read');
+    return this.canAccessByRoute(route, 'read');
   }
 
   canUpdate(route: string): boolean {
-    return this.canAccess(route, 'update');
+    return this.canAccessByRoute(route, 'update');
   }
 
   canDelete(route: string): boolean {
-    return this.canAccess(route, 'delete');
+    return this.canAccessByRoute(route, 'delete');
   }
 
-  private canAccess(route: string, permission: string): boolean {
+  private canAccessByRoute(route: string, permission: string): boolean {
     const role = this.roleProvider.getRoleSync();
     const resource = Array.from(GlobalPermissions.entries())
       .find(p => p[1].route === route)?.[0];
+    if (resource) {
+      return this.accessChecker.can(role, permission, resource);
+    } else {
+      return false;
+    }
+  }
+
+  canAccessByResource(permission: string, resource: string): boolean {
+    const role = this.roleProvider.getRoleSync();
     if (resource) {
       return this.accessChecker.can(role, permission, resource);
     } else {
