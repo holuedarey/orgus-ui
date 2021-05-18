@@ -2,35 +2,35 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 import { HasPermissionGuard } from './@core/guards/has-permission.guard';
-import { AppPermissionID, AppPermissions } from './app-permissions';
+import { AppResources, AppResourcesNavMap } from './app-resources';
 
 const routes: Routes = [
   {
-    path: AppPermissions.get(AppPermissionID.Landing)?.path,
+    path: AppResourcesNavMap.get(AppResources.Landing)?.path,
     loadChildren: () => import('./pages/landing/landing.module')
       .then(m => m.LandingModule),
   },
   {
-    path: AppPermissions.get(AppPermissionID.Auth)?.path,
+    path: AppResourcesNavMap.get(AppResources.Auth)?.path,
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
     canActivate: [HasPermissionGuard],
     canActivateChild: [HasPermissionGuard],
   },
   {
-    path: AppPermissions.get(AppPermissionID.App)?.path,
+    path: AppResourcesNavMap.get(AppResources.App)?.path,
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
     canActivate: [HasPermissionGuard],
     canActivateChild: [HasPermissionGuard],
   },
   {
-    path: AppPermissions.get(AppPermissionID.Error)?.path,
+    path: AppResourcesNavMap.get(AppResources.Error)?.path,
     loadChildren: () => import('./pages/exceptions/exceptions.module')
       .then(m => m.ExceptionsModule),
   },
   {
     path: '**',
-    redirectTo: AppPermissions.get(AppPermissionID.Error)?.path,
+    redirectTo: AppResourcesNavMap.get(AppResources.Error)?.path,
   },
 ];
 

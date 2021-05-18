@@ -1,36 +1,36 @@
-import { PermissionModel } from "src/app/@core/models/permission.model";
+import { ResourceNavModel } from "src/app/@core/models/resource-nav.model";
 
-export enum AuthPermissionID {
+export enum AuthViewResources {
     Login = 'auth:login',
     RequestPassword = 'auth:request-password',
     ResetPassword = 'auth:reset-password',
     UpdatePassword = 'auth:update-password',
 }
 
-export const AuthPermissions = new Map<string, PermissionModel>([
+export const AuthResourcesNavMap = new Map<string, ResourceNavModel>([
     [
-        AuthPermissionID.Login,
+        AuthViewResources.Login,
         {
             route: `/auth/login`,
             path: 'login'
         }
     ],
     [
-        AuthPermissionID.RequestPassword,
+        AuthViewResources.RequestPassword,
         {
             route: '/auth/request-password',
             path: 'request-password'
         }
     ],
     [
-        AuthPermissionID.ResetPassword,
+        AuthViewResources.ResetPassword,
         {
             route: '/auth/reset-password',
             path: 'reset-password'
         }
     ],
     [
-        AuthPermissionID.UpdatePassword,
+        AuthViewResources.UpdatePassword,
         {
             route: '/auth/update-password',
             path: 'update-password'

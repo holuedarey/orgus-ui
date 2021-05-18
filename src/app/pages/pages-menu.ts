@@ -1,18 +1,19 @@
 import { NbMenuItem } from '@nebular/theme';
 import { GlobalPermissions } from '../@core/maps/global-permissions';
-import { PagesPermissionID } from './pages-permissions';
+import { AuthViewResources } from './auth/auth-resources';
+import { PagesViewResources } from './pages-resources';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Dashboard',
     icon: 'shopping-cart-outline',
-    link: GlobalPermissions.get(PagesPermissionID.Dashboard)?.route,
+    link: GlobalPermissions.get(PagesViewResources.Dashboard)?.route,
     home: true,
   },
   {
     title: 'Location',
     icon: 'home-outline',
-    link: GlobalPermissions.get(PagesPermissionID.Other)?.route,
+    link: GlobalPermissions.get(PagesViewResources.Other)?.route,
   },
   {
     title: 'MODULES',
@@ -243,6 +244,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Reset Password',
         link: '/auth/reset-password',
+      },
+      {
+        title: 'Change Password',
+        link: GlobalPermissions.get(AuthViewResources.UpdatePassword)?.route,
       },
     ],
   },

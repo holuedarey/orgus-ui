@@ -1,20 +1,20 @@
-import { PermissionModel } from "../@core/models/permission.model";
+import { ResourceNavModel } from "../@core/models/resource-nav.model";
 
-export enum PagesPermissionID {
+export enum PagesViewResources {
     Dashboard = 'pages:dashboard',
     Other = 'pages:other',
 }
 
-export const PagesPermissions = new Map<string, PermissionModel>([
+export const PagesResourcesNavMap = new Map<string, ResourceNavModel>([
     [
-        PagesPermissionID.Dashboard,
+        PagesViewResources.Dashboard,
         {
             route: `/app/dashboard`,
             path: 'dashboard'
         }
     ],
     [
-        PagesPermissionID.Other,
+        PagesViewResources.Other,
         {
             route: '/app/other',
             path: 'other'

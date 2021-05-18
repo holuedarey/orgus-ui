@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ExceptionPermissionID, ExceptionPermissions } from 'src/app/pages/exceptions/exceptions-permissions';
+import { ExceptionViewResources, ExceptionResourcesNavMap } from 'src/app/pages/exceptions/exceptions-resources';
 import { PermissionService } from '../utils/permission.service';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class HasPermissionGuard implements CanActivate, CanActivateChild {
     if (hasAccess) {
       return true;
     } else {
-      this.router.navigateByUrl(ExceptionPermissions.get(ExceptionPermissionID.Unauthorised)?.route as string)
+      this.router.navigateByUrl(ExceptionResourcesNavMap.get(ExceptionViewResources.Unauthorised)?.route as string)
       return false;
     }
   }

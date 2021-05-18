@@ -1,28 +1,28 @@
-import { PermissionModel } from "src/app/@core/models/permission.model";
+import { ResourceNavModel } from "src/app/@core/models/resource-nav.model";
 
-export enum ExceptionPermissionID {
+export enum ExceptionViewResources {
     Unauthorised = 'error:unauthorised',
     PageNotFound = 'error:page-not-found',
     UserIdle = 'error:user-idle',
 }
 
-export const ExceptionPermissions = new Map<string, PermissionModel>([
+export const ExceptionResourcesNavMap = new Map<string, ResourceNavModel>([
     [
-        ExceptionPermissionID.Unauthorised,
+        ExceptionViewResources.Unauthorised,
         {
             route: '/error/unauthorised',
             path: 'unauthorised'
         }
     ],
     [
-        ExceptionPermissionID.PageNotFound,
+        ExceptionViewResources.PageNotFound,
         {
             route: '/error/page-not-found',
             path: 'page-not-found'
         }
     ],
     [
-        ExceptionPermissionID.UserIdle,
+        ExceptionViewResources.UserIdle,
         {
             route: '/error/user-idle',
             path: 'user-idle'

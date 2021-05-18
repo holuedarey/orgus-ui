@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HasPermissionGuard } from '../@core/guards/has-permission.guard';
-import { PagesPermissionID, PagesPermissions } from './pages-permissions';
+import { PagesViewResources, PagesResourcesNavMap } from './pages-resources';
 import { PagesComponent } from './pages.component';
 
 const routes: Routes = [
@@ -12,15 +12,15 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: PagesPermissions.get(PagesPermissionID.Dashboard)?.path
+        redirectTo: PagesResourcesNavMap.get(PagesViewResources.Dashboard)?.path
       },
       {
-        path: PagesPermissions.get(PagesPermissionID.Dashboard)?.path,
+        path: PagesResourcesNavMap.get(PagesViewResources.Dashboard)?.path,
         loadChildren: () => import('./dashboard/dashboard.module')
           .then(m => m.DashboardModule),
       },
       {
-        path: PagesPermissions.get(PagesPermissionID.Other)?.path,
+        path: PagesResourcesNavMap.get(PagesViewResources.Other)?.path,
         loadChildren: () => import('./other/other.module')
           .then(m => m.OtherModule),
       }

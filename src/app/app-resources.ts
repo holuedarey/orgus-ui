@@ -1,36 +1,36 @@
-import { PermissionModel } from "./@core/models/permission.model";
+import { ResourceNavModel } from "./@core/models/resource-nav.model";
 
-export enum AppPermissionID {
+export enum AppResources {
     Landing = 'app:landing',
     Auth = 'app:auth',
     App = 'app:app',
     Error = 'app:error'
 }
 
-export const AppPermissions = new Map<string, PermissionModel>([
+export const AppResourcesNavMap = new Map<string, ResourceNavModel>([
     [
-        AppPermissionID.Landing,
+        AppResources.Landing,
         {
             route: '/',
             path: ''
         }
     ],
     [
-        AppPermissionID.Auth,
+        AppResources.Auth,
         {
             route: '/auth',
             path: 'auth'
         }
     ],
     [
-        AppPermissionID.App,
+        AppResources.App,
         {
             route: '/app',
             path: 'app'
         }
     ],
     [
-        AppPermissionID.Error,
+        AppResources.Error,
         {
             route: '/error',
             path: 'error'

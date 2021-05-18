@@ -1,12 +1,12 @@
-import { AppPermissions } from "src/app/app-permissions";
-import { AuthPermissions } from "src/app/pages/auth/auth-permissions";
-import { ExceptionPermissions } from "src/app/pages/exceptions/exceptions-permissions";
-import { PagesPermissions } from "src/app/pages/pages-permissions";
-import { PermissionModel } from "../models/permission.model";
+import { AppResourcesNavMap } from "src/app/app-resources";
+import { AuthResourcesNavMap } from "src/app/pages/auth/auth-resources";
+import { ExceptionResourcesNavMap } from "src/app/pages/exceptions/exceptions-resources";
+import { PagesResourcesNavMap } from "src/app/pages/pages-resources";
+import { ResourceNavModel } from "../models/resource-nav.model";
 
-export const GlobalPermissions = new Map<string, PermissionModel>([
-    ...AppPermissions,
-    ...PagesPermissions,
-    ...ExceptionPermissions,
-    ...AuthPermissions,
+export const GlobalPermissions = new Map<string, ResourceNavModel>([
+    ...AppResourcesNavMap,
+    ...PagesResourcesNavMap,
+    ...ExceptionResourcesNavMap,
+    ...AuthResourcesNavMap,
 ]);
