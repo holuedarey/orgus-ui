@@ -49,7 +49,7 @@ export class UserService implements UserData, AccessControlContract {
   constructor(public permissionService: PermissionService) {
   }
 
-  @HasAccess(PermissionEnum.Create, AuthViewResources.Login)
+  @HasAccess(PermissionEnum.Read, AuthViewResources.Login)
   getUsers(): Observable<any> {
     return observableOf(this.users);
   }
