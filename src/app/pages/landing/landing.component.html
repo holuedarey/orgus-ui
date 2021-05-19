@@ -12,13 +12,14 @@
 
         <div class="header-container col-auto mt-md-5 ml-auto">
 
-            <a [routerLink]="['/auth/login']"  nbButton size="large" status="primary">Sign In</a>
+            <a [routerLink]="['/auth/login']" nbButton size="large" status="primary">Sign In</a>
         </div>
     </nb-layout-header>
 
     <nb-layout-column>
         <div class="container " style="height: 100%;">
-            <div xyz="fade-100% duration-10 stagger ease-in-out-back" style="height: 100%;" class="row align-content-center">
+            <div xyz="fade-100% duration-10 stagger ease-in-out-back" style="height: 100%;"
+                class="row align-content-center">
                 <div class="col-md-7 xyz-in">
                     <h1 class="heading-56">Live Monitoring Solution.</h1>
                     <h6>
@@ -28,7 +29,7 @@
                         Our all-in-one solution is here to let you focus on your business.
                     </h6>
                 </div>
-                <div class="col-md-5 ml-auto m-0 p-0">
+                <div class="col-md-5 ml-md-auto m-0 p-0">
                     <ng-lottie [options]="options" (animationCreated)="animationCreated($event)">
                     </ng-lottie>
                 </div>
