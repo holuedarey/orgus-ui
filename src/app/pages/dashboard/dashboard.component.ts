@@ -10,6 +10,13 @@ export class DashboardComponent {
   items = [
     'chart-i',
     'chart-ii',
+    'chart-ii',
+    'chart-i',
+    'chart-ii',
+    'chart-i',
+    'chart-i',
+    'chart-ii',
+    'chart-i',
   ];
   draggable = false;
   constructor() { }

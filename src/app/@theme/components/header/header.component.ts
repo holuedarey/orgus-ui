@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 
 import { LayoutService } from '../../../@core/utils';
@@ -8,6 +8,7 @@ import { ServiceWorkerService } from 'src/app/@core/utils/service-worker.service
 import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
 import { UserModel } from 'src/app/@core/models/user.model';
 import { PermissionEnum } from 'src/app/@core/enums/permission.enum';
+import { OnlineStatService } from 'src/app/@core/utils/online-stat.service';
 
 @Component({
   selector: 'app-header',
@@ -49,6 +50,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private themeService: NbThemeService,
     private userAuthService: UserAuthService,
     private layoutService: LayoutService,
+    public onlineStatService: OnlineStatService,
     private breakpointService: NbMediaBreakpointsService) {
     this.canInstall$ = this.sw.readyForInstall;
     this.user = this.userAuthService.getAuthenticatedUser() as UserModel;
@@ -112,5 +114,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   fullscreenLayout(): void {
     document.getElementById('layoutColumn')?.requestFullscreen();
+  }
+
+  @HostListener(`window:online`, ['$event.target'])
+  setNetworkOnLine(): void {
+    this.onlineStatService.updateOnlineStatus(true);
+  }
+
+  @HostListener(`window:offline`, ['$event.target'])
+  setNetworkOffline(): void {
+    this.onlineStatService.updateOnlineStatus(false);
   }
 }

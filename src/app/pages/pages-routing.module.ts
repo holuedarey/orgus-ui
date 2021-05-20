@@ -18,11 +18,6 @@ const routes: Routes = [
         path: PagesResourcesNavMap.get(PagesResources.DashboardView)?.path,
         loadChildren: () => import('./dashboard/dashboard.module')
           .then(m => m.DashboardModule),
-      },
-      {
-        path: PagesResourcesNavMap.get(PagesResources.OtherView)?.path,
-        loadChildren: () => import('./other/other.module')
-          .then(m => m.OtherModule),
       }
     ]
   }

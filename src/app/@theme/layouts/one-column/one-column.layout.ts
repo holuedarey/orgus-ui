@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NbLayoutDirectionService } from '@nebular/theme';
+import { OnlineStatService } from 'src/app/@core/utils/online-stat.service';
 
 @Component({
   selector: 'app-one-column-layout',
@@ -8,6 +9,7 @@ import { NbLayoutDirectionService } from '@nebular/theme';
 })
 export class OneColumnLayoutComponent {
   constructor(
-    public directionService: NbLayoutDirectionService
+    public directionService: NbLayoutDirectionService,
+    public onlineStat: OnlineStatService,
   ) { }
 }

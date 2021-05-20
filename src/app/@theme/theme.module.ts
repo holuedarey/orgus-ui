@@ -13,6 +13,7 @@ import {
   NbIconModule,
   NbTooltipModule,
   NbCardModule,
+  NbAlertModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
@@ -49,7 +50,8 @@ const NB_MODULES = [
   NbIconModule,
   NbEvaIconsModule,
   NbTooltipModule,
-  NbCardModule
+  NbCardModule,
+  NbAlertModule
 ];
 const COMPONENTS = [
   HeaderComponent,
