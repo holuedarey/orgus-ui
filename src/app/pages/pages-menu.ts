@@ -1,19 +1,19 @@
 import { NbMenuItem } from '@nebular/theme';
 import { GlobalResources } from '../@core/maps/global-resources';
-import { AuthViewResources } from './auth/auth-resources';
-import { PagesViewResources } from './pages-resources';
+import { AuthResources } from './auth/auth-resources';
+import { PagesResources } from './pages-resources';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Dashboard',
     icon: 'shopping-cart-outline',
-    link: GlobalResources.get(PagesViewResources.Dashboard)?.route,
+    link: GlobalResources.get(PagesResources.DashboardView)?.route,
     home: true,
   },
   {
     title: 'Location',
     icon: 'home-outline',
-    link: GlobalResources.get(PagesViewResources.Other)?.route,
+    link: GlobalResources.get(PagesResources.OtherView)?.route,
   },
   {
     title: 'MODULES',
@@ -247,7 +247,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Change Password',
-        link: GlobalResources.get(AuthViewResources.UpdatePassword)?.route,
+        link: GlobalResources.get(AuthResources.UpdatePasswordView)?.route,
       },
     ],
   },

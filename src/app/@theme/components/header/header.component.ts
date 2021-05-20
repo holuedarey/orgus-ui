@@ -4,8 +4,10 @@ import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeServ
 import { LayoutService } from '../../../@core/utils';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { UserService } from 'src/app/@core/data-services/users.service';
 import { ServiceWorkerService } from 'src/app/@core/utils/service-worker.service';
+import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
+import { UserModel } from 'src/app/@core/models/user.model';
+import { PermissionEnum } from 'src/app/@core/enums/permission.enum';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userPictureOnly = false;
   autoToggleMenu = false;
 
-  user: any;
+  user: UserModel;
 
   themes = [
     {
@@ -45,18 +47,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
     private themeService: NbThemeService,
-    private userService: UserService,
+    private userAuthService: UserAuthService,
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService) {
     this.canInstall$ = this.sw.readyForInstall;
+    this.user = this.userAuthService.getAuthenticatedUser() as UserModel;
   }
 
   ngOnInit(): void {
     this.currentTheme = this.themeService.currentTheme;
-
-    this.userService.getUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
 
     const { xl, lg } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()

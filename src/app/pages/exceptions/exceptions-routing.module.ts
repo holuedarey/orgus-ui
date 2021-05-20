@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ExceptionViewResources, ExceptionResourcesNavMap } from './exceptions-resources';
+import { ExceptionResources, ExceptionResourcesNavMap } from './exceptions-resources';
 import { ExceptionsComponent } from './exceptions.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UnauthorisedComponent } from './unauthorised/unauthorised.component';
@@ -13,25 +13,25 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: ExceptionResourcesNavMap.get(ExceptionViewResources.PageNotFound)?.path
+        redirectTo: ExceptionResourcesNavMap.get(ExceptionResources.PageNotFoundView)?.path
       },
       {
-        path: ExceptionResourcesNavMap.get(ExceptionViewResources.UserIdle)?.path,
+        path: ExceptionResourcesNavMap.get(ExceptionResources.UserIdleView)?.path,
         component: UserIdleComponent
       },
       {
-        path: ExceptionResourcesNavMap.get(ExceptionViewResources.Unauthorised)?.path,
+        path: ExceptionResourcesNavMap.get(ExceptionResources.UnauthorisedView)?.path,
         component: UnauthorisedComponent
       },
       {
-        path: ExceptionResourcesNavMap.get(ExceptionViewResources.PageNotFound)?.path,
+        path: ExceptionResourcesNavMap.get(ExceptionResources.PageNotFoundView)?.path,
         component: PageNotFoundComponent
       },
     ]
   },
   {
     path: '**',
-    redirectTo: ExceptionResourcesNavMap.get(ExceptionViewResources.PageNotFound)?.path
+    redirectTo: ExceptionResourcesNavMap.get(ExceptionResources.PageNotFoundView)?.path
   },
 ];
 

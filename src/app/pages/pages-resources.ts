@@ -1,20 +1,20 @@
 import { ResourceNavModel } from "../@core/models/resource-nav.model";
 
-export enum PagesViewResources {
-    Dashboard = 'pages:dashboard',
-    Other = 'pages:other',
+export enum PagesResources {
+    DashboardView = 'pages:dashboard-view',
+    OtherView = 'pages:other-view',
 }
 
-export const PagesResourcesNavMap = new Map<PagesViewResources, ResourceNavModel>([
+export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
     [
-        PagesViewResources.Dashboard,
+        PagesResources.DashboardView,
         {
             route: `/app/dashboard`,
             path: 'dashboard'
         }
     ],
     [
-        PagesViewResources.Other,
+        PagesResources.OtherView,
         {
             route: '/app/other',
             path: 'other'

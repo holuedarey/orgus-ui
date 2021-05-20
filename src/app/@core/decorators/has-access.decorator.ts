@@ -1,9 +1,10 @@
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { of, throwError } from "rxjs";
 import { ResponseDto } from "../dtos/response-dto";
+import { PermissionEnum } from "../enums/permission.enum";
 import { PermissionService } from "../utils/permission.service";
 
-export function HasAccess(permission: string, resource: string) {
+export function HasAccess(permission: PermissionEnum, resource: string) {
   return (target: any, propertyKey: string, descriptor: PropertyDescriptor | any) => {
 
     const originalMethod = descriptor.value;

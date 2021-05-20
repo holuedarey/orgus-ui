@@ -1,36 +1,36 @@
 import { ResourceNavModel } from "./@core/models/resource-nav.model";
 
 export enum AppResources {
-    Landing = 'app:landing',
-    Auth = 'app:auth',
-    App = 'app:app',
-    Error = 'app:error'
+    LandingView = 'app:landing-view',
+    AuthView = 'app:auth-view',
+    AppView = 'app:app-view',
+    ErrorView = 'app:error-view'
 }
 
 export const AppResourcesNavMap = new Map<AppResources, ResourceNavModel>([
     [
-        AppResources.Landing,
+        AppResources.LandingView,
         {
             route: '/',
             path: ''
         }
     ],
     [
-        AppResources.Auth,
+        AppResources.AuthView,
         {
             route: '/auth',
             path: 'auth'
         }
     ],
     [
-        AppResources.App,
+        AppResources.AppView,
         {
             route: '/app',
             path: 'app'
         }
     ],
     [
-        AppResources.Error,
+        AppResources.ErrorView,
         {
             route: '/error',
             path: 'error'

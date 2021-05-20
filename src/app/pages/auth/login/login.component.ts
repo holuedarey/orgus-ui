@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
           this.ls.set(LocalStorageKey.REFRESH_TOKEN.toString(), result.data.refreshToken);
           this.validateUserCache();
           setTimeout(() => {
-            return this.router.navigateByUrl(AppResourcesNavMap.get(AppResources.App)?.route as string);
+            return this.router.navigateByUrl(AppResourcesNavMap.get(AppResources.AppView)?.route as string);
           }, this.redirectDelay);
           this.cd.detectChanges();
         } else {

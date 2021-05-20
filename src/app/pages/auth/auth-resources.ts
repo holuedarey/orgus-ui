@@ -1,36 +1,36 @@
 import { ResourceNavModel } from "src/app/@core/models/resource-nav.model";
 
-export enum AuthViewResources {
-    Login = 'auth:login',
-    RequestPassword = 'auth:request-password',
-    ResetPassword = 'auth:reset-password',
-    UpdatePassword = 'auth:update-password',
+export enum AuthResources {
+    LoginView = 'auth:login-view',
+    RequestPasswordView = 'auth:request-password-view',
+    ResetPasswordView = 'auth:reset-password-view',
+    UpdatePasswordView = 'auth:update-password-view',
 }
 
-export const AuthResourcesNavMap = new Map<AuthViewResources, ResourceNavModel>([
+export const AuthResourcesNavMap = new Map<AuthResources, ResourceNavModel>([
     [
-        AuthViewResources.Login,
+        AuthResources.LoginView,
         {
             route: `/auth/login`,
             path: 'login'
         }
     ],
     [
-        AuthViewResources.RequestPassword,
+        AuthResources.RequestPasswordView,
         {
             route: '/auth/request-password',
             path: 'request-password'
         }
     ],
     [
-        AuthViewResources.ResetPassword,
+        AuthResources.ResetPasswordView,
         {
             route: '/auth/reset-password',
             path: 'reset-password'
         }
     ],
     [
-        AuthViewResources.UpdatePassword,
+        AuthResources.UpdatePasswordView,
         {
             route: '/auth/update-password',
             path: 'update-password'

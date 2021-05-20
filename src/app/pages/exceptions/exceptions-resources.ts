@@ -1,28 +1,28 @@
 import { ResourceNavModel } from "src/app/@core/models/resource-nav.model";
 
-export enum ExceptionViewResources {
-    Unauthorised = 'error:unauthorised',
-    PageNotFound = 'error:page-not-found',
-    UserIdle = 'error:user-idle',
+export enum ExceptionResources {
+    UnauthorisedView = 'error:unauthorised-view',
+    PageNotFoundView = 'error:page-not-found-view',
+    UserIdleView = 'error:user-idle-view',
 }
 
-export const ExceptionResourcesNavMap = new Map<ExceptionViewResources, ResourceNavModel>([
+export const ExceptionResourcesNavMap = new Map<ExceptionResources, ResourceNavModel>([
     [
-        ExceptionViewResources.Unauthorised,
+        ExceptionResources.UnauthorisedView,
         {
             route: '/error/unauthorised',
             path: 'unauthorised'
         }
     ],
     [
-        ExceptionViewResources.PageNotFound,
+        ExceptionResources.PageNotFoundView,
         {
             route: '/error/page-not-found',
             path: 'page-not-found'
         }
     ],
     [
-        ExceptionViewResources.UserIdle,
+        ExceptionResources.UserIdleView,
         {
             route: '/error/user-idle',
             path: 'user-idle'

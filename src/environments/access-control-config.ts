@@ -1,7 +1,7 @@
 import { NbAccessControl } from "@nebular/security";
-import { AuthViewResources } from "src/app/pages/auth/auth-resources";
-import { ExceptionViewResources } from "src/app/pages/exceptions/exceptions-resources";
-import { PagesViewResources } from "src/app/pages/pages-resources";
+import { AuthResources } from "src/app/pages/auth/auth-resources";
+import { ExceptionResources } from "src/app/pages/exceptions/exceptions-resources";
+import { PagesResources } from "src/app/pages/pages-resources";
 
 export const AccessControl: NbAccessControl[] = [
     {
@@ -9,12 +9,12 @@ export const AccessControl: NbAccessControl[] = [
         guest: {
             view: [
                 // Can view all Exception Pages
-                ...Object.values(ExceptionViewResources),
+                ...Object.values(ExceptionResources),
 
                 // Can View Auth pages apart from change password
-                AuthViewResources.Login,
-                AuthViewResources.ResetPassword,
-                AuthViewResources.RequestPassword,
+                AuthResources.LoginView,
+                AuthResources.ResetPasswordView,
+                AuthResources.RequestPasswordView,
             ],
         },
 
@@ -25,10 +25,10 @@ export const AccessControl: NbAccessControl[] = [
             create: [],
             view: [
                 // All Auth Pages
-                AuthViewResources.UpdatePassword,
+                AuthResources.UpdatePasswordView,
 
                 // View Dashboard
-                PagesViewResources.Dashboard
+                PagesResources.DashboardView
             ],
             update: [],
             delete: [],

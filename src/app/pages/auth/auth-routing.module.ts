@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NbAuthComponent } from '@nebular/auth';
 import { HasPasswordResetTokenGuard } from 'src/app/@core/guards/has-password-reset-token.guard';
-import { AuthResourcesNavMap, AuthViewResources } from './auth-resources';
+import { AuthResourcesNavMap, AuthResources } from './auth-resources';
 
 import { LoginComponent } from './login/login.component';
 import { RequestPasswordComponent } from './request-password/request-password.component';
@@ -16,23 +16,23 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: AuthResourcesNavMap.get(AuthViewResources.Login)?.path
+        redirectTo: AuthResourcesNavMap.get(AuthResources.LoginView)?.path
       },
       {
-        path: AuthResourcesNavMap.get(AuthViewResources.Login)?.path,
+        path: AuthResourcesNavMap.get(AuthResources.LoginView)?.path,
         component: LoginComponent
       },
       {
-        path: AuthResourcesNavMap.get(AuthViewResources.RequestPassword)?.path,
+        path: AuthResourcesNavMap.get(AuthResources.RequestPasswordView)?.path,
         component: RequestPasswordComponent,
       },
       {
-        path: AuthResourcesNavMap.get(AuthViewResources.ResetPassword)?.path,
+        path: AuthResourcesNavMap.get(AuthResources.ResetPasswordView)?.path,
         component: ResetPasswordComponent,
         canActivate: [HasPasswordResetTokenGuard]
       },
       {
-        path: AuthResourcesNavMap.get(AuthViewResources.UpdatePassword)?.path,
+        path: AuthResourcesNavMap.get(AuthResources.UpdatePasswordView)?.path,
         component: UpdatePasswordComponent,
       },
     ]

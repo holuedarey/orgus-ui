@@ -4,7 +4,7 @@ import { Contacts, RecentUsers, UserData } from '../data-contracts/users';
 import { HasAccess } from '../decorators/has-access.decorator';
 import { PermissionService } from '../utils/permission.service';
 import { AccessControlContract } from '../data-contracts/access-control-contract';
-import { AuthViewResources } from 'src/app/pages/auth/auth-resources';
+import { AuthResources } from 'src/app/pages/auth/auth-resources';
 import { PermissionEnum } from '../enums/permission.enum';
 
 @Injectable({
@@ -49,7 +49,7 @@ export class UserService implements UserData, AccessControlContract {
   constructor(public permissionService: PermissionService) {
   }
 
-  @HasAccess(PermissionEnum.View, AuthViewResources.Login)
+  @HasAccess(PermissionEnum.View, AuthResources.LoginView)
   getUsers(): Observable<any> {
     return observableOf(this.users);
   }

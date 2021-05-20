@@ -1,32 +1,39 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthResources } from 'src/app/pages/auth/auth-resources';
 import { environment } from 'src/environments/environment';
+import { AccessControlContract } from '../data-contracts/access-control-contract';
+import { HasAccess } from '../decorators/has-access.decorator';
 import { LoginDto } from '../dtos/login.dto';
 import { ResponseDto } from '../dtos/response-dto';
 import { UpdatePasswordDto } from '../dtos/update-password.dto';
+import { PermissionEnum } from '../enums/permission.enum';
 import { UserModel } from '../models/user.model';
+import { PermissionService } from '../utils/permission.service';
 import { TokenService } from '../utils/token.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserAuthService {
+export class UserAuthService implements AccessControlContract {
 
   constructor(
     private httpClient: HttpClient,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    public permissionService: PermissionService
   ) { }
 
+  @HasAccess(PermissionEnum.View, AuthResources.UpdatePasswordView)
   updatePassword(passwords: any): Observable<ResponseDto<any>> {
-    const user = this.tokenService.getPayload();
+    const jwtPayload = this.tokenService.getPayload();
 
     const apiEndpoint = 'auth/changePassword';
     const passwordDto: UpdatePasswordDto = {
       oldPassword: passwords.oldPassword,
       newPassword: passwords.newPassword,
-      email: (JSON.parse(user.sub) as UserModel).email
+      email: (JSON.parse(jwtPayload.sub) as UserModel).email
     };
     return this.httpClient.post<ResponseDto<any>>(
       `${environment.apiUrl}/${apiEndpoint}`,
@@ -52,6 +59,15 @@ export class UserAuthService {
     return this.httpClient.post<ResponseDto<any>>(
       `${environment.apiUrl}/${apiEndpoint}`,
       loginDto);
+  }
+
+  getAuthenticatedUser(): UserModel | null {
+    const jwtPayload = this.tokenService.getPayload();
+    try {
+      return (JSON.parse(jwtPayload.sub) as UserModel)
+    } catch (error) {
+      return null
+    }
   }
 
 }

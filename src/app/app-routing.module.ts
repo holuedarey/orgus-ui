@@ -7,32 +7,32 @@ import { AppResources, AppResourcesNavMap } from './app-resources';
 
 const routes: Routes = [
   {
-    path: AppResourcesNavMap.get(AppResources.Landing)?.path,
+    path: AppResourcesNavMap.get(AppResources.LandingView)?.path,
     loadChildren: () => import('./pages/landing/landing.module')
       .then(m => m.LandingModule),
     canActivate: [ShowLandingGuard]
   },
   {
-    path: AppResourcesNavMap.get(AppResources.Auth)?.path,
+    path: AppResourcesNavMap.get(AppResources.AuthView)?.path,
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
     canActivate: [HasPermissionGuard],
     canActivateChild: [HasPermissionGuard],
   },
   {
-    path: AppResourcesNavMap.get(AppResources.App)?.path,
+    path: AppResourcesNavMap.get(AppResources.AppView)?.path,
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
     canActivate: [HasPermissionGuard],
     canActivateChild: [HasPermissionGuard],
   },
   {
-    path: AppResourcesNavMap.get(AppResources.Error)?.path,
+    path: AppResourcesNavMap.get(AppResources.ErrorView)?.path,
     loadChildren: () => import('./pages/exceptions/exceptions.module')
       .then(m => m.ExceptionsModule),
   },
   {
     path: '**',
-    redirectTo: AppResourcesNavMap.get(AppResources.Error)?.path,
+    redirectTo: AppResourcesNavMap.get(AppResources.ErrorView)?.path,
   },
 ];
 

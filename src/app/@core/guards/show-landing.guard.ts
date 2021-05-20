@@ -21,7 +21,7 @@ export class ShowLandingGuard implements CanActivate {
         if (!isAuth) {
           return true;
         } else {
-          this.router.navigateByUrl(AppResourcesNavMap.get(AppResources.App)?.route as string);
+          this.router.navigateByUrl(AppResourcesNavMap.get(AppResources.AppView)?.route as string);
           return false;
         }
       })
