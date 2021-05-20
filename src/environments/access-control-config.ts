@@ -7,7 +7,7 @@ export const AccessControl: NbAccessControl[] = [
     {
         // not logged in
         guest: {
-            read: [
+            view: [
                 // Can view all Exception Pages
                 ...Object.values(ExceptionViewResources),
 
@@ -23,7 +23,7 @@ export const AccessControl: NbAccessControl[] = [
             // All Permissions of guest
             parent: 'guest',
             create: [],
-            read: [
+            view: [
                 // All Auth Pages
                 AuthViewResources.UpdatePassword,
 
@@ -32,6 +32,11 @@ export const AccessControl: NbAccessControl[] = [
             ],
             update: [],
             delete: [],
+        },
+
+        // Vgg Admin
+        'vgg_admin': {
+            parent: 'user',
         }
     }
 ]

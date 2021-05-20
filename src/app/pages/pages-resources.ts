@@ -5,7 +5,7 @@ export enum PagesViewResources {
     Other = 'pages:other',
 }
 
-export const PagesResourcesNavMap = new Map<string, ResourceNavModel>([
+export const PagesResourcesNavMap = new Map<PagesViewResources, ResourceNavModel>([
     [
         PagesViewResources.Dashboard,
         {

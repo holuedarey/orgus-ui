@@ -32,7 +32,7 @@ export class PagesComponent implements OnInit {
         if (m.group) {
           m.hidden = false;
         }
-      } else if (this.permissionService.canRead(m.link)) {
+      } else if (this.permissionService.canView(m.link)) {
         m.hidden = false;
       } else {
         m.hidden = true;

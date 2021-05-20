@@ -4,7 +4,7 @@ import { ExceptionResourcesNavMap } from "src/app/pages/exceptions/exceptions-re
 import { PagesResourcesNavMap } from "src/app/pages/pages-resources";
 import { ResourceNavModel } from "../models/resource-nav.model";
 
-export const GlobalPermissions = new Map<string, ResourceNavModel>([
+export const GlobalResources = new Map<string, ResourceNavModel>([
     ...AppResourcesNavMap,
     ...PagesResourcesNavMap,
     ...ExceptionResourcesNavMap,

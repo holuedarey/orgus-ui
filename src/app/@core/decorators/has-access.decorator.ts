@@ -14,10 +14,10 @@ export function HasAccess(permission: string, resource: string) {
         const result = originalMethod.apply(this, args);
         return result;
       } else {
-        console.error('You are unauthorised to perform this action');
+        console.error(`You are unauthorised to perform this action:\nClass - ${target.constructor.name}\nMethod - ${propertyKey}`);
         return of(new HttpResponse<ResponseDto<any>>({
           body: {
-            message: 'You are unauthorised to perform this action',
+            message: `You are unauthorised to perform this action:\nClass - ${target.constructor.name}\nMethod - ${propertyKey}`,
             status: false
           }
         }));

@@ -7,7 +7,7 @@ export enum AppResources {
     Error = 'app:error'
 }
 
-export const AppResourcesNavMap = new Map<string, ResourceNavModel>([
+export const AppResourcesNavMap = new Map<AppResources, ResourceNavModel>([
     [
         AppResources.Landing,
         {

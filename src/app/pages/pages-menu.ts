@@ -1,5 +1,5 @@
 import { NbMenuItem } from '@nebular/theme';
-import { GlobalPermissions } from '../@core/maps/global-permissions';
+import { GlobalResources } from '../@core/maps/global-resources';
 import { AuthViewResources } from './auth/auth-resources';
 import { PagesViewResources } from './pages-resources';
 
@@ -7,13 +7,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Dashboard',
     icon: 'shopping-cart-outline',
-    link: GlobalPermissions.get(PagesViewResources.Dashboard)?.route,
+    link: GlobalResources.get(PagesViewResources.Dashboard)?.route,
     home: true,
   },
   {
     title: 'Location',
     icon: 'home-outline',
-    link: GlobalPermissions.get(PagesViewResources.Other)?.route,
+    link: GlobalResources.get(PagesViewResources.Other)?.route,
   },
   {
     title: 'MODULES',
@@ -25,7 +25,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Stepper',
-        link: GlobalPermissions.get('pages:other')?.route,
+        link: GlobalResources.get('pages:other')?.route,
       },
       {
         title: 'List',
@@ -247,7 +247,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Change Password',
-        link: GlobalPermissions.get(AuthViewResources.UpdatePassword)?.route,
+        link: GlobalResources.get(AuthViewResources.UpdatePassword)?.route,
       },
     ],
   },

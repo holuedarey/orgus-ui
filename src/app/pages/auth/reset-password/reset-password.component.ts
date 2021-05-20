@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { getDeepFromObject, NB_AUTH_OPTIONS } from '@nebular/auth';
 import { ResetPasswordDto } from 'src/app/@core/dtos/reset-password.dto';
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
-import { AuthExtensionService } from 'src/app/@core/utils/auth-extension.service';
+import { AuthExtensionService } from 'src/app/@core/data-services/auth-extension.service';
 
 
 @Component({

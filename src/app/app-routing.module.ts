@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 import { HasPermissionGuard } from './@core/guards/has-permission.guard';
+import { ShowLandingGuard } from './@core/guards/show-landing.guard';
 import { AppResources, AppResourcesNavMap } from './app-resources';
 
 const routes: Routes = [
@@ -9,6 +10,7 @@ const routes: Routes = [
     path: AppResourcesNavMap.get(AppResources.Landing)?.path,
     loadChildren: () => import('./pages/landing/landing.module')
       .then(m => m.LandingModule),
+    canActivate: [ShowLandingGuard]
   },
   {
     path: AppResourcesNavMap.get(AppResources.Auth)?.path,

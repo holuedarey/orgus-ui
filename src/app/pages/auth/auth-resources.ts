@@ -7,7 +7,7 @@ export enum AuthViewResources {
     UpdatePassword = 'auth:update-password',
 }
 
-export const AuthResourcesNavMap = new Map<string, ResourceNavModel>([
+export const AuthResourcesNavMap = new Map<AuthViewResources, ResourceNavModel>([
     [
         AuthViewResources.Login,
         {

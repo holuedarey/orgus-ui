@@ -2,15 +2,16 @@ import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { getDeepFromObject, NbAuthJWTToken, NbTokenService, NB_AUTH_OPTIONS } from '@nebular/auth';
+import { AuthExtensionService } from 'src/app/@core/data-services/auth-extension.service';
 import { LoginDto } from 'src/app/@core/dtos/login.dto';
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
 import { IndexedDbKey } from 'src/app/@core/enums/indexed-db-key.enum';
 import { LocalStorageKey } from 'src/app/@core/enums/local-storage-key.enum';
 import { JwtPayloadModel } from 'src/app/@core/models/jwt-payload-model';
-import { AuthExtensionService } from 'src/app/@core/utils/auth-extension.service';
 import { DbService } from 'src/app/@core/utils/db.service';
 import { SecureLocalStorageService } from 'src/app/@core/utils/secure-local-storage.service';
 import { TokenService } from 'src/app/@core/utils/token.service';
+import { AppResources, AppResourcesNavMap } from 'src/app/app-resources';
 
 
 
@@ -75,7 +76,7 @@ export class LoginComponent implements OnInit {
           this.ls.set(LocalStorageKey.REFRESH_TOKEN.toString(), result.data.refreshToken);
           this.validateUserCache();
           setTimeout(() => {
-            return this.router.navigateByUrl('/app');
+            return this.router.navigateByUrl(AppResourcesNavMap.get(AppResources.App)?.route as string);
           }, this.redirectDelay);
           this.cd.detectChanges();
         } else {

@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule, Optional, Provider, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
+import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy, NbTokenStorage } from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 
 import { environment } from 'src/environments/environment';
@@ -18,6 +18,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SortablejsModule } from 'ngx-sortablejs';
 import { RoleProvider } from './utils/role-provider.service';
+import { CustomTokenStorageModule } from './utils/custom-token-storage/custom-token-storage.module';
 
 const ls = new SecureLS({ encodingType: 'aes' });
 
@@ -82,8 +83,7 @@ export const NB_CORE_PROVIDERS = [
     ],
   }).providers as Provider[],
 
-  // Security Module Providers
-
+  { provide: NbTokenStorage, useClass: CustomTokenStorageModule },
 
   // Animation Module Providers
   LottieModule.forRoot({ player: playerFactory }).providers,

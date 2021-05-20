@@ -5,8 +5,9 @@ import { environment } from 'src/environments/environment';
 import { LoginDto } from '../dtos/login.dto';
 import { ResponseDto } from '../dtos/response-dto';
 import { UpdatePasswordDto } from '../dtos/update-password.dto';
+import { UserModel } from '../models/user.model';
+import { TokenService } from '../utils/token.service';
 
-import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class AuthExtensionService {
     const passwordDto: UpdatePasswordDto = {
       oldPassword: passwords.oldPassword,
       newPassword: passwords.newPassword,
-      email: user.email
+      email: (JSON.parse(user.sub) as UserModel).email
     };
     return this.httpClient.post<ResponseDto<any>>(
       `${environment.apiUrl}/${apiEndpoint}`,

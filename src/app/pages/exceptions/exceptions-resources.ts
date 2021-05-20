@@ -6,7 +6,7 @@ export enum ExceptionViewResources {
     UserIdle = 'error:user-idle',
 }
 
-export const ExceptionResourcesNavMap = new Map<string, ResourceNavModel>([
+export const ExceptionResourcesNavMap = new Map<ExceptionViewResources, ResourceNavModel>([
     [
         ExceptionViewResources.Unauthorised,
         {

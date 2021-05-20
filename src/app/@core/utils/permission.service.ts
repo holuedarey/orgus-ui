@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NbAclService } from '@nebular/security';
-import { GlobalPermissions } from '../maps/global-permissions';
+import { GlobalResources } from '../maps/global-resources';
 import { RoleProvider } from './role-provider.service';
 
 @Injectable({
@@ -17,8 +17,8 @@ export class PermissionService {
     return this.canAccessByRoute(route, 'create');
   }
 
-  canRead(route: string): boolean {
-    return this.canAccessByRoute(route, 'read');
+  canView(route: string): boolean {
+    return this.canAccessByRoute(route, 'view');
   }
 
   canUpdate(route: string): boolean {
@@ -31,7 +31,7 @@ export class PermissionService {
 
   private canAccessByRoute(route: string, permission: string): boolean {
     const role = this.roleProvider.getRoleSync();
-    const resource = Array.from(GlobalPermissions.entries())
+    const resource = Array.from(GlobalResources.entries())
       .find(p => p[1].route === route)?.[0];
     if (resource) {
       return this.accessChecker.can(role, permission, resource);
