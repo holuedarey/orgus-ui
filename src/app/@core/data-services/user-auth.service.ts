@@ -12,7 +12,7 @@ import { TokenService } from '../utils/token.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthExtensionService {
+export class UserAuthService {
 
   constructor(
     private httpClient: HttpClient,

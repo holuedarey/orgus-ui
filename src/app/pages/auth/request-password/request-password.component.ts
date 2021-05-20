@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { getDeepFromObject, NB_AUTH_OPTIONS } from '@nebular/auth';
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
-import { AuthExtensionService } from 'src/app/@core/data-services/auth-extension.service';
+import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class RequestPasswordComponent {
   user: any = {};
 
   constructor(
-    protected service: AuthExtensionService,
+    protected service: UserAuthService,
     @Inject(NB_AUTH_OPTIONS) protected options = {},
     protected cd: ChangeDetectorRef,
     protected router: Router) {
