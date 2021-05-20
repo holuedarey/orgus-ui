@@ -5,12 +5,13 @@
 import { AccessControl } from "./access-control-config";
 
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:3003',
-  apiDomain: 'argusapp-api.test.vggdev.com',
+  production: true,
+  appUrl: 'https://argusapp-web.test.vggdev.com',
+  apiUrl: 'https://argusgateway-api.test.vggdev.com',
+  apiDomain: 'argusgateway-api.test.vggdev.com',
   googleMapKey: 'AIzaSyDnwVXdPAfWb3f2OwfsimrxuLIPhHtYZcc',
   accessControlConfig: AccessControl[0]
-};
+}
 
 /*
  * For easier debugging in development mode, you can import the following file
