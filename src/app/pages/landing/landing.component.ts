@@ -39,7 +39,6 @@ export class LandingComponent implements OnInit, OnDestroy {
   }
 
   animationCreated(animationItem: AnimationItem): void {
-    console.log(animationItem);
     animationItem.setSpeed(0.3);
     // setTimeout(() => {
     //   animationItem.goToAndStop(animationItem.firstFrame + animationItem.totalFrames-1, true);

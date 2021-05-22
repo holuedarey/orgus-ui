@@ -23,21 +23,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   user: UserModel;
 
-  themes = [
-    {
-      value: 'default',
-      name: 'Light',
-    },
-    {
-      value: 'dark',
-      name: 'Dark',
-    }
-  ];
-
   currentTheme = 'default';
 
   userMenu = [
-    { title: 'Profile' },
+    { title: 'Settings' },
     { title: 'Log out' }
   ];
 

@@ -1,0 +1,19 @@
+@import "~bootstrap/scss/mixins/breakpoints";
+@import "~@nebular/theme/styles/global/breakpoints";
+
+@include media-breakpoint-up(xs) {
+    nb-card {
+        height: 60vh;
+    }
+}
+
+@include media-breakpoint-up(xxxl) {
+    nb-card {
+        height: 40vh;
+    }
+}
+
+nb-user {
+    --user-large-name-text-font-size: var(--text-heading-3-font-size);
+    --user-name-text-font-weight: var(--text-heading-3-font-weight);
+}

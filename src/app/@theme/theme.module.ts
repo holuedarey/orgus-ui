@@ -14,6 +14,9 @@ import {
   NbTooltipModule,
   NbCardModule,
   NbAlertModule,
+  NbTabsetModule,
+  NbListModule,
+  NbToggleModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
@@ -35,6 +38,7 @@ import {
   TwoColumnsLayoutComponent,
 } from './layouts';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 
 const NB_MODULES = [
@@ -52,7 +56,10 @@ const NB_MODULES = [
   NbEvaIconsModule,
   NbTooltipModule,
   NbCardModule,
-  NbAlertModule
+  NbAlertModule,
+  NbTabsetModule,
+  NbListModule,
+  NbToggleModule
 ];
 const COMPONENTS = [
   HeaderComponent,
@@ -73,7 +80,7 @@ const PIPES = [
 @NgModule({
   imports: [CommonModule, ...NB_MODULES],
   exports: [CommonModule, ...PIPES, ...COMPONENTS, ...NB_MODULES],
-  declarations: [...COMPONENTS, ...PIPES],
+  declarations: [...COMPONENTS, ...PIPES, SettingsComponent],
 })
 export class ThemeModule {
 }

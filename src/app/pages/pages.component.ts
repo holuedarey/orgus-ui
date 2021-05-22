@@ -2,9 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbDialogService, NbMenuItem, NbMenuService } from '@nebular/theme';
 import { filter, map, takeWhile } from 'rxjs/operators';
+import { LocalStorageKey } from '../@core/enums/local-storage-key.enum';
 import { PermissionService } from '../@core/utils/permission.service';
 import { SecureLocalStorageService } from '../@core/utils/secure-local-storage.service';
 import { ConfirmationDialogComponent } from '../@theme/components/confirmation-dialog/confirmation-dialog.component';
+import { SettingsComponent } from '../@theme/components/settings/settings.component';
 import { MENU_ITEMS } from './pages-menu';
 
 @Component({
@@ -51,7 +53,6 @@ export class PagesComponent implements OnInit, OnDestroy {
         m.hidden = true;
       }
     };
-
   }
 
   onUserContextMenuClick() {
@@ -64,7 +65,8 @@ export class PagesComponent implements OnInit, OnDestroy {
       .subscribe(
         (title) => {
           switch (title) {
-            case 'Profile':
+            case 'Settings':
+              this.handleProfileMenuClick();
               break;
 
             case 'Log out':
@@ -94,9 +96,15 @@ export class PagesComponent implements OnInit, OnDestroy {
       .onClose.toPromise();
 
     if (confirmed) {
-      this.storageService.clear();
+      this.storageService.remove(LocalStorageKey.JWT.toString());
       this.router.navigateByUrl('/');
     }
+  }
+
+  async handleProfileMenuClick() {
+    const confirmed = await this.dialogService.open(SettingsComponent)
+      .onClose.toPromise();
+
   }
 
 }
