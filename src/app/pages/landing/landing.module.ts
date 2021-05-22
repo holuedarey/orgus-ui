@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing.component';
 import { LottieModule } from 'ngx-lottie';
-import { ThemeModule } from 'src/app/@theme/theme.module';
+import { NbButtonModule, NbLayoutModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -12,8 +12,9 @@ import { ThemeModule } from 'src/app/@theme/theme.module';
   imports: [
     CommonModule,
     LandingRoutingModule,
-    ThemeModule,
-    LottieModule
+    LottieModule,
+    NbLayoutModule,
+    NbButtonModule
   ]
 })
 export class LandingModule { }

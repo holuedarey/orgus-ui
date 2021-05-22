@@ -2,6 +2,10 @@
 @import "~bootstrap/scss/mixins/breakpoints";
 @import "~@nebular/theme/styles/global/breakpoints";
 
+@include nb-install-component() {
+    --text-basic-color: var(--color-basic-800) !important;
+}
+
 #landing-canvas {
     position: absolute;
     display: block;

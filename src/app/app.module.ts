@@ -18,7 +18,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { CoreModule } from './@core/core.module';
-import { ThemeModule } from './@theme/theme.module';
 import { DEFAULT_THEME } from './@theme/styles/theme.default';
 import { DARK_THEME } from './@theme/styles/theme.dark';
 
@@ -47,7 +46,6 @@ import { DARK_THEME } from './@theme/styles/theme.dark';
       [DEFAULT_THEME, DARK_THEME],
       undefined,
       NbLayoutDirection.LTR),
-    ThemeModule,
     // Global Imports
     CoreModule.forRoot(),
   ],

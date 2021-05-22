@@ -8,6 +8,7 @@ export const environment = {
   production: false,
   appUrl: 'https://argusapp-web.test.vggdev.com',
   // apiUrl: 'http://localhost:3003',
+  // apiUrl: 'https://argusgateway-api.staging.vggdev.com',
   apiUrl: 'https://argusgateway-api.test.vggdev.com',
   apiDomain: 'argusgateway-api.test.vggdev.com',
   googleMapKey: 'AIzaSyDnwVXdPAfWb3f2OwfsimrxuLIPhHtYZcc',

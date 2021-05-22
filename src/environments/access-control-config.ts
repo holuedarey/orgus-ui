@@ -37,6 +37,14 @@ export const AccessControl: NbAccessControl[] = [
         // Vgg Admin
         'vgg_admin': {
             parent: 'user',
+        },
+
+        // Vgg Admin
+        'vgg_superadmin': {
+            create: '*',
+            view: '*',
+            update: '*',
+            delete: '*',
         }
     }
 ]

@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { NbMenuItem } from '@nebular/theme';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NbDialogService, NbMenuItem, NbMenuService } from '@nebular/theme';
+import { filter, map, takeWhile } from 'rxjs/operators';
 import { PermissionService } from '../@core/utils/permission.service';
+import { SecureLocalStorageService } from '../@core/utils/secure-local-storage.service';
+import { ConfirmationDialogComponent } from '../@theme/components/confirmation-dialog/confirmation-dialog.component';
 import { MENU_ITEMS } from './pages-menu';
 
 @Component({
@@ -8,14 +12,23 @@ import { MENU_ITEMS } from './pages-menu';
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.scss']
 })
-export class PagesComponent implements OnInit {
+export class PagesComponent implements OnInit, OnDestroy {
 
   menu = MENU_ITEMS;
 
-  constructor(private permissionService: PermissionService) { }
+  isLive = true;
+
+  constructor(
+    private permissionService: PermissionService,
+    private nbMenuService: NbMenuService,
+    private dialogService: NbDialogService,
+    private storageService: SecureLocalStorageService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.setMenuPermissions(this.menu);
+    this.onUserContextMenuClick();
   }
 
   setMenuPermissions(menu: NbMenuItem[]) {
@@ -40,4 +53,50 @@ export class PagesComponent implements OnInit {
     };
 
   }
+
+  onUserContextMenuClick() {
+    this.nbMenuService.onItemClick()
+      .pipe(
+        takeWhile(() => this.isLive),
+        filter(({ tag }) => tag === 'user-menu'),
+        map(({ item: { title } }) => title),
+      )
+      .subscribe(
+        (title) => {
+          switch (title) {
+            case 'Profile':
+              break;
+
+            case 'Log out':
+              this.handleLogoutClick();
+              break;
+
+            default:
+              break;
+          }
+        }
+      )
+  }
+
+  ngOnDestroy() {
+    this.isLive = false;
+  }
+
+  async handleLogoutClick() {
+    const confirmed = await this.dialogService.open(
+      ConfirmationDialogComponent,
+      {
+        context: {
+          context: `Are you sure you wish to proceed? `,
+          title: 'Logout'
+        },
+      })
+      .onClose.toPromise();
+
+    if (confirmed) {
+      this.storageService.clear();
+      this.router.navigateByUrl('/');
+    }
+  }
+
 }

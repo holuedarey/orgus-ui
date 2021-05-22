@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { RequestPasswordComponent } from './request-password/request-password.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 
 @NgModule({
@@ -34,9 +35,10 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
     NbButtonModule,
     NbCheckboxModule,
     NbAuthModule,
-    NbIconModule,
     NbSpinnerModule,
     NbFormFieldModule,
+    NbIconModule,
+    NbEvaIconsModule
   ]
 })
 export class AuthModule { }

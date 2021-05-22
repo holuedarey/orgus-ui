@@ -4,6 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { NB_DOCUMENT } from '@nebular/theme';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,8 @@ export class SeoService implements OnDestroy {
     private router: Router,
     @Inject(NB_DOCUMENT) document: any,
     @Inject(PLATFORM_ID) platformId: any,
+    private titleSvc: Title,
+    private metaSvc: Meta,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
     this.dom = document;
@@ -56,5 +59,13 @@ export class SeoService implements OnDestroy {
 
   private getCanonicalUrl(): string {
     return this.dom.location.origin + this.dom.location.pathname;
+  }
+
+  setSeoData(title: string, description: string): void {
+    this.titleSvc.setTitle(`Argus - ${title}`);
+    this.metaSvc.updateTag({
+      name: 'description',
+      content: `${description}`
+    });
   }
 }

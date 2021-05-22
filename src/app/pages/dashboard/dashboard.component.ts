@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
+import { SeoService } from 'src/app/@core/utils';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
   items = [
     'chart-i',
@@ -19,6 +21,14 @@ export class DashboardComponent {
     'chart-i',
   ];
   draggable = false;
-  constructor() { }
+
+  constructor(
+    private seo: SeoService
+  ) { }
+
+  ngOnInit() {
+    this.seo.setSeoData('Dashboard', 'Logged in user page analytics');
+  }
+  
 
 }
