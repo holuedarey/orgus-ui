@@ -21,7 +21,7 @@ export class OnlineStatService {
   pingServerPeriodically(): any {
     return fetch(environment.apiUrl)
       .then((serverResponse) => {
-        if (serverResponse.status >= 200 || serverResponse.status < 500) {
+        if (serverResponse.status >= 200 && serverResponse.status < 500) {
           this.isOnlineSub.next(true);
           setTimeout(() => this.pingServerPeriodically(), 15000)
         } else {

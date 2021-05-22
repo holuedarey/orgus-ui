@@ -6,8 +6,9 @@
     <a class="logo font-weight-bold" href="#" (click)="navigateHome()">Argus</a>
   </div>
   <div *ngIf="!userPictureOnly" class="item-group">
-    <button *ngIf="(canInstall$ | async)" (click)="installPwa()" class="square xyz-in" nbButton hero
-      nbTooltipStatus="basic" nbTooltip="Install Argus" nbTooltipPlacement="bottom">
+    <button *ngIf="(canInstall$ | async)" (click)="installPwa()" class="square xyz-in" nbButton
+      [hero]="this.currentTheme === 'default'" [outline]="this.currentTheme !== 'default'" nbTooltipStatus="basic"
+      nbTooltip="Install Argus" nbTooltipPlacement="bottom">
       <nb-icon icon="download-outline">
       </nb-icon>
       Install
