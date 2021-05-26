@@ -1,4 +1,9 @@
 <div class="container-fluid p-0 m-0">
+    <!-- <div class="row m-0">
+        <div class="col-12">
+            <app-table [data]="data" [columns]="columns" (requestData)="requestData($event)" (optionsSelected)="requestData($event)"></app-table>
+        </div>
+    </div> -->
     <div class="row m-0" [sortablejs]="items" [sortablejsOptions]="{ animation: 150, disabled: draggable }">
         <div *ngFor="let item of items" [ngStyle]="{'cursor': !draggable ? 'grab' : ''}" class="col m-0">
             <app-chart [chartId]="item"></app-chart>

@@ -34,9 +34,24 @@ export const AccessControl: NbAccessControl[] = [
             delete: [],
         },
 
+        // Client User
+        'clientuser': {
+            parent: 'user',
+        },
+
+        // Client Admin
+        'clientadmin': {
+            parent: 'clientuser',
+        },
+
+        // Vgg User
+        'vgg_user': {
+            parent: 'user',
+        },
+
         // Vgg Admin
         'vgg_admin': {
-            parent: 'user',
+            parent: 'vgg_user',
         },
 
         // Vgg Admin
