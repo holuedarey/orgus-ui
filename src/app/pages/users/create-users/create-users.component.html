@@ -1,0 +1,48 @@
+<nb-card>
+    <nb-card-header>
+        <h5>User Information</h5>
+    </nb-card-header>
+    <nb-card-body>
+        <form action="">
+            <div class="row mb-3">
+
+                <div class="col-6">
+                    <label class="d-block">First Name</label>
+                    <input fieldSize="small" nbInput />
+                </div>
+                <div class="col-6">
+                    <label class="d-block">Last Name</label>
+                    <input fieldSize="small" nbInput />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label class="d-block">Email</label>
+                    <input fieldSize="small" nbInput />
+                </div>
+                <div class="col-6">
+                    <label class="d-block">Phone Number</label>
+                    <input nbInput fieldSize="small" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label class="d-block">User Role</label>
+                    <input nbInput fieldSize="small" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <button (click)="close()" nbButton status="danger">
+                        Close
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button (click)="confirm()" nbButton status="primary">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>

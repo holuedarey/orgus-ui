@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NbDialogService, } from '@nebular/theme';
+import { CreateUsersComponent } from './create-users/create-users.component';
 
 @Component({
   selector: 'app-users',
@@ -7,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent {
 
-  constructor() { }
+  constructor(
+    private dialogService: NbDialogService,
+  ) { }
 
+  async handleCreateNewUserClick() {
+    const create = await this.dialogService.open(CreateUsersComponent)
+      .onClose.toPromise();
 
+  }
 
 }
