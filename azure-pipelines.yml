@@ -1,0 +1,22 @@
+trigger: none
+stages:
+# Build Stage
+ - stage: build
+   displayName: "build stage"
+   jobs:
+     - job: build
+       displayName: build a job
+       pool:
+         vmImage: ubuntu-latest
+       steps:
+       # build docker image and push to Azure Container Registry ACR
+        - task: Docker@2
+          inputs:
+            containerRegistry: 'vggacr'
+            repository: $(imageName)
+            command: 'buildAndPush'
+            Dockerfile: $(Dockerfile)
+            buildContext: $(buildContext)
+            tags: |
+              $(Build.BuildId)
+ 
