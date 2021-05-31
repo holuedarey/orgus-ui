@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
-    // canActivateChild: [HasPermissionGuard],
+    canActivateChild: [HasPermissionGuard],
     children: [
       {
         path: '',
@@ -18,6 +18,16 @@ const routes: Routes = [
         path: PagesResourcesNavMap.get(PagesResources.DashboardView)?.path,
         loadChildren: () => import('./dashboard/dashboard.module')
           .then(m => m.DashboardModule),
+      },
+      {
+        path: PagesResourcesNavMap.get(PagesResources.OtherView)?.path,
+        loadChildren: () => import('./other/other.module')
+          .then(m => m.OtherModule),
+      },
+      {
+        path: PagesResourcesNavMap.get(PagesResources.UsersView)?.path,
+        loadChildren: () => import('./users/users.module')
+          .then(m => m.UsersModule),
       }
     ]
   }

@@ -1,0 +1,126 @@
+<div style="width: 100vw;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7 mx-auto">
+                <nb-card class="xyz-in" xyz="fade down" style="max-height: 100%;overflow-y: auto;">
+                    <nb-card-header class="font-weight-bold pb-1">
+                        <div class="row">
+                            <div class="col-auto h5">New User Form</div>
+                            <div class="col ml-auto text-right">
+                                <button (click)="close()" class="p-1" nbButton ghost>
+                                    <nb-icon icon="close"></nb-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </nb-card-header>
+                    <nb-card-body>
+
+                        <form [formGroup]="createUserForm" #form="ngForm" class="my-3">
+
+                            <div class="form-control-group row mb-3">
+                                <div class="col-sm-3">
+                                    <label class="label" for="input-firstName">First Name:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input nbInput fullWidth name="firstName" id="input-firstName"
+                                        placeholder="First Name" formControlName="firstName" autofocus>
+                                    <!-- input errors -->
+                                    <div *ngIf="createUserForm.controls['firstName'].invalid && createUserForm.controls['firstName'].touched"
+                                        class="text-danger xyz-in px-3 row">
+                                        <small xyz="fade down" class="error-message"
+                                            *ngIf="createUserForm.controls['firstName'].errors?.required">
+                                            Name is required!
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-control-group mb-3 row">
+                                <div class="col-sm-3">
+                                    <label class="label" for="input-lastName">Last Name:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input nbInput fullWidth name="lastName" id="input-lastName" placeholder="Last Name"
+                                        formControlName="lastName" autofocus>
+                                    <!-- input errors -->
+                                    <div *ngIf="createUserForm.controls['lastName'].invalid && createUserForm.controls['lastName'].touched"
+                                        class="text-danger xyz-in px-3 row">
+                                        <small xyz="fade down" class="error-message"
+                                            *ngIf="createUserForm.controls['lastName'].errors?.required">
+                                            Name is required!
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-control-group row mb-3">
+                                <div class="col-sm-3">
+                                    <label class="label" for="input-email">Email:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input nbInput fullWidth name="email" id="input-email" pattern=".+@.+\..+"
+                                        placeholder="Email address" formControlName="email" autofocus>
+                                    <!-- input errors -->
+                                    <div *ngIf="createUserForm.controls['email'].invalid && createUserForm.controls['email'].touched"
+                                        class="text-danger xyz-in px-3 row">
+                                        <small xyz="fade down" class="error-message d-block"
+                                            *ngIf="createUserForm.controls['email'].errors?.required">
+                                            Email is required!
+                                        </small>
+                                        <small xyz="fade down" class="error-message d-block"
+                                            *ngIf="createUserForm.controls['email'].errors?.pattern">
+                                            Email should be a valid email address!
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-control-group row mb-3">
+                                <div class="col-sm-3">
+                                    <label class="label" for="input-phoneNumber">Phone Number:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input nbInput fullWidth name="phoneNumber" id="input-phoneNumber"
+                                        placeholder="Phone number" formControlName="phoneNumber" autofocus>
+                                    <!-- input errors -->
+                                    <div *ngIf="createUserForm.controls['phoneNumber'].invalid && createUserForm.controls['phoneNumber'].touched"
+                                        class="text-danger xyz-in px-3 row">
+                                        <small xyz="fade down" class="error-message d-block"
+                                            *ngIf="createUserForm.controls['phoneNumber'].errors?.required">
+                                            Phone number is required
+                                        </small>
+                                        <small class="error-message d-block"
+                                            *ngIf="createUserForm.controls['phoneNumber'].errors?.phoneNos && !createUserForm.controls['phoneNumber'].errors?.required">
+                                            {{createUserForm.controls['phoneNumber'].errors?.phoneNos}}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-control-group row mb-3">
+                                <div class="col-sm-3">
+                                    <label class="label" for="input-role">User Role:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input nbInput fullWidth name="role" id="input-role" placeholder="User role"
+                                        formControlName="role" autofocus>
+                                    <!-- input errors -->
+                                    <div *ngIf="createUserForm.controls['role'].invalid && createUserForm.controls['role'].touched"
+                                        class="text-danger xyz-in px-3 row">
+                                        <small xyz="fade down" class="error-message"
+                                            *ngIf="createUserForm.controls['role'].errors?.required">
+                                            User Role is required!
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </nb-card-body>
+                    <nb-card-footer>
+                        <button (click)="saveUser()" [nbSpinner]="submitted" nbButton fullWidth status="success"
+                            [disabled]="submitted || !createUserForm.valid">
+                            Save
+                        </button>
+                    </nb-card-footer>
+                </nb-card>
+            </div>
+        </div>
+    </div>
+</div>

@@ -28,7 +28,12 @@ export const AccessControl: NbAccessControl[] = [
                 AuthResources.UpdatePasswordView,
 
                 // View Dashboard
-                PagesResources.DashboardView
+                PagesResources.DashboardView,
+
+                //View Users
+                PagesResources.UsersView, 
+                PagesResources.OtherView, 
+
             ],
             update: [],
             delete: [],
