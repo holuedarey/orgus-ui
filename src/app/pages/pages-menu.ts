@@ -13,5 +13,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'MODULES',
     group: true,
   },
+  {
+    title: 'Users',
+    link: GlobalResources.get(PagesResources.UsersView)?.route,
+    icon: 'people-outline',
+  },
 
 ];
