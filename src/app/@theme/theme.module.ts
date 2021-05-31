@@ -17,6 +17,7 @@ import {
   NbTabsetModule,
   NbListModule,
   NbToggleModule,
+  NbInputModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
@@ -39,6 +40,8 @@ import {
 } from './layouts';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 const NB_MODULES = [
@@ -59,7 +62,11 @@ const NB_MODULES = [
   NbAlertModule,
   NbTabsetModule,
   NbListModule,
-  NbToggleModule
+  NbToggleModule,
+  Ng2SmartTableModule,
+  ReactiveFormsModule,
+  NbInputModule,
+  NbCardModule
 ];
 const COMPONENTS = [
   HeaderComponent,
@@ -67,7 +74,8 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
-  ConfirmationDialogComponent
+  ConfirmationDialogComponent,
+  SettingsComponent,
 ];
 const PIPES = [
   CapitalizePipe,
@@ -80,7 +88,7 @@ const PIPES = [
 @NgModule({
   imports: [CommonModule, ...NB_MODULES],
   exports: [CommonModule, ...PIPES, ...COMPONENTS, ...NB_MODULES],
-  declarations: [...COMPONENTS, ...PIPES, SettingsComponent],
+  declarations: [...COMPONENTS, ...PIPES],
 })
 export class ThemeModule {
 }

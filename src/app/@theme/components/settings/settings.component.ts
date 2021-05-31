@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NbDialogRef, NbThemeService } from '@nebular/theme';
+import { isMobile } from 'mobile-device-detect';
 import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
 import { LocalStorageKey } from 'src/app/@core/enums/local-storage-key.enum';
 import { RoleMap } from 'src/app/@core/maps/role.map';
@@ -17,6 +18,7 @@ export class SettingsComponent {
   roleMap = RoleMap;
 
   isDarkTheme: boolean;
+  isMobile = isMobile;
 
   constructor(
     private userAuthService: UserAuthService,
