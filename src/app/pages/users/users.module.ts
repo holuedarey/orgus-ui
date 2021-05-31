@@ -1,12 +1,11 @@
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { NbButtonModule, NbDialogModule, NbInputModule, NbCardModule } from '@nebular/theme';
+import { FormControl, FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { NbButtonModule, NbDialogModule, NbInputModule, NbCardModule, NbFormFieldModule, NbSpinnerModule, NbIconModule } from '@nebular/theme';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
 import { CreateUsersComponent } from './create-users/create-users.component';
-import { config } from 'rxjs';
 
 
 @NgModule({
@@ -22,7 +21,9 @@ import { config } from 'rxjs';
     NbInputModule,
     NbCardModule,
     ReactiveFormsModule,
-    FormControl,
-  ]
+    NbFormFieldModule,
+    NbSpinnerModule,
+    NbIconModule,
+  ],
 })
 export class UsersModule { }

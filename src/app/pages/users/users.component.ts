@@ -14,9 +14,8 @@ export class UsersComponent {
   ) { }
 
   async handleCreateNewUserClick() {
-    const create = await this.dialogService.open(CreateUsersComponent)
+    const create = await this.dialogService.open(CreateUsersComponent, { closeOnBackdropClick: false })
       .onClose.toPromise();
-
   }
 
 }
