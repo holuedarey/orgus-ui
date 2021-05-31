@@ -21,6 +21,12 @@ export class TableComponent implements OnInit, OnDestroy {
 
   // Inputs
   @Input()
+  title!: string;
+
+  @Input()
+  isLoading = false;
+
+  @Input()
   public set config(v: TableConfig<any>[]) {
     this.#config = v;
   }
@@ -108,10 +114,3 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
 }
-
-
-// Add table loader
-// add table status tag component
-// add table export to csv button
-// add options event emitter - Done
-// fix fullscreen scroll - Done

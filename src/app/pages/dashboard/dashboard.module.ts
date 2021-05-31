@@ -7,6 +7,7 @@ import { NbCardModule } from '@nebular/theme';
 import { SortablejsModule } from 'ngx-sortablejs';
 import { ChartModule } from 'src/app/@charts/chart.module';
 import { ThemeModule } from 'src/app/@theme/theme.module';
+import { TablesModule } from 'src/app/@tables/tables.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ThemeModule } from 'src/app/@theme/theme.module';
     NbCardModule,
     SortablejsModule,
     ThemeModule,
-    ChartModule
+    ChartModule,
+    TablesModule
   ]
 })
 export class DashboardModule { }

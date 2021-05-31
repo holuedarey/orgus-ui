@@ -40,10 +40,8 @@ import {
 } from './layouts';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { TableComponent } from './components/table/table.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TableFilterComponent } from './components/table/table-filter/table-filter.component';
 
 
 const NB_MODULES = [
@@ -78,8 +76,6 @@ const COMPONENTS = [
   TwoColumnsLayoutComponent,
   ConfirmationDialogComponent,
   SettingsComponent,
-  TableComponent,
-  TableFilterComponent
 ];
 const PIPES = [
   CapitalizePipe,

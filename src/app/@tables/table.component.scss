@@ -8,6 +8,10 @@
     font-weight: 500;
 }
 
+::ng-deep .ng2-smart-pagination {
+    margin-bottom: 0;
+}
+
 ::ng-deep .ng2-smart-sort-link {
     color: var(--text-basic-color) !important;
 }
@@ -20,4 +24,8 @@
     ::ng-deep .ng2-smart-page-link {
         padding: 8px 12px !important;
     }
+}
+
+.header-spinner {
+    --spinner-primary-background-color: transparent;
 }

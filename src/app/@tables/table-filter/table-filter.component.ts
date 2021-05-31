@@ -34,5 +34,4 @@ export class TableFilterComponent extends DefaultFilter implements OnInit, OnCha
       this.inputControl.setValue(this.query);
     }
   }
-
 }

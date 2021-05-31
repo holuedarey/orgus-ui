@@ -1,7 +1,10 @@
 <div class="container-fluid p-0 m-0">
     <!-- <div class="row m-0">
         <div class="col-12">
-            <app-table [data]="data" [columns]="columns" (requestData)="requestData($event)" (optionsSelected)="requestData($event)"></app-table>
+            <app-table [isLoading]="true" title="Smart Table" [data]="data" [columns]="columns"
+                (requestData)="requestData($event)" (optionsSelected)="requestData($event)">
+
+            </app-table>
         </div>
     </div> -->
     <div class="row m-0" [sortablejs]="items" [sortablejsOptions]="{ animation: 150, disabled: draggable }">
