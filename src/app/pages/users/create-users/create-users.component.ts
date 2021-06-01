@@ -10,6 +10,7 @@ import { isEmail, isMobilePhone, isPhoneNumber, validate, Validator } from 'clas
   providers: [FormBuilder]
 })
 export class CreateUsersComponent implements OnInit {
+
   submitted = false;
   createUserForm!: FormGroup
 
@@ -36,7 +37,7 @@ export class CreateUsersComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', [
         Validators.required,
-        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
+        this.validateEmail.bind(this)
       ]],
       phoneNumber: [
         '', [
@@ -59,6 +60,19 @@ export class CreateUsersComponent implements OnInit {
       }
     }
   }
+
+  validateEmail(input: FormControl) {
+    const value = (input.value as string).trim();
+    const isValidEmail = isEmail(value);
+    if (isValidEmail) {
+      return;
+    } else {
+      return {
+        email: `"${value}" is not a valid email`
+      }
+    }
+  }
+
   saveUser(): void {
     console.log(this.createUserForm.value);
   }

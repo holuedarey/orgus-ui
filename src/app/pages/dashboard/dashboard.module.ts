@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { NbCardModule } from '@nebular/theme';
+import { NbCardModule, NbSpinnerModule } from '@nebular/theme';
 import { SortablejsModule } from 'ngx-sortablejs';
 import { ChartModule } from 'src/app/@charts/chart.module';
 import { ThemeModule } from 'src/app/@theme/theme.module';
@@ -19,7 +19,8 @@ import { TablesModule } from 'src/app/@tables/tables.module';
     SortablejsModule,
     ThemeModule,
     ChartModule,
-    TablesModule
+    TablesModule,
+    NbSpinnerModule
   ]
 })
 export class DashboardModule { }

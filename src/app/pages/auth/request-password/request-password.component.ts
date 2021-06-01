@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { getDeepFromObject, NB_AUTH_OPTIONS } from '@nebular/auth';
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
 import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
+import { SeoService } from 'src/app/@core/utils';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
   templateUrl: './request-password.component.html',
   styleUrls: ['./request-password.component.scss']
 })
-export class RequestPasswordComponent {
+export class RequestPasswordComponent implements OnInit {
 
   redirectDelay = 0;
   showMessages: any = {};
@@ -25,11 +26,16 @@ export class RequestPasswordComponent {
     protected service: UserAuthService,
     @Inject(NB_AUTH_OPTIONS) protected options = {},
     protected cd: ChangeDetectorRef,
-    protected router: Router) {
-
+    protected router: Router,
+    private seo: SeoService
+  ) {
     this.redirectDelay = this.getConfigValue('forms.requestPassword.redirectDelay');
     this.showMessages = this.getConfigValue('forms.requestPassword.showMessages');
     this.strategy = this.getConfigValue('forms.requestPassword.strategy');
+  }
+
+  ngOnInit() {
+    this.seo.setSeoData('Forgot Password', 'Reset application password');
   }
 
   requestPass(): void {

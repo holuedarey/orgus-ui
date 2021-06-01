@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NB_AUTH_OPTIONS, getDeepFromObject } from '@nebular/auth';
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
 import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
+import { SeoService } from 'src/app/@core/utils';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
   templateUrl: './update-password.component.html',
   styleUrls: ['./update-password.component.scss']
 })
-export class UpdatePasswordComponent {
+export class UpdatePasswordComponent implements OnInit {
 
 
   redirectDelay = 0;
@@ -26,11 +27,16 @@ export class UpdatePasswordComponent {
     protected service: UserAuthService,
     @Inject(NB_AUTH_OPTIONS) protected options = {},
     protected cd: ChangeDetectorRef,
-    protected router: Router
+    protected router: Router,
+    private seo: SeoService
   ) {
     this.redirectDelay = this.getConfigValue('forms.resetPassword.redirectDelay');
     this.showMessages = this.getConfigValue('forms.resetPassword.showMessages');
     this.strategy = this.getConfigValue('forms.resetPassword.strategy');
+  }
+
+  ngOnInit() {
+    this.seo.setSeoData('Update Password', 'Update application password');
   }
 
   updatePass(): void {

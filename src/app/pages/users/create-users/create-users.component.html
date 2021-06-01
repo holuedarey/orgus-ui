@@ -23,13 +23,15 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <input nbInput fullWidth name="firstName" id="input-firstName"
-                                        placeholder="First Name" formControlName="firstName" autofocus>
+                                        placeholder="First Name"
+                                        [status]="createUserForm.controls['firstName'].touched ? (createUserForm.controls['firstName'].invalid ? 'danger' : 'success') : 'basic'"
+                                        formControlName="firstName" autofocus>
                                     <!-- input errors -->
                                     <div *ngIf="createUserForm.controls['firstName'].invalid && createUserForm.controls['firstName'].touched"
                                         class="text-danger xyz-in px-3 row">
                                         <small xyz="fade down" class="error-message"
                                             *ngIf="createUserForm.controls['firstName'].errors?.required">
-                                            Name is required!
+                                            First Name is required!
                                         </small>
                                     </div>
                                 </div>
@@ -40,13 +42,14 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <input nbInput fullWidth name="lastName" id="input-lastName" placeholder="Last Name"
+                                        [status]="createUserForm.controls['lastName'].touched ? (createUserForm.controls['lastName'].invalid ? 'danger' : 'success') : 'basic'"
                                         formControlName="lastName" autofocus>
                                     <!-- input errors -->
                                     <div *ngIf="createUserForm.controls['lastName'].invalid && createUserForm.controls['lastName'].touched"
                                         class="text-danger xyz-in px-3 row">
                                         <small xyz="fade down" class="error-message"
                                             *ngIf="createUserForm.controls['lastName'].errors?.required">
-                                            Name is required!
+                                            Last Name is required!
                                         </small>
                                     </div>
                                 </div>
@@ -57,7 +60,9 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <input nbInput fullWidth name="email" id="input-email" pattern=".+@.+\..+"
-                                        placeholder="Email address" formControlName="email" autofocus>
+                                        placeholder="Email address"
+                                        [status]="createUserForm.controls['email'].touched ? (createUserForm.controls['email'].invalid ? 'danger' : 'success') : 'basic'"
+                                        formControlName="email" autofocus>
                                     <!-- input errors -->
                                     <div *ngIf="createUserForm.controls['email'].invalid && createUserForm.controls['email'].touched"
                                         class="text-danger xyz-in px-3 row">
@@ -66,8 +71,8 @@
                                             Email is required!
                                         </small>
                                         <small xyz="fade down" class="error-message d-block"
-                                            *ngIf="createUserForm.controls['email'].errors?.pattern">
-                                            Email should be a valid email address!
+                                            *ngIf="createUserForm.controls['email'].errors?.pattern && !createUserForm.controls['email'].errors?.required">
+                                            {{createUserForm.controls['email'].errors?.email}}
                                         </small>
                                     </div>
                                 </div>
@@ -78,7 +83,9 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <input nbInput fullWidth name="phoneNumber" id="input-phoneNumber"
-                                        placeholder="Phone number" formControlName="phoneNumber" autofocus>
+                                        placeholder="Phone number"
+                                        [status]="createUserForm.controls['phoneNumber'].touched ? (createUserForm.controls['phoneNumber'].invalid ? 'danger' : 'success') : 'basic'"
+                                        formControlName="phoneNumber" autofocus>
                                     <!-- input errors -->
                                     <div *ngIf="createUserForm.controls['phoneNumber'].invalid && createUserForm.controls['phoneNumber'].touched"
                                         class="text-danger xyz-in px-3 row">
@@ -99,6 +106,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <input nbInput fullWidth name="role" id="input-role" placeholder="User role"
+                                        [status]="createUserForm.controls['role'].touched ? (createUserForm.controls['role'].invalid ? 'danger' : 'success') : 'basic'"
                                         formControlName="role" autofocus>
                                     <!-- input errors -->
                                     <div *ngIf="createUserForm.controls['role'].invalid && createUserForm.controls['role'].touched"

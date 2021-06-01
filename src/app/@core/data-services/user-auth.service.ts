@@ -48,7 +48,7 @@ export class UserAuthService implements AccessControlContract {
   }
 
   requestPassword(emailDto: any): Observable<ResponseDto<any>> {
-    const apiEndpoint = 'auth/resetPasswordEmail';
+    const apiEndpoint = 'auth/forgotPassword';
     return this.httpClient.post<ResponseDto<any>>(
       `${environment.apiUrl}/${apiEndpoint}`,
       emailDto);

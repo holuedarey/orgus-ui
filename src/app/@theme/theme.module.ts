@@ -42,9 +42,11 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { SettingsComponent } from './components/settings/settings.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 const NB_MODULES = [
+  RouterModule,
   NbLayoutModule,
   NbMenuModule,
   NbUserModule,

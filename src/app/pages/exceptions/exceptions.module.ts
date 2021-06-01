@@ -10,6 +10,7 @@ import { LottieModule } from 'ngx-lottie';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ExceptionsComponent } from './exceptions.component';
 import { ExceptionBlockComponent } from './exception-block/exception-block.component';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ExceptionBlockComponent } from './exception-block/exception-block.compo
     NbLayoutModule,
     NbButtonModule,
     NbIconModule,
+    NbEvaIconsModule,
     LottieModule,
     NbCardModule
   ]

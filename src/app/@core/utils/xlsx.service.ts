@@ -18,7 +18,7 @@ export class XlsxService {
     return await response.arrayBuffer();
   }
 
-  async generateReport(reportTemplateUrl: XlsxTemplateEnum, sheetData: (string | number)[][], fileName: string) {
+  async generateReport(reportTemplateUrl: XlsxTemplateEnum, sheetData: (string | number)[][], fileName: string, encryptPassword?: string) {
     // get workbook template
     const workbookTemplate = await this.getXlsxTemplate(reportTemplateUrl);
 
@@ -26,9 +26,10 @@ export class XlsxService {
       data: {
         data: sheetData,
         workbookTemplate,
-        fileName
+        fileName,
+        encryptPassword
       },
-      method: reportTemplateUrl
+      method: reportTemplateUrl,
     }
 
     this.processReport(data)
@@ -40,6 +41,7 @@ export class XlsxService {
       const worker = new Worker('../workers/xlsx.worker', { type: 'module' });
       worker.onmessage = ({ data: response }) => {
         this.downloadReport(response, data.data.fileName);
+        worker.terminate();
       };
       worker.postMessage(data);
     } else {

@@ -102,7 +102,7 @@ export class PagesComponent implements OnInit, OnDestroy {
   }
 
   async handleProfileMenuClick() {
-    const confirmed = await this.dialogService.open(SettingsComponent)
+    this.dialogService.open(SettingsComponent)
       .onClose.toPromise();
 
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NbDialogRef, NbThemeService } from '@nebular/theme';
 import { isMobile } from 'mobile-device-detect';
 import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
@@ -6,6 +6,7 @@ import { LocalStorageKey } from 'src/app/@core/enums/local-storage-key.enum';
 import { RoleMap } from 'src/app/@core/maps/role.map';
 import { UserModel } from 'src/app/@core/models/user.model';
 import { SecureLocalStorageService } from 'src/app/@core/utils/secure-local-storage.service';
+import { AuthResources, AuthResourcesNavMap } from 'src/app/pages/auth/auth-resources';
 
 @Component({
   selector: 'app-settings',
@@ -20,12 +21,13 @@ export class SettingsComponent {
   isDarkTheme: boolean;
   isMobile = isMobile;
 
+  changePasswordUrl = AuthResourcesNavMap.get(AuthResources.UpdatePasswordView)?.route;
+
   constructor(
     private userAuthService: UserAuthService,
     public dialogRef: NbDialogRef<SettingsComponent>,
     private themeService: NbThemeService,
-    private storageService: SecureLocalStorageService,
-  ) {
+    private storageService: SecureLocalStorageService) {
     this.user = this.userAuthService.getAuthenticatedUser() as UserModel
     this.isDarkTheme = (
       this.storageService.get<string>(LocalStorageKey.THEME.toString()) ||
@@ -38,7 +40,7 @@ export class SettingsComponent {
     this.dialogRef.close();
   }
 
-  
+
   onThemeChange(isDarkSelected: boolean): void {
     this.isDarkTheme = isDarkSelected;
     const theme = isDarkSelected ? 'dark' : 'default';

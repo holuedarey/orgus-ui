@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { getDeepFromObject, NbAuthJWTToken, NbTokenService, NB_AUTH_OPTIONS } from '@nebular/auth';
 import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
@@ -8,6 +7,7 @@ import { ResponseDto } from 'src/app/@core/dtos/response-dto';
 import { IndexedDbKey } from 'src/app/@core/enums/indexed-db-key.enum';
 import { LocalStorageKey } from 'src/app/@core/enums/local-storage-key.enum';
 import { JwtPayloadModel } from 'src/app/@core/models/jwt-payload-model';
+import { SeoService } from 'src/app/@core/utils';
 import { DbService } from 'src/app/@core/utils/db.service';
 import { SecureLocalStorageService } from 'src/app/@core/utils/secure-local-storage.service';
 import { TokenService } from 'src/app/@core/utils/token.service';
@@ -39,12 +39,11 @@ export class LoginComponent implements OnInit {
     @Inject(NB_AUTH_OPTIONS) protected options = {},
     protected cd: ChangeDetectorRef,
     protected router: Router,
-    private titleSvc: Title,
-    private metaSvc: Meta,
     private dbService: DbService,
     private tokenService: TokenService,
     private nbTokenService: NbTokenService,
-    private ls: SecureLocalStorageService
+    private ls: SecureLocalStorageService,
+    private seo: SeoService
   ) {
     this.redirectDelay = this.getConfigValue('forms.login.redirectDelay');
     this.showMessages = this.getConfigValue('forms.login.showMessages');
@@ -52,7 +51,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setSeoData();
+    console.log('here?')
+    this.seo.setSeoData('Login', 'Login into the Argus Application');
   }
 
   login(): void {
@@ -111,13 +111,5 @@ export class LoginComponent implements OnInit {
 
   getConfigValue(key: string): any {
     return getDeepFromObject(this.options, key, null);
-  }
-
-  private setSeoData(): void {
-    this.titleSvc.setTitle('Argus Login');
-    this.metaSvc.updateTag({
-      name: 'description',
-      content: 'Login into the Argus Application'
-    });
   }
 }
