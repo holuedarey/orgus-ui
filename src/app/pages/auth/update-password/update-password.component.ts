@@ -62,8 +62,7 @@ export class UpdatePasswordComponent implements OnInit {
       (error: ResponseDto<string>) => {
         this.submitted = false;
         this.errors = [
-          'An Error occured while changing your password',
-          error.message as string
+          'An Error occured while changing your password'
         ];
       }
     );

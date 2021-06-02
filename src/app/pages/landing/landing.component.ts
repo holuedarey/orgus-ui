@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as Granim from 'granim';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
+import { SeoService } from 'src/app/@core/utils/seo.service';
 
 @Component({
   selector: 'app-landing',
@@ -15,7 +16,7 @@ export class LandingComponent implements OnInit, OnDestroy {
   };
   granimInstance: any;
 
-  constructor() { }
+  constructor(private seo: SeoService) { }
 
   ngOnInit(): void {
     this.granimInstance = new Granim({
@@ -36,6 +37,7 @@ export class LandingComponent implements OnInit, OnDestroy {
       },
       transitionSpeed: 2000
     });
+    this.seo.setSeoData('Home', 'Landing Page');
   }
 
   animationCreated(animationItem: AnimationItem): void {

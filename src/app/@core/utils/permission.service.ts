@@ -31,10 +31,12 @@ export class PermissionService {
 
   private canAccessByRoute(route: string, permission: string): boolean {
     const role = this.roleProvider.getRoleSync();
+    console.log(role);
+    
     const resource = Array.from(GlobalResources.entries())
       .find(p => p[1].route === route)?.[0];
     if (resource) {
-      return this.accessChecker.can(role, permission, resource);
+      return this.accessChecker.can(role[0], permission, resource) || this.accessChecker.can(role[1], permission, resource);
     } else {
       return false;
     }
@@ -43,7 +45,7 @@ export class PermissionService {
   canAccessByResource(permission: string, resource: string): boolean {
     const role = this.roleProvider.getRoleSync();
     if (resource) {
-      return this.accessChecker.can(role, permission, resource);
+      return this.accessChecker.can(role[0], permission, resource) || this.accessChecker.can(role[1], permission, resource);
     } else {
       return false;
     }

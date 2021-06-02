@@ -41,8 +41,8 @@ export class ResetPasswordComponent {
     this.submitted = true;
 
     const resetPasswordDto: ResetPasswordDto = {
-      password: this.user.password,
-      tokenGuid: this.route.snapshot.queryParams.token
+      newPassword: this.user.password,
+      token: this.route.snapshot.queryParams.token
     };
 
     this.service.resetPassword(resetPasswordDto).subscribe(
@@ -65,7 +65,6 @@ export class ResetPasswordComponent {
         this.submitted = false;
         this.errors = [
           'An Error occured while changing your password',
-          error.message as string
         ];
       }
     );

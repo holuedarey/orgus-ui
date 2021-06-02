@@ -11,7 +11,7 @@ export class RoleProvider implements NbRoleProvider {
 
   constructor(private tokenService: TokenService) { }
 
-  getRole(): Observable<string> {
+  getRole(): Observable<string[] | string> {
     return of(this.getRoleSync());
   }
 
@@ -19,11 +19,12 @@ export class RoleProvider implements NbRoleProvider {
     const payload = this.tokenService.getPayload();
     if (payload) {
       try {
-        return (JSON.parse(payload.sub) as UserModel).ssoRole
+        const user = (JSON.parse(payload.sub) as UserModel);
+        return [user.ssoRole, user.appRole ? user.appRole : 'guest']
       } catch (error) {
-        return 'guest';
+        return ['guest'];
       }
     }
-    return 'guest';
+    return ['guest'];
   }
 }

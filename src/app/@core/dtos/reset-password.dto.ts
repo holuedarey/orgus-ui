@@ -1,4 +1,4 @@
 export class ResetPasswordDto {
-    password = '';
-    tokenGuid = '';
+    newPassword = '';
+    token = '';
 }

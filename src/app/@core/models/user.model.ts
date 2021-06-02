@@ -4,4 +4,5 @@ export interface UserModel {
     lastName: string;
     phoneNumber: string;
     ssoRole: string;
+    appRole: string;
 }
