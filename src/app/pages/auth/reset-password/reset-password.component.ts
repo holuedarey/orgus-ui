@@ -42,7 +42,8 @@ export class ResetPasswordComponent {
 
     const resetPasswordDto: ResetPasswordDto = {
       newPassword: this.user.password,
-      token: this.route.snapshot.queryParams.token
+      token: this.route.snapshot.queryParams.token,
+      tokenId: this.route.snapshot.queryParams.tokenId
     };
 
     this.service.resetPassword(resetPasswordDto).subscribe(

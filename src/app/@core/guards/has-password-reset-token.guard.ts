@@ -12,7 +12,7 @@ export class HasPasswordResetTokenGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(route.queryParams.token){
+    if(route.queryParams.token && route.queryParams.tokenId){
       return true;
     } else {
       this.router.navigateByUrl('/error/unauthorised');
