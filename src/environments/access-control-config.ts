@@ -31,8 +31,7 @@ export const AccessControl: NbAccessControl[] = [
                 PagesResources.DashboardView,
 
                 //View Users
-                PagesResources.UsersView, 
-                PagesResources.OtherView, 
+                // PagesResources.UsersView, 
 
             ],
             update: [],
