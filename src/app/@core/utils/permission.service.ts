@@ -31,7 +31,6 @@ export class PermissionService {
 
   private canAccessByRoute(route: string, permission: string): boolean {
     const role = this.roleProvider.getRoleSync();
-    console.log(role);
     
     const resource = Array.from(GlobalResources.entries())
       .find(p => p[1].route === route)?.[0];

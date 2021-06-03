@@ -100,7 +100,6 @@ export class TableComponent implements OnInit, OnDestroy {
     if (shouldRequest) {
       event.paging.nosOfPages = nosOfPages;
       event.filter = (event.filter.filters as any[]).filter(d => d.search !== '');
-      console.log({ ...event })
       this.requestData.emit({ ...event });
     }
   }

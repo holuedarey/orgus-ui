@@ -16,7 +16,6 @@ export class UnauthorisedComponent {
   constructor() { }
 
   animationCreated(animationItem: AnimationItem): void {
-    console.log(animationItem);
     animationItem.setSpeed(0.5);
     // setTimeout(() => {
     // animationItem.goToAndStop(animationItem.firstFrame + animationItem.totalFrames-1, true);

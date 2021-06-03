@@ -16,7 +16,6 @@ export class PageNotFoundComponent {
   constructor() { }
 
   animationCreated(animationItem: AnimationItem): void {
-    console.log(animationItem);
     animationItem.setSpeed(1.5);
   }
 

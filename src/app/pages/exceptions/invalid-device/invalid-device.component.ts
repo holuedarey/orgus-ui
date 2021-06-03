@@ -17,7 +17,6 @@ export class InvalidDeviceComponent {
 
 
   animationCreated(animationItem: AnimationItem): void {
-    console.log(animationItem);
     // setTimeout(() => {
     //   animationItem.goToAndStop(animationItem.firstFrame + animationItem.totalFrames-1, true);
     // }, 3000);
