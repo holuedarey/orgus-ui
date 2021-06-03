@@ -54,7 +54,6 @@ export class UpdatePasswordComponent implements OnInit {
           this.cd.detectChanges();
         } else {
           this.errors = [
-            'An Error occured while changing your password',
             result.message as string
           ];
         }

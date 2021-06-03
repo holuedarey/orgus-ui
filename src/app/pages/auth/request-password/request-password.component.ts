@@ -50,7 +50,6 @@ export class RequestPasswordComponent implements OnInit {
           this.cd.detectChanges();
         } else {
           this.errors = [
-            'An Error occured while submitting your reset-password request',
             result.message as string
           ];
         }

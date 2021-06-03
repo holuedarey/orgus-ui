@@ -40,7 +40,7 @@ export class AppComponent {
   }
 
   @HostListener(`window:beforeinstallprompt`, ['$event'])
-  setNetworkOnLine(e: any): void {
+  setInstallPrompt(e: any): void {
     if (!isMobile) {
       e.preventDefault();
     }

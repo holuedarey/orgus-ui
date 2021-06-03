@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import { HttpClientJsonpModule, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -22,6 +22,7 @@ import { DEFAULT_THEME } from './@theme/styles/theme.default';
 import { DARK_THEME } from './@theme/styles/theme.dark';
 import { LocalStorageKey } from './@core/enums/local-storage-key.enum';
 import * as SecureLS from 'secure-ls';
+import { NetworkInterceptor } from './@core/interceptors/network.interceptor';
 
 const ls = new SecureLS({ encodingType: 'aes' });
 
@@ -56,7 +57,9 @@ const ls = new SecureLS({ encodingType: 'aes' });
     // Global Imports
     CoreModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: NetworkInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
