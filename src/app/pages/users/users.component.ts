@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NbDialogService, } from '@nebular/theme';
 import { SeoService } from 'src/app/@core/utils';
-import { CreateUsersComponent } from './create-users/create-users.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @Component({
   selector: 'app-users',
@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
   ) { }
 
   async handleCreateNewUserClick() {
-    this.dialogService.open(CreateUsersComponent, { closeOnBackdropClick: false })
+    this.dialogService.open(UserFormComponent, { closeOnBackdropClick: false })
       .onClose.toPromise();
   }
 

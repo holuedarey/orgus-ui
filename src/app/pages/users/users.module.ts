@@ -1,17 +1,17 @@
 import { FormControl, FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import { NbButtonModule, NbDialogModule, NbInputModule, NbCardModule, NbFormFieldModule, NbSpinnerModule, NbIconModule } from '@nebular/theme';
+import { NbButtonModule, NbDialogModule, NbInputModule, NbCardModule, NbFormFieldModule, NbSpinnerModule, NbIconModule, NbAlertModule, NbOptionModule, NbSelectModule } from '@nebular/theme';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
-import { CreateUsersComponent } from './create-users/create-users.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 
 @NgModule({
   declarations: [
     UsersComponent,
-    CreateUsersComponent
+    UserFormComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +24,9 @@ import { CreateUsersComponent } from './create-users/create-users.component';
     NbFormFieldModule,
     NbSpinnerModule,
     NbIconModule,
+    NbAlertModule,
+    //NbOptionModule,
+    NbSelectModule
   ],
 })
 export class UsersModule { }

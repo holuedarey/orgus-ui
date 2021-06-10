@@ -1,23 +1,31 @@
+import { RoleDto } from './../../../@core/dtos/role.dto';
 import { NbDialogRef } from '@nebular/theme';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { isEmail, isMobilePhone, isPhoneNumber, validate, Validator } from 'class-validator';
+import { isEmail, isMobilePhone } from 'class-validator';
+import { RoleService } from 'src/app/@core/data-services/role.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-users',
-  templateUrl: './create-users.component.html',
-  styleUrls: ['./create-users.component.scss'],
+  templateUrl: './user-form.component.html',
+  styleUrls: ['./user-form.component.scss'],
   providers: [FormBuilder]
 })
-export class CreateUsersComponent implements OnInit {
-
+export class UserFormComponent implements OnInit {
+  errors = [];
   submitted = false;
   createUserForm!: FormGroup
+  appRoles$: Observable<RoleDto[]>;
 
   constructor(
-    public dialogRef: NbDialogRef<CreateUsersComponent>,
+    private roleService: RoleService,
+    public dialogRef: NbDialogRef<UserFormComponent>,
     private formBuilder: FormBuilder
-  ) { }
+  ) {
+    this.appRoles$ = this.roleService.getRoles().pipe(map(d => d.data as RoleDto[]));
+  }
 
   ngOnInit(): void {
     this.initForms();

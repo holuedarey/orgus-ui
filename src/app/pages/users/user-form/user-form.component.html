@@ -14,7 +14,12 @@
                         </div>
                     </nb-card-header>
                     <nb-card-body>
-
+                        <nb-alert *ngIf="errors?.length && !submitted" outline="danger" role="alert">
+                            <p class="alert-title"><b>Oh snap!</b></p>
+                            <ul class="alert-message-list">
+                                <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+                            </ul>
+                        </nb-alert>
                         <form [formGroup]="createUserForm" #form="ngForm" class="my-3">
 
                             <div class="form-control-group row mb-3">
@@ -102,18 +107,20 @@
                             </div>
                             <div class="form-control-group row mb-3">
                                 <div class="col-sm-3">
-                                    <label class="label" for="input-role">User Role:</label>
+                                    <label class="label" for="input-role">App Role:</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input nbInput fullWidth name="role" id="input-role" placeholder="User role"
-                                        [status]="createUserForm.controls['role'].touched ? (createUserForm.controls['role'].invalid ? 'danger' : 'success') : 'basic'"
-                                        formControlName="role" autofocus>
+                                    <nb-select fullWidth placeholder="Select App Role" formControlName="role">
+                                        <nb-option *ngFor="let role of appRoles$ | async; let i=index" [value]="role.name">
+                                            {{role.name}}
+                                        </nb-option>
+                                    </nb-select>
                                     <!-- input errors -->
                                     <div *ngIf="createUserForm.controls['role'].invalid && createUserForm.controls['role'].touched"
                                         class="text-danger xyz-in px-3 row">
                                         <small xyz="fade down" class="error-message"
                                             *ngIf="createUserForm.controls['role'].errors?.required">
-                                            User Role is required!
+                                            App Role is required!
                                         </small>
                                     </div>
                                 </div>
