@@ -27,6 +27,18 @@ export class TableComponent implements OnInit, OnDestroy {
   isLoading = false;
 
   @Input()
+  tableOnly = false;
+
+  @Input()
+  hideHeader = false;
+
+  @Input()
+  showEdit = true;
+
+  @Input()
+  pageLength = 10;
+
+  @Input()
   public set config(v: TableConfig<any>[]) {
     this.#config = v;
   }
@@ -78,6 +90,17 @@ export class TableComponent implements OnInit, OnDestroy {
   constructor() { }
 
   ngOnInit(): void {
+    this.settings = {
+      ...this.settings,
+      hideHeader: this.hideHeader,
+      actions: {
+        ...(this.#baseSettings.actions),
+        edit: this.showEdit
+      },
+      pager: {
+        perPage: this.pageLength
+      }
+    };
     this.source.onChanged()
       .pipe(takeWhile(() => this.isLive))
       .subscribe(event => {
