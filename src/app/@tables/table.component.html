@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card *ngIf="!tableOnly">
     <nb-card-header *ngIf="title">
         <div class="col p-0">
             {{title}}
@@ -19,3 +19,6 @@
         </ng2-smart-table>
     </nb-card-body>
 </nb-card>
+
+<ng2-smart-table *ngIf="tableOnly" style="display: block;" (edit)="onEdit($event)" [source]="source" [settings]="settings">
+</ng2-smart-table>

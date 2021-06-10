@@ -8,6 +8,7 @@ import { SortablejsModule } from 'ngx-sortablejs';
 import { ChartModule } from 'src/app/@charts/chart.module';
 import { ThemeModule } from 'src/app/@theme/theme.module';
 import { TablesModule } from 'src/app/@tables/tables.module';
+import { MapsModule } from 'src/app/@maps/maps.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { TablesModule } from 'src/app/@tables/tables.module';
     ThemeModule,
     ChartModule,
     TablesModule,
-    NbSpinnerModule
+    NbSpinnerModule,
+    MapsModule
   ]
 })
 export class DashboardModule { }

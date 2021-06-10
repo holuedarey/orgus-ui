@@ -43,6 +43,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SlideOutComponent } from './components/slide-out/slide-out.component';
 
 
 const NB_MODULES = [
@@ -78,6 +79,7 @@ const COMPONENTS = [
   TwoColumnsLayoutComponent,
   ConfirmationDialogComponent,
   SettingsComponent,
+  SlideOutComponent,
 ];
 const PIPES = [
   CapitalizePipe,
