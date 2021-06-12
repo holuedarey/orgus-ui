@@ -17,7 +17,7 @@ import { TokenService } from '../utils/token.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UserAuthService implements AccessControlContract {
+export class AuthService implements AccessControlContract {
 
   constructor(
     private httpClient: HttpClient,

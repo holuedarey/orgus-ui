@@ -5,9 +5,8 @@ import { LayoutService } from '../../../@core/utils';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { ServiceWorkerService } from 'src/app/@core/utils/service-worker.service';
-import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
+import { AuthService } from 'src/app/@core/data-services/auth.service';
 import { UserModel } from 'src/app/@core/models/user.model';
-import { PermissionEnum } from 'src/app/@core/enums/permission.enum';
 import { OnlineStatService } from 'src/app/@core/utils/online-stat.service';
 
 @Component({
@@ -37,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
     private themeService: NbThemeService,
-    private userAuthService: UserAuthService,
+    private userAuthService: AuthService,
     private layoutService: LayoutService,
     public onlineStatService: OnlineStatService,
     private breakpointService: NbMediaBreakpointsService) {

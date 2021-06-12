@@ -12,7 +12,8 @@ export const environment = {
   apiUrl: 'https://argusgateway-api.test.vggdev.com',
   apiDomain: 'argusgateway-api.test.vggdev.com',
   googleMapKey: 'AIzaSyDnwVXdPAfWb3f2OwfsimrxuLIPhHtYZcc',
-  accessControlConfig: AccessControl[0]
+  accessControlConfig: AccessControl[0],
+  paginationLength: 100,
 }
 
 /*

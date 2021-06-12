@@ -1,8 +1,10 @@
+import { HostListener } from '@angular/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbDialogService, NbMenuItem, NbMenuService } from '@nebular/theme';
 import { filter, map, takeWhile } from 'rxjs/operators';
 import { LocalStorageKey } from '../@core/enums/local-storage-key.enum';
+import { IdleMonitorService } from '../@core/utils/idle-monitor.service';
 import { PermissionService } from '../@core/utils/permission.service';
 import { SecureLocalStorageService } from '../@core/utils/secure-local-storage.service';
 import { ConfirmationDialogComponent } from '../@theme/components/confirmation-dialog/confirmation-dialog.component';
@@ -25,12 +27,18 @@ export class PagesComponent implements OnInit, OnDestroy {
     private nbMenuService: NbMenuService,
     private dialogService: NbDialogService,
     private storageService: SecureLocalStorageService,
+    private idleMonitorService: IdleMonitorService,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.setMenuPermissions(this.menu);
     this.onUserContextMenuClick();
+  }
+
+  @HostListener(`window:visibilitychange`, ['$event.target'])
+  onVisibilityChange(): void {
+    this.idleMonitorService.onVisibilityChange();
   }
 
   setMenuPermissions(menu: NbMenuItem[]) {

@@ -1,0 +1,20 @@
+// @import "~bootstrap/scss/mixins/breakpoints";
+@import "~@nebular/theme/styles/global/breakpoints";
+
+@include media-breakpoint-up(xs) {
+    nb-card {
+        max-height: 77vh;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    nb-card {
+        max-height: 77vh;
+    }
+}
+
+@include media-breakpoint-up(xxxl) {
+    nb-card {
+        max-height: 50vh;
+    }
+}

@@ -9,6 +9,7 @@ import { TokenExport } from './custom-token-storage/custom-token-storage.module'
 import { SecureLocalStorageService } from './secure-local-storage.service';
 import { RefreshTokenDto } from '../dtos/refresh-token.dto';
 import { LocalStorageKey } from '../enums/local-storage-key.enum';
+import { ExceptionResources, ExceptionResourcesNavMap } from 'src/app/pages/exceptions/exceptions-resources';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +49,7 @@ export class IdleMonitorService implements OnDestroy {
   async refreshTokenIfValid(): Promise<void> {
 
     if (this.tokenService.isExpired()) {
-      this.router.navigateByUrl('/error/user-idle');
+      this.router.navigateByUrl(ExceptionResourcesNavMap.get(ExceptionResources.UserIdleView)?.route as string);
     }
 
     if (!this.tokenService.isExpired() && !this.isIdle) {

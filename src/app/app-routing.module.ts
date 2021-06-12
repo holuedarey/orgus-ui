@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 import { HasPermissionGuard } from './@core/guards/has-permission.guard';
+import { IsAuthenticatedGuard } from './@core/guards/is-authenticated.guard';
 import { ShowLandingGuard } from './@core/guards/show-landing.guard';
 import { AppResources, AppResourcesNavMap } from './app-resources';
 
@@ -22,8 +23,14 @@ const routes: Routes = [
     path: AppResourcesNavMap.get(AppResources.AppView)?.path,
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
-    canActivate: [HasPermissionGuard],
-    canActivateChild: [HasPermissionGuard],
+    canActivate: [
+      HasPermissionGuard,
+      IsAuthenticatedGuard
+    ],
+    canActivateChild: [
+      HasPermissionGuard,
+      IsAuthenticatedGuard
+    ],
   },
   {
     path: AppResourcesNavMap.get(AppResources.ErrorView)?.path,

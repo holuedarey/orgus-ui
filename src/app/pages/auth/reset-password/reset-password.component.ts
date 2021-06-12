@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { getDeepFromObject, NB_AUTH_OPTIONS } from '@nebular/auth';
 import { ResetPasswordDto } from 'src/app/@core/dtos/reset-password.dto';
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
-import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
+import { AuthService } from 'src/app/@core/data-services/auth.service';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class ResetPasswordComponent {
   user: any = {};
 
   constructor(
-    protected service: UserAuthService,
+    protected service: AuthService,
     private cd: ChangeDetectorRef,
     @Inject(NB_AUTH_OPTIONS) protected options = {},
     private router: Router,

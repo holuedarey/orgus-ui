@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { getDeepFromObject, NbAuthJWTToken, NbTokenService, NB_AUTH_OPTIONS } from '@nebular/auth';
-import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
+import { AuthService } from 'src/app/@core/data-services/auth.service';
 import { LoginDto } from 'src/app/@core/dtos/login.dto';
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
 import { IndexedDbKey } from 'src/app/@core/enums/indexed-db-key.enum';
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   rememberMe = true;
 
   constructor(
-    protected service: UserAuthService,
+    protected service: AuthService,
     @Inject(NB_AUTH_OPTIONS) protected options = {},
     protected cd: ChangeDetectorRef,
     protected router: Router,

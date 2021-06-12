@@ -1,2 +1,18 @@
-<button (click)="handleCreateNewUserClick()" nbButton status="primary" size="small">Create User</button>
-
+<div class="container-fluid p-0 m-0">
+    <div class="row m-0">
+        <div class="col-12">
+            <app-table [isLoading]="isLoadingData" title="Users" [data]="users" [columns]="columns"
+                (requestData)="requestData($event)" (optionsSelected)="updateUser($event)"
+                [showEdit]="permissionService.canAccessByResource('update', usersResources.UpdateUsers)">
+                <div class="row">
+                    <div class="col-12 mb-4 ml-auto">
+                        <button *nbIsGranted="['create', usersResources.CreateUsers]"
+                            [disabled]="(onlineStat.isOnlineSub.asObservable() | async) === false"
+                            (click)="handleCreateNewUserClick()" nbButton status="primary">Create
+                            User</button>
+                    </div>
+                </div>
+            </app-table>
+        </div>
+    </div>
+</div>

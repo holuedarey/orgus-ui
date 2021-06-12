@@ -7,7 +7,8 @@ const environments = [
     apiUrl: 'https://argusgateway-api.test.vggdev.com',
     apiDomain: 'argusgateway-api.test.vggdev.com',
     googleMapKey: 'AIzaSyDnwVXdPAfWb3f2OwfsimrxuLIPhHtYZcc',
-    accessControlConfig: AccessControl[0]
+    accessControlConfig: AccessControl[0],
+    paginationLength: 100,
   },
   {
     production: true,
@@ -15,7 +16,8 @@ const environments = [
     apiUrl: 'https://argusgateway-api.staging.vggdev.com',
     apiDomain: 'argusgateway-api.staging.vggdev.com',
     googleMapKey: 'AIzaSyDnwVXdPAfWb3f2OwfsimrxuLIPhHtYZcc',
-    accessControlConfig: AccessControl[0]
+    accessControlConfig: AccessControl[0],
+    paginationLength: 100,
   },
 ];
 
