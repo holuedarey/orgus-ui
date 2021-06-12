@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NbDialogRef, NbThemeService } from '@nebular/theme';
 import { isMobile } from 'mobile-device-detect';
-import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
+import { AuthService } from 'src/app/@core/data-services/auth.service';
 import { LocalStorageKey } from 'src/app/@core/enums/local-storage-key.enum';
 import { RoleMap } from 'src/app/@core/maps/role.map';
 import { UserModel } from 'src/app/@core/models/user.model';
@@ -24,7 +24,7 @@ export class SettingsComponent {
   changePasswordUrl = AuthResourcesNavMap.get(AuthResources.UpdatePasswordView)?.route;
 
   constructor(
-    private userAuthService: UserAuthService,
+    private userAuthService: AuthService,
     public dialogRef: NbDialogRef<SettingsComponent>,
     private themeService: NbThemeService,
     private storageService: SecureLocalStorageService) {

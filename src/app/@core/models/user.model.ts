@@ -5,4 +5,5 @@ export interface UserModel {
     phoneNumber: string;
     ssoRole: string;
     appRole: string;
+    clientId: string;
 }

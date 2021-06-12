@@ -1,8 +1,11 @@
 <nb-card *ngIf="!tableOnly">
     <nb-card-header *ngIf="title">
         <div class="col p-0">
-            {{title}}
-            <nb-spinner *ngIf="title && isLoading" status="primary" class="header-spinner ml-auto" message="">
+            <span class="h5">
+                {{title}}
+            </span>
+            <nb-spinner size="tiny" *ngIf="title && isLoading" status="primary" class="header-spinner ml-auto" style="z-index: 1;"
+                message="">
             </nb-spinner>
         </div>
     </nb-card-header>
@@ -10,7 +13,8 @@
         <div class="row" *ngIf="(!title) && isLoading">
             <div class="col-12 mb-4">
                 <p class="p-3 m-0">
-                    <nb-spinner status="primary" class="header-spinner ml-auto" message=""></nb-spinner>
+                    <nb-spinner size="tiny" status="primary" class="header-spinner ml-auto" style="z-index: 1;" message="">
+                    </nb-spinner>
                 </p>
             </div>
         </div>
@@ -20,5 +24,6 @@
     </nb-card-body>
 </nb-card>
 
-<ng2-smart-table *ngIf="tableOnly" style="display: block;" (edit)="onEdit($event)" [source]="source" [settings]="settings">
+<ng2-smart-table *ngIf="tableOnly" style="display: block;" (edit)="onEdit($event)" [source]="source"
+    [settings]="settings">
 </ng2-smart-table>

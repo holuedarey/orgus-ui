@@ -1,11 +1,23 @@
-import { RoleDto } from './../../../@core/dtos/role.dto';
+import { AppRoleDto } from './../../../@core/dtos/role.dto';
 import { NbDialogRef } from '@nebular/theme';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { isEmail, isMobilePhone } from 'class-validator';
 import { RoleService } from 'src/app/@core/data-services/role.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, takeWhile } from 'rxjs/operators';
+import { RoleMap } from 'src/app/@core/maps/role.map';
+import { PermissionService } from 'src/app/@core/utils/permission.service';
+import { ClientDto } from 'src/app/@core/dtos/client.dto';
+import { ClientService } from 'src/app/@core/data-services/client.service';
+import { UsersResources } from '../users-resources';
+import { TokenService } from 'src/app/@core/utils/token.service';
+import { UserModel } from 'src/app/@core/models/user.model';
+import { UserService } from 'src/app/@core/data-services/user.service';
+import { PostUserDto } from 'src/app/@core/dtos/post-user.dto';
+import { ResponseDto } from 'src/app/@core/dtos/response-dto';
+import { UserDto } from 'src/app/@core/dtos/user.dto';
+import { UpdateUserDto } from 'src/app/@core/dtos/update-user.dto';
 
 @Component({
   selector: 'app-create-users',
@@ -13,22 +25,53 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./user-form.component.scss'],
   providers: [FormBuilder]
 })
-export class UserFormComponent implements OnInit {
-  errors = [];
+export class UserFormComponent implements OnInit, OnDestroy {
+
+  @Input()
+  isCreateRequest = true;
+
+  @Input()
+  userForUpdate!: UserDto;
+
+  errors: string[] = [];
+  messages: string[] = [];
   submitted = false;
+
   createUserForm!: FormGroup
-  appRoles$: Observable<RoleDto[]>;
+
+  appRoles$: Observable<AppRoleDto[]>;
+  ssoRoles$: Observable<string[]>;
+  clients$: Observable<ClientDto[]>;
+
+  roleMap = RoleMap;
+  userResources = UsersResources;
+  isLive = true;
 
   constructor(
     private roleService: RoleService,
+    private clientService: ClientService,
     public dialogRef: NbDialogRef<UserFormComponent>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public permissionService: PermissionService,
+    private tokenService: TokenService,
+    private userService: UserService
+
   ) {
-    this.appRoles$ = this.roleService.getRoles().pipe(map(d => d.data as RoleDto[]));
+    this.appRoles$ = this.roleService.getAppRoles().pipe(map(d => d.data as AppRoleDto[]));
+    this.clients$ = this.clientService.getClients().pipe(map(d => d.data?.itemList as ClientDto[]));
+    this.ssoRoles$ = this.roleService.getSsoRoles()
+      .pipe(
+        map(d => d.data as string[]),
+        map(roles => roles.filter(r => this.permissionService.canAccessByResource('create', 'users:create-' + r)))
+      );
   }
 
   ngOnInit(): void {
-    this.initForms();
+    if (this.isCreateRequest) {
+      this.initCreateForm();
+    } else {
+      this.initUpdateForm();
+    }
   }
 
   close(): void {
@@ -39,7 +82,8 @@ export class UserFormComponent implements OnInit {
     this.dialogRef.close(true);
   }
 
-  initForms(): void {
+  initCreateForm(): void {
+    const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
     this.createUserForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -53,8 +97,42 @@ export class UserFormComponent implements OnInit {
           this.validatePhoneNumber.bind(this)
         ]
       ],
-      role: ['', Validators.required],
+      roleId: ['', Validators.required],
+      ssoRole: [
+        '', [
+          Validators.required,
+          this.validateSsoRole.bind(this)
+        ]
+      ],
+      clientId: [
+        this.permissionService.canAccessByResource('create', UsersResources.SetClient) ? '' : userModel.clientId
+        , Validators.required
+      ],
     });
+
+    this.createUserForm.get('clientId')?.valueChanges
+      .pipe(takeWhile(() => this.isLive))
+      .subscribe(
+        (v) => {
+          this.createUserForm.get('email')?.updateValueAndValidity();
+          this.createUserForm.get('ssoRole')?.updateValueAndValidity();
+        }
+      )
+  }
+
+  initUpdateForm(): void {
+    this.createUserForm = this.formBuilder.group({
+      firstName: [this.userForUpdate.firstName, Validators.required],
+      lastName: [this.userForUpdate.lastName, Validators.required],
+      phoneNumber: [
+        this.userForUpdate.phone, [
+          Validators.required,
+          this.validatePhoneNumber.bind(this)
+        ]
+      ],
+      roleId: [this.userForUpdate.roleId, Validators.required],
+    });
+
   }
 
   validatePhoneNumber(input: FormControl) {
@@ -72,16 +150,153 @@ export class UserFormComponent implements OnInit {
   validateEmail(input: FormControl) {
     const value = (input.value as string).trim();
     const isValidEmail = isEmail(value);
-    if (isValidEmail) {
-      return;
-    } else {
+    if (!isValidEmail) {
       return {
         email: `"${value}" is not a valid email`
       }
     }
+
+    const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
+    const clientId = this.createUserForm.get('clientId')?.value;
+    const ssoRole = userModel.ssoRole;
+    const signedInUserClientId = userModel.clientId;
+    const emailHasVggSignature = (value as string).trim().toLowerCase().endsWith('@venturegardengroup.com');
+
+    // continue only if VGG staff is signed in
+    if (!ssoRole.trim().includes('vgg')) {
+      return;
+    }
+
+    // if VGG Client Selected, 
+    if (clientId === signedInUserClientId && !emailHasVggSignature) {
+      return {
+        email: `"${value}" is not a valid VGG email`
+      }
+    }
+
+    // if Non VGG Client is Selected
+    if (clientId !== signedInUserClientId && emailHasVggSignature) {
+      return {
+        email: `"${value}" cannot be used for client account`
+      }
+    }
+    return;
+  }
+
+  validateSsoRole(input: FormControl) {
+    const value = (input.value as string).trim();
+    const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
+    const clientId = this.createUserForm?.get('clientId')?.value;
+    const ssoRole = userModel.ssoRole;
+    const signedInUserClientId = userModel.clientId;
+    const isVggSsoRole = value.includes('vgg');
+
+    // continue only if VGG staff is signed in
+    if (!clientId?.length) {
+      return;
+    }
+
+    // continue only if VGG staff is signed in
+    if (!ssoRole.trim().includes('vgg')) {
+      return;
+    }
+
+    // if VGG Client Selected, 
+    if (clientId === signedInUserClientId && !isVggSsoRole) {
+      return {
+        sso: `This role cannot be assigned to a VGG client account`
+      }
+    }
+
+    // if Non VGG Client is Selected
+    if (clientId !== signedInUserClientId && isVggSsoRole) {
+      return {
+        sso: `This role can only be assigned to a VGG client account`
+      }
+    }
+
+    return;
   }
 
   saveUser(): void {
-    console.log(this.createUserForm.value);
+    this.errors = [];
+    this.messages = [];
+    this.submitted = true;
+
+    const postUserDto: PostUserDto = {
+      firstName: (this.createUserForm.get('firstName')?.value as string).trim(),
+      lastName: (this.createUserForm.get('lastName')?.value as string).trim(),
+      email: (this.createUserForm.get('email')?.value as string).trim(),
+      phoneNumber: (this.createUserForm.get('phoneNumber')?.value as string).trim(),
+      roleId: this.createUserForm.get('roleId')?.value,
+      clientId: this.createUserForm.get('clientId')?.value,
+      ssoRole: this.createUserForm.get('ssoRole')?.value,
+    }
+
+    this.userService.postUser(postUserDto).subscribe(
+      (result) => {
+        this.submitted = false;
+        if (result.status) {
+          this.messages = ['User creation successful'];
+          setTimeout(() => {
+            this.dialogRef.close()
+          }, 2000);
+          // this.cd.detectChanges();
+        } else {
+          this.errors = [
+            result.message as string
+          ];
+        }
+      },
+      (error: ResponseDto<string>) => {
+        this.submitted = false;
+        this.errors = [
+          'An Error occured while logging you in.',
+        ];
+      }
+    );
+    console.log(postUserDto, JSON.parse(this.tokenService.getPayload().sub));
   }
+
+  updateUser(): void {
+    this.errors = [];
+    this.messages = [];
+    this.submitted = true;
+
+    const updateUserDto: UpdateUserDto = {
+      firstName: (this.createUserForm.get('firstName')?.value as string).trim(),
+      lastName: (this.createUserForm.get('lastName')?.value as string).trim(),
+      phoneNumber: (this.createUserForm.get('phoneNumber')?.value as string).trim(),
+      roleId: this.createUserForm.get('roleId')?.value,
+    }
+
+    this.userService.updateUser(updateUserDto).subscribe(
+      (result) => {
+        this.submitted = false;
+        if (result.status) {
+          this.messages = ['User record updated successful'];
+          setTimeout(() => {
+            this.dialogRef.close()
+          }, 2000);
+          // this.cd.detectChanges();
+        } else {
+          this.errors = [
+            result.message as string
+          ];
+        }
+      },
+      (error: ResponseDto<string>) => {
+        this.submitted = false;
+        this.errors = [
+          'An Error occured while logging you in.',
+        ];
+      }
+    );
+    console.log(updateUserDto, JSON.parse(this.tokenService.getPayload().sub));
+  }
+
+  ngOnDestroy() {
+    this.isLive = false;
+  }
+
 }

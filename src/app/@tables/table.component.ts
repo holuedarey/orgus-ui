@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { isMobile } from 'mobile-device-detect';
 import { LocalDataSource } from 'ng2-smart-table';
 import { takeWhile } from 'rxjs/operators';
+import { DataRequestTransformer } from '../@core/functions/data-request.funtion';
 
 export interface TableConfig<T> {
   title: string;
@@ -79,7 +80,7 @@ export class TableComponent implements OnInit, OnDestroy {
       position: isMobile ? 'left' : 'right'
     },
     edit: {
-      editButtonContent: '<i class="eva eva-more-horizontal-outline"></i>'
+      editButtonContent: '<i class="eva eva-edit-2-outline table-icon"></i>'
     },
   }
   settings = {}
@@ -107,7 +108,6 @@ export class TableComponent implements OnInit, OnDestroy {
         switch (event.action) {
           case 'page':
           case 'filter':
-          case 'sort':
             this.requestMoreData(event)
             break;
         }
@@ -117,13 +117,15 @@ export class TableComponent implements OnInit, OnDestroy {
   async requestMoreData(event: any) {
     const filteredElements = await this.source.getFilteredAndSorted();
     const nosOfPages = Math.floor(filteredElements.length / event.paging.perPage) + 1;
+    const nosOfRecords = filteredElements.length;
 
     // If navigated to either of the last 2 pages, request more data
     const shouldRequest = (nosOfPages - event.paging.page) < 2;
     if (shouldRequest) {
       event.paging.nosOfPages = nosOfPages;
+      event.paging.nosOfRecords = nosOfRecords;
       event.filter = (event.filter.filters as any[]).filter(d => d.search !== '');
-      this.requestData.emit({ ...event });
+      this.requestData.emit({ ...DataRequestTransformer(event) });
     }
   }
 

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { ResponseDto } from './../dtos/response-dto';
 import { environment } from './../../../environments/environment';
-import { RoleDto } from './../dtos/role.dto';
-import { HttpClient } from '@angular/common/http';
+import { AppRoleDto } from './../dtos/role.dto';
 import { Observable } from 'rxjs';
-import { RoleResponseDto } from '../dtos/role-response.dto';
 
 
 @Injectable({
@@ -16,8 +15,13 @@ export class RoleService {
         private httpClient: HttpClient
     ) { }
 
-    getRoles(): Observable<ResponseDto<RoleDto[]>> {
-        const apiEndpoint = 'Roles';
-        return this.httpClient.get<ResponseDto<RoleDto[]>>(`${environment.apiUrl}/${apiEndpoint}`);
+    getAppRoles(): Observable<ResponseDto<AppRoleDto[]>> {
+        const apiEndpoint = 'roles';
+        return this.httpClient.get<ResponseDto<AppRoleDto[]>>(`${environment.apiUrl}/${apiEndpoint}`);
+    }
+
+    getSsoRoles(): Observable<ResponseDto<string[]>> {
+        const apiEndpoint = 'roles/ssoRoles';
+        return this.httpClient.get<ResponseDto<string[]>>(`${environment.apiUrl}/${apiEndpoint}`);
     }
 }

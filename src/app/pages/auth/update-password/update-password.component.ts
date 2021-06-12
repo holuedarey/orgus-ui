@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NB_AUTH_OPTIONS, getDeepFromObject } from '@nebular/auth';
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
-import { UserAuthService } from 'src/app/@core/data-services/user-auth.service';
+import { AuthService } from 'src/app/@core/data-services/auth.service';
 import { SeoService } from 'src/app/@core/utils';
 
 
@@ -24,7 +24,7 @@ export class UpdatePasswordComponent implements OnInit {
   pass: any = {};
 
   constructor(
-    protected service: UserAuthService,
+    protected service: AuthService,
     @Inject(NB_AUTH_OPTIONS) protected options = {},
     protected cd: ChangeDetectorRef,
     protected router: Router,
