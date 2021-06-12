@@ -6,7 +6,7 @@
     </nb-toggle>
 </ng-container>
 
-<ng-container *ngIf="!(accessChecker.isGranted('update', usersResources.UpdateUsers) | async)">
+<ng-container *ngIf="(accessChecker.isGranted('update', usersResources.UpdateUsers) | async) === false">
     {{checked ? 'Active' : 'Inactive'}}
 </ng-container>
 
