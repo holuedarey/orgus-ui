@@ -47,6 +47,13 @@ export class AuthService implements AccessControlContract {
       passwords);
   }
 
+  newPassword(passwords: any): Observable<ResponseDto<any>> {
+    const apiEndpoint = 'auth/newPassword';
+    return this.httpClient.post<ResponseDto<any>>(
+      `${environment.apiUrl}/${apiEndpoint}`,
+      passwords);
+  }
+
   requestPassword(emailDto: any): Observable<ResponseDto<any>> {
     const apiEndpoint = 'auth/forgotPassword';
     return this.httpClient.post<ResponseDto<any>>(
