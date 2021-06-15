@@ -87,7 +87,7 @@ export class UserStatusToggleComponent implements ViewCell, OnInit {
     this.checked = !state;
     this.cd.detectChanges();
     if (showToaster) {
-      this.toastr.danger('An error occured during the update', 'User Status', { position: NbGlobalPhysicalPosition.BOTTOM_RIGHT })
+      this.toastr.danger('An error occured during execution', 'User Update', { position: NbGlobalPhysicalPosition.BOTTOM_RIGHT })
     }
   }
 }
