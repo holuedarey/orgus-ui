@@ -41,8 +41,8 @@ export class UserService implements AccessControlContract {
 
   @HasAccess(PermissionEnum.Update, UsersResources.UpdateUsers)
   updateUser(user: UpdateUserDto): Observable<ResponseDto<any>> {
-    const apiEndpoint = 'users';
-    return this.httpClient.post<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, user);
+    const apiEndpoint = `users/${user.id}`;
+    return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, user);
   }
 
   enableUser(id: string): Observable<ResponseDto<any>> {

@@ -15,6 +15,7 @@ export const AccessControl: NbAccessControl[] = [
                 // Can View Auth pages apart from change password
                 AuthResources.LoginView,
                 AuthResources.ResetPasswordView,
+                AuthResources.NewPasswordView,
                 AuthResources.RequestPasswordView,
             ],
         },
@@ -61,6 +62,9 @@ export const AccessControl: NbAccessControl[] = [
         // Vgg User
         'vgg_user': {
             parent: 'user',
+            view: [
+                UsersResources.ViewClientColumn,
+            ],
         },
 
         // Vgg Admin
@@ -74,9 +78,6 @@ export const AccessControl: NbAccessControl[] = [
             ],
             update: [
                 UsersResources.UpdateUsers,
-            ],
-            view: [
-                UsersResources.ViewClientColumn,
             ],
         },
 

@@ -137,7 +137,7 @@ export class UsersComponent implements OnInit {
         (response) => {
           this.isLoadingData = false;
           if (response.status) {
-            this.users = GetUniqueArray([...this.users, ...response.data?.itemList ?? []]);
+            this.users = GetUniqueArray([...response.data?.itemList ?? []], [...this.users]);
           }
         },
         (err) => {

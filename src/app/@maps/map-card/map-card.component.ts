@@ -12,6 +12,7 @@ import { TableService } from 'src/app/@tables/table.service';
 export class MapCardComponent implements OnInit {
 
   isMobile = isMobile;
+  selectedRow: any;
   data = [
     {
       name: 'Leanne Graham',
@@ -153,14 +154,14 @@ export class MapCardComponent implements OnInit {
 
   columns = {
     name: {
-      title: 'Full Name',
+      title: 'Assets',
       filter: {
         type: 'custom',
         component: TableFilterComponent
       }
     },
     username: {
-      title: 'User Name',
+      title: 'Status',
       type: 'custom',
       renderComponent: TableTagComponent,
       filter: {
@@ -174,6 +175,10 @@ export class MapCardComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('');
+  }
+
+  selectedInput(data: any) {
+    this.selectedRow = data.data;
   }
 
 }

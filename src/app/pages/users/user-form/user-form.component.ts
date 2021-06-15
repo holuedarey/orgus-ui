@@ -267,7 +267,8 @@ export class UserFormComponent implements OnInit, OnDestroy {
       firstName: (this.createUserForm.get('firstName')?.value as string).trim(),
       lastName: (this.createUserForm.get('lastName')?.value as string).trim(),
       phoneNumber: (this.createUserForm.get('phoneNumber')?.value as string).trim(),
-      roleId: this.createUserForm.get('roleId')?.value,
+      appRole: this.createUserForm.get('roleId')?.value,
+      id: this.userForUpdate.id
     }
 
     this.userService.updateUser(updateUserDto).subscribe(

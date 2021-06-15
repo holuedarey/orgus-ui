@@ -4,6 +4,7 @@ export enum AuthResources {
     LoginView = 'auth:login-view',
     RequestPasswordView = 'auth:request-password-view',
     ResetPasswordView = 'auth:reset-password-view',
+    NewPasswordView = 'auth:new-password-view',
     UpdatePasswordView = 'auth:update-password-view',
 }
 
@@ -27,6 +28,13 @@ export const AuthResourcesNavMap = new Map<AuthResources, ResourceNavModel>([
         {
             route: '/auth/reset-password',
             path: 'reset-password'
+        }
+    ],
+    [
+        AuthResources.NewPasswordView,
+        {
+            route: '/auth/new-user',
+            path: 'new-user'
         }
     ],
     [

@@ -32,6 +32,12 @@ const routes: Routes = [
         canActivate: [HasPasswordResetTokenGuard]
       },
       {
+        path: AuthResourcesNavMap.get(AuthResources.NewPasswordView)?.path,
+        component: ResetPasswordComponent,
+        canActivate: [HasPasswordResetTokenGuard],
+        data: { isNewPassword: true }
+      },
+      {
         path: AuthResourcesNavMap.get(AuthResources.UpdatePasswordView)?.path,
         component: UpdatePasswordComponent,
       },

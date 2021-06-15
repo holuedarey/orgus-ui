@@ -67,6 +67,8 @@ export class TableComponent implements OnInit, OnDestroy {
   requestData: EventEmitter<any> = new EventEmitter();
   @Output()
   optionsSelected: EventEmitter<any> = new EventEmitter();
+  @Output()
+  rowCLicked: EventEmitter<any> = new EventEmitter();
   // < Outputs End >
 
   #config!: TableConfig<any>[];
@@ -131,6 +133,10 @@ export class TableComponent implements OnInit, OnDestroy {
 
   onEdit(event: any) {
     this.optionsSelected.emit(event);
+  }
+
+  onRowClicked(event: any) {
+    this.rowCLicked.emit(event);
   }
 
   ngOnDestroy(): void {
