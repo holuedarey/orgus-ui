@@ -70,7 +70,7 @@ export class UsersComponent implements OnInit {
           list: Array.from(RoleMap.entries()).map(x => ({ value: x[0], title: x[1] })),
         },
       },
-      valuePrepareFunction: (d: string) => RoleMap.get(d)
+      valuePrepareFunction: (d: string) => RoleMap.get(d.toLowerCase())
     },
     client: {
       title: 'Client',
@@ -90,7 +90,7 @@ export class UsersComponent implements OnInit {
           selectText: 'Select...',
           list: [
             { value: 'Active', title: 'Active' },
-            { value: 'In Active', title: 'Inactive' },
+            { value: 'InActive', title: 'Inactive' },
           ],
         },
       },

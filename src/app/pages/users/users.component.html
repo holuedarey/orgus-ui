@@ -4,10 +4,9 @@
             <app-table [isLoading]="isLoadingData" title="Users" [data]="users" [columns]="columns"
                 (requestData)="requestData($event)" (optionsSelected)="updateUser($event)"
                 [showEdit]="permissionService.canAccessByResource('update', usersResources.UpdateUsers)">
-                <div class="row">
+                <div *nbIsGranted="['create', usersResources.CreateUsers]" class="row">
                     <div class="col-12 mb-4 ml-auto">
-                        <button *nbIsGranted="['create', usersResources.CreateUsers]"
-                            [disabled]="(onlineStat.isOnlineSub.asObservable() | async) === false"
+                        <button [disabled]="(onlineStat.isOnlineSub.asObservable() | async) === false"
                             (click)="handleCreateNewUserClick()" nbButton status="primary">Create
                             User</button>
                     </div>
