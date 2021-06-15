@@ -17,7 +17,7 @@ export class ClientService {
         private httpClient: HttpClient
     ) { }
 
-    getClients(): Observable<ResponseDto<ListDto<ClientDto>>> {
+    getClients(filter: any = { page: 1, size: environment.paginationLength }): Observable<ResponseDto<ListDto<ClientDto>>> {
         const apiEndpoint = 'clients';
         return this.httpClient.get<ResponseDto<ListDto<ClientDto>>>(`${environment.apiUrl}/${apiEndpoint}`);
     }
