@@ -1,3 +1,4 @@
+import { PostClientDto } from './../dtos/post-client.dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ResponseDto } from './../dtos/response-dto';
@@ -21,4 +22,9 @@ export class ClientService {
         const apiEndpoint = 'clients';
         return this.httpClient.get<ResponseDto<ListDto<ClientDto>>>(`${environment.apiUrl}/${apiEndpoint}`);
     }
+
+    postClient(clients: PostClientDto): Observable<ResponseDto<any>> {
+        const apiEndpoint = 'clients';
+        return this.httpClient.post<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, clients);
+      }
 }

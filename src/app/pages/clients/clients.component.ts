@@ -104,10 +104,9 @@ export class ClientsComponent implements OnInit {
     this.clientServive.getClients(data)
       .subscribe(
         (response) => {
-          console.log(response)
           this.isLoadingData = false;
           if (response.status) {
-            this.clients = GetUniqueArray([...this.clients, ...response.data?.itemList ?? []]);
+            this.clients = GetUniqueArray([...this.clients, ...response.data?.itemList ?? []], [...this.clients]);
           }
         },
         (err) => {
