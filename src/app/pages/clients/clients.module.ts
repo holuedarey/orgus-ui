@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ClientsRoutingModule } from './clients-routing.module';
 import { ClientsComponent } from './clients.component';
 import { ClientFormComponent } from './client-form/client-form.component';
-import { NbDialogModule, NbButtonModule, NbCardModule, NbIconModule, NbAlertModule, NbInputModule, NbFormFieldModule, NbSpinnerModule } from '@nebular/theme';
+import { NbDialogModule, NbButtonModule, NbCardModule, NbIconModule, NbAlertModule, NbInputModule, NbFormFieldModule, NbSpinnerModule, NbStepperModule } from '@nebular/theme';
 import { NbSecurityModule } from '@nebular/security';
 
 
@@ -30,6 +30,7 @@ import { NbSecurityModule } from '@nebular/security';
     NbFormFieldModule,
     NbInputModule,
     NbSpinnerModule,
+    NbStepperModule,
     NbSecurityModule.forRoot(),
   ]
 })

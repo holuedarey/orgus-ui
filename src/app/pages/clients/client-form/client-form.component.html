@@ -1,7 +1,7 @@
-<div style="width: 100vw;">
+<div style="width: 100%;">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-6 mx-auto">
+            <div class="col-12 mx-auto">
                 <nb-card class="xyz-in" xyz="fade down-25%" style="max-height: 100vh; overflow-y: auto;">
                     <nb-card-header class="font-weight-bold pb-1">
                         <div class="row">
@@ -13,193 +13,388 @@
                             </div>
                         </div>
                     </nb-card-header>
-                    <nb-card-body>
+                    <div class="col-12 px-5">
+                        <nb-card-body>
+                            <nb-alert *ngIf="errors?.length && !submitted" outline="danger" role="alert">
+                                <p class="alert-title"><b>Oh snap!</b></p>
+                                <ul class="alert-message-list">
+                                    <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+                                </ul>
+                            </nb-alert>
 
-                        <nb-alert *ngIf="errors?.length && !submitted" outline="danger" role="alert">
-                            <p class="alert-title"><b>Oh snap!</b></p>
-                            <ul class="alert-message-list">
-                                <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
-                            </ul>
-                        </nb-alert>
+                            <nb-alert *ngIf=" messages?.length && !submitted" outline="success" role="alert">
+                                <p class="alert-title"><b>Hooray!</b></p>
+                                <ul class="alert-message-list">
+                                    <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+                                </ul>
+                            </nb-alert>
+                            <nb-stepper #stepper>
+                                <nb-step label="Business" class="h-100" [stepControl]="createClientFormStepOne">
+                                    <form [formGroup]="createClientFormStepOne" #form="ngForm" class="my-3">
+                                        <div class="form-control-group row mb-3">
+                                            <div class="col-sm-3">
+                                                <label class="label" for="input-businessName">Business Name:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input nbInput fullWidth name="businessName" id="input-businessName"
+                                                    placeholder="Business Name"
+                                                    [(ngModel)]="businessUnitNameAutofil"
+                                                    [status]="createClientFormStepOne.controls['businessName'].touched ? (createClientFormStepOne.controls['businessName'].invalid ? 'danger' : 'success') : 'basic'"
+                                                    formControlName="businessName" autofocus>
+                                                <!-- input errors -->
+                                                <div *ngIf="createClientFormStepOne.controls['businessName'].invalid && createClientFormStepOne.controls['businessName'].touched"
+                                                    class="text-danger xyz-in px-3 row">
+                                                    <small xyz="fade down" class="error-message"
+                                                        *ngIf="createClientFormStepOne.controls['businessName'].errors?.required">
+                                                        Business Name is required!
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                        <nb-alert *ngIf=" messages?.length && !submitted" outline="success" role="alert">
-                            <p class="alert-title"><b>Hooray!</b></p>
-                            <ul class="alert-message-list">
-                                <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
-                            </ul>
-                        </nb-alert>
-                        <form [formGroup]="createClientForm" #form="ngForm" class="my-3">
+                                        <div class="form-control-group mb-3 row">
+                                            <div class="col-sm-3">
+                                                <label class="label" for="input-userName">User Name:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input nbInput fullWidth name="userName" id="input-userName"
+                                                    placeholder="User Name" formControlName="userName"
+                                                    [value]="businessUnitNameAutofil.trim().toLowerCase().split(' ').join('.')">
+                                                <!-- [status]="createClientFormStepOne.controls['userName'].touched ? (createClientFormStepOne.controls['userName'].invalid ? 'danger' : 'success') : 'basic'" -->
+                                                <!-- input errors -->
+                                                <div *ngIf="createClientFormStepOne.controls['userName'].invalid && createClientFormStepOne.controls['userName'].touched"
+                                                    class="text-danger xyz-in px-3 row">
+                                                    <small xyz="fade down" class="error-message"
+                                                        *ngIf="createClientFormStepOne.controls['userName'].errors?.required">
+                                                        User Name is required!
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-group mb-3 row">
+                                            <div class="col-sm-3">
+                                                <label class="label" for="input-city">City:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input nbInput fullWidth name="city" id="input-city" placeholder="City"
+                                                    [status]="createClientFormStepOne.controls['city'].touched ? (createClientFormStepOne.controls['city'].invalid ? 'danger' : 'success') : 'basic'"
+                                                    formControlName="city" autofocus>
+                                                <!-- input errors -->
+                                                <div *ngIf="createClientFormStepOne.controls['city'].invalid && createClientFormStepOne.controls['city'].touched"
+                                                    class="text-danger xyz-in px-3 row">
+                                                    <small xyz="fade down" class="error-message"
+                                                        *ngIf="createClientFormStepOne.controls['city'].errors?.required">
+                                                        City is required!
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-group mb-3 row">
+                                            <div class="col-sm-3">
+                                                <label class="label" for="input-address">Address:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <textarea nbInput fullWidth name="address" id="input-address"
+                                                    placeholder="Address"
+                                                    [status]="createClientFormStepOne.controls['address'].touched ? (createClientFormStepOne.controls['address'].invalid ? 'danger' : 'success') : 'basic'"
+                                                    formControlName="address" autofocus></textarea>
+                                                <!-- input errors -->
+                                                <div *ngIf="createClientFormStepOne.controls['address'].invalid && createClientFormStepOne.controls['address'].touched"
+                                                    class="text-danger xyz-in px-3 row">
+                                                    <small xyz="fade down" class="error-message"
+                                                        *ngIf="createClientFormStepOne.controls['address'].errors?.required">
+                                                        Address is required!
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                            <div class="form-control-group row mb-3">
-                                <div class="col-sm-3">
-                                    <label class="label" for="input-businessName">Business Name:</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input nbInput fullWidth name="businessName" id="input-businessName"
-                                        placeholder="Business Name"
-                                        [status]="createClientForm.controls['businessName'].touched ? (createClientForm.controls['businessName'].invalid ? 'danger' : 'success') : 'basic'"
-                                        formControlName="businessName" autofocus>
-                                    <!-- input errors -->
-                                    <div *ngIf="createClientForm.controls['businessName'].invalid && createClientForm.controls['businessName'].touched"
-                                        class="text-danger xyz-in px-3 row">
-                                        <small xyz="fade down" class="error-message"
-                                            *ngIf="createClientForm.controls['businessName'].errors?.required">
-                                            Business Name is required!
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
+                                        <button (click)="onFirstFormSubmit()"
+                                            [disabled]="createClientFormStepOne.invalid" status="primary" fullWidth
+                                            nbButton nbStepperNext>next</button>
+                                    </form>
+                                </nb-step>
+                                <nb-step label="Contact" class="h-100" [stepControl]="createClientFormStepTwo">
+                                    <form [formGroup]="createClientFormStepTwo" #form="ngForm" class="my-3">
+                                        <ng-container *ngIf="isCreateRequest">
+                                            <div class="form-control-group row mb-3">
+                                                <div class="col-sm-3">
+                                                    <label class="label" for="input-contactEmail">Contact Email:</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input nbInput fullWidth name="contactEmail" id="input-contactEmail"
+                                                        placeholder="Contact Email"
+                                                        [status]="createClientFormStepTwo.controls['contactEmail'].touched ? (createClientFormStepTwo.controls['contactEmail'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="contactEmail" autofocus>
 
-                            <div class="form-control-group mb-3 row">
-                                <div class="col-sm-3">
-                                    <label class="label" for="input-address">Address:</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input nbInput fullWidth name="address" id="input-address" placeholder="Address"
-                                        [status]="createClientForm.controls['address'].touched ? (createClientForm.controls['address'].invalid ? 'danger' : 'success') : 'basic'"
-                                        formControlName="address" autofocus>
-                                    <!-- input errors -->
-                                    <div *ngIf="createClientForm.controls['address'].invalid && createClientForm.controls['address'].touched"
-                                        class="text-danger xyz-in px-3 row">
-                                        <small xyz="fade down" class="error-message"
-                                            *ngIf="createClientForm.controls['address'].errors?.required">
-                                            Address is required!
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
+                                                    <div *ngIf="createClientFormStepTwo.controls['contactEmail'].invalid && createClientFormStepTwo.controls['contactEmail'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message d-block"
+                                                            *ngIf="createClientFormStepTwo.controls['contactEmail'].errors?.required">
+                                                            Contact Email is required!
+                                                        </small>
+                                                        <small xyz="fade down" class="error-message d-block"
+                                                            *ngIf="!createClientFormStepTwo.controls['contactEmail'].errors?.required">
+                                                            {{createClientFormStepTwo.controls['contactEmail'].errors?.contactEmail}}
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-container>
 
-                            <div class="form-control-group mb-3 row">
-                                <div class="col-sm-3">
-                                    <label class="label" for="input-userName">User Name:</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input nbInput fullWidth name="userName" id="input-userName" placeholder="User Name"
-                                        [status]="createClientForm.controls['userName'].touched ? (createClientForm.controls['userName'].invalid ? 'danger' : 'success') : 'basic'"
-                                        formControlName="userName" autofocus>
-                                    <!-- input errors -->
-                                    <div *ngIf="createClientForm.controls['userName'].invalid && createClientForm.controls['userName'].touched"
-                                        class="text-danger xyz-in px-3 row">
-                                        <small xyz="fade down" class="error-message"
-                                            *ngIf="createClientForm.controls['userName'].errors?.required">
-                                            User Name is required!
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-control-group mb-3 row">
-                                <div class="col-sm-3">
-                                    <label class="label" for="input-city">City:</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input nbInput fullWidth name="city" id="input-city" placeholder="City"
-                                        [status]="createClientForm.controls['city'].touched ? (createClientForm.controls['city'].invalid ? 'danger' : 'success') : 'basic'"
-                                        formControlName="city" autofocus>
-                                    <!-- input errors -->
-                                    <div *ngIf="createClientForm.controls['city'].invalid && createClientForm.controls['city'].touched"
-                                        class="text-danger xyz-in px-3 row">
-                                        <small xyz="fade down" class="error-message"
-                                            *ngIf="createClientForm.controls['city'].errors?.required">
-                                            City is required!
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-                            <ng-container *ngIf="isCreateRequest">
+                                        <div class="form-control-group mb-3 row">
+                                            <div class="col-sm-3">
+                                                <label class="label" for="input-contactPerson">Contact Person:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input nbInput fullWidth name="contactPerson" id="input-contactPerson"
+                                                    placeholder="Contact Person"
+                                                    [status]="createClientFormStepTwo.controls['contactPerson'].touched ? (createClientFormStepTwo.controls['contactPerson'].invalid ? 'danger' : 'success') : 'basic'"
+                                                    formControlName="contactPerson" autofocus>
+
+                                                <div *ngIf="createClientFormStepTwo.controls['contactPerson'].invalid && createClientFormStepTwo.controls['contactPerson'].touched"
+                                                    class="text-danger xyz-in px-3 row">
+                                                    <small xyz="fade down" class="error-message"
+                                                        *ngIf="createClientFormStepTwo.controls['contactPerson'].errors?.required">
+                                                        Contact Person is required!
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-control-group row mb-3">
+                                            <div class="col-sm-3">
+                                                <label class="label" for="input-phoneNumber">Contact Phone:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input nbInput fullWidth name="phoneNumber" id="input-phoneNumber"
+                                                    placeholder="Phone number"
+                                                    [status]="createClientFormStepTwo.controls['phoneNumber'].touched ? (createClientFormStepTwo.controls['phoneNumber'].invalid ? 'danger' : 'success') : 'basic'"
+                                                    formControlName="phoneNumber" autofocus>
+
+                                                <div *ngIf="createClientFormStepTwo.controls['phoneNumber'].invalid && createClientFormStepTwo.controls['phoneNumber'].touched"
+                                                    class="text-danger xyz-in px-3 row">
+                                                    <small xyz="fade down" class="error-message d-block"
+                                                        *ngIf="createClientFormStepTwo.controls['phoneNumber'].errors?.required">
+                                                        Phone number is required
+                                                    </small>
+                                                    <small class="error-message d-block"
+                                                        *ngIf="createClientFormStepTwo.controls['phoneNumber'].errors?.phoneNos && !createClientFormStepTwo.controls['phoneNumber'].errors?.required">
+                                                        {{createClientFormStepTwo.controls['phoneNumber'].errors?.phoneNos}}
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-group mb-3 row">
+                                            <div class="col-sm-3">
+                                                <label class="label" for="input-role">Role:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input nbInput fullWidth name="role" id="input-role" placeholder="Role"
+                                                    [status]="createClientFormStepTwo.controls['role'].touched ? (createClientFormStepTwo.controls['role'].invalid ? 'danger' : 'success') : 'basic'"
+                                                    formControlName="role" autofocus minlength ="3">
+
+                                                <div *ngIf="createClientFormStepTwo.controls['role'].invalid && createClientFormStepTwo.controls['role'].touched"
+                                                    class="text-danger xyz-in px-3 row">
+                                                    <small xyz="fade down" class="error-message"
+                                                        *ngIf="createClientFormStepTwo.controls['role'].errors?.required">
+                                                        Role is required!
+                                                    </small>
+                                                    <small xyz="fade down" class="error-message"
+                                                        *ngIf="createClientFormStepTwo.controls['role'].errors?.minlength && !createClientFormStepTwo.controls['role'].errors?.required">
+                                                        Role must be atleast three letters!
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-6">
+                                                <button fullWidth nbButton nbStepperPrevious>previous</button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button (click)="isCreateRequest ? saveClient() : updateClient()"
+                                                    [nbSpinner]="submitted" nbButton fullWidth status="success"
+                                                    [disabled]="submitted || !createClientFormStepTwo.valid">
+                                                    {{isCreateRequest ? 'Save' : 'Update'}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </nb-step>
+                            </nb-stepper>
+                            <!-- <form [formGroup]="createClientForm" #form="ngForm" class="my-3">
+    
                                 <div class="form-control-group row mb-3">
                                     <div class="col-sm-3">
-                                        <label class="label" for="input-contactEmail">Contact Email:</label>
+                                        <label class="label" for="input-businessName">Business Name:</label>
                                     </div>
                                     <div class="col-sm-9">
-                                        <input nbInput fullWidth name="contactEmail" id="input-contactEmail"
-                                            placeholder="Contact Email"
-                                            [status]="createClientForm.controls['contactEmail'].touched ? (createClientForm.controls['contactEmail'].invalid ? 'danger' : 'success') : 'basic'"
-                                            formControlName="contactEmail" autofocus>
-                                        <!-- input errors -->
-                                        <div *ngIf="createClientForm.controls['contactEmail'].invalid && createClientForm.controls['contactEmail'].touched"
+                                        <input nbInput fullWidth name="businessName" id="input-businessName"
+                                            placeholder="Business Name"
+                                            [status]="createClientForm.controls['businessName'].touched ? (createClientForm.controls['businessName'].invalid ? 'danger' : 'success') : 'basic'"
+                                            formControlName="businessName" autofocus>
+                                      
+                                        <div *ngIf="createClientForm.controls['businessName'].invalid && createClientForm.controls['businessName'].touched"
                                             class="text-danger xyz-in px-3 row">
-                                            <small xyz="fade down" class="error-message d-block"
-                                                *ngIf="createClientForm.controls['contactEmail'].errors?.required">
-                                                Contact Email is required!
-                                            </small>
-                                            <small xyz="fade down" class="error-message d-block"
-                                                *ngIf="!createClientForm.controls['contactEmail'].errors?.required">
-                                                {{createClientForm.controls['contactEmail'].errors?.contactEmail}}
+                                            <small xyz="fade down" class="error-message"
+                                                *ngIf="createClientForm.controls['businessName'].errors?.required">
+                                                Business Name is required!
                                             </small>
                                         </div>
                                     </div>
                                 </div>
-                            </ng-container>
-                            <div class="form-control-group mb-3 row">
-                                <div class="col-sm-3">
-                                    <label class="label" for="input-contactPerson">Contact Person:</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input nbInput fullWidth name="contactPerson" id="input-contactPerson" placeholder="Contact Person"
-                                        [status]="createClientForm.controls['contactPerson'].touched ? (createClientForm.controls['contactPerson'].invalid ? 'danger' : 'success') : 'basic'"
-                                        formControlName="contactPerson" autofocus>
-                                    <!-- input errors -->
-                                    <div *ngIf="createClientForm.controls['contactPerson'].invalid && createClientForm.controls['contactPerson'].touched"
-                                        class="text-danger xyz-in px-3 row">
-                                        <small xyz="fade down" class="error-message"
-                                            *ngIf="createClientForm.controls['contactPerson'].errors?.required">
-                                            Contact Person is required!
-                                        </small>
+    
+                                <div class="form-control-group mb-3 row">
+                                    <div class="col-sm-3">
+                                        <label class="label" for="input-address">Address:</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input nbInput fullWidth name="address" id="input-address" placeholder="Address"
+                                            [status]="createClientForm.controls['address'].touched ? (createClientForm.controls['address'].invalid ? 'danger' : 'success') : 'basic'"
+                                            formControlName="address" autofocus>
+                                      
+                                        <div *ngIf="createClientForm.controls['address'].invalid && createClientForm.controls['address'].touched"
+                                            class="text-danger xyz-in px-3 row">
+                                            <small xyz="fade down" class="error-message"
+                                                *ngIf="createClientForm.controls['address'].errors?.required">
+                                                Address is required!
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="form-control-group row mb-3">
-                                <div class="col-sm-3">
-                                    <label class="label" for="input-phoneNumber">Contact Phone:</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input nbInput fullWidth name="phoneNumber" id="input-phoneNumber"
-                                        placeholder="Phone number"
-                                        [status]="createClientForm.controls['phoneNumber'].touched ? (createClientForm.controls['phoneNumber'].invalid ? 'danger' : 'success') : 'basic'"
-                                        formControlName="phoneNumber" autofocus>
-                                    <!-- input errors -->
-                                    <div *ngIf="createClientForm.controls['phoneNumber'].invalid && createClientForm.controls['phoneNumber'].touched"
-                                        class="text-danger xyz-in px-3 row">
-                                        <small xyz="fade down" class="error-message d-block"
-                                            *ngIf="createClientForm.controls['phoneNumber'].errors?.required">
-                                            Phone number is required
-                                        </small>
-                                        <small class="error-message d-block"
-                                            *ngIf="createClientForm.controls['phoneNumber'].errors?.phoneNos && !createClientForm.controls['phoneNumber'].errors?.required">
-                                            {{createClientForm.controls['phoneNumber'].errors?.phoneNos}}
-                                        </small>
+    
+                                <div class="form-control-group mb-3 row">
+                                    <div class="col-sm-3">
+                                        <label class="label" for="input-userName">User Name:</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input nbInput fullWidth name="userName" id="input-userName" placeholder="User Name"
+                                            [status]="createClientForm.controls['userName'].touched ? (createClientForm.controls['userName'].invalid ? 'danger' : 'success') : 'basic'"
+                                            formControlName="userName" autofocus>
+                                   
+                                        <div *ngIf="createClientForm.controls['userName'].invalid && createClientForm.controls['userName'].touched"
+                                            class="text-danger xyz-in px-3 row">
+                                            <small xyz="fade down" class="error-message"
+                                                *ngIf="createClientForm.controls['userName'].errors?.required">
+                                                User Name is required!
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="form-control-group mb-3 row">
-                                <div class="col-sm-3">
-                                    <label class="label" for="input-role">Role:</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input nbInput fullWidth name="role" id="input-role" placeholder="Role"
-                                        [status]="createClientForm.controls['role'].touched ? (createClientForm.controls['role'].invalid ? 'danger' : 'success') : 'basic'"
-                                        formControlName="role" autofocus>
-                                    <!-- input errors -->
-                                    <div *ngIf="createClientForm.controls['role'].invalid && createClientForm.controls['role'].touched"
-                                        class="text-danger xyz-in px-3 row">
-                                        <small xyz="fade down" class="error-message"
-                                            *ngIf="createClientForm.controls['role'].errors?.required">
-                                            City is required!
-                                        </small>
+                                <div class="form-control-group mb-3 row">
+                                    <div class="col-sm-3">
+                                        <label class="label" for="input-city">City:</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input nbInput fullWidth name="city" id="input-city" placeholder="City"
+                                            [status]="createClientForm.controls['city'].touched ? (createClientForm.controls['city'].invalid ? 'danger' : 'success') : 'basic'"
+                                            formControlName="city" autofocus>
+                                      
+                                        <div *ngIf="createClientForm.controls['city'].invalid && createClientForm.controls['city'].touched"
+                                            class="text-danger xyz-in px-3 row">
+                                            <small xyz="fade down" class="error-message"
+                                                *ngIf="createClientForm.controls['city'].errors?.required">
+                                                City is required!
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                        </form>
-                    </nb-card-body>
-                    <nb-card-footer>
+                                <ng-container *ngIf="isCreateRequest">
+                                    <div class="form-control-group row mb-3">
+                                        <div class="col-sm-3">
+                                            <label class="label" for="input-contactEmail">Contact Email:</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input nbInput fullWidth name="contactEmail" id="input-contactEmail"
+                                                placeholder="Contact Email"
+                                                [status]="createClientForm.controls['contactEmail'].touched ? (createClientForm.controls['contactEmail'].invalid ? 'danger' : 'success') : 'basic'"
+                                                formControlName="contactEmail" autofocus>
+                                          
+                                            <div *ngIf="createClientForm.controls['contactEmail'].invalid && createClientForm.controls['contactEmail'].touched"
+                                                class="text-danger xyz-in px-3 row">
+                                                <small xyz="fade down" class="error-message d-block"
+                                                    *ngIf="createClientForm.controls['contactEmail'].errors?.required">
+                                                    Contact Email is required!
+                                                </small>
+                                                <small xyz="fade down" class="error-message d-block"
+                                                    *ngIf="!createClientForm.controls['contactEmail'].errors?.required">
+                                                    {{createClientForm.controls['contactEmail'].errors?.contactEmail}}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <div class="form-control-group mb-3 row">
+                                    <div class="col-sm-3">
+                                        <label class="label" for="input-contactPerson">Contact Person:</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input nbInput fullWidth name="contactPerson" id="input-contactPerson" placeholder="Contact Person"
+                                            [status]="createClientForm.controls['contactPerson'].touched ? (createClientForm.controls['contactPerson'].invalid ? 'danger' : 'success') : 'basic'"
+                                            formControlName="contactPerson" autofocus>
+                                      
+                                        <div *ngIf="createClientForm.controls['contactPerson'].invalid && createClientForm.controls['contactPerson'].touched"
+                                            class="text-danger xyz-in px-3 row">
+                                            <small xyz="fade down" class="error-message"
+                                                *ngIf="createClientForm.controls['contactPerson'].errors?.required">
+                                                Contact Person is required!
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="form-control-group row mb-3">
+                                    <div class="col-sm-3">
+                                        <label class="label" for="input-phoneNumber">Contact Phone:</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input nbInput fullWidth name="phoneNumber" id="input-phoneNumber"
+                                            placeholder="Phone number"
+                                            [status]="createClientForm.controls['phoneNumber'].touched ? (createClientForm.controls['phoneNumber'].invalid ? 'danger' : 'success') : 'basic'"
+                                            formControlName="phoneNumber" autofocus>
+                                    
+                                        <div *ngIf="createClientForm.controls['phoneNumber'].invalid && createClientForm.controls['phoneNumber'].touched"
+                                            class="text-danger xyz-in px-3 row">
+                                            <small xyz="fade down" class="error-message d-block"
+                                                *ngIf="createClientForm.controls['phoneNumber'].errors?.required">
+                                                Phone number is required
+                                            </small>
+                                            <small class="error-message d-block"
+                                                *ngIf="createClientForm.controls['phoneNumber'].errors?.phoneNos && !createClientForm.controls['phoneNumber'].errors?.required">
+                                                {{createClientForm.controls['phoneNumber'].errors?.phoneNos}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="form-control-group mb-3 row">
+                                    <div class="col-sm-3">
+                                        <label class="label" for="input-role">Role:</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input nbInput fullWidth name="role" id="input-role" placeholder="Role"
+                                            [status]="createClientForm.controls['role'].touched ? (createClientForm.controls['role'].invalid ? 'danger' : 'success') : 'basic'"
+                                            formControlName="role" autofocus>
+                                    
+                                        <div *ngIf="createClientForm.controls['role'].invalid && createClientForm.controls['role'].touched"
+                                            class="text-danger xyz-in px-3 row">
+                                            <small xyz="fade down" class="error-message"
+                                                *ngIf="createClientForm.controls['role'].errors?.required">
+                                                City is required!
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                            </form> -->
+                        </nb-card-body>
+                    </div>
+                    <!-- <nb-card-footer>
                         <button (click)="isCreateRequest ? saveClient() : updateClient()" [nbSpinner]="submitted" nbButton fullWidth status="success"
-                            [disabled]="submitted || !createClientForm.valid">
+                            [disabled]="submitted || !createClientFormStepTwo.valid">
                             {{isCreateRequest ? 'Save' : 'Update'}}
                         </button>
-                    </nb-card-footer>
+                    </nb-card-footer> -->
                 </nb-card>
             </div>
         </div>

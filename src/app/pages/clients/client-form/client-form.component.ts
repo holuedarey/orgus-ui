@@ -4,7 +4,7 @@ import { ClientService } from 'src/app/@core/data-services/client.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
-import { isEmail, isMobilePhone } from 'class-validator';
+import { isEmail, isMobilePhone,MinLength, minLength, validate } from 'class-validator';
 
 @Component({
   selector: 'app-client-form',
@@ -19,8 +19,13 @@ export class ClientFormComponent implements OnInit, OnDestroy {
   submitted = false;
   errors: string[] = [];
   messages: string[] = [];
+  userName: string = '';
+  businessUnitNameAutofil: string = '';
+  disableUserName = true;
 
   createClientForm!: FormGroup;
+  createClientFormStepOne!: FormGroup;
+  createClientFormStepTwo!: FormGroup;
 
   constructor(
     public dialogRef: NbDialogRef<ClientFormComponent>,
@@ -30,6 +35,8 @@ export class ClientFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initCreateForm();
+    this.updateUserName()
+
     // if (this.isCreateRequest) {
     // } else {
     //   this.initUpdateForm();
@@ -46,15 +53,19 @@ export class ClientFormComponent implements OnInit, OnDestroy {
   confirm(): void {
     this.dialogRef.close(true);
   }
-
+  onFirstFormSubmit():void {
+    console.log("onFirstFormSubmit");
+  }
   initCreateForm(): void {
     // const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
-    this.createClientForm = this.formBuilder.group({
+    this.createClientFormStepOne = this.formBuilder.group({
       businessName: ['', Validators.required],
       address: ['', Validators.required],
       userName: ['', Validators.required],
       city: ['', Validators.required],
-      role: ['', Validators.required],
+    });
+    this.createClientFormStepTwo= this.formBuilder.group({
+      role: [null, [Validators.required, Validators.min(3)]],       
       contactPerson: ['', Validators.required],
       contactEmail: ['', [
         Validators.required,
@@ -100,16 +111,15 @@ export class ClientFormComponent implements OnInit, OnDestroy {
     this.messages = [];
     this.submitted = true;
 
-    console.log('clicked');
     const postClientDto: PostClientDto = {
-      businessName: (this.createClientForm.get('businessName')?.value as string).trim(),
-      address: (this.createClientForm.get('address')?.value as string).trim(),
-      userName: (this.createClientForm.get('address')?.value as string).trim(),
-      city: (this.createClientForm.get('address')?.value as string).trim(),
-      contactEmail: (this.createClientForm.get('contactEmail')?.value as string).trim(),
-      contactPerson: (this.createClientForm.get('contactPerson')?.value as string).trim(),
-      jobRole: (this.createClientForm.get('role')?.value as string).trim(),
-      contactPhone: (this.createClientForm.get('phoneNumber')?.value as string).trim(),
+      businessName: (this.createClientFormStepOne.get('businessName')?.value as string).trim(),
+      address: (this.createClientFormStepOne.get('address')?.value as string).trim(),
+      userName: (this.businessUnitNameAutofil).trim().toLowerCase().split(' ').join('.'),
+      city: (this.createClientFormStepOne.get('city')?.value as string).trim(),
+      contactEmail: (this.createClientFormStepTwo.get('contactEmail')?.value as string).trim(),
+      contactPerson: (this.createClientFormStepTwo.get('contactPerson')?.value as string).trim(),
+      jobRole: (this.createClientFormStepTwo.get('role')?.value as string).trim(),
+      contactPhone: (this.createClientFormStepTwo.get('phoneNumber')?.value as string).trim(),
     }
 
     this.cientService.postClient(postClientDto).subscribe(
@@ -121,7 +131,6 @@ export class ClientFormComponent implements OnInit, OnDestroy {
           setTimeout(() => {
             this.dialogRef.close()
           }, 2000);
-          // this.cd.detectChanges();
         } else {
           this.errors = [
             result.message as string
@@ -136,8 +145,12 @@ export class ClientFormComponent implements OnInit, OnDestroy {
       }
     );
   }
-
+  updateUserName(): void {
+    this.createClientFormStepOne.controls['userName'].disable();
+    (this.createClientFormStepOne.get('userName')?.value as string).trim().toLowerCase().replace(' ','.')
+    //this.businessUnitNameAutofil.trim()
+  }
   updateClient(): void {
-    console.log('Updatte User')
+    console.log('Update User')
   }
 }
