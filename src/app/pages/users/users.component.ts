@@ -128,7 +128,7 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.seo.setSeoData('User Module', 'Manage application users');
+    this.seo.setSeoData('User Management', 'Manage application users');
     this.requestData();
     this.getAppRoles();
     this.getClients();
