@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NbDialogService, } from '@nebular/theme';
+import { ClientService } from 'src/app/@core/data-services/client.service';
+import { RoleService } from 'src/app/@core/data-services/role.service';
 import { UserService } from 'src/app/@core/data-services/user.service';
 import { UserDto } from 'src/app/@core/dtos/user.dto';
 import { PermissionEnum } from 'src/app/@core/enums/permission.enum';
@@ -8,7 +10,6 @@ import { RoleMap } from 'src/app/@core/maps/role.map';
 import { SeoService } from 'src/app/@core/utils';
 import { OnlineStatService } from 'src/app/@core/utils/online-stat.service';
 import { PermissionService } from 'src/app/@core/utils/permission.service';
-import { TableFilterComponent } from 'src/app/@tables/table-filter/table-filter.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserStatusToggleComponent } from './user-table-components/user-status-toggle/user-status-toggle.component';
 import { UsersResources } from './users-resources';
@@ -28,37 +29,30 @@ export class UsersComponent implements OnInit {
   columns = {
     firstName: {
       title: 'First Name',
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      }
     },
     lastName: {
       title: 'Last Name',
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      }
     },
     email: {
       title: 'Email',
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      }
     },
     phone: {
       title: 'Phone Nos',
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      }
     },
-    role: {
+    roleId: {
       title: 'Funtion',
       filter: {
-        type: 'custom',
-        component: TableFilterComponent
+        type: 'list',
+        config: {
+          selectText: 'Loading...',
+          list: []
+        },
+      },
+      valuePrepareFunction: (d: string, r: any) => {
+        return r.role
+      },
+      filterFunction: (x: string, y: string) => {
+        return x.toLowerCase() === y.toLowerCase();
       }
     },
     ssoRole: {
@@ -72,11 +66,18 @@ export class UsersComponent implements OnInit {
       },
       valuePrepareFunction: (d: string) => RoleMap.get(d.toLowerCase())
     },
-    client: {
+    clientId: {
       title: 'Client',
       filter: {
-        type: 'custom',
-        component: TableFilterComponent
+        type: 'list',
+        config: {
+          selectText: 'Loading...',
+          list: []
+        },
+      },
+      valuePrepareFunction: (d: string, r: any) => {
+        console.log(r)
+        return r.client
       },
       hide: !this.permissionService.canAccessByResource(PermissionEnum.View, UsersResources.ViewClientColumn)
     },
@@ -104,6 +105,8 @@ export class UsersComponent implements OnInit {
     public onlineStat: OnlineStatService,
     private userService: UserService,
     public permissionService: PermissionService,
+    private roleService: RoleService,
+    private clientService: ClientService
   ) { }
 
   async handleCreateNewUserClick() {
@@ -127,6 +130,8 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.seo.setSeoData('User Module', 'Manage application users');
     this.requestData();
+    this.getAppRoles();
+    this.getClients();
   }
 
   requestData(data?: any) {
@@ -146,6 +151,30 @@ export class UsersComponent implements OnInit {
       )
   }
 
+  getAppRoles() {
+    this.roleService.getAppRoles()
+      .subscribe(
+        (data) => {
+          const roles = data.data ?? [];
+          const roleSearchFilterList = roles.map(r => ({ value: r.id, title: r.name }));
+          this.columns.roleId.filter.config.selectText = 'Select...';
+          this.columns.roleId.filter.config.list = roleSearchFilterList as any;
+          this.columns = { ...this.columns }
+        }
+      )
+  }
 
+  getClients() {
+    this.clientService.getClients()
+      .subscribe(
+        (data) => {
+          const clients = data.data?.itemList ?? [];
+          const clientSearchFilterList = clients.map(r => ({ value: r.id, title: r.businessName }));
+          this.columns.clientId.filter.config.selectText = 'Select...';
+          this.columns.clientId.filter.config.list = clientSearchFilterList as any;
+          this.columns = { ...this.columns }
+        }
+      )
+  }
 
 }

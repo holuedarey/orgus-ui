@@ -34,6 +34,14 @@
     font-size: large;
 }
 
-::ng-deep select.form-control {
-    color: #495057 !important;
+::ng-deep .form-control {
+    background-color: var(--input-basic-background-color);
+    border-color: var(--input-basic-border-color);
+    color: var(--input-basic-text-color);
+}
+
+::ng-deep .form-control:focus {
+    background-color: var(--input-basic-background-color);
+    border-color: var(--input-basic-border-color);
+    color: var(--input-basic-text-color);
 }

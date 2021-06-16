@@ -240,8 +240,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
           this.messages = ['User creation successful'];
           setTimeout(() => {
             this.dialogRef.close()
-          }, 2000);
-          // this.cd.detectChanges();
+          }, 1200);
         } else {
           this.errors = [
             result.message as string
@@ -278,8 +277,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
           this.messages = ['User record updated successful'];
           setTimeout(() => {
             this.dialogRef.close()
-          }, 2000);
-          // this.cd.detectChanges();
+          }, 1200);
         } else {
           this.errors = [
             result.message as string
