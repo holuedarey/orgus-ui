@@ -117,8 +117,9 @@ export class UsersComponent implements OnInit {
       context: { isCreateRequest: true },
       closeOnEsc: false
     }).onClose.toPromise();
-    console.log(user)
-    this.users = [user, ...this.users];
+    if (user) {
+      this.users = [user, ...this.users];
+    }
   }
 
   async updateUser(user: any) {
