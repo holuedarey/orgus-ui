@@ -239,7 +239,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
         if (result.status) {
           this.messages = ['User creation successful'];
           setTimeout(() => {
-            this.dialogRef.close()
+            this.dialogRef.close(result.data)
           }, 1200);
         } else {
           this.errors = [

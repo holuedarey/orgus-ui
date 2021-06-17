@@ -37,5 +37,38 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "tables",
+      "urls": [
+        "https://**/users",
+        "https://**/clients"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "timeout": "5s",
+        "maxAge": "7d",
+        "maxSize": 100
+      },
+      "cacheQueryOptions": {
+        "ignoreSearch": false
+      }
+    },
+    {
+      "name": "roles",
+      "urls": [
+        "https://**/roles"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "timeout": "2s",
+        "maxAge": "7d",
+        "maxSize": 10
+      },
+      "cacheQueryOptions": {
+        "ignoreSearch": true
+      }
+    }
   ]
 }

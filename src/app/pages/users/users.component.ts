@@ -61,7 +61,9 @@ export class UsersComponent implements OnInit {
         type: 'list',
         config: {
           selectText: 'Select...',
-          list: Array.from(RoleMap.entries()).map(x => ({ value: x[0], title: x[1] })),
+          list: Array.from(RoleMap.entries())
+            .map(x => ({ value: x[0], title: x[1] }))
+            .filter(r => this.permissionService.canAccessByResource('view', UsersResources.ViewAllRoles) ? true : !r.value.includes('vgg')),
         },
       },
       valuePrepareFunction: (d: string) => RoleMap.get(d.toLowerCase())
@@ -109,13 +111,14 @@ export class UsersComponent implements OnInit {
     private clientService: ClientService
   ) { }
 
-  async handleCreateNewUserClick() {
-    this.dialogService.open(UserFormComponent, {
+  async createUser() {
+    const user: UserDto = await this.dialogService.open(UserFormComponent, {
       closeOnBackdropClick: false,
       context: { isCreateRequest: true },
       closeOnEsc: false
-    })
-      .onClose.toPromise();
+    }).onClose.toPromise();
+    console.log(user)
+    this.users = [user, ...this.users];
   }
 
   async updateUser(user: any) {

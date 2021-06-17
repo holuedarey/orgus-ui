@@ -61,6 +61,7 @@ export const AccessControl: NbAccessControl[] = [
             parent: 'user',
             view: [
                 UsersResources.ViewClientColumn,
+                UsersResources.ViewAllRoles
             ],
         },
 

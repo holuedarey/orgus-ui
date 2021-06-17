@@ -7,7 +7,7 @@
                 <div *nbIsGranted="['create', usersResources.CreateUsers]" class="row">
                     <div class="col-12 mb-4 ml-auto">
                         <button [disabled]="(onlineStat.isOnlineSub.asObservable() | async) === false"
-                            (click)="handleCreateNewUserClick()" nbButton status="primary">Create
+                            (click)="createUser()" nbButton status="primary">Create
                             User</button>
                     </div>
                 </div>
