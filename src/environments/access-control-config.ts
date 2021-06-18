@@ -1,5 +1,6 @@
 import { NbAccessControl } from "@nebular/security";
 import { AuthResources } from "src/app/pages/auth/auth-resources";
+import { ClientResources } from "src/app/pages/clients/client-resources";
 import { ExceptionResources } from "src/app/pages/exceptions/exceptions-resources";
 import { PagesResources } from "src/app/pages/pages-resources";
 import { UsersResources } from "src/app/pages/users/users-resources";
@@ -34,9 +35,6 @@ export const AccessControl: NbAccessControl[] = [
 
                 //View Users
                 PagesResources.UsersView,
-
-                //View Clients
-                PagesResources.ClientsView,
             ],
             update: [],
             delete: [],
@@ -56,6 +54,7 @@ export const AccessControl: NbAccessControl[] = [
             ],
             update: [
                 UsersResources.UpdateUsers,
+                UsersResources.UpdateClientUser
             ],
         },
 
@@ -64,7 +63,10 @@ export const AccessControl: NbAccessControl[] = [
             parent: 'user',
             view: [
                 UsersResources.ViewClientColumn,
-                UsersResources.ViewAllRoles
+                UsersResources.ViewAllRoles,
+
+                //View Clients
+                PagesResources.ClientsView,
             ],
         },
 
@@ -76,9 +78,15 @@ export const AccessControl: NbAccessControl[] = [
                 UsersResources.CreateClientAdmin,
                 UsersResources.CreateVggUser,
                 UsersResources.SetClient,
+
+                ClientResources.CreateClient
             ],
             update: [
                 UsersResources.UpdateUsers,
+                UsersResources.UpdateVggUser,
+                UsersResources.UpdateClientAdmin,
+
+                ClientResources.UpdateClient
             ],
         },
 

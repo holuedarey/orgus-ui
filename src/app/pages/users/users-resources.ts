@@ -5,7 +5,13 @@ export enum UsersResources {
     CreateClientAdmin = 'users:create-clientadmin',
     CreateClientUser = 'users:create-clientuser',
     SetClient = 'users:set-client',
+
     ViewClientColumn = 'users:view-client-column',
     ViewAllRoles = 'users:view-all-roles',
-    UpdateUsers = 'users:update-users'
+
+    UpdateUsers = 'users:update-users',
+    UpdateClientAdmin = 'users:update-clientadmin',
+    UpdateClientUser = 'users:update-clientuser',
+    UpdateVggAdmin = 'users:update-vgg_admin',
+    UpdateVggUser = 'users:update-vgg_user',
 }

@@ -120,7 +120,7 @@
 
                             <div class="form-control-group row mb-3">
                                 <div class="col-sm-3">
-                                    <label class="label" for="input-role">App Role:</label>
+                                    <label class="label" for="input-role">Function:</label>
                                 </div>
                                 <div class="col-sm-9">
                                     <nb-select fullWidth
@@ -202,8 +202,8 @@
                         </form>
                     </nb-card-body>
                     <nb-card-footer>
-                        <button (click)="isCreateRequest ? saveUser() : updateUser()" [nbSpinner]="submitted" nbButton fullWidth status="success"
-                            [disabled]="submitted || !createUserForm.valid">
+                        <button (click)="isCreateRequest ? saveUser() : updateUser()" [nbSpinner]="submitted" nbButton
+                            fullWidth status="success" [disabled]="submitted || !createUserForm.valid">
                             {{isCreateRequest ? 'Save' : 'Update'}}
                         </button>
                     </nb-card-footer>

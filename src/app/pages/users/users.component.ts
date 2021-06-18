@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NbDialogService, } from '@nebular/theme';
+import { NbDialogService, NbGlobalPhysicalPosition, NbToastrService, } from '@nebular/theme';
 import { ClientService } from 'src/app/@core/data-services/client.service';
 import { RoleService } from 'src/app/@core/data-services/role.service';
 import { UserService } from 'src/app/@core/data-services/user.service';
@@ -40,7 +40,7 @@ export class UsersComponent implements OnInit {
       title: 'Phone Nos',
     },
     roleId: {
-      title: 'Funtion',
+      title: 'Function',
       filter: {
         type: 'list',
         config: {
@@ -108,7 +108,8 @@ export class UsersComponent implements OnInit {
     private userService: UserService,
     public permissionService: PermissionService,
     private roleService: RoleService,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private toastr: NbToastrService
   ) { }
 
   async createUser() {
@@ -122,13 +123,27 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  async updateUser(user: any) {
-    this.dialogService.open(UserFormComponent, {
-      closeOnBackdropClick: false,
-      context: { isCreateRequest: false, userForUpdate: (user.data as UserDto) },
-      closeOnEsc: false
-    })
-      .onClose.toPromise();
+  async updateUser({ data }: { data: UserDto }) {
+    const hasPermission = this.permissionService.canAccessByResource('update', 'users:update-' + data.ssoRole.toLowerCase())
+    if (hasPermission) {
+      const user: UserDto = await this.dialogService.open(UserFormComponent, {
+        closeOnBackdropClick: false,
+        context: { isCreateRequest: false, userForUpdate: (data) },
+        closeOnEsc: false
+      }).onClose.toPromise();
+      if (user) {
+        this.users = [user, ...this.users];
+      }
+    } else {
+      this.toastr.danger(
+        'You do not have permission to update this user',
+        'UNAUTHORISED',
+        {
+          position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+          preventDuplicates: true
+        }
+      );
+    }
   }
 
   ngOnInit() {

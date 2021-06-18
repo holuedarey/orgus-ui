@@ -23,6 +23,8 @@ export class UpdatePasswordComponent implements OnInit {
   messages: string[] = [];
   pass: any = {};
 
+  isPasswordHidden = true;
+
   constructor(
     protected service: AuthService,
     @Inject(NB_AUTH_OPTIONS) protected options = {},

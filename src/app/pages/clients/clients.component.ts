@@ -5,11 +5,8 @@ import { GetUniqueArray } from 'src/app/@core/functions/data-request.funtion';
 import { ClientService } from 'src/app/@core/data-services/client.service';
 import { ClientFormComponent } from './client-form/client-form.component';
 import { OnlineStatService } from 'src/app/@core/utils/online-stat.service';
-import { UsersResources } from 'src/app/pages/users/users-resources';
 import { Component, OnInit } from '@angular/core';
-import { UserStatusToggleComponent } from './user-table-components/user-status-toggle/user-status-toggle.component';
 import { NbDialogService } from '@nebular/theme';
-import { PermissionEnum } from 'src/app/@core/enums/permission.enum';
 
 @Component({
   selector: 'app-clients',
@@ -26,35 +23,27 @@ export class ClientsComponent implements OnInit {
   columns = {
     businessName: {
       title: 'Business Name',
-
     },
     address: {
       title: 'Address',
-
     },
     userName: {
       title: 'User Name',
-
     },
     city: {
       title: 'City',
-
     },
     contactEmail: {
       title: 'Contact Email',
-
     },
     contactPerson: {
       title: 'Contact Person',
-
     },
     contactPhone: {
       title: 'Contact Phone',
-
     },
     jobRole: {
       title: 'Role',
-      hide: !this.permissionService.canAccessByResource(PermissionEnum.View, ClientResources.ViewClientColumn)
     }
   }
 
@@ -87,13 +76,12 @@ export class ClientsComponent implements OnInit {
   }
   requestData(data?: any) {
     this.isLoadingData = true;
-    console.log(data)
     this.clientServive.getClients(data)
       .subscribe(
         (response) => {
           this.isLoadingData = false;
           if (response.status) {
-            this.clients = GetUniqueArray([...this.clients, ...response.data?.itemList ?? []], [...this.clients]);
+            this.clients = GetUniqueArray([...response.data?.itemList ?? []], [...this.clients]);
           }
         },
         (err) => {

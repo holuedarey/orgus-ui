@@ -21,7 +21,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Clients',
     link: GlobalResources.get(PagesResources.ClientsView)?.route,
-    icon: 'person-done-outline',
+    icon: 'clipboard-outline',
   },
 
 ];

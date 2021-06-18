@@ -7,6 +7,7 @@ import { switchMap } from 'rxjs/operators';
 import { UserService } from 'src/app/@core/data-services/user.service';
 import { UserDto } from 'src/app/@core/dtos/user.dto';
 import { OnlineStatService } from 'src/app/@core/utils/online-stat.service';
+import { PermissionService } from 'src/app/@core/utils/permission.service';
 import { ConfirmationDialogComponent } from 'src/app/@theme/components/confirmation-dialog/confirmation-dialog.component';
 import { UsersResources } from '../../users-resources';
 
@@ -27,6 +28,7 @@ export class UserStatusToggleComponent implements ViewCell, OnInit {
   @Input() rowData!: UserDto;
 
   usersResources = UsersResources;
+  canUpdateRow = false;
 
   constructor(
     private dialogService: NbDialogService,
@@ -35,10 +37,12 @@ export class UserStatusToggleComponent implements ViewCell, OnInit {
     private cd: ChangeDetectorRef,
     private toastr: NbToastrService,
     public accessChecker: NbAccessChecker,
+    private permissionService: PermissionService
   ) { }
 
   ngOnInit(): void {
     this.checked = this.value === 'Active' ? true : false;
+    this.canUpdateRow = this.permissionService.canAccessByResource('update', 'users:update-' + this.rowData.ssoRole.toLowerCase());
   }
 
   async onStatusChange(state: boolean) {

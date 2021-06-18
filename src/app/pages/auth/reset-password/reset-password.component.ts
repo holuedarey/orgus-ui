@@ -18,6 +18,7 @@ export class ResetPasswordComponent {
   redirectDelay = 0;
   showMessages: any = {};
   strategy = '';
+  isPasswordHidden = true;
 
   submitted = false;
   errors: string[] = [];
