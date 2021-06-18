@@ -132,7 +132,7 @@ export class UsersComponent implements OnInit {
         closeOnEsc: false
       }).onClose.toPromise();
       if (user) {
-        this.users = [user, ...this.users];
+        this.users = GetUniqueArray([user], [...this.users], true);
       }
     } else {
       this.toastr.danger(
@@ -161,7 +161,7 @@ export class UsersComponent implements OnInit {
         (response) => {
           this.isLoadingData = false;
           if (response.status) {
-            this.users = GetUniqueArray([...response.data?.itemList ?? []], [...this.users]);
+            this.users = GetUniqueArray([...(response.data?.itemList ?? [])], [...this.users]);
           }
         },
         (err) => {

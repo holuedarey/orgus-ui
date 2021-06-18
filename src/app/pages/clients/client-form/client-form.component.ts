@@ -128,8 +128,8 @@ export class ClientFormComponent implements OnInit, OnDestroy {
         if (result.status) {
           this.messages = ['Client creation successful'];
           setTimeout(() => {
-            this.dialogRef.close()
-          }, 2000);
+            this.dialogRef.close(result.data)
+          }, 1200);
         } else {
           this.errors = [
             result.message as string
@@ -192,8 +192,8 @@ export class ClientFormComponent implements OnInit, OnDestroy {
         if (result.status) {
           this.messages = ['Client record updated successfully'];
           setTimeout(() => {
-            this.dialogRef.close()
-          }, 2000);
+            this.dialogRef.close(result.data)
+          }, 1200);
         } else {
           this.errors = [
             result.message as string

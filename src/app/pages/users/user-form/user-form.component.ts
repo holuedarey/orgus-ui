@@ -276,7 +276,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
         if (result.status) {
           this.messages = ['User record updated successful'];
           setTimeout(() => {
-            this.dialogRef.close()
+            this.dialogRef.close(result.data)
           }, 1200);
         } else {
           this.errors = [
@@ -291,7 +291,6 @@ export class UserFormComponent implements OnInit, OnDestroy {
         ];
       }
     );
-    console.log(updateUserDto, JSON.parse(this.tokenService.getPayload().sub));
   }
 
   ngOnDestroy() {

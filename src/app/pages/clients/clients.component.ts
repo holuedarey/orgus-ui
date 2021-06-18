@@ -55,20 +55,24 @@ export class ClientsComponent implements OnInit {
   ) { }
 
   async handleCreateNewClientClick() {
-    this.dialogService.open(ClientFormComponent, {
+    const client = await this.dialogService.open(ClientFormComponent, {
       closeOnBackdropClick: false,
       context: { isCreateRequest: true },
       closeOnEsc: false
-    })
-      .onClose.toPromise();
+    }).onClose.toPromise();
+    if (client) {
+      this.clients = [client, ...this.clients];
+    }
   }
-  async updateClient(client: any) {
-    this.dialogService.open(ClientFormComponent, {
+  async updateClient({ data }: { data: ClientDto }) {
+    const client = await this.dialogService.open(ClientFormComponent, {
       closeOnBackdropClick: false,
-      context: { isCreateRequest: false, clientForUpdate: (client.data as ClientDto) },
+      context: { isCreateRequest: false, clientForUpdate: (data as ClientDto) },
       closeOnEsc: false
-    })
-      .onClose.toPromise();
+    }).onClose.toPromise();
+    if (client) {
+      this.clients = GetUniqueArray([client], [...this.clients], true);
+    }
   }
 
   ngOnInit(): void {

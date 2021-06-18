@@ -1,10 +1,10 @@
 import { environment } from "src/environments/environment";
 
-export function GetUniqueArray<T>(newData: any[], oldData: any[]): T[] {
+export function GetUniqueArray<T>(newData: any[], oldData: any[], unshift = false): T[] {
     const newIds = newData.map((d) => d.id);
     const filteredOldData = oldData.filter(d => !newIds.includes(d.id));
 
-    const transformedArray = [...filteredOldData, ...newData] as T[];
+    const transformedArray = (unshift ? [...newData, ...filteredOldData] : [...filteredOldData, ...newData]) as T[];
     return transformedArray;
 }
 

@@ -34,14 +34,14 @@ export class ClientService implements AccessControlContract {
     }
 
     @HasAccess(PermissionEnum.Create, ClientResources.CreateClient)
-    postClient(clients: PostClientDto): Observable<ResponseDto<any>> {
+    postClient(clients: PostClientDto): Observable<ResponseDto<ClientDto>> {
         const apiEndpoint = 'clients';
-        return this.httpClient.post<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, clients);
+        return this.httpClient.post<ResponseDto<ClientDto>>(`${environment.apiUrl}/${apiEndpoint}`, clients);
     }
 
     @HasAccess(PermissionEnum.Update, ClientResources.UpdateClient)
-    updateClient(client: UpdateClientDto): Observable<ResponseDto<any>> {
+    updateClient(client: UpdateClientDto): Observable<ResponseDto<ClientDto>> {
         const apiEndpoint = `clients/${client.id}`;
-        return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, client);
+        return this.httpClient.put<ResponseDto<ClientDto>>(`${environment.apiUrl}/${apiEndpoint}`, client);
     }
 }
