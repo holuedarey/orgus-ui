@@ -1,3 +1,5 @@
+import { TokenService } from 'src/app/@core/utils/token.service';
+import { ClientDto } from 'src/app/@core/dtos/client.dto';
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
 import { PostClientDto } from './../../../@core/dtos/post-client.dto';
 import { ClientService } from 'src/app/@core/data-services/client.service';
@@ -5,6 +7,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import { isEmail, isMobilePhone,MinLength, minLength, validate } from 'class-validator';
+import { UpdateClientDto } from 'src/app/@core/dtos/update-client.dto';
 
 @Component({
   selector: 'app-client-form',
@@ -16,34 +19,36 @@ export class ClientFormComponent implements OnInit, OnDestroy {
   @Input()
   isCreateRequest = true;
 
+  @Input()
+  clientForUpdate!: ClientDto;
+  
+
   submitted = false;
   errors: string[] = [];
   messages: string[] = [];
   userName: string = '';
-  businessUnitNameAutofil: string = '';
   disableUserName = true;
 
-  createClientForm!: FormGroup;
-  createClientFormStepOne!: FormGroup;
-  createClientFormStepTwo!: FormGroup;
+  clientForm!: FormGroup;
 
   constructor(
     public dialogRef: NbDialogRef<ClientFormComponent>,
     private formBuilder: FormBuilder,
-    private cientService: ClientService
+    private clientService: ClientService,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit(): void {
-    this.initCreateForm();
-    this.updateUserName()
-
-    // if (this.isCreateRequest) {
-    // } else {
-    //   this.initUpdateForm();
-    // }
+    if (this.isCreateRequest) {
+      this.initCreateForm();
+    } else {
+      this.initUpdateForm();
+    }
+    this.clientForm.controls['userName'].disable();
   }
 
   ngOnDestroy(): void {
+    console.log('')
   }
 
   close(): void {
@@ -53,18 +58,12 @@ export class ClientFormComponent implements OnInit, OnDestroy {
   confirm(): void {
     this.dialogRef.close(true);
   }
-  onFirstFormSubmit():void {
-    console.log("onFirstFormSubmit");
-  }
   initCreateForm(): void {
-    // const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
-    this.createClientFormStepOne = this.formBuilder.group({
+    this.clientForm = this.formBuilder.group({
       businessName: ['', Validators.required],
       address: ['', Validators.required],
       userName: ['', Validators.required],
       city: ['', Validators.required],
-    });
-    this.createClientFormStepTwo= this.formBuilder.group({
       role: [null, [Validators.required, Validators.min(3)]],       
       contactPerson: ['', Validators.required],
       contactEmail: ['', [
@@ -112,17 +111,17 @@ export class ClientFormComponent implements OnInit, OnDestroy {
     this.submitted = true;
 
     const postClientDto: PostClientDto = {
-      businessName: (this.createClientFormStepOne.get('businessName')?.value as string).trim(),
-      address: (this.createClientFormStepOne.get('address')?.value as string).trim(),
-      userName: (this.businessUnitNameAutofil).trim().toLowerCase().split(' ').join('.'),
-      city: (this.createClientFormStepOne.get('city')?.value as string).trim(),
-      contactEmail: (this.createClientFormStepTwo.get('contactEmail')?.value as string).trim(),
-      contactPerson: (this.createClientFormStepTwo.get('contactPerson')?.value as string).trim(),
-      jobRole: (this.createClientFormStepTwo.get('role')?.value as string).trim(),
-      contactPhone: (this.createClientFormStepTwo.get('phoneNumber')?.value as string).trim(),
+      businessName: (this.clientForm.get('businessName')?.value as string).trim(),
+      address: (this.clientForm.get('address')?.value as string).trim(),
+      userName: (this.clientForm.get('userName')?.value as string).trim(),
+      city: (this.clientForm.get('city')?.value as string).trim(),
+      contactEmail: (this.clientForm.get('contactEmail')?.value as string).trim(),
+      contactPerson: (this.clientForm.get('contactPerson')?.value as string).trim(),
+      jobRole: (this.clientForm.get('role')?.value as string).trim(),
+      contactPhone: (this.clientForm.get('phoneNumber')?.value as string).trim(),
     }
 
-    this.cientService.postClient(postClientDto).subscribe(
+    this.clientService.postClient(postClientDto).subscribe(
       (result) => {
         console.log(result);
         this.submitted = false;
@@ -140,17 +139,75 @@ export class ClientFormComponent implements OnInit, OnDestroy {
       (error: ResponseDto<string>) => {
         this.submitted = false;
         this.errors = [
-          'An Error occured while logging you in.',
+          'An Error occured while creating client.',
         ];
       }
     );
   }
-  updateUserName(): void {
-    this.createClientFormStepOne.controls['userName'].disable();
-    (this.createClientFormStepOne.get('userName')?.value as string).trim().toLowerCase().replace(' ','.')
-    //this.businessUnitNameAutofil.trim()
+
+  initUpdateForm(): void {
+    this.clientForm = this.formBuilder.group({
+      businessName: [this.clientForUpdate.businessName, Validators.required],
+      address: [this.clientForUpdate.address, Validators.required],
+      userName: [this.clientForUpdate.userName, Validators.required],
+      city: [this.clientForUpdate.city, Validators.required],
+
+      roleId: [this.clientForUpdate.id, Validators.required],
+      role: [this.clientForUpdate.jobRole, Validators.required],
+      contactPerson: [this.clientForUpdate.contactPerson, Validators.required],
+      contactEmail: [this.clientForUpdate.contactEmail, [
+        Validators.required,
+        this.validateEmail.bind(this)
+      ]],
+      phoneNumber: [
+        this.clientForUpdate.contactPhone, [
+          Validators.required,
+          this.validatePhoneNumber.bind(this)
+        ]
+      ],  
+    });
   }
+  
   updateClient(): void {
     console.log('Update User')
+    this.errors = [];
+    this.messages = [];
+    this.submitted = true;
+    
+    const updateClientDto: UpdateClientDto = {
+      businessName: (this.clientForm.get('businessName')?.value as string).trim(),
+      address: (this.clientForm.get('address')?.value as string).trim(),
+      userName: (this.clientForm.get('userName')?.value as string).trim().toLowerCase().split(' ').join('.'),
+      city: (this.clientForm.get('city')?.value as string).trim(),
+      contactEmail: (this.clientForm.get('contactEmail')?.value as string).trim(),
+      contactPerson: (this.clientForm.get('contactPerson')?.value as string).trim(),
+      contactPhone: (this.clientForm.get('phoneNumber')?.value as string).trim(),
+      jobRole: (this.clientForm.get('role')?.value as string).trim(),
+      id: this.clientForUpdate.id
+    }
+
+    this.clientService.updateClient(updateClientDto).subscribe(
+      (result) => {
+        this.submitted = false;
+        if (result.status) {
+          this.messages = ['Client record updated successfully'];
+          setTimeout(() => {
+            this.dialogRef.close()
+          }, 2000);
+        } else {
+          this.errors = [
+            result.message as string
+          ];
+        }
+      },
+      (error: ResponseDto<string>) => {
+        this.submitted = false;
+        this.errors = [
+          'An Error occured while editing client.',
+        ];
+      }
+    );
+    console.log(updateClientDto, JSON.parse(this.tokenService.getPayload().sub));
   }
 }
+
