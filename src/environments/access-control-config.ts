@@ -34,6 +34,9 @@ export const AccessControl: NbAccessControl[] = [
 
                 //View Users
                 PagesResources.UsersView,
+
+                //View Clients
+                PagesResources.ClientsView,
             ],
             update: [],
             delete: [],

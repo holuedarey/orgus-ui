@@ -23,6 +23,11 @@ const routes: Routes = [
         path: PagesResourcesNavMap.get(PagesResources.UsersView)?.path,
         loadChildren: () => import('./users/users.module')
           .then(m => m.UsersModule),
+      },
+      {
+        path: PagesResourcesNavMap.get(PagesResources.ClientsView)?.path,
+        loadChildren: () => import('./clients/clients.module')
+          .then(m => m.ClientsModule),
       }
     ]
   }
