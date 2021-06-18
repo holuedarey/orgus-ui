@@ -7,7 +7,6 @@ import { ClientFormComponent } from './client-form/client-form.component';
 import { OnlineStatService } from 'src/app/@core/utils/online-stat.service';
 import { UsersResources } from 'src/app/pages/users/users-resources';
 import { Component, OnInit } from '@angular/core';
-import { TableFilterComponent } from 'src/app/@tables/table-filter/table-filter.component';
 import { UserStatusToggleComponent } from './user-table-components/user-status-toggle/user-status-toggle.component';
 import { NbDialogService } from '@nebular/theme';
 import { PermissionEnum } from 'src/app/@core/enums/permission.enum';
@@ -27,59 +26,34 @@ export class ClientsComponent implements OnInit {
   columns = {
     businessName: {
       title: 'Business Name',
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      }
+
     },
     address: {
       title: 'Address',
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      }
+
     },
     userName: {
       title: 'User Name',
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      }
+
     },
     city: {
       title: 'City',
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      }
+
     },
     contactEmail: {
       title: 'Contact Email',
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      }
+
     },
     contactPerson: {
       title: 'Contact Person',
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      }
+
     },
     contactPhone: {
       title: 'Contact Phone',
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      }
+
     },
     jobRole: {
       title: 'Role',
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      },
       hide: !this.permissionService.canAccessByResource(PermissionEnum.View, ClientResources.ViewClientColumn)
     }
   }

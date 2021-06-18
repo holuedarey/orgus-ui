@@ -4,16 +4,9 @@
             <div class="row">
             </div>
             <app-table [isLoading]="isLoadingData" title="Clients" [data]="clients" [columns]="columns"
-                (requestData)="requestData($event)" (optionsSelected)="updateClient($event)"
-                 >
-                 <!-- [showEdit]="permissionService.canAccessByResource('update', clientResources.UpdateClient)" -->
+                (requestData)="requestData($event)" (optionsSelected)="updateClient($event)"  (addClicked)="handleCreateNewClientClick()">
                 <div class="row">
                     <div class="col-12 mb-4 ml-auto">
-                        <!-- *nbIsGranted="['create', clientResources.CreateClient]" -->
-                        <button 
-                            [disabled]="(onlineStat.isOnlineSub.asObservable() | async) === false"
-                            (click)="handleCreateNewClientClick()" nbButton status="primary">Create
-                            Client</button>
                     </div>
                 </div>
             </app-table>
