@@ -2,7 +2,6 @@
 @import "~bootstrap/scss/mixins/breakpoints";
 @import "~@nebular/theme/styles/global/breakpoints";
 
-
 @include nb-install-component() {
     @include media-breakpoint-up(md) {
         google-map {
@@ -19,5 +18,8 @@
                 border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
             }
         }
+    }
+    ::ng-deep .gm-style-cc {
+        display: none;
     }
 }

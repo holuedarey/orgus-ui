@@ -9,7 +9,6 @@ import { NbSpinnerModule, NbTagModule } from '@nebular/theme';
 @NgModule({
   declarations: [
     TableComponent,
-    TableFilterComponent,
     TableTagComponent
   ],
   imports: [

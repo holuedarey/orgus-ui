@@ -12,7 +12,6 @@ import { HasAccess } from '../decorators/has-access.decorator';
 import { PermissionEnum } from '../enums/permission.enum';
 import { UsersResources } from 'src/app/pages/users/users-resources';
 import { UpdateUserDto } from '../dtos/update-user.dto';
-import { query } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +33,9 @@ export class UserService implements AccessControlContract {
   }
 
   @HasAccess(PermissionEnum.Create, UsersResources.CreateUsers)
-  postUser(user: PostUserDto): Observable<ResponseDto<any>> {
+  postUser(user: PostUserDto): Observable<ResponseDto<UserDto>> {
     const apiEndpoint = 'users';
-    return this.httpClient.post<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, user);
+    return this.httpClient.post<ResponseDto<UserDto>>(`${environment.apiUrl}/${apiEndpoint}`, user);
   }
 
   @HasAccess(PermissionEnum.Update, UsersResources.UpdateUsers)

@@ -6,5 +6,6 @@ export enum UsersResources {
     CreateClientUser = 'users:create-clientuser',
     SetClient = 'users:set-client',
     ViewClientColumn = 'users:view-client-column',
+    ViewAllRoles = 'users:view-all-roles',
     UpdateUsers = 'users:update-users'
 }

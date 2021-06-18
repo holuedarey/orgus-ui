@@ -155,19 +155,11 @@ export class MapCardComponent implements OnInit {
   columns = {
     name: {
       title: 'Assets',
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      }
     },
     username: {
       title: 'Status',
       type: 'custom',
       renderComponent: TableTagComponent,
-      filter: {
-        type: 'custom',
-        component: TableFilterComponent
-      }
     },
   }
 
