@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { isMobile } from 'mobile-device-detect';
 import { LocalDataSource } from 'ng2-smart-table';
 import { takeWhile } from 'rxjs/operators';
 import { DataRequestTransformer } from '../@core/functions/data-request.funtion';
@@ -37,6 +36,9 @@ export class TableComponent implements OnInit, OnDestroy {
   showEdit = true;
 
   @Input()
+  showAdd = true;
+
+  @Input()
   pageLength = 10;
 
   @Input()
@@ -68,6 +70,8 @@ export class TableComponent implements OnInit, OnDestroy {
   @Output()
   optionsSelected: EventEmitter<any> = new EventEmitter();
   @Output()
+  addClicked: EventEmitter<any> = new EventEmitter();
+  @Output()
   rowCLicked: EventEmitter<any> = new EventEmitter();
   // < Outputs End >
 
@@ -76,14 +80,17 @@ export class TableComponent implements OnInit, OnDestroy {
   readonly #baseSettings = {
     mode: 'external',
     actions: {
-      add: false,
+      add: true,
       edit: true,
       delete: false,
-      position: isMobile ? 'left' : 'right'
+      // position: isMobile ? 'left' : 'right'
     },
     edit: {
       editButtonContent: '<i class="eva eva-edit-2-outline table-icon"></i>'
     },
+    add: {
+      addButtonContent: '<i class="eva eva-plus-circle-outline"></i>'
+    }
   }
   settings = {}
   source: LocalDataSource = new LocalDataSource([]);
@@ -98,7 +105,8 @@ export class TableComponent implements OnInit, OnDestroy {
       hideHeader: this.hideHeader,
       actions: {
         ...(this.#baseSettings.actions),
-        edit: this.showEdit
+        edit: this.showEdit,
+        add: this.showAdd
       },
       pager: {
         perPage: this.pageLength
@@ -133,6 +141,10 @@ export class TableComponent implements OnInit, OnDestroy {
 
   onEdit(event: any) {
     this.optionsSelected.emit(event);
+  }
+
+  onAdd() {
+    this.addClicked.emit();
   }
 
   onRowClicked(event: any) {
