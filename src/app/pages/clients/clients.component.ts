@@ -7,6 +7,7 @@ import { ClientFormComponent } from './client-form/client-form.component';
 import { OnlineStatService } from 'src/app/@core/utils/online-stat.service';
 import { Component, OnInit } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
+import { SeoService } from 'src/app/@core/utils';
 
 @Component({
   selector: 'app-clients',
@@ -52,6 +53,7 @@ export class ClientsComponent implements OnInit {
     private dialogService: NbDialogService,
     private clientServive: ClientService,
     public permissionService: PermissionService,
+    private seo: SeoService
   ) { }
 
   async handleCreateNewClientClick() {
@@ -77,6 +79,7 @@ export class ClientsComponent implements OnInit {
 
   ngOnInit(): void {
     this.requestData();
+    this.seo.setSeoData('Client Management', 'Manage application users groups (clients)');
   }
   requestData(data?: any) {
     this.isLoadingData = true;

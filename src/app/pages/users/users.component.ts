@@ -78,7 +78,6 @@ export class UsersComponent implements OnInit {
         },
       },
       valuePrepareFunction: (d: string, r: any) => {
-        console.log(r)
         return r.client
       },
       hide: !this.permissionService.canAccessByResource(PermissionEnum.View, UsersResources.ViewClientColumn)
@@ -155,7 +154,6 @@ export class UsersComponent implements OnInit {
 
   requestData(data?: any) {
     this.isLoadingData = true;
-    console.log(data)
     this.userService.getUsers(data)
       .subscribe(
         (response) => {
