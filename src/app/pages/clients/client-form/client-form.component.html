@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <input nbInput fullWidth name="userName" id="input-userName" placeholder="User Name"
-                                        [ngModel]="businessName.value.trim().toLowerCase().split(' ').join('.')"
+                                        [ngModel]="getBusinessUsername(businessName.value)"
                                         [status]="clientForm.controls['userName'].touched ? (clientForm.controls['userName'].invalid ? 'danger' : 'success') : 'basic'"
                                         formControlName="userName" autofocus>
 

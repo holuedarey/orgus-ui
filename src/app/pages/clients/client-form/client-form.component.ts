@@ -6,7 +6,7 @@ import { ClientService } from 'src/app/@core/data-services/client.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
-import { isEmail, isMobilePhone,MinLength, minLength, validate } from 'class-validator';
+import { isEmail, isMobilePhone, MinLength, minLength, validate } from 'class-validator';
 import { UpdateClientDto } from 'src/app/@core/dtos/update-client.dto';
 
 @Component({
@@ -21,7 +21,7 @@ export class ClientFormComponent implements OnInit, OnDestroy {
 
   @Input()
   clientForUpdate!: ClientDto;
-  
+
 
   submitted = false;
   errors: string[] = [];
@@ -64,7 +64,7 @@ export class ClientFormComponent implements OnInit, OnDestroy {
       address: ['', Validators.required],
       userName: ['', Validators.required],
       city: ['', Validators.required],
-      role: [null, [Validators.required, Validators.min(3)]],       
+      role: [null, [Validators.required, Validators.min(3)]],
       contactPerson: ['', Validators.required],
       contactEmail: ['', [
         Validators.required,
@@ -164,16 +164,16 @@ export class ClientFormComponent implements OnInit, OnDestroy {
           Validators.required,
           this.validatePhoneNumber.bind(this)
         ]
-      ],  
+      ],
     });
   }
-  
+
   updateClient(): void {
     console.log('Update User')
     this.errors = [];
     this.messages = [];
     this.submitted = true;
-    
+
     const updateClientDto: UpdateClientDto = {
       businessName: (this.clientForm.get('businessName')?.value as string).trim(),
       address: (this.clientForm.get('address')?.value as string).trim(),
@@ -207,7 +207,10 @@ export class ClientFormComponent implements OnInit, OnDestroy {
         ];
       }
     );
-    console.log(updateClientDto, JSON.parse(this.tokenService.getPayload().sub));
+  }
+
+  getBusinessUsername(v: string) {
+    return v.trim().replace(/[^\w\s]/gi, '').toLowerCase().split(' ').filter(c => /[a-z]/.test(c)).join('.');
   }
 }
 
