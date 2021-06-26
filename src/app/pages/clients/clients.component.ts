@@ -60,6 +60,7 @@ export class ClientsComponent implements OnInit {
     const client = await this.dialogService.open(ClientFormComponent, {
       closeOnBackdropClick: false,
       context: { isCreateRequest: true },
+      hasScroll: true,
       closeOnEsc: false
     }).onClose.toPromise();
     if (client) {

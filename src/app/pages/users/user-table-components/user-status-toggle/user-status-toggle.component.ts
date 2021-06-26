@@ -70,11 +70,12 @@ export class UserStatusToggleComponent implements ViewCell, OnInit {
         .subscribe(
           (response) => {
             if (response.status) {
+              this.toastr.success('Status update successful', 'User Update', { position: NbGlobalPhysicalPosition.BOTTOM_RIGHT })
               this.isSubmitted = false;
               this.checked = state;
               this.cd.detectChanges();
             } else {
-              this.errorResponse(state);
+              this.errorResponse(state, true, response.message);
             }
           },
           (error) => {
@@ -86,12 +87,16 @@ export class UserStatusToggleComponent implements ViewCell, OnInit {
     }
   }
 
-  errorResponse(state: boolean, showToaster = true) {
+  errorResponse(state: boolean, showToaster = true, message?: string) {
     this.isSubmitted = false;
     this.checked = !state;
     this.cd.detectChanges();
     if (showToaster) {
-      this.toastr.danger('An error occured during execution', 'User Update', { position: NbGlobalPhysicalPosition.BOTTOM_RIGHT })
+      this.toastr.danger(
+        `${message ? message : 'An error occured during execution'}`,
+        'User Update',
+        { position: NbGlobalPhysicalPosition.BOTTOM_RIGHT, duration: 3000 }
+      );
     }
   }
 }
