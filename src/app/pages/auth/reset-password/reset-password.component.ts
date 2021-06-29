@@ -64,7 +64,6 @@ export class ResetPasswordComponent {
           if (result.status) {
             this.messages = [`Your password was ${this.isNewPassword ? 'set' : 'changed'} successfully`];
             setTimeout(() => {
-              this.storageService.remove(LocalStorageKey.JWT.toString());
               return this.router.navigateByUrl('/auth/login');
             }, this.redirectDelay);
             this.cd.detectChanges();
