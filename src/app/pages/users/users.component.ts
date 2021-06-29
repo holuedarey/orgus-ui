@@ -129,6 +129,7 @@ export class UsersComponent implements OnInit {
       const user: UserDto = await this.dialogService.open(UserFormComponent, {
         closeOnBackdropClick: false,
         context: { isCreateRequest: false, userForUpdate: (data) },
+        hasScroll: true,
         closeOnEsc: false
       }).onClose.toPromise();
       if (user) {
