@@ -6,8 +6,6 @@ import { ResponseDto } from 'src/app/@core/dtos/response-dto';
 import { AuthService } from 'src/app/@core/data-services/auth.service';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { LocalStorageKey } from 'src/app/@core/enums/local-storage-key.enum';
-import { SecureLocalStorageService } from 'src/app/@core/utils/secure-local-storage.service';
 
 
 @Component({
@@ -34,7 +32,6 @@ export class ResetPasswordComponent {
     @Inject(NB_AUTH_OPTIONS) protected options = {},
     private router: Router,
     private route: ActivatedRoute,
-    private storageService: SecureLocalStorageService,
   ) {
     this.redirectDelay = this.getConfigValue('forms.resetPassword.redirectDelay');
     this.showMessages = this.getConfigValue('forms.resetPassword.showMessages');
