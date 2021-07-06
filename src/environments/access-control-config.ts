@@ -1,3 +1,4 @@
+import { MeterResources } from './../app/pages/assets/meters/meter-resources';
 import { NbAccessControl } from "@nebular/security";
 import { AuthResources } from "src/app/pages/auth/auth-resources";
 import { ClientResources } from "src/app/pages/clients/client-resources";
@@ -35,6 +36,15 @@ export const AccessControl: NbAccessControl[] = [
 
                 //View Users
                 PagesResources.UsersView,
+
+                //View Meters
+                PagesResources.MetersView,
+
+                //View Load Points
+                PagesResources.LoadPointsView,
+                
+                //View Power Sources
+                PagesResources.PowerSourcesView,
             ],
             update: [],
             delete: [],
@@ -51,10 +61,14 @@ export const AccessControl: NbAccessControl[] = [
             create: [
                 UsersResources.CreateUsers,
                 UsersResources.CreateClientUser,
+               
+                MeterResources.CreateMeter
             ],
             update: [
                 UsersResources.UpdateUsers,
-                UsersResources.UpdateClientUser
+                UsersResources.UpdateClientUser,
+                
+                MeterResources.UpdateMeter
             ],
         },
 
@@ -67,6 +81,9 @@ export const AccessControl: NbAccessControl[] = [
 
                 //View Clients
                 PagesResources.ClientsView,
+
+                //view meters
+                MeterResources.ViewMeterColumn,
             ],
         },
 
@@ -79,14 +96,18 @@ export const AccessControl: NbAccessControl[] = [
                 UsersResources.CreateVggUser,
                 UsersResources.SetClient,
 
-                ClientResources.CreateClient
+                ClientResources.CreateClient,
+
+                MeterResources.CreateMeter
             ],
             update: [
                 UsersResources.UpdateUsers,
                 UsersResources.UpdateVggUser,
                 UsersResources.UpdateClientAdmin,
 
-                ClientResources.UpdateClient
+                ClientResources.UpdateClient,
+
+                MeterResources.UpdateMeter
             ],
         },
 
