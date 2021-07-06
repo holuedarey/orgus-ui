@@ -10,6 +10,7 @@ export class PowerSourceFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('Power source form')
   }
 
 }

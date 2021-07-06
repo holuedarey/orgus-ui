@@ -10,6 +10,7 @@ export class LoadPointFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('Load point form')
   }
 
 }

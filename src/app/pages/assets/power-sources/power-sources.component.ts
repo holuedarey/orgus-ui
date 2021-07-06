@@ -10,6 +10,7 @@ export class PowerSourcesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('Power source')
   }
 
 }
