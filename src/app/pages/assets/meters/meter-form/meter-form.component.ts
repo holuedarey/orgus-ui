@@ -127,7 +127,7 @@ export class MeterFormComponent implements OnInit {
       id: this.meterForUpdate.id
     }
 
-    this.meterService.postMeter(updateMeterDto).subscribe(
+    this.meterService.updateMeter(updateMeterDto).subscribe(
       (result) => {
         this.submitted = false;
         if (result.status) {
