@@ -51,7 +51,7 @@ export class ClientsComponent implements OnInit {
   constructor(
     public onlineStat: OnlineStatService,
     private dialogService: NbDialogService,
-    private clientServive: ClientService,
+    private clientService: ClientService,
     public permissionService: PermissionService,
     private seo: SeoService
   ) { }
@@ -85,7 +85,7 @@ export class ClientsComponent implements OnInit {
   }
   requestData(data?: any) {
     this.isLoadingData = true;
-    this.clientServive.getClients(data)
+    this.clientService.getClients(data)
       .subscribe(
         (response) => {
           this.isLoadingData = false;

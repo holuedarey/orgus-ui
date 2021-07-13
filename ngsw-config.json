@@ -43,7 +43,8 @@
       "name": "tables",
       "urls": [
         "https://**/users",
-        "https://**/clients"
+        "https://**/clients",
+        "https://**/meters"
       ],
       "cacheConfig": {
         "strategy": "freshness",
@@ -56,13 +57,14 @@
       }
     },
     {
-      "name": "roles",
+      "name": "drop-down-only",
       "urls": [
-        "https://**/roles"
+        "https://**/roles",
+        "https://**/meters/get-meterManufacturers"
       ],
       "cacheConfig": {
         "strategy": "freshness",
-        "timeout": "2s",
+        "timeout": "1s",
         "maxAge": "7d",
         "maxSize": 10
       },

@@ -5,6 +5,7 @@ import { ClientResources } from "src/app/pages/clients/client-resources";
 import { ExceptionResources } from "src/app/pages/exceptions/exceptions-resources";
 import { PagesResources } from "src/app/pages/pages-resources";
 import { UsersResources } from "src/app/pages/users/users-resources";
+import { LoadPointResources } from 'src/app/pages/assets/load-points/load-point-resources';
 
 export const AccessControl: NbAccessControl[] = [
     {
@@ -42,7 +43,7 @@ export const AccessControl: NbAccessControl[] = [
 
                 //View Load Points
                 PagesResources.LoadPointsView,
-                
+
                 //View Power Sources
                 PagesResources.PowerSourcesView,
             ],
@@ -61,14 +62,18 @@ export const AccessControl: NbAccessControl[] = [
             create: [
                 UsersResources.CreateUsers,
                 UsersResources.CreateClientUser,
-               
-                MeterResources.CreateMeter
+
+                MeterResources.CreateMeter,
+
+                LoadPointResources.CreateLoadPoint
             ],
             update: [
                 UsersResources.UpdateUsers,
                 UsersResources.UpdateClientUser,
-                
-                MeterResources.UpdateMeter
+
+                MeterResources.UpdateMeter,
+
+                LoadPointResources.UpdateLoadPoint
             ],
         },
 
@@ -82,8 +87,8 @@ export const AccessControl: NbAccessControl[] = [
                 //View Clients
                 PagesResources.ClientsView,
 
-                //view meters
-                MeterResources.ViewMeterColumn,
+                //view Meters
+                MeterResources.ViewClientColumn,
             ],
         },
 
@@ -98,7 +103,9 @@ export const AccessControl: NbAccessControl[] = [
 
                 ClientResources.CreateClient,
 
-                MeterResources.CreateMeter
+                MeterResources.CreateMeter,
+
+                LoadPointResources.CreateLoadPoint
             ],
             update: [
                 UsersResources.UpdateUsers,
@@ -107,7 +114,9 @@ export const AccessControl: NbAccessControl[] = [
 
                 ClientResources.UpdateClient,
 
-                MeterResources.UpdateMeter
+                MeterResources.UpdateMeter,
+
+                LoadPointResources.UpdateLoadPoint
             ],
         },
 

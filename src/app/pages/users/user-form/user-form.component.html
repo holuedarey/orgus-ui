@@ -183,7 +183,7 @@
                                             [status]="createUserForm.controls['clientId'].touched ? (createUserForm.controls['clientId'].invalid ? 'danger' : 'success') : 'basic'"
                                             placeholder="Select Client" formControlName="clientId">
                                             <nb-option *ngFor="let client of (clients$ | async); let i=index"
-                                                [value]="client.id">
+                                                [value]="client.clientId">
                                                 {{client.businessName | capitalize}}
                                             </nb-option>
                                         </nb-select>

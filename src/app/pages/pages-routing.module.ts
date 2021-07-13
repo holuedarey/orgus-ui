@@ -30,20 +30,29 @@ const routes: Routes = [
           .then(m => m.ClientsModule),
       },
       {
-        path: PagesResourcesNavMap.get(PagesResources.MetersView)?.path,
-        loadChildren: () => import('./assets/meters/meters.module')
-          .then(m => m.MetersModule),
+        path: PagesResourcesNavMap.get(PagesResources.AssetsView)?.path,
+        children: [
+          {
+            path: '',
+            redirectTo: PagesResourcesNavMap.get(PagesResources.MetersView)?.path,
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.MetersView)?.path,
+            loadChildren: () => import('./assets/meters/meters.module')
+              .then(m => m.MetersModule),
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.LoadPointsView)?.path,
+            loadChildren: () => import('./assets/load-points/load-points.module')
+              .then(m => m.LoadPointsModule),
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.PowerSourcesView)?.path,
+            loadChildren: () => import('./assets/power-sources/power-sources.module')
+              .then(m => m.PowerSourcesModule),
+          }
+        ]
       },
-      {
-        path: PagesResourcesNavMap.get(PagesResources.LoadPointsView)?.path,
-        loadChildren: () => import('./assets/load-points/load-points.module')
-          .then(m => m.LoadPointsModule),
-      },
-      {
-        path: PagesResourcesNavMap.get(PagesResources.PowerSourcesView)?.path,
-        loadChildren: () => import('./assets/power-sources/power-sources.module')
-          .then(m => m.PowerSourcesModule),
-      }
     ]
   }
 ];

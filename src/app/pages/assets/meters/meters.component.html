@@ -2,7 +2,8 @@
     <div class="row m-0">
         <div class="col-12">
             <app-table [isLoading]="isLoadingData" title="Meters" [data]="meters" [columns]="columns"
-            [showEdit]="permissionService.canAccessByResource('update', meterResources.UpdateMeter)"
+                [showEdit]="permissionService.canAccessByResource('update', meterResources.UpdateMeter)"
+                (requestData)="requestData($event)" (optionsSelected)="updateMeter($event)"
                 [showAdd]="permissionService.canAccessByResource('create', meterResources.CreateMeter)"
                 (addClicked)="handleCreateNewMeterClick()">
             </app-table>

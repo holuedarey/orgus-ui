@@ -1,8 +1,12 @@
 export interface MeterDto {
-    meterNumber: string,
-    meterModel: string,
-    meterManufacturer: string,
-    address: string,
-    client: string,
-    clientId: string
+    id: string;
+    created: string;
+    number: string;
+    phaseCount: number;
+    meterModel: string;
+    meterManufacturer: string;
+    meterManufacturerId: string;
+    status: string;
+    client: string;
+    clientId: string;
 }

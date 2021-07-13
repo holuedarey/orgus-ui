@@ -4,6 +4,7 @@ export enum PagesResources {
     DashboardView = 'pages:dashboard-view',
     UsersView = 'pages:users-view',
     ClientsView = 'pages:clients-view',
+    AssetsView = 'pages:assets-view',
     MetersView = 'pages:meters-view',
     LoadPointsView = 'pages:load-points-view',
     PowerSourcesView = 'pages:power-sources-view',
@@ -32,23 +33,30 @@ export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
         }
     ],
     [
+        PagesResources.AssetsView,
+        {
+            route: `/app/assets`,
+            path: 'assets'
+        }
+    ],
+    [
         PagesResources.MetersView,
         {
-            route: `/app/meters`,
+            route: `/app/assets/meters`,
             path: 'meters'
         }
     ],
     [
         PagesResources.LoadPointsView,
         {
-            route: `/app/load-points`,
+            route: `/app/assets/load-points`,
             path: 'load-points'
         }
     ],
     [
         PagesResources.PowerSourcesView,
         {
-            route: `/app/power-sources`,
+            route: `/app/assets/power-sources`,
             path: 'power-sources'
         }
     ],

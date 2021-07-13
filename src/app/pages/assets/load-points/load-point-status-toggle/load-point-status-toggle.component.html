@@ -1,4 +1,4 @@
-<ng-container *ngIf="(accessChecker.isGranted('update', meterResources.UpdateMeter) | async) && isSameClient">
+<ng-container *ngIf="(accessChecker.isGranted('update', loadPointResources.UpdateLoadPoint) | async) && isSameClient">
     <nb-toggle labelPosition="end" [ngStyle]="{'opacity': isSubmitted ? '0' : '1'}" [nbSpinner]="isSubmitted"
         [(checked)]="checked" [disabled]="(onlineStat.isOnlineSub.asObservable() | async) === false"
         (checkedChange)="onStatusChange($event)">
@@ -7,7 +7,7 @@
 </ng-container>
 
 <ng-container
-    *ngIf="(accessChecker.isGranted('update', meterResources.UpdateMeter) | async) === false || !isSameClient">
+    *ngIf="(accessChecker.isGranted('update', loadPointResources.UpdateLoadPoint) | async) === false || !isSameClient">
     {{checked ? 'Active' : 'Inactive'}}
 </ng-container>
 

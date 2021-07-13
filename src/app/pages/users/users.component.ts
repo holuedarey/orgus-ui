@@ -188,7 +188,7 @@ export class UsersComponent implements OnInit {
       .subscribe(
         (data) => {
           const clients = data.data?.itemList ?? [];
-          const clientSearchFilterList = clients.map(r => ({ value: r.id, title: r.businessName }));
+          const clientSearchFilterList = clients.map(r => ({ value: r.clientId, title: r.businessName }));
           this.columns.clientId.filter.config.selectText = 'Select...';
           this.columns.clientId.filter.config.list = clientSearchFilterList as any;
           this.columns = { ...this.columns }

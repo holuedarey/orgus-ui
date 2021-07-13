@@ -41,7 +41,7 @@ export class ClientService implements AccessControlContract {
 
     @HasAccess(PermissionEnum.Update, ClientResources.UpdateClient)
     updateClient(client: UpdateClientDto): Observable<ResponseDto<ClientDto>> {
-        const apiEndpoint = `clients/${client.id}`;
+        const apiEndpoint = `clients/${client.clientId}`;
         return this.httpClient.put<ResponseDto<ClientDto>>(`${environment.apiUrl}/${apiEndpoint}`, client);
     }
 }

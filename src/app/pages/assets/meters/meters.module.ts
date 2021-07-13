@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MetersRoutingModule } from './meters-routing.module';
 import { MetersComponent } from './meters.component';
 import { MeterFormComponent } from './meter-form/meter-form.component';
-import { NbDialogModule, NbCardModule, NbAlertModule, NbIconModule, NbInputModule, NbSpinnerModule, NbButtonModule, NbSelectModule, NbFormFieldModule, NbThemeModule, NbAutocompleteModule } from '@nebular/theme';
+import { NbDialogModule, NbCardModule, NbAlertModule, NbIconModule, NbInputModule, NbSpinnerModule, NbButtonModule, NbSelectModule, NbFormFieldModule, NbThemeModule, NbAutocompleteModule, NbToggleModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MeterStatusToggleComponent } from './meter-status-toggle/meter-status-toggle.component';
 
@@ -34,6 +34,7 @@ import { MeterStatusToggleComponent } from './meter-status-toggle/meter-status-t
     NbThemeModule,
     NbAutocompleteModule,
     NbThemeModule,
+    NbToggleModule,
   ]
 })
 export class MetersModule { }

@@ -1,24 +1,24 @@
-import { ConfirmationDialogComponent } from './../../../../@theme/components/confirmation-dialog/confirmation-dialog.component';
-import { PermissionService } from './../../../../@core/utils/permission.service';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { NbAccessChecker } from '@nebular/security';
-import { OnlineStatService } from './../../../../@core/utils/online-stat.service';
-import { MeterResources } from './../meter-resources';
-import { MeterDto } from './../../../../@core/dtos/meter.dto';
-import { ViewCell } from 'ng2-smart-table';
-import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NbDialogService, NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { MeterService } from 'src/app/@core/data-services/meter.service';
+import { LoadPointService } from 'src/app/@core/data-services/load-point.service';
+import { LoadPointDto } from 'src/app/@core/dtos/load-point.dto';
 import { UserModel } from 'src/app/@core/models/user.model';
+import { OnlineStatService } from 'src/app/@core/utils/online-stat.service';
+import { PermissionService } from 'src/app/@core/utils/permission.service';
 import { TokenService } from 'src/app/@core/utils/token.service';
+import { ConfirmationDialogComponent } from 'src/app/@theme/components/confirmation-dialog/confirmation-dialog.component';
+import { LoadPointResources } from '../load-point-resources';
 
 @Component({
-  selector: 'app-meter-status-toggle',
-  templateUrl: './meter-status-toggle.component.html',
-  styleUrls: ['./meter-status-toggle.component.scss']
+  selector: 'app-load-point-status-toggle',
+  templateUrl: './load-point-status-toggle.component.html',
+  styleUrls: ['./load-point-status-toggle.component.scss']
 })
-export class MeterStatusToggleComponent implements ViewCell, OnInit {
+export class LoadPointStatusToggleComponent implements OnInit {
+
   checked = true;
   isSubmitted = false;
 
@@ -26,14 +26,14 @@ export class MeterStatusToggleComponent implements ViewCell, OnInit {
   renderStatus = 'primary';
 
   @Input() value!: string | number;
-  @Input() rowData!: MeterDto;
+  @Input() rowData!: LoadPointDto;
 
-  meterResources = MeterResources;
+  loadPointResources = LoadPointResources;
   isSameClient = false;
 
   constructor(
     private dialogService: NbDialogService,
-    public meterService: MeterService,
+    public loadPointService: LoadPointService,
     public onlineStat: OnlineStatService,
     private cd: ChangeDetectorRef,
     private toastr: NbToastrService,
@@ -57,7 +57,7 @@ export class MeterStatusToggleComponent implements ViewCell, OnInit {
       {
         context: {
           context: `Are you sure you wish to proceed?`,
-          title: `${state ? 'Enable' : 'Disable'} Meter`
+          title: `${state ? 'Enable' : 'Disable'} Load Point`
         },
       })
       .onClose.toPromise();
@@ -66,14 +66,14 @@ export class MeterStatusToggleComponent implements ViewCell, OnInit {
       of(state)
         .pipe(switchMap((state) => {
           if (state) {
-            return this.meterService.enableMeter(this.rowData.id)
+            return this.loadPointService.enableLoadPoint(this.rowData.id)
           }
-          return this.meterService.disableMeter(this.rowData.id)
+          return this.loadPointService.disableLoadPoint(this.rowData.id)
         }))
         .subscribe(
           (response) => {
             if (response.status) {
-              this.toastr.success('Status update successful', 'Meter Update', { position: NbGlobalPhysicalPosition.BOTTOM_RIGHT })
+              this.toastr.success('Status update successful', 'Load Point Update', { position: NbGlobalPhysicalPosition.BOTTOM_RIGHT })
               this.isSubmitted = false;
               this.checked = state;
               this.cd.detectChanges();
@@ -97,9 +97,10 @@ export class MeterStatusToggleComponent implements ViewCell, OnInit {
     if (showToaster) {
       this.toastr.danger(
         `${message ? message : 'An error occured during execution'}`,
-        'Meter Update',
+        'Load Point Update',
         { position: NbGlobalPhysicalPosition.BOTTOM_RIGHT, duration: 3000 }
       );
     }
   }
+
 }

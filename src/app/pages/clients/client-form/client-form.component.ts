@@ -183,7 +183,7 @@ export class ClientFormComponent implements OnInit, OnDestroy {
       contactPerson: (this.clientForm.get('contactPerson')?.value as string).trim(),
       contactPhone: (this.clientForm.get('phoneNumber')?.value as string).trim(),
       jobRole: (this.clientForm.get('role')?.value as string).trim(),
-      id: this.clientForUpdate.id
+      clientId: this.clientForUpdate.clientId
     }
 
     this.clientService.updateClient(updateClientDto).subscribe(
