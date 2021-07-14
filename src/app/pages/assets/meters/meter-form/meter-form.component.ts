@@ -41,7 +41,6 @@ export class MeterFormComponent implements OnInit {
     private meterService: MeterService
   ) {
     this.meterManufacturer$ = this.meterService.getMeterManufacturer().pipe(map(d => d.data as MeterManufaturerDto[]));
-
   }
 
   ngOnInit(): void {
@@ -72,7 +71,6 @@ export class MeterFormComponent implements OnInit {
 
   initUpdateForm(): void {
     this.meterForm = this.formBuilder.group({
-      number: [this.meterForUpdate.number, Validators.required],
       phaseCount: [this.meterForUpdate.phaseCount, Validators.required],
       meterManufacturerId: [this.meterForUpdate.meterManufacturerId, Validators.required],
       meterModel: [this.meterForUpdate.meterModel, Validators.required],
@@ -90,7 +88,6 @@ export class MeterFormComponent implements OnInit {
       meterManufacturer: (this.meterForm.get('meterManufacturerId')?.value as number),
       meterModel: (this.meterForm.get('meterModel')?.value as string).trim(),
     }
-
     this.meterService.postMeter(postMeterDto).subscribe(
       (result) => {
         this.submitted = false;
@@ -120,7 +117,7 @@ export class MeterFormComponent implements OnInit {
     this.submitted = true;
 
     const updateMeterDto: UpdateMeterDto = {
-      number: (this.meterForm.get('number')?.value as string).trim(),
+      number: this.meterForUpdate.number,
       phaseCount: (this.meterForm.get('phaseCount')?.value as number),
       meterManufacturer: (this.meterForm.get('meterManufacturerId')?.value as number),
       meterModel: (this.meterForm.get('meterModel')?.value as string).trim(),

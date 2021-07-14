@@ -87,8 +87,8 @@ export const AccessControl: NbAccessControl[] = [
                 //View Clients
                 PagesResources.ClientsView,
 
-                //view Meters
                 MeterResources.ViewClientColumn,
+                LoadPointResources.ViewClientColumn,
             ],
         },
 
@@ -102,10 +102,6 @@ export const AccessControl: NbAccessControl[] = [
                 UsersResources.SetClient,
 
                 ClientResources.CreateClient,
-
-                MeterResources.CreateMeter,
-
-                LoadPointResources.CreateLoadPoint
             ],
             update: [
                 UsersResources.UpdateUsers,
@@ -113,10 +109,6 @@ export const AccessControl: NbAccessControl[] = [
                 UsersResources.UpdateClientAdmin,
 
                 ClientResources.UpdateClient,
-
-                MeterResources.UpdateMeter,
-
-                LoadPointResources.UpdateLoadPoint
             ],
         },
 

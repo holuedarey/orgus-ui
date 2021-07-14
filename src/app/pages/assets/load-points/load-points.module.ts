@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbDialogModule, NbCardModule, NbIconModule, NbAlertModule, NbInputModule, NbSpinnerModule, NbButtonModule, NbSelectModule, NbFormFieldModule, NbThemeModule, NbAutocompleteModule, NbToggleModule } from '@nebular/theme';
 import { TablesModule } from 'src/app/@tables/tables.module';
 import { LoadPointStatusToggleComponent } from './load-point-status-toggle/load-point-status-toggle.component';
+import { LoadPointGisComponent } from './load-point-gis/load-point-gis.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { LoadPointStatusToggleComponent } from './load-point-status-toggle/load-
     LoadPointsComponent,
     LoadPointFormComponent,
     LoadPointStatusToggleComponent,
+    LoadPointGisComponent,
   ],
   imports: [
     CommonModule,

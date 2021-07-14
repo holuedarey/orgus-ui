@@ -57,19 +57,36 @@
       }
     },
     {
-      "name": "drop-down-only",
+      "name": "drop-down-menus",
       "urls": [
         "https://**/roles",
         "https://**/meters/get-meterManufacturers"
       ],
       "cacheConfig": {
         "strategy": "freshness",
-        "timeout": "1s",
+        "timeout": "2s",
         "maxAge": "7d",
         "maxSize": 10
       },
       "cacheQueryOptions": {
         "ignoreSearch": true
+      }
+    },
+    {
+      "name": "static",
+      "urls": [
+        "https://**/locations/countries",
+        "https://**/locations/states",
+        "https://**/locations/area"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "timeout": "0u",
+        "maxAge": "30d",
+        "maxSize": 500
+      },
+      "cacheQueryOptions": {
+        "ignoreSearch": false
       }
     }
   ]

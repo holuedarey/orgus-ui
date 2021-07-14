@@ -2,8 +2,13 @@ export interface LoadPointDto {
     id: string;
     created: string;
     name: string;
-    locationId: string;
-    location: string;
+    address: string;
+    lgaId: string;
+    lga: string;
+    stateId: string;
+    state: string;
+    countryId: string;
+    country: string;
     meterId: string;
     meter: string;
     latitude: number;

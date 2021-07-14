@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 import { Observable, of } from 'rxjs';
-import { map, takeWhile } from 'rxjs/operators';
+import { debounce, map, takeWhile } from 'rxjs/operators';
 import { LoadPointService } from 'src/app/@core/data-services/load-point.service';
 import { LocationService } from 'src/app/@core/data-services/location.service';
 import { MeterService } from 'src/app/@core/data-services/meter.service';
@@ -58,6 +58,7 @@ export class LoadPointFormComponent implements OnInit {
     } else {
       this.initUpdateForm();
     }
+    this.trackRetrievedOptions();
   }
 
   close(): void {
@@ -73,24 +74,66 @@ export class LoadPointFormComponent implements OnInit {
       name: ['', Validators.required],
       countryId: [null, Validators.required],
       stateId: [null, Validators.required],
-      areaId: [null, Validators.required],
+      lgaId: [null, Validators.required],
       meterId: [null, Validators.required],
-      meterNumber: [null, Validators.required],
+      meterNumber: [null,
+        [
+          Validators.required
+        ],
+        this.validateMeterAvailability.bind(this)
+      ],
       latitude: ['', Validators.required],
       longitude: ['', Validators.required],
+      address: ['', Validators.required],
     });
-
-    this.trackRetrievedOptions();
   }
 
   initUpdateForm(): void {
     this.loadPointForm = this.formBuilder.group({
       name: [this.loadPointForUpdate.name, Validators.required],
-      locationId: [this.loadPointForUpdate.locationId, Validators.required],
+      countryId: [this.loadPointForUpdate.countryId, Validators.required],
+      stateId: [this.loadPointForUpdate.stateId, Validators.required],
+      lgaId: [this.loadPointForUpdate.lgaId, Validators.required],
       meterId: [this.loadPointForUpdate.meterId, Validators.required],
+      meterNumber: [
+        this.loadPointForUpdate.meter,
+        [
+          Validators.required
+        ],
+        this.validateMeterAvailability.bind(this)
+      ],
       latitude: [this.loadPointForUpdate.latitude, Validators.required],
       longitude: [this.loadPointForUpdate.longitude, Validators.required],
+      address: [this.loadPointForUpdate.address, Validators.required],
     });
+
+    this.states$ = this.locationService.getStates({ countryId: this.loadPointForUpdate.countryId }).pipe(map((r) => r.data as LocationDto[]));
+    this.areas$ = this.locationService.getAreas({ stateId: this.loadPointForUpdate.stateId }).pipe(map((r) => r.data as LocationDto[]));
+  }
+
+  validateMeterAvailability(input: FormControl) {
+    const value = (input.value as string)?.trim();
+    if (!value) {
+      return of(undefined);
+    }
+    if (!this.isCreateRequest) {
+      if (value === this.loadPointForUpdate.meter) {
+        this.loadPointForm.get('meterId')?.setValue(this.loadPointForUpdate.meter);
+        return of(undefined);
+      }
+    }
+    return this.meterService.getUnassignedMeter(value)
+      .pipe(
+        map(m => {
+          if (m.data) {
+            this.loadPointForm.get('meterId')?.setValue(m.data.id);
+            return;
+          } else {
+            this.loadPointForm.get('meterId')?.setValue(null);
+            return { meterUnavailable: `Meter ${value} is already assigned or does not exist` }
+          }
+        })
+      )
   }
 
   trackRetrievedOptions() {
@@ -106,7 +149,7 @@ export class LoadPointFormComponent implements OnInit {
       .pipe(takeWhile(() => this.isLive))
       .subscribe(
         (val) => {
-          this.loadPointForm.get('areaId')?.setValue(undefined);
+          this.loadPointForm.get('lgaId')?.setValue(undefined);
           this.areas$ = this.locationService.getAreas({ stateId: val }).pipe(map((r) => r.data as LocationDto[]));
         }
       );
@@ -119,10 +162,11 @@ export class LoadPointFormComponent implements OnInit {
 
     const postLoadPointDto: PostLoadPointDto = {
       name: (this.loadPointForm.get('name')?.value as string).trim(),
-      locationId: (this.loadPointForm.get('locationId')?.value as string).trim(),
+      locationId: (this.loadPointForm.get('lgaId')?.value as string).trim(),
       meterId: (this.loadPointForm.get('meterId')?.value as string).trim(),
       latitude: (this.loadPointForm.get('latitude')?.value as number),
       longitude: (this.loadPointForm.get('longitude')?.value as number),
+      address: (this.loadPointForm.get('address')?.value as string).trim(),
     }
 
     this.loadPointService.postLoadPoint(postLoadPointDto).subscribe(
@@ -159,10 +203,11 @@ export class LoadPointFormComponent implements OnInit {
       meterId: (this.loadPointForm.get('meterId')?.value as string).trim(),
       latitude: (this.loadPointForm.get('latitude')?.value as number),
       longitude: (this.loadPointForm.get('longitude')?.value as number),
+      address: (this.loadPointForm.get('address')?.value as string).trim(),
       id: this.loadPointForUpdate.id
-    }
+    };
 
-    this.loadPointService.postLoadPoint(updateLoadPointDto).subscribe(
+    this.loadPointService.updateLoadPoint(updateLoadPointDto).subscribe(
       (result) => {
         this.submitted = false;
         if (result.status) {

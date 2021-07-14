@@ -33,9 +33,9 @@ export class MeterService implements AccessControlContract {
     return this.httpClient.get<ResponseDto<ListDto<MeterDto>>>(`${environment.apiUrl}/${apiEndpoint}`, { params });
   }
 
-  getUnassignedMeter(meterNumber: string): Observable<ResponseDto<ListDto<MeterDto>>> {
+  getUnassignedMeter(meterNumber: string): Observable<ResponseDto<MeterDto>> {
     const apiEndpoint = 'meters/unassigned';
-    return this.httpClient.get<ResponseDto<ListDto<MeterDto>>>(`${environment.apiUrl}/${apiEndpoint}/${meterNumber}`);
+    return this.httpClient.get<ResponseDto<MeterDto>>(`${environment.apiUrl}/${apiEndpoint}/${meterNumber}`);
   }
 
   @HasAccess(PermissionEnum.Create, MeterResources.CreateMeter)

@@ -30,25 +30,27 @@
 
                         <form [formGroup]="meterForm" #form="ngForm" class="my-3">
 
-                            <div class="form-control-group row my-3">
-                                <div class="col-sm-3">
-                                    <label class="label" for="input-meterNumber">Meter Number:</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input nbInput fullWidth name="number" id="input-number" placeholder="Meter number"
-                                        #number
-                                        [status]="meterForm.controls['number'].touched ? (meterForm.controls['number'].invalid ? 'danger' : 'success') : 'basic'"
-                                        formControlName="number" autofocus>
+                            <ng-container *ngIf="isCreateRequest">
+                                <div class="form-control-group row my-3">
+                                    <div class="col-sm-3">
+                                        <label class="label" for="input-meterNumber">Meter Number:</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input nbInput fullWidth name="number" id="input-number"
+                                            placeholder="Meter number" #number
+                                            [status]="meterForm.controls['number'].touched ? (meterForm.controls['number'].invalid ? 'danger' : 'success') : 'basic'"
+                                            formControlName="number" autofocus>
 
-                                    <div *ngIf="meterForm.controls['number'].invalid && meterForm.controls['number'].touched"
-                                        class="text-danger xyz-in px-3 row">
-                                        <small xyz="fade down" class="error-message"
-                                            *ngIf="meterForm.controls['number'].errors?.required">
-                                            Meter Number is required!
-                                        </small>
+                                        <div *ngIf="meterForm.controls['number'].invalid && meterForm.controls['number'].touched"
+                                            class="text-danger xyz-in px-3 row">
+                                            <small xyz="fade down" class="error-message"
+                                                *ngIf="meterForm.controls['number'].errors?.required">
+                                                Meter Number is required!
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </ng-container>
 
                             <div class="form-control-group row my-3">
                                 <div class="col-sm-3">

@@ -5,4 +5,5 @@ export interface UpdateLoadPointDto {
     meterId: string;
     latitude: number;
     longitude: number;
+    address: string;
 }

@@ -11,6 +11,7 @@ import { OnlineStatService } from 'src/app/@core/utils/online-stat.service';
 import { PermissionService } from 'src/app/@core/utils/permission.service';
 import { TokenService } from 'src/app/@core/utils/token.service';
 import { LoadPointFormComponent } from './load-point-form/load-point-form.component';
+import { LoadPointGisComponent } from './load-point-gis/load-point-gis.component';
 import { LoadPointResources } from './load-point-resources';
 import { LoadPointStatusToggleComponent } from './load-point-status-toggle/load-point-status-toggle.component';
 
@@ -33,24 +34,11 @@ export class LoadPointsComponent implements OnInit {
     meter: {
       title: 'Meter Number',
     },
-    address: {
-      title: 'Address',
+    state: {
+      title: 'State',
     },
-    phaseCount: {
-      title: 'GIS',
-    },
-    locationId: {
+    lga: {
       title: 'LGA',
-      filter: {
-        type: 'list',
-        config: {
-          selectText: 'Loading...',
-          list: []
-        },
-      },
-      valuePrepareFunction: (d: string, r: any) => {
-        return r.location
-      },
     },
     clientId: {
       title: 'Client',
@@ -65,6 +53,12 @@ export class LoadPointsComponent implements OnInit {
         return r.client
       },
       hide: !this.permissionService.canAccessByResource(PermissionEnum.View, LoadPointResources.ViewClientColumn)
+    },
+    gis: {
+      title: 'GIS',
+      renderComponent: LoadPointGisComponent,
+      type: 'custom',
+      filter: false
     },
     status: {
       title: 'Status',
@@ -82,7 +76,6 @@ export class LoadPointsComponent implements OnInit {
       },
       filterFunction: (x: string, y: string) => x.toLowerCase() === y.toLowerCase()
     },
-
   }
 
   constructor(
