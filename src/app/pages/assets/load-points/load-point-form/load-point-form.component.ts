@@ -129,8 +129,11 @@ export class LoadPointFormComponent implements OnInit {
             this.loadPointForm.get('meterId')?.setValue(m.data.id);
             return;
           } else {
-            this.loadPointForm.get('meterId')?.setValue(null);
-            return { meterUnavailable: `Meter ${value} is already assigned or does not exist` }
+            console.log(m.message, `This meter:${value}does not exist`)
+            if (m.message?.includes(' not exist')) {
+              return { meterUnavailable: `Meter ${value} does not exist` }
+            }
+            return { meterUnavailable: `Meter ${value} is already assigned to a loadpoint` }
           }
         })
       )
