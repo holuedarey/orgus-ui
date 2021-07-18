@@ -23,5 +23,26 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: GlobalResources.get(PagesResources.ClientsView)?.route,
     icon: 'clipboard-outline',
   },
+  {
+    title: 'Assets',
+    icon: 'briefcase-outline',
+    children: [
+      {
+        title: 'Meters',
+        link: GlobalResources.get(PagesResources.MetersView)?.route,
+        icon: 'speaker-outline',
+      },
+      {
+        title: 'Load Points',
+        link: GlobalResources.get(PagesResources.LoadPointsView)?.route,
+        icon: 'code-download-outline',
+      },
+      {
+        title: 'Power Sources',
+        link: GlobalResources.get(PagesResources.PowerSourcesView)?.route,
+        icon: 'wifi-outline',
+      },
+    ]
+  },
 
 ];

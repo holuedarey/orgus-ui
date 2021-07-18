@@ -1,0 +1,12 @@
+<div class="container-fluid p-0 m-0">
+    <div class="row m-0">
+        <div class="col-12">
+            <app-table [isLoading]="isLoadingData" title="Load Points" [data]="loadPoints" [columns]="columns"
+                [showEdit]="permissionService.canAccessByResource('update', loadPointResources.UpdateLoadPoint)"
+                (requestData)="requestData($event)" (optionsSelected)="updateLoadPoint($event)"
+                [showAdd]="permissionService.canAccessByResource('create', loadPointResources.CreateLoadPoint)"
+                (addClicked)="handleCreateNewLoadPointClick()">
+            </app-table>
+        </div>
+    </div>
+</div>

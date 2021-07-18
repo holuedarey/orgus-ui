@@ -1,9 +1,11 @@
+import { MeterResources } from './../app/pages/assets/meters/meter-resources';
 import { NbAccessControl } from "@nebular/security";
 import { AuthResources } from "src/app/pages/auth/auth-resources";
 import { ClientResources } from "src/app/pages/clients/client-resources";
 import { ExceptionResources } from "src/app/pages/exceptions/exceptions-resources";
 import { PagesResources } from "src/app/pages/pages-resources";
 import { UsersResources } from "src/app/pages/users/users-resources";
+import { LoadPointResources } from 'src/app/pages/assets/load-points/load-point-resources';
 
 export const AccessControl: NbAccessControl[] = [
     {
@@ -35,6 +37,15 @@ export const AccessControl: NbAccessControl[] = [
 
                 //View Users
                 PagesResources.UsersView,
+
+                //View Meters
+                PagesResources.MetersView,
+
+                //View Load Points
+                PagesResources.LoadPointsView,
+
+                //View Power Sources
+                PagesResources.PowerSourcesView,
             ],
             update: [],
             delete: [],
@@ -51,10 +62,18 @@ export const AccessControl: NbAccessControl[] = [
             create: [
                 UsersResources.CreateUsers,
                 UsersResources.CreateClientUser,
+
+                MeterResources.CreateMeter,
+
+                LoadPointResources.CreateLoadPoint
             ],
             update: [
                 UsersResources.UpdateUsers,
-                UsersResources.UpdateClientUser
+                UsersResources.UpdateClientUser,
+
+                MeterResources.UpdateMeter,
+
+                LoadPointResources.UpdateLoadPoint
             ],
         },
 
@@ -67,6 +86,9 @@ export const AccessControl: NbAccessControl[] = [
 
                 //View Clients
                 PagesResources.ClientsView,
+
+                MeterResources.ViewClientColumn,
+                LoadPointResources.ViewClientColumn,
             ],
         },
 
@@ -79,14 +101,14 @@ export const AccessControl: NbAccessControl[] = [
                 UsersResources.CreateVggUser,
                 UsersResources.SetClient,
 
-                ClientResources.CreateClient
+                ClientResources.CreateClient,
             ],
             update: [
                 UsersResources.UpdateUsers,
                 UsersResources.UpdateVggUser,
                 UsersResources.UpdateClientAdmin,
 
-                ClientResources.UpdateClient
+                ClientResources.UpdateClient,
             ],
         },
 

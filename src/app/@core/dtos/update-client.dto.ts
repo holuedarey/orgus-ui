@@ -7,5 +7,5 @@ export interface UpdateClientDto {
     contactPerson: string,
     jobRole: string,
     contactPhone: string,
-    id: string
+    clientId: string
 }

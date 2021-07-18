@@ -8,5 +8,6 @@ export interface ClientDto {
     jobRole: string;
     contactPhone: string;
     id: string;
+    clientId: string;
     created: string;
 }

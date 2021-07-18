@@ -43,7 +43,8 @@
       "name": "tables",
       "urls": [
         "https://**/users",
-        "https://**/clients"
+        "https://**/clients",
+        "https://**/meters"
       ],
       "cacheConfig": {
         "strategy": "freshness",
@@ -56,9 +57,10 @@
       }
     },
     {
-      "name": "roles",
+      "name": "drop-down-menus",
       "urls": [
-        "https://**/roles"
+        "https://**/roles",
+        "https://**/meters/get-meterManufacturers"
       ],
       "cacheConfig": {
         "strategy": "freshness",
@@ -68,6 +70,23 @@
       },
       "cacheQueryOptions": {
         "ignoreSearch": true
+      }
+    },
+    {
+      "name": "static",
+      "urls": [
+        "https://**/locations/countries",
+        "https://**/locations/states",
+        "https://**/locations/area"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "timeout": "0u",
+        "maxAge": "30d",
+        "maxSize": 500
+      },
+      "cacheQueryOptions": {
+        "ignoreSearch": false
       }
     }
   ]
