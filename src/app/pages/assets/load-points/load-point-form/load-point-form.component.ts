@@ -118,7 +118,7 @@ export class LoadPointFormComponent implements OnInit {
     }
     if (!this.isCreateRequest) {
       if (value === this.loadPointForUpdate.meter) {
-        this.loadPointForm.get('meterId')?.setValue(this.loadPointForUpdate.meter);
+        this.loadPointForm.get('meterId')?.setValue(this.loadPointForUpdate.meterId);
         return of(undefined);
       }
     }
@@ -201,7 +201,7 @@ export class LoadPointFormComponent implements OnInit {
 
     const updateLoadPointDto: UpdateLoadPointDto = {
       name: (this.loadPointForm.get('name')?.value as string).trim(),
-      locationId: (this.loadPointForm.get('locationId')?.value as string).trim(),
+      locationId: (this.loadPointForm.get('lgaId')?.value as string).trim(),
       meterId: (this.loadPointForm.get('meterId')?.value as string).trim(),
       latitude: (this.loadPointForm.get('latitude')?.value as number),
       longitude: (this.loadPointForm.get('longitude')?.value as number),
