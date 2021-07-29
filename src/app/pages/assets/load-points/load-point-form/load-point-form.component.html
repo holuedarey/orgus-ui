@@ -99,7 +99,7 @@
                                         </small>
                                         <small xyz="fade down" class="error-message d-block"
                                         *ngIf="!loadPointForm.controls['latitude'].errors?.required">
-                                        {{loadPointForm.controls['latitude'].errors?.invalidNumber}}
+                                        {{loadPointForm.controls['latitude'].errors?.invalidLatitude}}
                                     </small>
                                     </div>
                                 </div>
@@ -123,7 +123,7 @@
                                         </small>
                                         <small xyz="fade down" class="error-message d-block"
                                         *ngIf="!loadPointForm.controls['longitude'].errors?.required">
-                                        {{loadPointForm.controls['longitude'].errors?.invalidNumber}}
+                                        {{loadPointForm.controls['longitude'].errors?.invalidLongitude}}
                                     </small>
                                     </div>
                                 </div>
