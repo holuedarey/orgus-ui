@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
+import { isLatitude, isLongitude} from 'class-validator';
 import { Observable, of } from 'rxjs';
 import { debounce, map, takeWhile } from 'rxjs/operators';
 import { LoadPointService } from 'src/app/@core/data-services/load-point.service';
@@ -82,10 +83,46 @@ export class LoadPointFormComponent implements OnInit {
         ],
         this.validateMeterAvailability.bind(this)
       ],
-      latitude: ['', Validators.required],
-      longitude: ['', Validators.required],
+      latitude: ['', [
+        Validators.required,
+        this.validateLatitude.bind(this)]],
+      longitude: ['',[
+        Validators.required,
+        this.validateLongitude.bind(this)]],
       address: ['', Validators.required],
     });
+  }
+
+  validateLatitude(input: FormControl) {
+    const value = (input.value as string).trim();
+    const isValidlatitude = isLatitude(value);
+    if (isValidlatitude) {
+      return;
+    } else {
+      return {
+        invalidLatitude: `"${value}" is not a valid latitude`
+      }
+    }
+  }
+  validateLongitude(input: FormControl) {
+    const value = (input.value as string).trim();
+    const isValidLongitude = isLongitude(value);
+    if (isValidLongitude) {
+      return;
+    } else {
+      return {
+        invalidLongitude: `"${value}" is not a valid Longitude`
+      }
+    }
+  }
+  keyPressNumbersOnly(event:any) {
+    var charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode != 46 && charCode > 31
+      && (charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      return false;
+    }
+    return true;
   }
 
   initUpdateForm(): void {
@@ -102,8 +139,12 @@ export class LoadPointFormComponent implements OnInit {
         ],
         this.validateMeterAvailability.bind(this)
       ],
-      latitude: [this.loadPointForUpdate.latitude, Validators.required],
-      longitude: [this.loadPointForUpdate.longitude, Validators.required],
+      latitude: [this.loadPointForUpdate.latitude, [
+        Validators.required,
+        this.validateLatitude.bind(this)]],
+      longitude: [this.loadPointForUpdate.longitude, [
+        Validators.required,
+        this.validateLongitude.bind(this)]],
       address: [this.loadPointForUpdate.address, Validators.required],
     });
 
