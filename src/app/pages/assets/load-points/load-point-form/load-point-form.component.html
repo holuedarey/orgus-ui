@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <input nbInput fullWidth name="latitude" id="input-latitude" placeholder="Latitude"
-                                        #latitude
+                                        #latitude (keypress)="keyPressNumbersOnly($event)"
                                         [status]="loadPointForm.controls['latitude'].touched ? (loadPointForm.controls['latitude'].invalid ? 'danger' : 'success') : 'basic'"
                                         formControlName="latitude" autofocus>
 
@@ -97,6 +97,10 @@
                                             *ngIf="loadPointForm.controls['latitude'].errors?.required">
                                             Latitude is required!
                                         </small>
+                                        <small xyz="fade down" class="error-message d-block"
+                                        *ngIf="!loadPointForm.controls['latitude'].errors?.required">
+                                        {{loadPointForm.controls['latitude'].errors?.invalidNumber}}
+                                    </small>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +111,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <input nbInput fullWidth name="longitude" id="input-longitude"
-                                        placeholder="Longitude" #longitude
+                                        placeholder="Longitude" #longitude (keypress)="keyPressNumbersOnly($event)" 
                                         [status]="loadPointForm.controls['longitude'].touched ? (loadPointForm.controls['longitude'].invalid ? 'danger' : 'success') : 'basic'"
                                         formControlName="longitude" autofocus>
 
@@ -117,6 +121,10 @@
                                             *ngIf="loadPointForm.controls['longitude'].errors?.required">
                                             Longitude is required!
                                         </small>
+                                        <small xyz="fade down" class="error-message d-block"
+                                        *ngIf="!loadPointForm.controls['longitude'].errors?.required">
+                                        {{loadPointForm.controls['longitude'].errors?.invalidNumber}}
+                                    </small>
                                     </div>
                                 </div>
                             </div>

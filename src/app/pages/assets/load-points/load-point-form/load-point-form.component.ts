@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
+import { isNumberString } from 'class-validator';
 import { Observable, of } from 'rxjs';
 import { debounce, map, takeWhile } from 'rxjs/operators';
 import { LoadPointService } from 'src/app/@core/data-services/load-point.service';
@@ -82,10 +83,35 @@ export class LoadPointFormComponent implements OnInit {
         ],
         this.validateMeterAvailability.bind(this)
       ],
-      latitude: ['', Validators.required],
-      longitude: ['', Validators.required],
+      latitude: ['', [
+        Validators.required,
+        this.validateNumber.bind(this)]],
+      longitude: ['',[
+        Validators.required,
+        this.validateNumber.bind(this)]],
       address: ['', Validators.required],
     });
+  }
+
+  validateNumber(input: FormControl) {
+    const value = (input.value as string).trim();
+    const isValidNumber = isNumberString(value);
+    if (isValidNumber) {
+      return;
+    } else {
+      return {
+        invalidNumber: `"${value}" is not a valid number`
+      }
+    }
+  }
+  keyPressNumbersOnly(event:any) {
+    var charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode != 46 && charCode > 31
+      && (charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      return false;
+    }
+    return true;
   }
 
   initUpdateForm(): void {
@@ -102,8 +128,12 @@ export class LoadPointFormComponent implements OnInit {
         ],
         this.validateMeterAvailability.bind(this)
       ],
-      latitude: [this.loadPointForUpdate.latitude, Validators.required],
-      longitude: [this.loadPointForUpdate.longitude, Validators.required],
+      latitude: [this.loadPointForUpdate.latitude, [
+        Validators.required,
+        this.validateNumber.bind(this)]],
+      longitude: [this.loadPointForUpdate.longitude, [
+        Validators.required,
+        this.validateNumber.bind(this)]],
       address: [this.loadPointForUpdate.address, Validators.required],
     });
 
