@@ -17,7 +17,8 @@ import { PostPowerSourceDto } from 'src/app/@core/dtos/post-power-source.dto';
 @Component({
   selector: 'app-power-source-form',
   templateUrl: './power-source-form.component.html',
-  styleUrls: ['./power-source-form.component.scss']
+  styleUrls: ['./power-source-form.component.scss'],
+  providers: [FormBuilder]
 })
 export class PowerSourceFormComponent implements OnInit {
 
@@ -44,7 +45,6 @@ export class PowerSourceFormComponent implements OnInit {
     public dialogRef: NbDialogRef<PowerSourceFormComponent>,
     private formBuilder: FormBuilder,
     private powerSourceService: PowerSourceService,
-    private meterService: MeterService,
     private locationService: LocationService
   ) {
     this.countries$ = locationService.getCountries().pipe(map((r) => r.data as LocationDto[]));
@@ -136,33 +136,6 @@ export class PowerSourceFormComponent implements OnInit {
     this.areas$ = this.locationService.getAreas({ stateId: this.powerSourceForUpdate.stateId }).pipe(map((r) => r.data as LocationDto[]));
   }
 
-  // validateMeterAvailability(input: FormControl) {
-  //   const value = (input.value as string)?.trim();
-  //   if (!value) {
-  //     return of(undefined);
-  //   }
-  //   if (!this.isCreateRequest) {
-  //     if (value === this.powerSourceForUpdate.meter) {
-  //       this.powerSourceForm.get('meterId')?.setValue(this.powerSourceForUpdate.meterId);
-  //       return of(undefined);
-  //     }
-  //   }
-  //   return this.meterService.getUnassignedMeter(value)
-  //     .pipe(
-  //       map(m => {
-  //         if (m.data) {
-  //           this.loadPointForm.get('meterId')?.setValue(m.data.id);
-  //           return;
-  //         } else {
-  //           if (m.message?.includes(' not exist')) {
-  //             return { meterUnavailable: `Meter ${value} does not exist` }
-  //           }
-  //           return { meterUnavailable: `Meter ${value} is already assigned to a loadpoint` }
-  //         }
-  //       })
-  //     )
-  // }
-
   trackRetrievedOptions() {
     this.powerSourceForm.get('countryId')?.valueChanges
       .pipe(takeWhile(() => this.isLive))
@@ -182,7 +155,7 @@ export class PowerSourceFormComponent implements OnInit {
       );
   }
 
-  saveLoadPoint(): void {
+  savePowerSource(): void {
     this.errors = [];
     this.messages = [];
     this.submitted = true;

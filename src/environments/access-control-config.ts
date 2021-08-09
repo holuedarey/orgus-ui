@@ -1,3 +1,4 @@
+import { PowerSourceResources } from 'src/app/pages/assets/power-sources/power-source-resources';
 import { MeterResources } from './../app/pages/assets/meters/meter-resources';
 import { NbAccessControl } from "@nebular/security";
 import { AuthResources } from "src/app/pages/auth/auth-resources";
@@ -65,7 +66,9 @@ export const AccessControl: NbAccessControl[] = [
 
                 MeterResources.CreateMeter,
 
-                LoadPointResources.CreateLoadPoint
+                LoadPointResources.CreateLoadPoint,
+
+                PowerSourceResources.CreatePowerSource
             ],
             update: [
                 UsersResources.UpdateUsers,
@@ -73,7 +76,9 @@ export const AccessControl: NbAccessControl[] = [
 
                 MeterResources.UpdateMeter,
 
-                LoadPointResources.UpdateLoadPoint
+                LoadPointResources.UpdateLoadPoint,
+
+                PowerSourceResources.UpdatePowerSource
             ],
         },
 
@@ -89,6 +94,7 @@ export const AccessControl: NbAccessControl[] = [
 
                 MeterResources.ViewClientColumn,
                 LoadPointResources.ViewClientColumn,
+                PowerSourceResources.ViewPowerSourceColumn
             ],
         },
 

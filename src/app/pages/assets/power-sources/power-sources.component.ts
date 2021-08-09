@@ -1,3 +1,5 @@
+import { UserModel } from 'src/app/@core/models/user.model';
+import { GetUniqueArray } from 'src/app/@core/functions/data-request.funtion';
 import { ClientService } from 'src/app/@core/data-services/client.service';
 import { OnlineStatService } from 'src/app/@core/utils/online-stat.service';
 import { SeoService } from './../../../@core/utils/seo.service';
@@ -5,12 +7,13 @@ import { PermissionService } from 'src/app/@core/utils/permission.service';
 import { PowerSourceStatusToggleComponent } from './power-source-status-toggle/power-source-status-toggle.component';
 import { PowerSourceGisComponent } from './power-source-gis/power-source-gis.component';
 import { PowerSourceService } from './../../../@core/data-services/power-source.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PowerSourceDto } from 'src/app/@core/dtos/power-source.dto';
 import { PowerSourceResources } from './power-source-resources';
 import { PermissionEnum } from 'src/app/@core/enums/permission.enum';
-import { NbDialogService, NbToastrService } from '@nebular/theme';
+import { NbDialogService, NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { TokenService } from 'src/app/@core/utils/token.service';
+import { PowerSourceFormComponent } from './power-source-form/power-source-form.component';
 
 @Component({
   selector: 'app-power-sources',
@@ -18,10 +21,18 @@ import { TokenService } from 'src/app/@core/utils/token.service';
   styleUrls: ['./power-sources.component.scss']
 })
 export class PowerSourcesComponent implements OnInit {
+  @Input()
+  isCreateRequest = true;
 
+  @Input()
+  powerSourceForUpdate!: PowerSourceDto;
+
+  errors: string[] = [];
+  messages: string[] = [];
+  submitted = false;
 
   isLoadingData = true;
-  loadPointResources = PowerSourceService;
+  powerSourcesResources = PowerSourceResources;
 
   powerSources: PowerSourceDto[] = [];
 
@@ -87,15 +98,15 @@ export class PowerSourcesComponent implements OnInit {
     private tokenService: TokenService,
   ) { }
 
-  async handleCreateNewLoadPointClick() {
-    const loadPoint = await this.dialogService.open(LoadPointFormComponent, {
+  async handleCreateNewPowerSourceClick() {
+    const powerSource = await this.dialogService.open(PowerSourceFormComponent, {
       closeOnBackdropClick: false,
       context: { isCreateRequest: true },
       hasScroll: true,
       closeOnEsc: false
     }).onClose.toPromise();
-    if (loadPoint) {
-      this.loadPoints = [loadPoint, ...this.loadPoints];
+    if (powerSource) {
+      this.powerSources = [powerSource, ...this.powerSources];
     }
   }
 
@@ -107,12 +118,12 @@ export class PowerSourcesComponent implements OnInit {
 
   requestData(data?: any) {
     this.isLoadingData = true;
-    this.loadPointService.getLoadPoints(data)
+    this.powerSourceService.getPowerSource(data)
       .subscribe(
         (response) => {
           this.isLoadingData = false;
           if (response.status) {
-            this.loadPoints = GetUniqueArray([...response.data?.itemList ?? []], [...this.loadPoints]);
+            this.powerSources = GetUniqueArray([...response.data?.itemList ?? []], [...this.powerSources]);
           }
         },
         (err) => {
@@ -121,18 +132,18 @@ export class PowerSourcesComponent implements OnInit {
       )
   }
 
-  async updateLoadPoint({ data }: { data: LoadPointDto }) {
+  async updatePowerSource({ data }: { data: PowerSourceDto }) {
     const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
     const hasPermission = data.clientId === userModel.clientId;
     if (hasPermission) {
-      const loadPoint: LoadPointDto = await this.dialogService.open(LoadPointFormComponent, {
+      const powerSource: PowerSourceDto = await this.dialogService.open(PowerSourceFormComponent, {
         closeOnBackdropClick: false,
-        context: { isCreateRequest: false, loadPointForUpdate: (data) },
+        context: { isCreateRequest: false, powerSourceForUpdate: (data) },
         hasScroll: true,
         closeOnEsc: false
       }).onClose.toPromise();
-      if (loadPoint) {
-        this.loadPoints = GetUniqueArray([loadPoint], [...this.loadPoints], true);
+      if (powerSource) {
+        this.powerSources = GetUniqueArray([powerSource], [...this.powerSources], true);
       }
     } else {
       this.toastr.danger(
