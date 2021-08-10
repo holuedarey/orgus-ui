@@ -50,6 +50,11 @@ const routes: Routes = [
             path: PagesResourcesNavMap.get(PagesResources.PowerSourcesView)?.path,
             loadChildren: () => import('./assets/power-sources/power-sources.module')
               .then(m => m.PowerSourcesModule),
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.GeneratingSetView)?.path,
+            loadChildren: () => import('./assets/generating-set/generating-set.module')
+              .then(m => m.GeneratingSetModule),
           }
         ]
       },

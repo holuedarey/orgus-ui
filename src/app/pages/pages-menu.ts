@@ -42,6 +42,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: GlobalResources.get(PagesResources.PowerSourcesView)?.route,
         icon: 'wifi-outline',
       },
+      {
+        title: 'Generating Set',
+        link: GlobalResources.get(PagesResources.GeneratingSetView)?.route,
+        icon: 'options-outline',
+      },
     ]
   },
 

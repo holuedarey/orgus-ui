@@ -8,6 +8,7 @@ export enum PagesResources {
     MetersView = 'pages:meters-view',
     LoadPointsView = 'pages:load-points-view',
     PowerSourcesView = 'pages:power-sources-view',
+    GeneratingSetView = 'pages:generating-set-view',
 }
 
 export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
@@ -60,4 +61,11 @@ export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
             path: 'power-sources'
         }
     ],
+    [
+        PagesResources.GeneratingSetView,
+        {
+            route: `/app/assets/generating-set`,
+            path: 'generating-set'
+        }
+    ]
 ])
