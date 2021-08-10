@@ -111,7 +111,7 @@ export class PowerSourcesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.seo.setSeoData('Asset Management - [Load Points]', 'Manage load Point assets');
+    this.seo.setSeoData('Asset Management - [Power Source]', 'Manage Power Source assets');
     this.requestData();
     this.getClients();
   }
@@ -147,7 +147,7 @@ export class PowerSourcesComponent implements OnInit {
       }
     } else {
       this.toastr.danger(
-        'You do not have permission to update this loadPoint',
+        'You do not have permission to update this power source',
         'UNAUTHORISED',
         {
           position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,

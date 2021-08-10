@@ -57,7 +57,7 @@ export class PowerSourceStatusToggleComponent implements OnInit {
       {
         context: {
           context: `Are you sure you wish to proceed?`,
-          title: `${state ? 'Enable' : 'Disable'} Load Point`
+          title: `${state ? 'Enable' : 'Disable'} Power Source`
         },
       })
       .onClose.toPromise();
@@ -73,7 +73,7 @@ export class PowerSourceStatusToggleComponent implements OnInit {
         .subscribe(
           (response) => {
             if (response.status) {
-              this.toastr.success('Status update successful', 'Power Source Updated', { position: NbGlobalPhysicalPosition.BOTTOM_RIGHT })
+              this.toastr.success('Status update successful', 'Power Source Update', { position: NbGlobalPhysicalPosition.BOTTOM_RIGHT })
               this.isSubmitted = false;
               this.checked = state;
               this.cd.detectChanges();
@@ -97,7 +97,7 @@ export class PowerSourceStatusToggleComponent implements OnInit {
     if (showToaster) {
       this.toastr.danger(
         `${message ? message : 'An error occured during execution'}`,
-        'Power Source Updated',
+        'Power Source Update',
         { position: NbGlobalPhysicalPosition.BOTTOM_RIGHT, duration: 3000 }
       );
     }
