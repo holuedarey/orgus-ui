@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { GeneratingSetDto } from './../../../../@core/dtos/generating-set.dto';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-generating-set-gis',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GeneratingSetGisComponent implements OnInit {
 
+  @Input() value!: string | number;
+  @Input() rowData!: GeneratingSetDto
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.rowData);
   }
 
 }
