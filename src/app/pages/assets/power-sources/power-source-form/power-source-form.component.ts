@@ -2,7 +2,6 @@ import { UpdatePowerSourceDto } from './../../../../@core/dtos/update-power-sour
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
 import { map, takeWhile } from 'rxjs/operators';
 import { LocationService } from 'src/app/@core/data-services/location.service';
-import { MeterService } from 'src/app/@core/data-services/meter.service';
 import { PowerSourceService } from './../../../../@core/data-services/power-source.service';
 import { LocationDto } from 'src/app/@core/dtos/location.dto';
 import { Component, OnInit, Input } from '@angular/core';

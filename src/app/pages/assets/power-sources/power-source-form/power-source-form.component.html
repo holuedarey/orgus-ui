@@ -114,7 +114,7 @@
                                             {{country.name }}
                                         </nb-option>
                                     </nb-select>
-                                    <!-- input errors -->
+
                                     <div *ngIf="powerSourceForm.controls['countryId'].invalid && powerSourceForm.controls['countryId'].touched"
                                         class="text-danger xyz-in px-3 row">
                                         <small xyz="fade down" class="error-message"
@@ -138,7 +138,7 @@
                                             {{state.name }}
                                         </nb-option>
                                     </nb-select>
-                                    <!-- input errors -->
+                                   
                                     <div *ngIf="powerSourceForm.controls['stateId'].invalid && powerSourceForm.controls['stateId'].touched"
                                         class="text-danger xyz-in px-3 row">
                                         <small xyz="fade down" class="error-message"
@@ -161,7 +161,7 @@
                                             {{area.name }}
                                         </nb-option>
                                     </nb-select>
-                                    <!-- input errors -->
+                                  
                                     <div *ngIf="powerSourceForm.controls['lgaId'].invalid && powerSourceForm.controls['lgaId'].touched"
                                         class="text-danger xyz-in px-3 row">
                                         <small xyz="fade down" class="error-message"
@@ -181,7 +181,7 @@
                                         formControlName="address"
                                         [status]="powerSourceForm.controls['address'].touched ? (powerSourceForm.controls['address'].invalid ? 'danger' : 'success') : 'basic'">
                                         </textarea>
-                                    <!-- input errors -->
+                                   
                                     <div *ngIf="powerSourceForm.controls['address'].invalid && powerSourceForm.controls['address'].touched"
                                         class="text-danger xyz-in px-3 row">
                                         <small xyz="fade down" class="error-message"

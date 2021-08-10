@@ -103,5 +103,4 @@ export class PowerSourceStatusToggleComponent implements OnInit {
     }
   }
 
-
 }
