@@ -57,6 +57,7 @@ export class PowerSourceFormComponent implements OnInit {
     if (this.isCreateRequest) {
     } else {
       this.initUpdateForm();
+      this.powerSourceForm.controls['name'].disable()
     }
     this.trackRetrievedOptions();
   }
@@ -165,6 +166,7 @@ export class PowerSourceFormComponent implements OnInit {
       locationId: (this.powerSourceForm.get('lgaId')?.value as string).trim(),
       latitude: (this.powerSourceForm.get('latitude')?.value as number),
       longitude: (this.powerSourceForm.get('longitude')?.value as number),
+      address: (this.powerSourceForm.get('address')?.value as string),
     }
 
     this.powerSourceService.postPowerSource(postPowerSourceDto).subscribe(
@@ -200,6 +202,7 @@ export class PowerSourceFormComponent implements OnInit {
       locationId: (this.powerSourceForm.get('lgaId')?.value as string).trim(),
       latitude: (this.powerSourceForm.get('latitude')?.value as number),
       longitude: (this.powerSourceForm.get('longitude')?.value as number),
+      address: (this.powerSourceForm.get('address')?.value as string),
       id: this.powerSourceForUpdate.id
     };
 

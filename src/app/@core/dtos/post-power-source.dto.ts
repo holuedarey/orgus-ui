@@ -3,4 +3,5 @@ export interface PostPowerSourceDto {
     locationId: string;
     latitude: number;
     longitude: number;
+    address: string;
 }

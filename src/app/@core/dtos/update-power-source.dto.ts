@@ -4,4 +4,5 @@ export interface UpdatePowerSourceDto {
     locationId: string;
     latitude: number;
     longitude: number;
+    address: string;
 }
