@@ -1,6 +1,7 @@
 export interface UpdateGeneratingSetDto {
-    longitude: number;
-    latitude: number;
-    meterId: number;
+    powerSourceId: string;
+    energySource: number;
+    name: string;
+    meterId: string;
     id: string
 }

@@ -31,8 +31,11 @@ export class GeneratingSetComponent implements OnInit {
     name: {
       title: 'Name',
     },
-    address: {
-      title: 'Address',
+    energySource: {
+      title: 'Energy Source',
+    },
+    powerSource: {
+      title: 'Power Source',
     },
     meter: {
       title: 'Meter Number',
@@ -49,12 +52,6 @@ export class GeneratingSetComponent implements OnInit {
       valuePrepareFunction: (d: string, r: any) => {
         return r.client
       },      hide: !this.permissionService.canAccessByResource(PermissionEnum.View, this.generatingSetResources.ViewClientColumn)
-    },
-    gis: {
-      title: 'GIS',
-      renderComponent: GeneratingSetGisComponent,
-      type: 'custom',
-      filter: false
     },
     status: {
       title: 'Status',
@@ -88,7 +85,7 @@ export class GeneratingSetComponent implements OnInit {
   async handleCreateNewGeneratingSetClick() {
     const generatingSet = await this.dialogService.open(GeneratingSetFormComponent, {
       closeOnBackdropClick: false,
-      // context: { isCreateRequest: true },
+      context: { isCreateRequest: true },
       hasScroll: true,
       closeOnEsc: false
     }).onClose.toPromise();
@@ -125,7 +122,7 @@ export class GeneratingSetComponent implements OnInit {
     if (hasPermission) {
       const generatingSet: GeneratingSetDto = await this.dialogService.open(GeneratingSetFormComponent, {
         closeOnBackdropClick: false,
-        // context: { isCreateRequest: false, loadPointForUpdate: (data) },
+        context: { isCreateRequest: false, generatingSetForUpdate: (data) },
         hasScroll: true,
         closeOnEsc: false
       }).onClose.toPromise();
