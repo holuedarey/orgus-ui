@@ -78,58 +78,58 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-control-group row my-3">
+
+
+                            <div class="form-control-group row mb-3">
                                 <div class="col-sm-3">
-                                    <label class="label" for="input-powerSource">Power Source:</label>
+                                    <label class="label" for="input-role">Power Source:</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <nb-form-field>
-                                        <input nbInput fullWidth name="powerSource" id="input-powerSource"
-                                            placeholder="Power Source" #powerSource
-                                            [status]="generatingSetForm.controls['powerSource'].touched ? (generatingSetForm.controls['powerSource'].invalid ? 'danger' : 'success') : 'basic'"
-                                            formControlName="powerSource" autofocus>
-                                        <nb-icon *ngIf="generatingSetForm.controls['powerSource'].status === 'PENDING' "
-                                            nbSuffix icon="radio-button-off-outline"
-                                            [options]="{animation: {type: 'pulse'}}" pack="eva"></nb-icon>
-                                    </nb-form-field>
+                                    <nb-select fullWidth
+                                        [status]="generatingSetForm.controls['powerSourceId'].touched ? (generatingSetForm.controls['powerSourceId'].invalid ? 'danger' : 'success') : 'basic'"
+                                        placeholder="Select Power Source" formControlName="powerSourceId">
+                                        <nb-option *ngFor="let role of powersource$ | async; let i=count"
+                                            [value]="role.id">
+                                            {{role.name}}
+                                        </nb-option>
+                                    </nb-select>
 
-                                    <div *ngIf="generatingSetForm.controls['powerSource'].invalid && generatingSetForm.controls['powerSource'].touched"
+                                    <div *ngIf="generatingSetForm.controls['powerSourceId'].invalid && generatingSetForm.controls['powerSourceId'].touched"
                                         class="text-danger xyz-in px-3 row">
                                         <small xyz="fade down" class="error-message"
-                                            *ngIf="generatingSetForm.controls['powerSource'].errors?.required">
+                                            *ngIf="generatingSetForm.controls['powerSourceId'].errors?.required">
                                             Power Source is required!
-                                        </small>
-                                        <small xyz="fade down" class="error-message"
-                                            *ngIf="generatingSetForm.controls['powerSource'].errors?.meterUnavailable">
-                                            {{generatingSetForm.controls['powerSource'].errors?.meterUnavailable}}
                                         </small>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-control-group row my-3">
                                 <div class="col-sm-3">
-                                    <label class="label" for="input-enerySource">Enery Source:</label>
+                                    <label class="label" for="input-energySource">Enery Source:</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <nb-form-field>
-                                        <input nbInput fullWidth name="enerySource" id="input-enerySource"
-                                            placeholder="Enery Source" #enerySource
-                                            [status]="generatingSetForm.controls['enerySource'].touched ? (generatingSetForm.controls['enerySource'].invalid ? 'danger' : 'success') : 'basic'"
-                                            formControlName="enerySource" autofocus>
-                                        <nb-icon *ngIf="generatingSetForm.controls['enerySource'].status === 'PENDING' "
-                                            nbSuffix icon="radio-button-off-outline"
-                                            [options]="{animation: {type: 'pulse'}}" pack="eva"></nb-icon>
-                                    </nb-form-field>
 
-                                    <div *ngIf="generatingSetForm.controls['enerySource'].invalid && generatingSetForm.controls['enerySource'].touched"
+                                    <nb-select fullWidth
+                                        [status]="generatingSetForm.controls['energySource'].touched ? (generatingSetForm.controls['energySource'].invalid ? 'danger' : 'success') : 'basic'"
+                                        placeholder="Select Energy Source" formControlName="energySource">
+                                        <nb-option [value]="0">Unkonwn</nb-option>
+                                        <nb-option [value]="1">IPP</nb-option>
+                                        <nb-option [value]="2">IE</nb-option>
+                                        <nb-option [value]="3">Generator</nb-option>
+                                        <nb-option [value]="4">Solar</nb-option>
+                                        <nb-option [value]="5">Disco</nb-option>
+                                    </nb-select>
+
+
+                                    <div *ngIf="generatingSetForm.controls['energySource'].invalid && generatingSetForm.controls['energySource'].touched"
                                         class="text-danger xyz-in px-3 row">
                                         <small xyz="fade down" class="error-message"
-                                            *ngIf="generatingSetForm.controls['enerySource'].errors?.required">
+                                            *ngIf="generatingSetForm.controls['energySource'].errors?.required">
                                             Enery Source is required!
                                         </small>
                                         <small xyz="fade down" class="error-message"
-                                            *ngIf="generatingSetForm.controls['enerySource'].errors?.meterUnavailable">
-                                            {{generatingSetForm.controls['enerySource'].errors?.meterUnavailable}}
+                                            *ngIf="generatingSetForm.controls['energySource'].errors?.meterUnavailable">
+                                            {{generatingSetForm.controls['energySource'].errors?.meterUnavailable}}
                                         </small>
                                     </div>
                                 </div>
@@ -138,8 +138,9 @@
                         </form>
                     </nb-card-body>
                     <nb-card-footer>
-                        <button (click)="isCreateRequest ? saveGeneratingSet() : updateGeneratingSet()" [nbSpinner]="submitted"
-                            nbButton fullWidth status="success" [disabled]="submitted || !generatingSetForm.valid">
+                        <button (click)="isCreateRequest ? saveGeneratingSet() : updateGeneratingSet()"
+                            [nbSpinner]="submitted" nbButton fullWidth status="success"
+                            [disabled]="submitted || !generatingSetForm.valid">
                             {{isCreateRequest ? 'Save' : 'Update'}}
                         </button>
                     </nb-card-footer>

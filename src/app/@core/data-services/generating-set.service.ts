@@ -24,7 +24,7 @@ export class GeneratingSetsService implements AccessControlContract {
   ) { }
 
   getGeneratingSets(filter: any = { page: 1, size: environment.paginationLength }): Observable<ResponseDto<ListDto<GeneratingSetDto>>> {
-    const apiEndpoint = 'generatingSets';
+    const apiEndpoint = 'generatingSet';
     let params = new HttpParams()
     for (const key in filter) {
       params = params.set(key, filter[key])
@@ -34,25 +34,25 @@ export class GeneratingSetsService implements AccessControlContract {
 
   @HasAccess(PermissionEnum.Create, GeneratingSetResources.CreateGeneratingSet)
   postGeneratingSet(generatingSets: PostGeneratingSetDto): Observable<ResponseDto<GeneratingSetDto>> {
-    const apiEndpoint = 'generatingSets';
+    const apiEndpoint = 'generatingSet';
     return this.httpClient.post<ResponseDto<GeneratingSetDto>>(`${environment.apiUrl}/${apiEndpoint}`, generatingSets);
   }
 
   @HasAccess(PermissionEnum.Update, GeneratingSetResources.UpdateGeneratingSet)
   updateGeneratingSet(generatingSets: UpdateGeneratingSetDto): Observable<ResponseDto<any>> {
-    const apiEndpoint = `generatingSets/${generatingSets.id}`;
+    const apiEndpoint = `generatingSet/${generatingSets.id}`;
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, generatingSets);
   }
 
   @HasAccess(PermissionEnum.Update, GeneratingSetResources.UpdateGeneratingSet)
   enableGeneratingSet(id: string): Observable<ResponseDto<any>> {
-    const apiEndpoint = `generatingSets/enable/${id}`;
+    const apiEndpoint = `generatingSet/enable/${id}`;
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, null);
   }
 
   @HasAccess(PermissionEnum.Update, GeneratingSetResources.UpdateGeneratingSet)
   disableGeneratingSet(id: string): Observable<ResponseDto<any>> {
-    const apiEndpoint = `generatingSets/disable/${id}`;
+    const apiEndpoint = `generatingSet/disable/${id}`;
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, null);
   }
 

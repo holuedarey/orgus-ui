@@ -1,9 +1,9 @@
+import { PowerSourceService } from './../../../../@core/data-services/power-source.service';
+import { PowerSourceDto } from 'src/app/@core/dtos/power-source.dto';
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
-import { map, takeWhile } from 'rxjs/operators';
-import { LocationService } from 'src/app/@core/data-services/location.service';
+import { map } from 'rxjs/operators';
 import { MeterService } from 'src/app/@core/data-services/meter.service';
 import { GeneratingSetsService } from 'src/app/@core/data-services/generating-set.service';
-import { LocationDto } from 'src/app/@core/dtos/location.dto';
 import { GeneratingSetResources } from './../generating-set-resources';
 import { GeneratingSetDto } from './../../../../@core/dtos/generating-set.dto';
 import { Component, Input, OnInit } from '@angular/core';
@@ -32,17 +32,30 @@ export class GeneratingSetFormComponent implements OnInit {
   messages: string[] = [];
   submitted = false;
 
-  generatingSetForm!: FormGroup
+  generatingSetForm!: FormGroup;
+
+  powersource$!: Observable<PowerSourceDto[]>;
 
   generatingSetResources = GeneratingSetResources;
   isLive = true;
+
+  EnergySourceEnum = [
+    ['Unknown', 0],
+    ['IPP', 1],
+    ['IE', 2],
+    ['Generator', 3],
+    ['Solar', 4],
+    ['Disco', 5]
+  ]
 
   constructor(
     public dialogRef: NbDialogRef<GeneratingSetFormComponent>,
     private formBuilder: FormBuilder,
     private generatingSetService: GeneratingSetsService,
     private meterService: MeterService,
+    private powerSourceService: PowerSourceService
   ) {
+    this.powersource$ = this.powerSourceService.getPowerSource().pipe(map(d => d.data?.itemList as PowerSourceDto[]));
   }
 
   ngOnInit(): void {
@@ -72,9 +85,8 @@ export class GeneratingSetFormComponent implements OnInit {
         ],
         this.validateMeterAvailability.bind(this)
       ],
-        // powerSourceId: [null, Validators.required],
-        powerSource: ['', Validators.required],
-        enerySource: ['', Validators.required],
+      powerSourceId: [null, Validators.required],
+      energySource: ['', Validators.required],
     });
   }
 
@@ -121,9 +133,9 @@ export class GeneratingSetFormComponent implements OnInit {
         ],
         this.validateMeterAvailability.bind(this)
       ],
-        powerSource: [this.generatingSetForUpdate.powerSource, Validators.required],
-        powerSourceId: [this.generatingSetForUpdate.powerSourceId, Validators.required],
-        energySource: [this.generatingSetForUpdate.energySource, Validators.required],
+      powerSource: [this.generatingSetForUpdate.powerSource, Validators.required],
+      powerSourceId: [this.generatingSetForUpdate.powerSourceId, Validators.required],
+      energySource: [this.generatingSetForUpdate.energySource, Validators.required],
     });
 
   }
@@ -154,25 +166,6 @@ export class GeneratingSetFormComponent implements OnInit {
         })
       )
   }
-
-  // trackRetrievedOptions() {
-  //   this.generatingSetForm.get('countryId')?.valueChanges
-  //     .pipe(takeWhile(() => this.isLive))
-  //     .subscribe(
-  //       (val) => {
-  //         this.generatingSetForm.get('stateId')?.setValue(undefined);
-  //         this.states$ = this.locationService.getStates({ countryId: val }).pipe(map((r) => r.data as LocationDto[]));
-  //       }
-  //     );
-  //   this.generatingSetForm.get('stateId')?.valueChanges
-  //     .pipe(takeWhile(() => this.isLive))
-  //     .subscribe(
-  //       (val) => {
-  //         this.generatingSetForm.get('lgaId')?.setValue(undefined);
-  //         this.areas$ = this.locationService.getAreas({ stateId: val }).pipe(map((r) => r.data as LocationDto[]));
-  //       }
-  //     );
-  // }
 
   saveGeneratingSet(): void {
     this.errors = [];
@@ -215,10 +208,10 @@ export class GeneratingSetFormComponent implements OnInit {
     this.submitted = true;
 
     const updateGeneratingSet: UpdateGeneratingSetDto = {
-      name: (this.generatingSetForm.get('meter')?.value as string).trim(),
+      name: (this.generatingSetForm.get('name')?.value as string).trim(),
       energySource: (this.generatingSetForm.get('energySource')?.value as number),
       meterId: (this.generatingSetForm.get('meterId')?.value as string).trim(),
-      powerSourceId: (this.generatingSetForm.get('powerSource')?.value as string).trim(),
+      powerSourceId: (this.generatingSetForm.get('powerSourceId')?.value as string).trim(),
       id: this.generatingSetForUpdate.id
     };
 
