@@ -1,3 +1,4 @@
+import { GenSetColumnComponent } from './gen-set-column/gen-set-column.component';
 import { UserModel } from 'src/app/@core/models/user.model';
 import { GetUniqueArray } from 'src/app/@core/functions/data-request.funtion';
 import { ClientService } from 'src/app/@core/data-services/client.service';
@@ -48,6 +49,12 @@ export class PowerSourcesComponent implements OnInit {
     },
     lga: {
       title: 'LGA',
+    },
+    genSetCount: {
+      title: 'Gen. Set Count',
+      renderComponent: GenSetColumnComponent,
+      type: 'custom',
+      filter: false
     },
     clientId: {
       title: 'Client',

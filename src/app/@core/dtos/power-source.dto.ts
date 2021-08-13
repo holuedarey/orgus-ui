@@ -14,5 +14,6 @@ export interface PowerSourceDto {
     status: string;
     client: string;
     clientId: string;
-    modified: string
+    modified: string;
+    genSetCount:number
 }

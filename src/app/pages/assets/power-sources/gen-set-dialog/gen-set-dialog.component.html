@@ -1,0 +1,27 @@
+<div style="width: 100vw;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 mx-auto">
+                <nb-card class="xyz-in dialog" xyz="fade down-25%" style="max-height: 100vh; overflow-y: auto;">
+                    <nb-card-header class="font-weight-bold pb-1">
+                        <div class="row">
+                            <div class="col-auto h5"> Generating Sets </div>
+                            <div class="col ml-auto text-right">
+                                <button (click)="close()" class="p-1" nbButton ghost>
+                                    <nb-icon icon="close"></nb-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </nb-card-header>
+                        <nb-card-body>
+                            <p>{{powerSourceGenSet.name}}</p>
+                            <p *ngIf="!powerSourceGenSet.name">Null generating set</p>
+                        </nb-card-body>
+
+                    <nb-card-footer>
+                    </nb-card-footer>
+                </nb-card>
+            </div>
+        </div>
+    </div>
+</div>

@@ -54,6 +54,11 @@ export class PowerSourceService implements AccessControlContract {
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, powerSource);
   }
 
+  getPowerSourceGeneratingSet(id: any): Observable<ResponseDto<any>> {
+    const apiEndpoint = `PowerSources/get-powersource-generating-set/${id}`;
+    return this.httpClient.get<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`);
+  }
+
 
 
 }

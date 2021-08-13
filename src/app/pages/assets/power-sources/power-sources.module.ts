@@ -9,6 +9,8 @@ import { PowerSourcesComponent } from './power-sources.component';
 import { PowerSourceGisComponent } from './power-source-gis/power-source-gis.component';
 import { PowerSourceStatusToggleComponent } from './power-source-status-toggle/power-source-status-toggle.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GenSetColumnComponent } from './gen-set-column/gen-set-column.component';
+import { GenSetDialogComponent } from './gen-set-dialog/gen-set-dialog.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PowerSourceFormComponent,
     PowerSourcesComponent,
     PowerSourceGisComponent,
-    PowerSourceStatusToggleComponent
+    PowerSourceStatusToggleComponent,
+    GenSetColumnComponent,
+    GenSetDialogComponent
   ],
   imports: [
     CommonModule,
