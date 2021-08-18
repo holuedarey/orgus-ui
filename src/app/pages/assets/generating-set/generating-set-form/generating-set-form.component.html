@@ -5,7 +5,7 @@
                 <nb-card class="xyz-in dialog" xyz="fade down-25%" style="max-height: 100vh; overflow-y: auto;">
                     <nb-card-header class="font-weight-bold pb-1">
                         <div class="row">
-                            <div class="col-auto h5">{{isCreateRequest ? 'Create' : 'Update'}} Generating Set </div>
+                            <div class="col-auto h5">{{isCreateRequest ? 'Create' : 'Update'}} Generating Unit </div>
                             <div class="col ml-auto text-right">
                                 <button [disabled]="submitted" (click)="close()" class="p-1" nbButton ghost>
                                     <nb-icon icon="close"></nb-icon>
@@ -82,12 +82,12 @@
 
                             <div class="form-control-group row mb-3">
                                 <div class="col-sm-3">
-                                    <label class="label" for="input-role">Power Source:</label>
+                                    <label class="label" for="input-role">Power Station:</label>
                                 </div>
                                 <div class="col-sm-9">
                                     <nb-select fullWidth
                                         [status]="generatingSetForm.controls['powerSourceId'].touched ? (generatingSetForm.controls['powerSourceId'].invalid ? 'danger' : 'success') : 'basic'"
-                                        placeholder="Select Power Source" formControlName="powerSourceId">
+                                        placeholder="Select Power Station" formControlName="powerSourceId">
                                         <nb-option *ngFor="let role of powersource$ | async; let i=count"
                                             [value]="role.id">
                                             {{role.name}}
@@ -98,14 +98,14 @@
                                         class="text-danger xyz-in px-3 row">
                                         <small xyz="fade down" class="error-message"
                                             *ngIf="generatingSetForm.controls['powerSourceId'].errors?.required">
-                                            Power Source is required!
+                                            Power Station is required!
                                         </small>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-control-group row my-3">
                                 <div class="col-sm-3">
-                                    <label class="label" for="input-energySource">Enery Source:</label>
+                                    <label class="label" for="input-energySource">Energy Source:</label>
                                 </div>
                                 <div class="col-sm-9">
 

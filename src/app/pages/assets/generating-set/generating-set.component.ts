@@ -5,7 +5,6 @@ import { ClientService } from 'src/app/@core/data-services/client.service';
 import { OnlineStatService } from 'src/app/@core/utils/online-stat.service';
 import { PermissionService } from 'src/app/@core/utils/permission.service';
 import { GeneratingSetStatusToggleComponent } from './generating-set-status-toggle/generating-set-status-toggle.component';
-import { GeneratingSetGisComponent } from './generating-set-gis/generating-set-gis.component';
 import { GeneratingSetDto } from './../../../@core/dtos/generating-set.dto';
 import { GeneratingSetResources } from './generating-set-resources';
 import { Component, OnInit } from '@angular/core';
@@ -31,11 +30,11 @@ export class GeneratingSetComponent implements OnInit {
     name: {
       title: 'Name',
     },
-    energySource: {
+    energySourceName: {
       title: 'Energy Source',
     },
     powerSource: {
-      title: 'Power Source',
+      title: 'Power Station',
     },
     meter: {
       title: 'Meter Number',

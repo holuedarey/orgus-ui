@@ -161,7 +161,7 @@ export class GeneratingSetFormComponent implements OnInit {
             if (m.message?.includes(' not exist')) {
               return { meterUnavailable: `Meter ${value} does not exist` }
             }
-            return { meterUnavailable: `Meter ${value} is already assigned to a generating set` }
+            return { meterUnavailable: `Meter ${value} is already assigned to a generating unit` }
           }
         })
       )
@@ -183,7 +183,7 @@ export class GeneratingSetFormComponent implements OnInit {
       (result) => {
         this.submitted = false;
         if (result.status) {
-          this.messages = ['Generating set creation successful'];
+          this.messages = ['Generating unit creation successful'];
           setTimeout(() => {
             this.dialogRef.close(result.data);
           }, 1200);
@@ -196,7 +196,7 @@ export class GeneratingSetFormComponent implements OnInit {
       (error: ResponseDto<string>) => {
         this.submitted = false;
         this.errors = [
-          'An Error occured while creating generating set .',
+          'An Error occured while creating generating unit .',
         ];
       }
     );
@@ -219,7 +219,7 @@ export class GeneratingSetFormComponent implements OnInit {
       (result) => {
         this.submitted = false;
         if (result.status) {
-          this.messages = ['Generating set update successful'];
+          this.messages = ['Generating unit update successful'];
           setTimeout(() => {
             this.dialogRef.close(result.data);
           }, 1200);
@@ -232,7 +232,7 @@ export class GeneratingSetFormComponent implements OnInit {
       (error: ResponseDto<string>) => {
         this.submitted = false;
         this.errors = [
-          'An Error occured while updating Generating set.',
+          'An Error occured while updating Generating unit.',
         ];
       }
     );

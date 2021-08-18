@@ -116,6 +116,30 @@
                                 </div>
                             </div>
 
+                            <div class="form-control-group row mb-3">
+                                <div class="col-sm-3">
+                                    <label class="label" for="input-role">Tariff:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <nb-select fullWidth
+                                        [status]="meterForm.controls['tariffId'].touched ? (meterForm.controls['tariffId'].invalid ? 'danger' : 'success') : 'basic'"
+                                        placeholder="Select Tariff" formControlName="tariffId">
+                                        <nb-option *ngFor="let tariff of tariff$ | async; let i=count"
+                                            [value]="tariff.id">
+                                            {{tariff.name}}
+                                        </nb-option>
+                                    </nb-select>
+
+                                    <div *ngIf="meterForm.controls['tariffId'].invalid && meterForm.controls['tariffId'].touched"
+                                        class="text-danger xyz-in px-3 row">
+                                        <small xyz="fade down" class="error-message"
+                                            *ngIf="meterForm.controls['tariffId'].errors?.required">
+                                            Tariff is required!
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
                         </form>
                     </nb-card-body>
                     <nb-card-footer>

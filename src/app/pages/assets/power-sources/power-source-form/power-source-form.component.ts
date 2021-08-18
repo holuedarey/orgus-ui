@@ -172,7 +172,7 @@ export class PowerSourceFormComponent implements OnInit {
       (result) => {
         this.submitted = false;
         if (result.status) {
-          this.messages = ['Power Source creation successful'];
+          this.messages = ['Power Station creation successful'];
           setTimeout(() => {
             this.dialogRef.close(result.data);
           }, 1200);
@@ -185,7 +185,7 @@ export class PowerSourceFormComponent implements OnInit {
       (error: ResponseDto<string>) => {
         this.submitted = false;
         this.errors = [
-          'An Error occured while creating power source.',
+          'An Error occured while creating power station.',
         ];
       }
     );
@@ -209,7 +209,7 @@ export class PowerSourceFormComponent implements OnInit {
       (result) => {
         this.submitted = false;
         if (result.status) {
-          this.messages = ['Power Source update successful'];
+          this.messages = ['Power station update successful'];
           setTimeout(() => {
             this.dialogRef.close(result.data);
           }, 1200);
@@ -222,7 +222,7 @@ export class PowerSourceFormComponent implements OnInit {
       (error: ResponseDto<string>) => {
         this.submitted = false;
         this.errors = [
-          'An Error occured while updating power source.',
+          'An Error occured while updating power station.',
         ];
       }
     );

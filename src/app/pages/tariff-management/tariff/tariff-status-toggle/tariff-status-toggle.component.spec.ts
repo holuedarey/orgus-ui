@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GeneratingSetGisComponent } from './generating-set-gis.component';
+import { TariffStatusToggleComponent } from './tariff-status-toggle.component';
 
-describe('GeneratingSetGisComponent', () => {
-  let component: GeneratingSetGisComponent;
-  let fixture: ComponentFixture<GeneratingSetGisComponent>;
+describe('TariffStatusToggleComponent', () => {
+  let component: TariffStatusToggleComponent;
+  let fixture: ComponentFixture<TariffStatusToggleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GeneratingSetGisComponent ]
+      declarations: [ TariffStatusToggleComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GeneratingSetGisComponent);
+    fixture = TestBed.createComponent(TariffStatusToggleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

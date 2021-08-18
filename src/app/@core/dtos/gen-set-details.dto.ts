@@ -2,15 +2,14 @@ export interface PowerSourceGenSetDto {
     id: string
     created: string;
     name: string;
-    latitude: number;
-    longitude: number;
+    energySource: number;
+    energySourceName: string;
+    meter: string;
+    meterId: string;
     client: string;
     clientId: string;
-    lga: string;
-    lgaId: string;
+    powerSource: string;
+    powerSourceId: string;
     status: string
     modified: string;
-    address: string;
-    stateId: string;
-    state: string
 }

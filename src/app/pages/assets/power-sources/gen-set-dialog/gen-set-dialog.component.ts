@@ -1,3 +1,4 @@
+import { PowerSourceDto } from 'src/app/@core/dtos/power-source.dto';
 import { NbDialogRef } from '@nebular/theme';
 import { Component, OnInit, Input} from '@angular/core';
 import { PowerSourceGenSetDto } from 'src/app/@core/dtos/gen-set-details.dto';
@@ -8,14 +9,14 @@ import { PowerSourceGenSetDto } from 'src/app/@core/dtos/gen-set-details.dto';
   styleUrls: ['./gen-set-dialog.component.scss']
 })
 export class GenSetDialogComponent implements OnInit {
-  @Input() powerSourceGenSet!: PowerSourceGenSetDto;
+  @Input() powerSourceGenSet!: PowerSourceDto[];
 
   constructor(
     public dialogRef: NbDialogRef<GenSetDialogComponent>,
   ) {}
 
   ngOnInit(): void {
-    console.log('');
+    console.log(this.powerSourceGenSet);
     
   }
 

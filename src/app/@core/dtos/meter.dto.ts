@@ -9,4 +9,6 @@ export interface MeterDto {
     status: string;
     client: string;
     clientId: string;
+    tariff: string;
+    tarriffId: string
 }

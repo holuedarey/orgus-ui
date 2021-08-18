@@ -1,3 +1,6 @@
+import { GetUniqueArray } from 'src/app/@core/functions/data-request.funtion';
+import { PowerSourceGenSetDto } from 'src/app/@core/dtos/gen-set-details.dto';
+import { GeneratingSetDto } from './../../../../@core/dtos/generating-set.dto';
 import { PowerSourceService } from './../../../../@core/data-services/power-source.service';
 import { GenSetDialogComponent } from './../gen-set-dialog/gen-set-dialog.component';
 import { PowerSourceDto } from 'src/app/@core/dtos/power-source.dto';
@@ -11,6 +14,7 @@ import { NbDialogService } from '@nebular/theme';
 })
 export class GenSetColumnComponent implements OnInit {
   @Input() rowData!: PowerSourceDto;
+  powerSourceGenSetDto!: PowerSourceGenSetDto;
 
   isLoadingData = true;
 
@@ -29,17 +33,23 @@ export class GenSetColumnComponent implements OnInit {
     this.powerSourceService.getPowerSourceGeneratingSet(id)
       .subscribe(
         (response) => {
+          console.log(response.data);
           this.isLoadingData = false;
           if (response.status) {
-            this.dialogService.open(GenSetDialogComponent, {
-              closeOnBackdropClick: false,
-              context: {
-                powerSourceGenSet: (response.data)
-              },
-              hasScroll: true,
-              closeOnEsc: false
-            });
+
+            for(let result of response.data.itemList){
+              console.log(result.name);
+           }
+
           };
+          this.dialogService.open(GenSetDialogComponent, {
+            closeOnBackdropClick: false,
+            context: {
+              powerSourceGenSet: (response.data?.itemList)
+            },
+            hasScroll: true,
+            closeOnEsc: false
+          });
 
         },
         (err) => {

@@ -58,6 +58,25 @@ const routes: Routes = [
           }
         ]
       },
+      {
+        path: PagesResourcesNavMap.get(PagesResources.TariffModuleView)?.path,
+        children: [
+          {
+            path: '',
+            redirectTo: PagesResourcesNavMap.get(PagesResources.TariffView)?.path,
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.TariffView)?.path,
+            loadChildren: () => import('./tariff-management/tariff/tariff.module')
+              .then(m => m.TariffModule),
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.ServiceBandView)?.path,
+            loadChildren: () => import('./tariff-management/service-band/service-band.module')
+              .then(m => m.ServiceBandModule),
+          },
+        ]
+      },
     ]
   }
 ];

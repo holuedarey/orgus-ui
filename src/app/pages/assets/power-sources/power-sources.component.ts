@@ -51,7 +51,7 @@ export class PowerSourcesComponent implements OnInit {
       title: 'LGA',
     },
     genSetCount: {
-      title: 'Gen. Set Count',
+      title: 'Gen. Unit Count',
       renderComponent: GenSetColumnComponent,
       type: 'custom',
       filter: false
