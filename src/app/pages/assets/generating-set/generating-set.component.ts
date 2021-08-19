@@ -94,7 +94,7 @@ export class GeneratingSetComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.seo.setSeoData('Asset Management - [Load Points]', 'Manage load Point assets');
+    this.seo.setSeoData('Asset Management - [Generating Units]', 'Manage generating units assets');
     this.requestData();
     this.getClients();
   }
@@ -130,7 +130,7 @@ export class GeneratingSetComponent implements OnInit {
       }
     } else {
       this.toastr.danger(
-        'You do not have permission to update this generating set',
+        'You do not have permission to update this generating unit',
         'UNAUTHORISED',
         {
           position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
