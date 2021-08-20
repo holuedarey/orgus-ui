@@ -12,6 +12,8 @@ export enum PagesResources {
     TariffModuleView = 'pages:tariff-management-view',
     TariffView = 'pages:tarrif-view',
     ServiceBandView = 'pages:service-band-view',
+    PerformanceModuleView = 'pages:performance-module-view',
+    PowerSourcePerformanceView = 'pages:power-source-performance-view',
 }
 
 export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
@@ -90,6 +92,20 @@ export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
         {
             route: `/app/tariff-management/service-band`,
             path: 'service-band'
+        }
+    ],
+    [
+        PagesResources.PerformanceModuleView,
+        {
+            route: `/app/performance-management`,
+            path: 'performance-management'
+        }
+    ],
+    [
+        PagesResources.PowerSourcePerformanceView,
+        {
+            route: `/app/performance-management/power-source-performance`,
+            path: 'power-source-performance'
         }
     ],
 ])

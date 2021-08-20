@@ -50,6 +50,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ]
   },
   {
+    title: 'Analytics/Performances',
+    icon: 'briefcase-outline',
+    children: [
+      {
+        title: 'Power Station',
+        link: GlobalResources.get(PagesResources.PowerSourcePerformanceView)?.route,
+        icon: 'speaker-outline',
+      },
+    ]
+  },
+  {
     title: 'Tariff Management',
     icon: 'shopping-bag-outline',
     children: [
