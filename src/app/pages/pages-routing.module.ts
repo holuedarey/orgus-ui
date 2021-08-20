@@ -50,7 +50,31 @@ const routes: Routes = [
             path: PagesResourcesNavMap.get(PagesResources.PowerSourcesView)?.path,
             loadChildren: () => import('./assets/power-sources/power-sources.module')
               .then(m => m.PowerSourcesModule),
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.GeneratingSetView)?.path,
+            loadChildren: () => import('./assets/generating-set/generating-set.module')
+              .then(m => m.GeneratingSetModule),
           }
+        ]
+      },
+      {
+        path: PagesResourcesNavMap.get(PagesResources.TariffModuleView)?.path,
+        children: [
+          {
+            path: '',
+            redirectTo: PagesResourcesNavMap.get(PagesResources.TariffView)?.path,
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.TariffView)?.path,
+            loadChildren: () => import('./tariff-management/tariff/tariff.module')
+              .then(m => m.TariffModule),
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.ServiceBandView)?.path,
+            loadChildren: () => import('./tariff-management/service-band/service-band.module')
+              .then(m => m.ServiceBandModule),
+          },
         ]
       },
     ]

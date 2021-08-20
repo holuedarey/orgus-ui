@@ -1,0 +1,4 @@
+<ng-container>{{rowData?.genSetCount}} 
+    <a *ngIf="rowData?.genSetCount" nbButton (click)="viewGenSetModal(rowData.id)"
+    appearance="ghost" status="default" size="tiny">&nbsp; View</a>
+</ng-container>

@@ -8,6 +8,10 @@ export enum PagesResources {
     MetersView = 'pages:meters-view',
     LoadPointsView = 'pages:load-points-view',
     PowerSourcesView = 'pages:power-sources-view',
+    GeneratingSetView = 'pages:generating-set-view',
+    TariffModuleView = 'pages:tariff-management-view',
+    TariffView = 'pages:tarrif-view',
+    ServiceBandView = 'pages:service-band-view',
 }
 
 export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
@@ -58,6 +62,34 @@ export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
         {
             route: `/app/assets/power-sources`,
             path: 'power-sources'
+        }
+    ],
+    [
+        PagesResources.GeneratingSetView,
+        {
+            route: `/app/assets/generating-set`,
+            path: 'generating-set'
+        }
+    ],
+    [
+        PagesResources.TariffModuleView,
+        {
+            route: `/app/tariff-management`,
+            path: 'tariff-management'
+        }
+    ],
+    [
+        PagesResources.TariffView,
+        {
+            route: `/app/tariff-management/tariff`,
+            path: 'tariff'
+        }
+    ],
+    [
+        PagesResources.ServiceBandView,
+        {
+            route: `/app/tariff-management/service-band`,
+            path: 'service-band'
         }
     ],
 ])

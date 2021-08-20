@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
-import { isLatitude, isLongitude} from 'class-validator';
+import { isLatitude, isLongitude } from 'class-validator';
 import { Observable, of } from 'rxjs';
 import { debounce, map, takeWhile } from 'rxjs/operators';
 import { LoadPointService } from 'src/app/@core/data-services/load-point.service';
@@ -86,7 +86,7 @@ export class LoadPointFormComponent implements OnInit {
       latitude: ['', [
         Validators.required,
         this.validateLatitude.bind(this)]],
-      longitude: ['',[
+      longitude: ['', [
         Validators.required,
         this.validateLongitude.bind(this)]],
       address: ['', Validators.required],
@@ -94,8 +94,8 @@ export class LoadPointFormComponent implements OnInit {
   }
 
   validateLatitude(input: FormControl) {
-    const value = (input.value as string).trim();
-    const isValidlatitude = isLatitude(value);
+    const value = input.value;
+    const isValidlatitude = isLatitude(input.value);
     if (isValidlatitude) {
       return;
     } else {
@@ -105,8 +105,8 @@ export class LoadPointFormComponent implements OnInit {
     }
   }
   validateLongitude(input: FormControl) {
-    const value = (input.value as string).trim();
-    const isValidLongitude = isLongitude(value);
+    const value = input.value;
+    const isValidLongitude = isLongitude(input.value);
     if (isValidLongitude) {
       return;
     } else {
@@ -115,7 +115,7 @@ export class LoadPointFormComponent implements OnInit {
       }
     }
   }
-  keyPressNumbersOnly(event:any) {
+  keyPressNumbersOnly(event: any) {
     var charCode = (event.which) ? event.which : event.keyCode;
     if (charCode != 46 && charCode > 31
       && (charCode < 48 || charCode > 57)) {

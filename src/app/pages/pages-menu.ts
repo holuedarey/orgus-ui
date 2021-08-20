@@ -38,9 +38,30 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'code-download-outline',
       },
       {
-        title: 'Power Sources',
+        title: 'Power Stations',
         link: GlobalResources.get(PagesResources.PowerSourcesView)?.route,
         icon: 'wifi-outline',
+      },
+      {
+        title: 'Generating Units',
+        link: GlobalResources.get(PagesResources.GeneratingSetView)?.route,
+        icon: 'options-outline',
+      },
+    ]
+  },
+  {
+    title: 'Tariff Management',
+    icon: 'shopping-bag-outline',
+    children: [
+      {
+        title: 'Service band',
+        link: GlobalResources.get(PagesResources.ServiceBandView)?.route,
+        icon: 'award-outline',
+      },
+      {
+        title: 'Tariff',
+        link: GlobalResources.get(PagesResources.TariffView)?.route,
+        icon: 'clipboard-outline',
       },
     ]
   },

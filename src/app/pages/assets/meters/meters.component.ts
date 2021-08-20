@@ -45,6 +45,9 @@ export class MetersComponent implements OnInit {
         return r.meterManufacturer
       },
     },
+    tariff: {
+      title: 'Tariff',
+    },
     phaseCount: {
       title: 'Phase Count',
     },
