@@ -1,0 +1,63 @@
+.manage-btn{
+    color: #111111 !important;
+    border-radius: 4px !important;
+    background: #FFFFFF !important;
+    border: 2px solid #111111 !important;
+}
+
+.heading-info{
+    color: #111111;
+}
+.top-spacer{
+    margin-top: 12px;
+}
+
+.nb-card{
+    background: #FFFFFF !important;
+}
+
+.stat{
+    height: 157px;
+    background: #FFFFFF !important;
+    .description-stat{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 18px;
+        color: #F40909;
+        display: flex;
+        align-items: center;
+    }
+    .pad{
+        padding-top: 40px;
+        padding-left: 30px;
+    }
+    .heading-stat{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        color: #000000;
+    }
+}
+.select-card{
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    .select-card-icon{
+        position: relative;
+        top: 9px;
+    }
+    
+}
+.m-b-20{
+    margin-bottom: 20px !important;
+}
+
+.select-button .placeholder{
+    background: #fff !important;
+    color: blue !important;
+    border: 1px solid #fff !important;
+}

@@ -17,6 +17,9 @@ export class HasPermissionGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const hasAccess = this.permissionService.canView(state.url.split('?')[0]);
+
+    console.log('hasAccess :: ', hasAccess);
+    
     if (hasAccess) {
       return true;
     } else {
