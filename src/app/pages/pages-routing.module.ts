@@ -77,6 +77,20 @@ const routes: Routes = [
           },
         ]
       },
+      {
+        path: PagesResourcesNavMap.get(PagesResources.PerformanceModuleView)?.path,
+        children: [
+          {
+            path: '',
+            redirectTo: PagesResourcesNavMap.get(PagesResources.PowerSourcePerformanceView)?.path,
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.PowerSourcePerformanceView)?.path,
+            loadChildren: () => import('./performances/power-source-performance/power-source-performance.module')
+              .then(m => m.PowerSourcePerformanceModule),
+          },
+        ]
+      },
     ]
   }
 ];
