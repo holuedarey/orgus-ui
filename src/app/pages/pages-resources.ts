@@ -7,7 +7,6 @@ export enum PagesResources {
     AssetsView = 'pages:assets-view',
     MetersView = 'pages:meters-view',
     LoadPointsView = 'pages:load-points-view',
-    LoadPointManagementsView = 'pages:load-point-managements-view',
     PowerSourcesView = 'pages:power-sources-view',
     GeneratingSetView = 'pages:generating-set-view',
     TariffModuleView = 'pages:tariff-management-view',
@@ -15,6 +14,7 @@ export enum PagesResources {
     ServiceBandView = 'pages:service-band-view',
     PerformanceModuleView = 'pages:performance-module-view',
     PowerSourcePerformanceView = 'pages:power-source-performance-view',
+    LoadPointPerformanceView = 'pages:load-point-performance-view',
 }
 
 export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
@@ -60,14 +60,6 @@ export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
             path: 'load-points'
         }
     ],
-    [
-        PagesResources.LoadPointManagementsView,
-        {
-            route: `/app/assets/load-point-managements`,
-            path: 'load-point-managements'
-        }
-    ],
-
     [
         PagesResources.PowerSourcesView,
         {
@@ -115,6 +107,14 @@ export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
         {
             route: `/app/performance-management/power-source-performance`,
             path: 'power-source-performance'
+        }
+    ],
+
+    [
+        PagesResources.LoadPointPerformanceView,
+        {
+            route: `/app/performance-management/load-point-performance`,
+            path: 'load-point-performance'
         }
     ],
 ])

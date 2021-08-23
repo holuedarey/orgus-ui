@@ -3,7 +3,6 @@ import { NbToastrService } from '@nebular/theme';
 import { environment } from 'src/environments/environment';
 import { ServiceWorkerService } from './@core/utils/service-worker.service';
 import { isMobile } from 'mobile-device-detect';
-import { PagesResources, PagesResourcesNavMap } from './pages/pages-resources';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +16,6 @@ export class AppComponent {
     private sw: ServiceWorkerService,
     private toaster: NbToastrService,
   ) {
-    console.log("data :: ", PagesResourcesNavMap.get(PagesResources.LoadPointManagementsView)?.path,);
-    
     if (environment.production) {
       this.initServiceWorker();
     }

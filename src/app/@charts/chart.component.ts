@@ -14,4 +14,8 @@ export class ChartComponent {
 
   constructor() { }
 
+  ngOnInit():void{
+    // console.log("data incoming :: ", this.data);
+    // console.log("config incoming :: ", this.config);
+  }
 }

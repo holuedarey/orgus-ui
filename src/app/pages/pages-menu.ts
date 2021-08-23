@@ -37,12 +37,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: GlobalResources.get(PagesResources.LoadPointsView)?.route,
         icon: 'code-download-outline',
       },
-
-      {
-        title: 'Load Point Managements',
-        link: GlobalResources.get(PagesResources.LoadPointsView)?.route,
-        icon: 'code-download-outline',
-      },
       {
         title: 'Power Stations',
         link: GlobalResources.get(PagesResources.PowerSourcesView)?.route,
@@ -62,6 +56,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Power Station',
         link: GlobalResources.get(PagesResources.PowerSourcePerformanceView)?.route,
+        icon: 'speaker-outline',
+      },
+      {
+        title: 'Load Point',
+        link: GlobalResources.get(PagesResources.LoadPointPerformanceView)?.route,
         icon: 'speaker-outline',
       },
     ]

@@ -1,18 +1,12 @@
 <div class="container-fluid p-0 m-0">
+    <app-performance-header-card [title]="title" [btnData]="btnData"></app-performance-header-card>
+
     <div class="row m-0">
-         <div class="col-12">
-            <div class="row">
-                <div class="col-md-9 col-xs-7">
-                    <h4>LOADPOINT MANAGEMENT</h4>
-                </div>
-                <div class="col-md-3 col-xs-5">
-                    <button nbButton outline class="manage-btn">Manage Loadpoint</button>
-                </div>
-            </div>
+        <div class="col-12">
 
             <div class="row top-spacer">
                 <div class="col-sm-6 order-sm-12">
-                    
+
                     <div class="row select-card">
                         <div class="col-6">
                             <span class="select-card-icon">
@@ -20,9 +14,12 @@
                                 ASSET TYPE
                             </span>
                         </div>
-                        <div class="col-6">
-                            <nb-select class="no-outline"  fullWidth size="medium" placeholder="Select Showcase" [(selected)]="selectedItem">
-                                <nb-option value="Loadpoint"> LOAD</nb-option>
+                        <div class="col-6 top-space">
+                            <nb-select class="no-outline" disabled fullWidth size="tiny" placeholder="Select Showcase"
+                                [(selected)]="selectedItemLoadPoint">
+                                <nb-option *ngFor="let loadpoint of loadpoints" [value]="loadpoint.value">
+                                    {{loadpoint.value }}
+                                </nb-option>
                             </nb-select>
                         </div>
 
@@ -34,14 +31,12 @@
                                 LOCATION
                             </span>
                         </div>
-                        <div class="col-6">
-                            <nb-select fullWidth size="medium" placeholder="Select Showcase" [(selected)]="selectedItem">
-                                <nb-option value="">Option empty</nb-option>
-                                <nb-option value="0">Option 0</nb-option>
-                                <nb-option value="1">Option 1</nb-option>
-                                <nb-option value="2">Option 2</nb-option>
-                                <nb-option value="3">Option 3</nb-option>
-                                <nb-option value="4">Option 4</nb-option>
+                        <div class="col-6 top-space">
+                            <nb-select fullWidth size="tiny" placeholder="Select Location"
+                                [(selected)]="selectedItemLocation">
+                                <nb-option *ngFor="let location of loacations" [value]="location.value">
+                                    {{location.value }}
+                                </nb-option>
                             </nb-select>
                         </div>
                     </div>
@@ -53,14 +48,10 @@
                             </span>
                         </div>
                         <div class="col-6">
-                            <nb-select fullWidth size="medium" placeholder="Select Showcase" [(selected)]="selectedItem">
-                                <nb-option value="">Option empty</nb-option>
-                                <nb-option value="0">Option 0</nb-option>
-                                <nb-option value="1">Option 1</nb-option>
-                                <nb-option value="2">Option 2</nb-option>
-                                <nb-option value="3">Option 3</nb-option>
-                                <nb-option value="4">Option 4</nb-option>
-                            </nb-select>
+                            <input nbInput placeholder="Pick Date" [nbDatepicker]="formcontrol"
+                                [formControl]="formControl">
+                            <!-- <nb-datepicker #formcontrol></nb-datepicker> -->
+                            <nb-rangepicker #formcontrol></nb-rangepicker>
                         </div>
 
 
@@ -85,27 +76,25 @@
             </div>
             <div class="row top-spacer">
                 <div class="col-md-6">
+                    <h5 class="chart-heading">ENERGY CONSUMPTION</h5>
                     <nb-card>
                         <nb-card-body>
-                            A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
-                            Originally, nebula was a name for any diffuse astronomical object,
-                            including galaxies beyond the Milky Way.
+                           <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
                         </nb-card-body>
                     </nb-card>
 
                 </div>
                 <div class="col-md-6">
+                    <h5 class="chart-heading">ENERGY COST</h5>
                     <nb-card>
                         <nb-card-body>
-                            A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
-                            Originally, nebula was a name for any diffuse astronomical object,
-                            including galaxies beyond the Milky Way.
+                           <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
                         </nb-card-body>
                     </nb-card>
 
                 </div>
+                
             </div>
-
             <div class="row">
                 <div class="row m-0">
                     <div class="col-12">
