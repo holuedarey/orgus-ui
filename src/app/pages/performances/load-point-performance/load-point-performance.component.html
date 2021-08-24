@@ -1,86 +1,25 @@
 <div class="container-fluid p-0 m-0">
-    <app-performance-header-card [title]="title" [btnData]="btnData"></app-performance-header-card>
-
     <div class="row m-0">
         <div class="col-12">
+            <app-performance-header-card [title]="title" [btnData]="btnData">
+            </app-performance-header-card>
 
-            <div class="row top-spacer">
-                <div class="col-sm-6 order-sm-12">
+            <app-performance-stat-filter-card 
+            [cardTitle]="cardTitle" 
+            [isLoading]="isLoadingData"
+            [assetType]="loadpoints"
+            [locations]="loadPointLocations"
+            [energyUsed]="energyUsed"
+            [energyCost]="energyCost"
+            [queryDate]=""></app-performance-stat-filter-card>
 
-                    <div class="row select-card">
-                        <div class="col-6">
-                            <span class="select-card-icon">
-                                <nb-icon icon="flash"></nb-icon>
-                                ASSET TYPE
-                            </span>
-                        </div>
-                        <div class="col-6 top-space">
-                            <nb-select class="no-outline" disabled fullWidth size="tiny" placeholder="Select Showcase"
-                                [(selected)]="selectedItemLoadPoint">
-                                <nb-option *ngFor="let loadpoint of loadpoints" [value]="loadpoint.value">
-                                    {{loadpoint.value }}
-                                </nb-option>
-                            </nb-select>
-                        </div>
-
-                    </div>
-                    <div class="row top-spacer select-card">
-                        <div class="col-6">
-                            <span class="select-card-icon">
-                                <nb-icon icon="map"></nb-icon>
-                                LOCATION
-                            </span>
-                        </div>
-                        <div class="col-6 top-space">
-                            <nb-select fullWidth size="tiny" placeholder="Select Location"
-                                [(selected)]="selectedItemLocation">
-                                <nb-option *ngFor="let location of loacations" [value]="location.value">
-                                    {{location.value }}
-                                </nb-option>
-                            </nb-select>
-                        </div>
-                    </div>
-                    <div class="row top-spacer select-card m-b-20">
-                        <div class="col-6">
-                            <span class="select-card-icon">
-                                <nb-icon icon="flash"></nb-icon>
-                                DATE
-                            </span>
-                        </div>
-                        <div class="col-6">
-                            <input nbInput placeholder="Pick Date" [nbDatepicker]="formcontrol"
-                                [formControl]="formControl">
-                            <!-- <nb-datepicker #formcontrol></nb-datepicker> -->
-                            <nb-rangepicker #formcontrol></nb-rangepicker>
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="col-sm-6 order-sm-1 visible-lg">
-                    <nb-card class="stat ">
-                        <nb-card-body>
-                            <div class="row">
-                                <div class="col-6 pad">
-                                    <p class="heading-stat">ENERGY CONSUMPTION</p>
-                                    <p class="description-stat">564,563 KWH</p>
-                                </div>
-                                <div class="col-6 pad">
-                                    <p class="heading-stat">ENERGY <br> COST</p>
-                                    <p class="description-stat">₦564,563</p>
-                                </div>
-                            </div>
-                        </nb-card-body>
-                    </nb-card>
-                </div>
-            </div>
             <div class="row top-spacer">
                 <div class="col-md-6">
                     <h5 class="chart-heading">ENERGY CONSUMPTION</h5>
                     <nb-card>
                         <nb-card-body>
                             <!-- <app-chart [chartId]="item"></app-chart> -->
-                           <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
+                            <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
                         </nb-card-body>
                     </nb-card>
 
@@ -89,12 +28,12 @@
                     <h5 class="chart-heading">ENERGY COST</h5>
                     <nb-card>
                         <nb-card-body>
-                           <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
+                            <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
                         </nb-card-body>
                     </nb-card>
 
                 </div>
-                
+
             </div>
             <div class="row">
                 <div class="row m-0">

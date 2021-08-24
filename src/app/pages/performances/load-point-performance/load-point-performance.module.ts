@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadPointPerformanceComponent } from './load-point-performance.component';
 import { ChartsModule } from 'src/app/@charts/chart.module';
 import { PerformanceHeaderCardModule } from '../performance-header-card/performance-header-card.module';
-// import { PerformanceHeaderCardComponent } from '../performance-header-card/performance-header-card.component';
+import { PerformanceStatFilterCardModule } from '../performance-stat-filter-card/performance-stat-filter-card.module';
 
 @NgModule({
   declarations: [LoadPointPerformanceComponent],
@@ -29,7 +29,8 @@ import { PerformanceHeaderCardModule } from '../performance-header-card/performa
     NbAccordionModule,
     NbDatepickerModule.forRoot(),
     ChartsModule,
-    PerformanceHeaderCardModule
+    PerformanceHeaderCardModule,
+    PerformanceStatFilterCardModule
 
   ]
 })

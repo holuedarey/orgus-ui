@@ -8,6 +8,8 @@ import { ThemeModule } from 'src/app/@theme/theme.module';
   imports: [
     CommonModule,
     ThemeModule,
-  ]
+  ],
+
+  exports: [PerformanceHeaderCardComponent]
 })
 export class PerformanceHeaderCardModule { }
