@@ -1,0 +1,60 @@
+.top-spacer{
+    margin-top: 12px;
+}
+
+.stat{
+    height: 157px;
+    background: #FFFFFF !important;
+    border-radius:30px ;
+    .description-stat{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 18px;
+        color: #F40909;
+        display: flex;
+        align-items: center;
+    }
+    .pad{
+        padding-top: 40px;
+        padding-left: 30px;
+    }
+    .heading-stat{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        color: #000000;
+    }
+}
+.select-card{
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    min-height: 42px;
+    .select-card-icon{
+        position: relative;
+        top: 9px;
+    }
+    
+}
+.m-b-20{
+    margin-bottom: 20px !important;
+}
+.top-space{
+    position: relative;
+    top: 5px;
+}
+input{
+   border: 1px solid transparent !important;
+   background: #FFFFFF !important; 
+   color:  #074EE8 !important;
+}
+.chart-heading{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+}

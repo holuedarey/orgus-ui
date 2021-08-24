@@ -64,7 +64,9 @@ export const AccessControl: NbAccessControl[] = [
                 PagesResources.PowerSourcePerformanceView,
 
                 //View generating unit performance
-                PagesResources.GeneratingSetPerformanceView
+                PagesResources.GeneratingSetPerformanceView,
+                //View Load Point  performance
+                PagesResources.LoadPointPerformanceView
             ],
             update: [],
             delete: [],

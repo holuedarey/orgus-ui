@@ -7,13 +7,15 @@ import { PowerSourcePerformanceComponent } from './power-source-performance.comp
 import { PowerSourcePerformanceCardComponent } from './power-source-performance-card/power-source-performance-card.component';
 import { ChartModule } from 'angular2-chartjs';
 import { PowerSourcePerformanceChartComponent } from './power-source-performance-chart/power-source-performance-chart.component';
+import { PerformanceHeaderCardComponent } from '../performance-header-card/performance-header-card.component';
 
 
 @NgModule({
   declarations: [
     PowerSourcePerformanceComponent,
     PowerSourcePerformanceCardComponent,
-    PowerSourcePerformanceChartComponent
+    PowerSourcePerformanceChartComponent,
+    PerformanceHeaderCardComponent
   ],
   imports: [
     CommonModule,

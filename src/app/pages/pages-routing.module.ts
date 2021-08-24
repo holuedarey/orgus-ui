@@ -94,6 +94,12 @@ const routes: Routes = [
             loadChildren: () => import('./performances/generating-set-performance/generating-set-performance.module')
               .then(m => m.GeneratingSetPerformanceModule),
           },
+
+          {
+            path: PagesResourcesNavMap.get(PagesResources.LoadPointPerformanceView)?.path,
+            loadChildren: () => import('./performances/load-point-performance/load-point-performance.module')
+              .then(m => m.LoadPointPerformanceModule),
+          },
         ]
       },
     ]
