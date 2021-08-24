@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadPointPerformanceComponent } from './load-point-performance.component';
 import { ChartsModule } from 'src/app/@charts/chart.module';
 import { PerformanceHeaderCardModule } from '../performance-header-card/performance-header-card.module';
-// import { PerformanceHeaderCardComponent } from '../performance-header-card/performance-header-card.component';
 
 @NgModule({
   declarations: [LoadPointPerformanceComponent],

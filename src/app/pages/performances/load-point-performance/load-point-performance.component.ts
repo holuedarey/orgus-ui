@@ -45,7 +45,6 @@ export class LoadPointPerformanceComponent implements OnInit {
     legend: {
       display: false,
     },
-    
   };
 
   isLoadingData = true;

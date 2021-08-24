@@ -6,7 +6,8 @@ import { GeneratingSetPerformanceRoutingModule } from './generating-set-performa
 import { GeneratingSetPerformanceComponent } from './generating-set-performance.component';
 import { GeneratingSetCardComponent } from './generating-set-card/generating-set-card.component';
 import { GeneratingSetChartComponent } from './generating-set-chart/generating-set-chart.component';
-import { ChartModule } from 'angular2-chartjs';
+import { PerformanceHeaderCardModule } from '../performance-header-card/performance-header-card.module';
+import { ChartsModule } from 'src/app/@charts/chart.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ChartModule } from 'angular2-chartjs';
     CommonModule,
     GeneratingSetPerformanceRoutingModule,
     NbCardModule,
-    ChartModule
+    ChartsModule,
+    PerformanceHeaderCardModule
   ]
 })
 export class GeneratingSetPerformanceModule { }

@@ -13,10 +13,16 @@ export class ChartComponent {
   @Input() chartId = '';
   type: String = 'line';
 
+  chartData:any = [];
+  chartConfig:any = {};
+
   constructor() { }
 
   ngOnInit():void{
-    console.log("data incoming :: ", this.data);
-    console.log("config incoming :: ", this.config);
+    this.chartData = this.data || [];
+    this.chartConfig = this.config || {};
+
+    console.log("data incoming :: ", this.chartData);
+    console.log("config incoming :: ", this.chartConfig);
   }
 }
