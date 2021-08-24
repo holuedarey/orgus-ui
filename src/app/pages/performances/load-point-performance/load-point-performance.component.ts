@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SeoService } from 'src/app/@core/utils';
 import { isMobile } from 'mobile-device-detect';
+import { LoadPointService } from 'src/app/@core/data-services/load-point.service';
+import { LoadPointDto } from 'src/app/@core/dtos/load-point.dto';
+import { GetUniqueArray } from 'src/app/@core/functions/data-request.funtion';
 
 @Component({
   selector: 'app-load-point-performance',
@@ -19,13 +22,10 @@ export class LoadPointPerformanceComponent implements OnInit {
       value : "LOAD POINT"
     }
   ];
-  loacations:any = [
-    {
-      value : "Ministry of Education"
-    }
-  ];
+  loadPointLocations:any = [];
+
   selectedItemLoadPoint:any = this.loadpoints[0].value || "";
-  selectedItemLocation:any = this.loacations[0].value;
+  selectedItemLocation:any = this.loadPointLocations[0].value;
   formControl = new FormControl(new Date());
   ngModelDate = new Date();
 
@@ -47,7 +47,12 @@ export class LoadPointPerformanceComponent implements OnInit {
   };
   chartData:any = ['nothing'];
 
-  constructor(private seo: SeoService) {   }
+  isLoadingData = true;
+  loadPoints: LoadPointDto[] = [];
+  constructor(
+    private seo: SeoService,
+    private loadPointService: LoadPointService,
+    ) {   }
 
   ngOnInit(): void {
     if(isMobile){
@@ -55,6 +60,23 @@ export class LoadPointPerformanceComponent implements OnInit {
       
     }
     this.seo.setSeoData('Performance Management - [Load Point Performance]', 'Manage Performance pof Load Point');
+  }
+
+  
+  LoadPoints(data?: any) {
+    this.isLoadingData = true;
+    this.loadPointService.getLoadPoints(data)
+      .subscribe(
+        (response) => {
+          this.isLoadingData = false;
+          if (response.status) {
+            this.loadPointLocations = GetUniqueArray([...response.data?.itemList ?? []], [...this.loadPoints]);
+          }
+        },
+        (err) => {
+          this.isLoadingData = false;
+        }
+      )
   }
 
 }
