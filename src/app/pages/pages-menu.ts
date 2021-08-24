@@ -58,6 +58,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: GlobalResources.get(PagesResources.PowerSourcePerformanceView)?.route,
         icon: 'speaker-outline',
       },
+      {
+        title: 'Generating Unit',
+        link: GlobalResources.get(PagesResources.GeneratingSetPerformanceView)?.route,
+        icon: 'speaker-outline',
+      },
     ]
   },
   {

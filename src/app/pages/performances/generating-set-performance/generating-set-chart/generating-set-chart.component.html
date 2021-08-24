@@ -1,0 +1,11 @@
+
+        <nb-card size="small">
+            <nb-card-body>
+
+                <chart [hidden]="!gensetPerformanceDto?.itemList" type="line" [data]="lineChartData"
+                    [options]="lineChartOptions"></chart>
+                <img [hidden]="gensetPerformanceDto?.itemList" src="assets/images/completed.svg"
+                    style="object-fit:cover; max-width: 100%; max-height: 80%;" alt="">
+
+            </nb-card-body>
+        </nb-card>
