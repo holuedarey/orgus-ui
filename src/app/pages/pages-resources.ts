@@ -68,6 +68,7 @@ export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
             path: 'power-sources'
         }
     ],
+
     [
         PagesResources.GeneratingSetView,
         {

@@ -22,7 +22,6 @@ import { PerformanceHeaderCardComponent } from '../performance-header-card/perfo
     PowerSourcePerformanceRoutingModule,
     NbThemeModule,
     NbCardModule,
-    ChartModule
   ]
 })
 export class PowerSourcePerformanceModule { }
