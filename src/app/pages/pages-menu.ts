@@ -59,8 +59,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'speaker-outline',
       },
       {
-        title: 'Load Point',
-        link: GlobalResources.get(PagesResources.LoadPointPerformanceView)?.route,
+        title: 'Generating Unit',
+        link: GlobalResources.get(PagesResources.GeneratingSetPerformanceView)?.route,
         icon: 'speaker-outline',
       },
     ]

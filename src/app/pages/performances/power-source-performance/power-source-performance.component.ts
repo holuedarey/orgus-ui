@@ -10,6 +10,7 @@ export class PowerSourcePerformanceComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('');
   }
 
 }

@@ -12,6 +12,7 @@ import { PermissionEnum } from '../enums/permission.enum';
 import { PermissionService } from '../utils/permission.service';
 import { PostGeneratingSetDto } from '../dtos/post-generating-set.dto';
 import { UpdateGeneratingSetDto } from '../dtos/update-generating-set.dto';
+import { GeneratingSetPerformanceDto } from '../dtos/generating-set-performance.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,14 @@ export class GeneratingSetsService implements AccessControlContract {
   disableGeneratingSet(id: string): Observable<ResponseDto<any>> {
     const apiEndpoint = `generatingSet/disable/${id}`;
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, null);
+  }
+
+  getAllGeneratingSetPerformance(): Observable<ResponseDto<GeneratingSetPerformanceDto>> {
+    const apiEndpoint = 'allGeneratingUnits/getAnalytics';
+    //let params = new HttpParams();
+    // params = params.set('startDate', startDate);
+    // params = params.set('endDate', endDate);
+    return this.httpClient.get<ResponseDto<GeneratingSetPerformanceDto>>(`${environment.apiUrl}/${apiEndpoint}`);
   }
 
 }
