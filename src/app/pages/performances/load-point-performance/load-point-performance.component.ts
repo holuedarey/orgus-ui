@@ -12,7 +12,16 @@ import { GetUniqueArray } from 'src/app/@core/functions/data-request.funtion';
   styleUrls: ['./load-point-performance.component.scss']
 })
 export class LoadPointPerformanceComponent implements OnInit {
-  title = "Load Point Management"
+  title = "LOADPOINT MANAGEMENT";
+
+  cardTitle:any = {
+    titleOne: "ENERGY CONSUMPTION",
+    titleTwo : "ENERGY COST"
+  };
+
+  energyUsed:String = "564,563 KWH";
+  energyCost:String = "₦564,563";
+
   btnData = {
     title: "Manage Loadpoint",
     link: "manage-loadpoint"
@@ -22,12 +31,8 @@ export class LoadPointPerformanceComponent implements OnInit {
       value : "LOAD POINT"
     }
   ];
-  loadPointLocations:any = [];
 
-  selectedItemLoadPoint:any = "";
-  selectedItemLocation:any = "";
-  formControl = new FormControl(new Date());
-  ngModelDate = new Date();
+  loadPointLocations:any = [];
 
   chartData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -55,6 +60,7 @@ export class LoadPointPerformanceComponent implements OnInit {
     ) {   }
 
   ngOnInit(): void {
+    this.LoadPoints()
     if(isMobile){
       console.log("Mobile Detected !");
       
@@ -70,7 +76,10 @@ export class LoadPointPerformanceComponent implements OnInit {
         (response) => {
           this.isLoadingData = false;
           if (response.status) {
-            this.loadPointLocations = GetUniqueArray([...response.data?.itemList ?? []], [...this.loadPoints]);
+            
+            this.loadPointLocations = GetUniqueArray([...response.data?.itemList ?? []], [...this.loadPointLocations]);
+            console.log("loadPointLocations", this.loadPointLocations);
+
           }
         },
         (err) => {

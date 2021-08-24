@@ -22,7 +22,7 @@ export class ChartComponent {
     this.chartData = this.data || [];
     this.chartConfig = this.config || {};
 
-    console.log("data incoming :: ", this.chartData);
-    console.log("config incoming :: ", this.chartConfig);
+    // console.log("data incoming :: ", this.chartData);
+    // console.log("config incoming :: ", this.chartConfig);
   }
 }

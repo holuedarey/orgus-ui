@@ -1,0 +1,71 @@
+<div class="row top-spacer">
+
+    
+    <div class="col-sm-6 order-sm-12">
+    
+        <div class="row select-card">
+            <div class="col-6">
+                <span class="select-card-icon">
+                    <nb-icon icon="flash"></nb-icon>
+                    ASSET TYPE
+                </span>
+            </div>
+            <div class="col-6 top-space">
+                <nb-select class="no-outline"  fullWidth size="tiny" placeholder="Select Asset Type"
+                    [(selected)]="selectedItemLoadPoint">
+                    <nb-option *ngFor="let loadpoint of assetType" [value]="loadpoint.value">
+                        {{loadpoint.value }}
+                    </nb-option>
+                </nb-select>
+            </div>
+    
+        </div>
+        <div class="row top-spacer select-card">
+            <div class="col-6">
+                <span class="select-card-icon">
+                    <nb-icon icon="map"></nb-icon>
+                    LOCATION
+                </span>
+            </div>
+            <div class="col-6 top-space">
+                <nb-select fullWidth size="tiny" placeholder="Select Location"
+                    [(selected)]="selectedItemLocation">
+                    <nb-option *ngFor="let location of locationData" [value]="location.address">
+                        {{location.address }}
+                    </nb-option>
+                </nb-select>
+            </div>
+        </div>
+        <div class="row top-spacer select-card m-b-20">
+            <div class="col-6">
+                <span class="select-card-icon">
+                    <nb-icon icon="flash"></nb-icon>
+                    DATE
+                </span>
+            </div>
+            <div class="col-6">
+                <input nbInput placeholder="Pick Date" [nbDatepicker]="formcontrol"
+                    [formControl]="formControl">
+                <nb-rangepicker #formcontrol></nb-rangepicker>
+            </div>
+    
+    
+        </div>
+    </div>
+    <div class="col-sm-6 order-sm-1 visible-lg">
+        <nb-card class="stat ">
+            <nb-card-body>
+                <div class="row">
+                    <div class="col-6 pad">
+                        <p class="heading-stat">{{ cardTitle.titleOne }}</p>
+                        <p class="description-stat">{{energyUsed}}</p>
+                    </div>
+                    <div class="col-6 pad">
+                        <p class="heading-stat">{{ cardTitle.titleTwo }}</p>
+                        <p class="description-stat">{{energyCost}}</p>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
