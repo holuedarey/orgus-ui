@@ -11,11 +11,12 @@ export class ChartComponent {
   @Input() data: any;
   @Input() config: any;
   @Input() chartId = '';
+  type: String = 'line';
 
   constructor() { }
 
   ngOnInit():void{
-    // console.log("data incoming :: ", this.data);
-    // console.log("config incoming :: ", this.config);
+    console.log("data incoming :: ", this.data);
+    console.log("config incoming :: ", this.config);
   }
 }

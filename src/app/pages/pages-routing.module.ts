@@ -51,6 +51,7 @@ const routes: Routes = [
             loadChildren: () => import('./assets/power-sources/power-sources.module')
               .then(m => m.PowerSourcesModule),
           },
+          
           {
             path: PagesResourcesNavMap.get(PagesResources.GeneratingSetView)?.path,
             loadChildren: () => import('./assets/generating-set/generating-set.module')
@@ -88,6 +89,12 @@ const routes: Routes = [
             path: PagesResourcesNavMap.get(PagesResources.PowerSourcePerformanceView)?.path,
             loadChildren: () => import('./performances/power-source-performance/power-source-performance.module')
               .then(m => m.PowerSourcePerformanceModule),
+          },
+
+          {
+            path: PagesResourcesNavMap.get(PagesResources.LoadPointPerformanceView)?.path,
+            loadChildren: () => import('./performances/load-point-performance/load-point-performance.module')
+              .then(m => m.LoadPointPerformanceModule),
           },
           {
             path: PagesResourcesNavMap.get(PagesResources.GeneratingSetPerformanceView)?.path,

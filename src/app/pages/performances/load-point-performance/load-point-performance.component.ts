@@ -24,28 +24,29 @@ export class LoadPointPerformanceComponent implements OnInit {
   ];
   loadPointLocations:any = [];
 
-  selectedItemLoadPoint:any = this.loadpoints[0].value || "";
-  selectedItemLocation:any = this.loadPointLocations[0].value;
+  selectedItemLoadPoint:any = "";
+  selectedItemLocation:any = "";
   formControl = new FormControl(new Date());
   ngModelDate = new Date();
 
-  chartConfig = {
-    type: 'line',
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          display:false,
-          position: 'top',
-        },
-        title: {
-          display: false,
-          // text: 'Chart.js Line Chart'
-        }
+  chartData = {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+      {
+        data: [65, 59, 80, 81, 56, 55, 40],
+        borderColor: '#f90',
+        fill:false
       }
-    },
+    ]
   };
-  chartData:any = ['nothing'];
+  chartConfig = {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: {
+      display: false,
+    },
+    
+  };
 
   isLoadingData = true;
   loadPoints: LoadPointDto[] = [];

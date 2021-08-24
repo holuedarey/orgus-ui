@@ -14,7 +14,7 @@ import { ThemeModule } from '../@theme/theme.module';
     PagesRoutingModule,
     NbMenuModule,
     ThemeModule,
-    TranslateModule
+    TranslateModule,
   ]
 })
 export class PagesModule { }
