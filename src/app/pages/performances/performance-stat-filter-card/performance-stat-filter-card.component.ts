@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './performance-stat-filter-card.component.html',
   styleUrls: ['./performance-stat-filter-card.component.scss']
 })
-export class PerformanceStatFilterCardComponent implements OnInit {
+export class PerformanceStatFilterCardComponent implements OnInit, OnChanges {
 
 
   formControl = new FormControl(new Date());
@@ -19,7 +19,7 @@ export class PerformanceStatFilterCardComponent implements OnInit {
   @Input() locations:any;
   @Input() queryDate:any;
 
-  locationData = [];
+  locationData = <any>[];
   selectedItemLoadPoint:any = "";
   selectedItemLocation:any = "";
 
@@ -27,7 +27,7 @@ export class PerformanceStatFilterCardComponent implements OnInit {
 
   ngOnInit(): void {
     
-    // console.log("assetType", this.assetType[0].value);
+     console.log("");
     
   }
 

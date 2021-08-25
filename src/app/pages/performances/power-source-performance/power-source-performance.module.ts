@@ -15,7 +15,6 @@ import { PerformanceHeaderCardComponent } from '../performance-header-card/perfo
     PowerSourcePerformanceComponent,
     PowerSourcePerformanceCardComponent,
     PowerSourcePerformanceChartComponent,
-    PerformanceHeaderCardComponent
   ],
   imports: [
     CommonModule,

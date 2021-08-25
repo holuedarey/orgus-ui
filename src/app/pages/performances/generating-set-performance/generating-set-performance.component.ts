@@ -15,7 +15,7 @@ export class GeneratingSetPerformanceComponent implements OnInit {
   title = "Generating Set Dashboard"
   btnData = {
     title: "Manage Generating Set",
-    link: "manage-loadpoint"
+    link: "./generating-set"
   }
   chartData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -79,6 +79,11 @@ export class GeneratingSetPerformanceComponent implements OnInit {
             
             this.generatingSetLocations = GetUniqueArray([...response.data?.itemList ?? []], [...this.generatingSetLocations]);
             console.log("generatingSetLocations", this.generatingSetLocations);
+
+            // for (let result of this.generatingSetLocations){
+            //   console.log(result.name);
+            //   this.generatingSetLocations = result.name
+            // }
 
           }
         },

@@ -74,6 +74,7 @@ export class LoadPointPerformanceComponent implements OnInit {
     this.loadPointService.getLoadPoints(data)
       .subscribe(
         (response) => {
+          console.log(response)
           this.isLoadingData = false;
           if (response.status) {
             
