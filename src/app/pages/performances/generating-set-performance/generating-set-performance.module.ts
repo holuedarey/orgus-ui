@@ -1,4 +1,5 @@
-import { NbCardModule } from '@nebular/theme';
+import { PerformanceStatFilterCardModule } from './../performance-stat-filter-card/performance-stat-filter-card.module';
+import { NbCardModule, NbButtonModule, NbIconModule, NbFormFieldModule, NbInputModule, NbSelectModule, NbSpinnerModule, NbThemeModule, NbToggleModule, NbAutocompleteModule, NbAlertModule, NbAccordionModule, NbDatepickerModule } from '@nebular/theme';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -8,6 +9,7 @@ import { GeneratingSetCardComponent } from './generating-set-card/generating-set
 import { GeneratingSetChartComponent } from './generating-set-chart/generating-set-chart.component';
 import { PerformanceHeaderCardModule } from '../performance-header-card/performance-header-card.module';
 import { ChartsModule } from 'src/app/@charts/chart.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +23,25 @@ import { ChartsModule } from 'src/app/@charts/chart.module';
     GeneratingSetPerformanceRoutingModule,
     NbCardModule,
     ChartsModule,
-    PerformanceHeaderCardModule
+    PerformanceHeaderCardModule,
+    NbCardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NbButtonModule,
+    NbIconModule,
+    NbFormFieldModule,
+    NbInputModule, 
+    NbSelectModule, 
+    NbSpinnerModule, 
+    NbThemeModule, 
+    NbToggleModule,
+    NbAutocompleteModule,
+    NbAlertModule,
+    NbAccordionModule,
+    NbDatepickerModule.forRoot(),
+    ChartsModule,
+    PerformanceHeaderCardModule,
+    PerformanceStatFilterCardModule
   ]
 })
 export class GeneratingSetPerformanceModule { }

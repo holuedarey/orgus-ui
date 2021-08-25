@@ -1,7 +1,66 @@
-<app-performance-header-card [title]="title" [btnData]="btnData"></app-performance-header-card>
+<!-- <app-performance-header-card [title]="title" [btnData]="btnData"></app-performance-header-card>
 <div class="row">
     <div class="col-6">
         <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
     </div>
-    <!-- <div class="col"> <app-chart [data]="chartData" [config]="chartConfig"></app-chart></div> -->
+     <div class="col"> <app-chart [data]="chartData" [config]="chartConfig"></app-chart></div> 
+</div> -->
+<div class="container-fluid p-0 m-0">
+    <div class="row m-0">
+        <div class="col-12">
+            <app-performance-header-card [title]="title" [btnData]="btnData"></app-performance-header-card>
+
+            <app-performance-stat-filter-card 
+            [cardTitle]="cardTitle" 
+            [isLoading]="isLoadingData"
+            [assetType]="generatingSetTitle"
+            [locations]="generatingSetLocations"
+            [energyUsed]="energyUsed"
+            [energyCost]="energyCost"
+            [queryDate]=""></app-performance-stat-filter-card>
+
+            <div class="row top-spacer">
+                <div class="col-md-6">
+                    <h5 class="chart-heading">ENERGY CONSUMPTION</h5>
+                    <nb-card>
+                        <nb-card-body>
+                            <!-- <app-chart [chartId]="item"></app-chart> -->
+                            <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
+                        </nb-card-body>
+                    </nb-card>
+
+                </div>
+                <div class="col-md-6">
+                    <h5 class="chart-heading">ENERGY COST</h5>
+                    <nb-card>
+                        <nb-card-body>
+                            <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
+                        </nb-card-body>
+                    </nb-card>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="row m-0">
+                    <div class="col-12">
+                        <nb-accordion>
+                            <nb-accordion-item>
+                                <nb-accordion-item-header>Location Details </nb-accordion-item-header>
+                                <nb-accordion-item-body>
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, consectetur atque
+                                    tempore quisquam aspernatur hic fugit esse assumenda est ipsam, quo consequatur
+                                    dolores, repudiandae rerum! Eum ad adipisci deserunt sint!
+                                    <!-- <app-table  title="Load Points"
+                                        [columns]="columns">
+                                    </app-table> -->
+                                </nb-accordion-item-body>
+                            </nb-accordion-item>
+                        </nb-accordion>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
