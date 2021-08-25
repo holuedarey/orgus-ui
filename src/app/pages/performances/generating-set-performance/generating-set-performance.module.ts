@@ -15,8 +15,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     GeneratingSetPerformanceComponent,
-    GeneratingSetCardComponent,
-    GeneratingSetChartComponent
   ],
   imports: [
     CommonModule,
