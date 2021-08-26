@@ -5,7 +5,7 @@
                 <nb-card class="xyz-in dialog" xyz="fade down-25%" style="max-height: 100vh; overflow-y: auto;">
                     <nb-card-header class="font-weight-bold pb-1">
                         <div class="row">
-                            <div class="col-auto h5"> Generating Units </div>
+                            <!-- <div class="col-auto h5"> Generating Units </div> -->
                             <div class="col ml-auto text-right">
                                 <button (click)="close()" class="p-1" nbButton ghost>
                                     <nb-icon icon="close"></nb-icon>
@@ -14,8 +14,11 @@
                         </div>
                     </nb-card-header>
                         <nb-card-body>
-                            <p *ngFor="let name of powerSourceGenSet">{{name.name}}</p>
-                            <p *ngIf="!powerSourceGenSet">No generating unit attached</p>
+                            <!-- <p *ngFor="let name of powerSourceGenSet">{{name.name}}</p>
+                            <p *ngIf="!powerSourceGenSet">No generating unit attached</p> -->
+
+                            <app-table [showAdd]='false' [showEdit]='false' [hideHeader]='true' [data]="powerSourceGenSet" [columns]="columns">
+                        </app-table>
                         </nb-card-body>
 
                     <nb-card-footer>

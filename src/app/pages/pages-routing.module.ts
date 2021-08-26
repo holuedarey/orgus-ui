@@ -47,7 +47,7 @@ const routes: Routes = [
               .then(m => m.LoadPointsModule),
           },
           {
-            path: PagesResourcesNavMap.get(PagesResources.PowerSourcesView)?.path,
+            path: PagesResourcesNavMap.get(PagesResources.PowerStationsView)?.path,
             loadChildren: () => import('./assets/power-sources/power-sources.module')
               .then(m => m.PowerSourcesModule),
           },

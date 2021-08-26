@@ -59,7 +59,7 @@
                                         <input nbInput fullWidth name="meterNumber" id="input-meterNumber"
                                             placeholder="Meter Number" #meterNumber
                                             [status]="generatingSetForm.controls['meterNumber'].touched ? (generatingSetForm.controls['meterNumber'].invalid ? 'danger' : 'success') : 'basic'"
-                                            formControlName="meterNumber" autofocus>
+                                            formControlName="meterNumber" autofocus (keypress)="keyPressNumbersOnly($event)">
                                         <nb-icon *ngIf="generatingSetForm.controls['meterNumber'].status === 'PENDING' "
                                             nbSuffix icon="radio-button-off-outline"
                                             [options]="{animation: {type: 'pulse'}}" pack="eva"></nb-icon>
@@ -125,7 +125,7 @@
                                         class="text-danger xyz-in px-3 row">
                                         <small xyz="fade down" class="error-message"
                                             *ngIf="generatingSetForm.controls['energySource'].errors?.required">
-                                            Enery Source is required!
+                                            Energy Source is required!
                                         </small>
                                         <small xyz="fade down" class="error-message"
                                             *ngIf="generatingSetForm.controls['energySource'].errors?.meterUnavailable">

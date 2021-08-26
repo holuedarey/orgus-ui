@@ -49,7 +49,7 @@ export const AccessControl: NbAccessControl[] = [
                 PagesResources.LoadPointsView,
 
                 //View Power Sources
-                PagesResources.PowerSourcesView,
+                PagesResources.PowerStationsView,
 
                 //View Generating Set
                 PagesResources.GeneratingSetView,

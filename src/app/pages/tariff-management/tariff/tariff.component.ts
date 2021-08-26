@@ -36,9 +36,6 @@ export class TariffComponent implements OnInit {
     rateClass: {
       title: 'Rate Class',
     },
-    serviceBand: {
-      title: 'Service Band',
-    },
     clientId: {
       title: 'Client',
       filter: {

@@ -71,7 +71,6 @@ export class TariffFormComponent implements OnInit {
     this.tariffForm = this.formBuilder.group({
       name: ['', Validators.required],
       amount: ['', Validators.required],
-      serviceBandId: [null, Validators.required],
       rateClass: ['', Validators.required],
     });
   }
@@ -90,8 +89,6 @@ export class TariffFormComponent implements OnInit {
     this.tariffForm = this.formBuilder.group({
       name: [this.tariffForUpdate.name, Validators.required],
       amount: [this.tariffForUpdate.amount, Validators.required],
-      serviceBand: [this.tariffForUpdate.serviceBand, Validators.required],
-      serviceBandId: [this.tariffForUpdate.serviceBandId, Validators.required],
       rateClass: [this.tariffForUpdate.rateClass, Validators.required],
     });
 
@@ -105,7 +102,6 @@ export class TariffFormComponent implements OnInit {
     const postTarriff: PostTariffDto = {
       name: (this.tariffForm.get('name')?.value as string).trim(),
       amount: (this.tariffForm.get('amount')?.value as number),
-      serviceBandId: (this.tariffForm.get('serviceBandId')?.value as string).trim(),
       rateClass: (this.tariffForm.get('rateClass')?.value as number),
     }
 
@@ -141,7 +137,6 @@ export class TariffFormComponent implements OnInit {
       name: (this.tariffForm.get('name')?.value as string).trim(),
       rateClass: (this.tariffForm.get('rateClass')?.value as number),
       amount: (this.tariffForm.get('amount')?.value as number),
-      serviceBandId: (this.tariffForm.get('serviceBandId')?.value as string).trim(),
       id: this.tariffForUpdate.id
     };
 

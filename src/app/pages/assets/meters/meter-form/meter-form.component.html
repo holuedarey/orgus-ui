@@ -39,7 +39,7 @@
                                         <input nbInput fullWidth name="number" id="input-number"
                                             placeholder="Meter number" #number
                                             [status]="meterForm.controls['number'].touched ? (meterForm.controls['number'].invalid ? 'danger' : 'success') : 'basic'"
-                                            formControlName="number" autofocus>
+                                            formControlName="number" autofocus (keypress)="keyPressNumbersOnly($event)">
 
                                         <div *ngIf="meterForm.controls['number'].invalid && meterForm.controls['number'].touched"
                                             class="text-danger xyz-in px-3 row">

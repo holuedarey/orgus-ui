@@ -59,7 +59,7 @@
                                         <input nbInput fullWidth name="amount" id="input-amount"
                                             placeholder="Amount" #amount
                                             [status]="tariffForm.controls['amount'].touched ? (tariffForm.controls['amount'].invalid ? 'danger' : 'success') : 'basic'"
-                                            formControlName="amount" autofocus>
+                                            formControlName="amount" autofocus (keypress)="keyPressNumbersOnly($event)">
                                         <nb-icon *ngIf="tariffForm.controls['amount'].status === 'PENDING' "
                                             nbSuffix icon="radio-button-off-outline"
                                             [options]="{animation: {type: 'pulse'}}" pack="eva"></nb-icon>
@@ -75,30 +75,6 @@
                                 </div>
                             </div>
 
-
-                            <div class="form-control-group row mb-3">
-                                <div class="col-sm-3">
-                                    <label class="label" for="input-role">Service Band:</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <nb-select fullWidth
-                                        [status]="tariffForm.controls['serviceBandId'].touched ? (tariffForm.controls['serviceBandId'].invalid ? 'danger' : 'success') : 'basic'"
-                                        placeholder="Select Service Band" formControlName="serviceBandId">
-                                        <nb-option *ngFor="let serviceBand of serviceBand$ | async; let i=count"
-                                            [value]="serviceBand.id">
-                                            {{serviceBand.name}}
-                                        </nb-option>
-                                    </nb-select>
-
-                                    <div *ngIf="tariffForm.controls['serviceBandId'].invalid && tariffForm.controls['serviceBandId'].touched"
-                                        class="text-danger xyz-in px-3 row">
-                                        <small xyz="fade down" class="error-message"
-                                            *ngIf="tariffForm.controls['serviceBandId'].errors?.required">
-                                            Service Band is required!
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="form-control-group row my-3">
                                 <div class="col-sm-3">
                                     <label class="label" for="input-rateClass">Rate Class:</label>
