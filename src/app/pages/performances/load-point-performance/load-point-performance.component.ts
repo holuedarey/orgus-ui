@@ -50,6 +50,18 @@ export class LoadPointPerformanceComponent implements OnInit {
     legend: {
       display: false,
     },
+    scales: {
+      xAxes: [{
+          gridLines: {
+              display:false
+          }
+      }],
+      yAxes: [{
+          gridLines: {
+              display:false
+          }   
+      }]
+  }
   };
 
   isLoadingData = true;
@@ -76,7 +88,6 @@ export class LoadPointPerformanceComponent implements OnInit {
         (response) => {
           this.isLoadingData = false;
           if (response.status) {
-            
             this.loadPointLocations = GetUniqueArray([...response.data?.itemList ?? []], [...this.loadPointLocations]);
             console.log("loadPointLocations", this.loadPointLocations);
 
