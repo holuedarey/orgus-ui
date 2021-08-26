@@ -30,8 +30,8 @@
             <div class="col-6 top-space">
                 <nb-select fullWidth size="tiny" placeholder="Select Location"
                     [(selected)]="selectedItemLocation">
-                    <nb-option *ngFor="let location of locationData" [value]="location.address">
-                        {{location.address }}
+                    <nb-option *ngFor="let location of locationData" [value]="location.name">
+                        {{location.name }}
                     </nb-option>
                 </nb-select>
             </div>

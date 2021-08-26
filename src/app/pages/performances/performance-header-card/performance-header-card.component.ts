@@ -14,7 +14,7 @@ export class PerformanceHeaderCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log("title from Parent :: ", this.title);
+     console.log('');
 
   }
   
