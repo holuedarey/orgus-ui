@@ -1,3 +1,30 @@
+.manage-btn{
+    color: #111111 !important;
+    border-radius: 4px !important;
+    background: #FFFFFF !important;
+    border: 2px solid #111111 !important;
+}
+
+.heading-info{
+    color: #111111;
+}
+.m-b-30{
+    margin-bottom: 30px !important;
+}
+
+.pull-right{
+    position: relative;
+    right: -52px;
+    top: -5px;
+}
+
+@media (min-width: 576px) {  
+    .heading-info{
+        font-size: 12px !important;
+        color: red !important;
+    }
+}
+
 
 .top-spacer{
     margin-top: 12px;

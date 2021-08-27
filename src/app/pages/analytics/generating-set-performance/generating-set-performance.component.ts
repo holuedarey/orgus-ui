@@ -60,10 +60,7 @@ export class GeneratingSetPerformanceComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllGeneratingSets()
-    if(isMobile){
-      console.log("Mobile Detected !");
-      
-    }
+  
     this.seo.setSeoData('Performance Management - [Load Point Performance]', 'Manage Performance pof Load Point');
   }
 
@@ -73,13 +70,10 @@ export class GeneratingSetPerformanceComponent implements OnInit {
     this.generatingSetService.getGeneratingSets(data)
       .subscribe(
         (response) => {
-          console.log(response)
           this.isLoadingData = false;
           if (response.status) {
             
             this.generatingSetLocations = GetUniqueArray([...response.data?.itemList ?? []], [...this.generatingSetLocations]);
-            console.log("generatingSetLocations", this.generatingSetLocations);
-
             // for (let result of this.generatingSetLocations){
             //   console.log(result.name);
             //   this.generatingSetLocations = result.name

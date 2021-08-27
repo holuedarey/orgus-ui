@@ -19,6 +19,9 @@ export class LoadPointPerformanceComponent implements OnInit {
     titleTwo : "ENERGY COST"
   };
 
+  isButton:boolean = true;
+  isToggle:boolean = true;
+
   energyUsed:String = "564,563 KWH";
   energyCost:String = "₦564,563";
 
@@ -34,6 +37,11 @@ export class LoadPointPerformanceComponent implements OnInit {
 
   loadPointLocations:any = [];
 
+  chartTitleOne="ENERGY CONSUMPTION";
+  chartTitleTwo = "ENERGY COST";
+
+  // filter query Date
+  queryDate = new Date().toDateString;
   chartData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
@@ -44,6 +52,7 @@ export class LoadPointPerformanceComponent implements OnInit {
       }
     ]
   };
+  
   chartConfig = {
     responsive: true,
     maintainAspectRatio: false,
@@ -74,7 +83,7 @@ export class LoadPointPerformanceComponent implements OnInit {
   ngOnInit(): void {
     this.LoadPoints()
     if(isMobile){
-      console.log("Mobile Detected !");
+      // todo implementation
       
     }
     this.seo.setSeoData('Performance Management - [Load Point Performance]', 'Manage Performance pof Load Point');
@@ -86,12 +95,9 @@ export class LoadPointPerformanceComponent implements OnInit {
     this.loadPointService.getLoadPoints(data)
       .subscribe(
         (response) => {
-          console.log(response)
           this.isLoadingData = false;
           if (response.status) {
             this.loadPointLocations = GetUniqueArray([...response.data?.itemList ?? []], [...this.loadPointLocations]);
-            console.log("loadPointLocations", this.loadPointLocations);
-
           }
         },
         (err) => {

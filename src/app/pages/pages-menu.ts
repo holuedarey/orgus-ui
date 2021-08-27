@@ -50,7 +50,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ]
   },
   {
-    title: 'Analytics/Performances',
+    title: 'Analytics',
     icon: 'briefcase-outline',
     children: [
       {
