@@ -10,7 +10,7 @@ export class PowerSourcePerformanceCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
+    console.log ("")
   }
 
 }

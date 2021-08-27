@@ -6,7 +6,7 @@ import * as Chart from 'chart.js';
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss']
 })
-export class ChartComponent {
+export class ChartComponent implements OnInit  {
 
   @Input() data: any;
   @Input() config: any;

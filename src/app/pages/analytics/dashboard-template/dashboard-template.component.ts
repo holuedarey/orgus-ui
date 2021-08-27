@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './dashboard-template.component.html',
   styleUrls: ['./dashboard-template.component.scss']
 })
-export class DashboardTemplateComponent implements OnInit {
+export class DashboardTemplateComponent implements OnInit, OnChanges  {
 
   // For header Section
 
@@ -45,6 +45,7 @@ export class DashboardTemplateComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('')
   }
 
 
