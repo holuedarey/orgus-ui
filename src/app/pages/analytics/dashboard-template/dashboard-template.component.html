@@ -27,7 +27,7 @@
             </div>
             <div class="col-6 top-space">
                 <nb-select class="no-outline" fullWidth size="tiny" placeholder="Select Asset Type"
-                    [(selected)]="selectedItemLoadPoint">
+                    [(selected)]="selectedItemLoadPoint" disabled>
                     <nb-option *ngFor="let loadpoint of assetType" [value]="loadpoint.value">
                         {{loadpoint.value }}
                     </nb-option>
@@ -51,19 +51,19 @@
             </div>
         </div>
         <div class="row top-spacer select-card m-b-20">
-            <div class="col-6">
+            <div class="col-4">
                 <span class="select-card-icon">
                     <nb-icon icon="flash"></nb-icon>
                     DATE
                 </span>
             </div>
-            <div class="col-6">
-                <input nbInput placeholder="Pick Date" [nbDatepicker]="formcontrol" [formControl]="formControl">
+            <div class="col-8">
+                <input style="padding-right: 0px;" nbInput placeholder="Pick Date" [nbDatepicker]="formcontrol" [formControl]="formControl">
                 <nb-rangepicker #formcontrol></nb-rangepicker>
             </div>
         </div>
     </div>
-    <div class="col-sm-6 order-sm-1  show-desktop">
+    <div class="col-sm-6 order-sm-1" *ngIf="!isMobile">
         <nb-card class="stat">
             <nb-card-body>
                 <div class="row">
@@ -79,7 +79,7 @@
             </nb-card-body>
         </nb-card>
     </div>
-    <div class="col-sm-6 order-sm-1 show-mobile" style="margin-top: 40px;">
+    <div class="col-sm-6 order-sm-1" *ngIf="isMobile" style="margin-top: 40px;">
         <div class="row">
             <div class="col-6">
               
