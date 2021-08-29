@@ -87,18 +87,18 @@ const routes: Routes = [
           },
           {
             path: PagesResourcesNavMap.get(PagesResources.PowerSourcePerformanceView)?.path,
-            loadChildren: () => import('./performances/power-source-performance/power-source-performance.module')
+            loadChildren: () => import('./analytics/power-source-performance/power-source-performance.module')
               .then(m => m.PowerSourcePerformanceModule),
           },
 
           {
             path: PagesResourcesNavMap.get(PagesResources.LoadPointPerformanceView)?.path,
-            loadChildren: () => import('./performances/load-point-performance/load-point-performance.module')
+            loadChildren: () => import('./analytics/load-point-performance/load-point-performance.module')
               .then(m => m.LoadPointPerformanceModule),
           },
           {
             path: PagesResourcesNavMap.get(PagesResources.GeneratingSetPerformanceView)?.path,
-            loadChildren: () => import('./performances/generating-set-performance/generating-set-performance.module')
+            loadChildren: () => import('./analytics/generating-set-performance/generating-set-performance.module')
               .then(m => m.GeneratingSetPerformanceModule),
           },
         ]
