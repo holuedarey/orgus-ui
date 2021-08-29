@@ -4,6 +4,7 @@ import { DashboardTemplateComponent } from './dashboard-template.component';
 import { NbAccordionModule, NbAutocompleteModule, NbButtonModule, NbCardModule, NbDatepickerModule, NbDialogModule, NbFormFieldModule, NbIconModule, NbInputModule, NbSelectModule, NbThemeModule, NbToggleModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'src/app/@charts/chart.module';
+import { MapsModule } from 'src/app/@maps/maps.module';
 
 
 
@@ -25,7 +26,8 @@ import { ChartsModule } from 'src/app/@charts/chart.module';
     ChartsModule,
     NbAccordionModule,
     NbDatepickerModule.forRoot(),
-    NbToggleModule
+    NbToggleModule,
+    MapsModule
   ],
   exports:[DashboardTemplateComponent]
 })

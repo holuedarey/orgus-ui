@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { isMobile } from 'mobile-device-detect';
 
 @Component({
   selector: 'app-dashboard-template',
@@ -8,8 +9,9 @@ import { FormControl } from '@angular/forms';
 })
 export class DashboardTemplateComponent implements OnInit, OnChanges  {
 
+  isMobile = isMobile;
+  
   // For header Section
-
   @Input() title: string = "";
   @Input() btnData: any = {};
 
@@ -35,7 +37,9 @@ export class DashboardTemplateComponent implements OnInit, OnChanges  {
 
   //check for button or Toggle
   @Input() isButton:any;
-  @Input() isToggle:any;
+
+   //check if to display map instead of second chart
+   @Input() isMap:any;
 
   locationData = <any>[];
   selectedItemLoadPoint:any = "";

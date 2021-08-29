@@ -20,7 +20,6 @@ export class LoadPointPerformanceComponent implements OnInit {
   };
 
   isButton:boolean = true;
-  isToggle:boolean = true;
 
   energyUsed:String = "564,563 KWH";
   energyCost:String = "₦564,563";
@@ -39,6 +38,9 @@ export class LoadPointPerformanceComponent implements OnInit {
 
   chartTitleOne="ENERGY CONSUMPTION";
   chartTitleTwo = "ENERGY COST";
+
+  //check if to display map instead of second chart
+  isMap:any = false;
 
   // filter query Date
   queryDate = new Date().toDateString;

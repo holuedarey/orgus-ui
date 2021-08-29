@@ -1,12 +1,16 @@
 <div class="row m-b-40">
-    <div class="col-9 col-xs-7">
-        <h4>{{title}}</h4>
+    <div class="col-7">
+        <h4 class="header-title">{{title}}</h4>
     </div>
-    <div class="col-3 col-xs-5 pull-right">
-        <ng-template>
-            <button nbButton status="primary" size="medium" routerLink="btnData.link">{{btnData.title}}</button>
+    <div class="col-5">
+        <div *ngIf="isButton else toggle">
+            <button class="button-title" nbButton status="primary" size="medium" routerLink="btnData.link">{{btnData.title}}</button>
+        </div>
+
+        <ng-template #toggle>
             <nb-toggle></nb-toggle>
         </ng-template>
+
     </div>
 </div>
 <div class="row top-spacer">
@@ -57,25 +61,45 @@
                 <input nbInput placeholder="Pick Date" [nbDatepicker]="formcontrol" [formControl]="formControl">
                 <nb-rangepicker #formcontrol></nb-rangepicker>
             </div>
-
-
         </div>
     </div>
-    <div class="col-sm-6 order-sm-1 visible-lg">
-        <nb-card class="stat ">
+    <div class="col-sm-6 order-sm-1  show-desktop">
+        <nb-card class="stat">
             <nb-card-body>
                 <div class="row">
                     <div class="col-6 pad">
-                        <p class="heading-stat">{{ cardTitle.titleOne }}</p>
-                        <p class="description-stat">{{energyUsed}}</p>
+                        <h5 class="heading-stat">{{ cardTitle.titleOne }}</h5>
+                        <h5 class="description-stat">{{energyUsed}}</h5>
                     </div>
                     <div class="col-6 pad">
-                        <p class="heading-stat">{{ cardTitle.titleTwo }}</p>
-                        <p class="description-stat">{{energyCost}}</p>
+                        <h5 class="heading-stat">{{ cardTitle.titleTwo }}</h5>
+                        <h5 class="description-stat">{{energyCost}}</h5>
                     </div>
                 </div>
             </nb-card-body>
         </nb-card>
+    </div>
+    <div class="col-sm-6 order-sm-1 show-mobile" style="margin-top: 40px;">
+        <div class="row">
+            <div class="col-6">
+              
+                <nb-card>
+                    <nb-card-body>
+                        <p class="mobile-title">{{ cardTitle.titleOne }}</p>
+                        <p class="mobile-description">{{energyUsed}}</p>
+                    </nb-card-body>
+                </nb-card>
+            </div>
+            <div class="col-6">
+                <nb-card>
+                    <nb-card-body>
+                        <p class="mobile-title">{{ cardTitle.titleTwo }}</p>
+                        <p class="mobile-description">{{energyCost}}</p>
+                    </nb-card-body>
+                </nb-card>
+                
+            </div>
+        </div>
     </div>
 </div>
 <div class="row top-spacer">
@@ -83,7 +107,6 @@
         <h5 class="chart-heading">ENERGY CONSUMPTION</h5>
         <nb-card>
             <nb-card-body>
-                <!-- <app-chart [chartId]="item"></app-chart> -->
                 <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
             </nb-card-body>
         </nb-card>
@@ -93,7 +116,17 @@
         <h5 class="chart-heading">ENERGY COST</h5>
         <nb-card>
             <nb-card-body>
-                <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
+                <div *ngIf="!isMap else mapView">
+                    <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
+                </div>
+
+                <ng-template #mapView>
+                    <div class="col-12 col-lg-12 px-0">
+                        <div class="chart-container">
+                            <app-map [height]="isMobile ? '40vh' :'24vh'"></app-map>
+                        </div>
+                    </div>
+                </ng-template>
             </nb-card-body>
         </nb-card>
 
