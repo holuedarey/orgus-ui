@@ -1,7 +1,7 @@
-    <a *ngIf="rowData?.genSetCount >= 2" nbButton (click)="viewGenSetModal(rowData.id)"
-    status="primary" size="small" outline>{{rowData?.genSetCount}} &nbsp; Units</a>
-
-    <a *ngIf="rowData?.genSetCount && rowData?.genSetCount < 2" nbButton (click)="viewGenSetModal(rowData.id)"
-    status="primary" size="small" outline>{{rowData?.genSetCount}} &nbsp; Unit</a>
-
-    <ng-container *ngIf="!rowData?.genSetCount">N/A</ng-container>
+<button  nbButton fullWidth [disabled]="!rowData?.genSetCount"
+    (click)="viewGenSetModal(rowData.id)" 
+    status="primary" 
+    size="small" outline> 
+    Unit{{(rowData?.genSetCount ?? 0) !== 1 ? 's' : ''}} &nbsp;
+    ({{rowData?.genSetCount}})
+</button>

@@ -14,12 +14,15 @@ export class GenSetDialogComponent implements OnInit {
   columns = {
     name: {
       title: 'Name',
+      filter: false
     },
     meter:{
       title: 'Meter Number',
+      filter: false
     },
     energySourceName: {
       title: 'Energy Source',
+      filter: false
     },
   }
 
