@@ -1,15 +1,12 @@
-export interface GeneratingSetPerformanceDto {
+export interface GeneratingSetsAnalyticsDto {
     totalEnergySupplied: number;
     totalEnergyValue: number;
-    itemList: ItemList[]
+    chartData: ChartData[]
 }
 
-interface ItemList{
-    id: string; 
+interface ChartData{
     name: string;
-    meterNumber: number;
     energySupplied: number;
     energyValue: number;
-    readingPeriod: string;
     ReadingPeriodString: string;
 }

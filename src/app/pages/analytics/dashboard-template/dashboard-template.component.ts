@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, OnChanges, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { isMobile } from 'mobile-device-detect';
 
@@ -25,6 +25,10 @@ export class DashboardTemplateComponent implements OnInit, OnChanges  {
   @Input() assetType:any;
   @Input() locations:any;
   @Input() queryDate:any;
+
+  @Input() tableTitle:string = '';
+  @Input() tableData = <any>[];
+  @Input() tableColums = <any>[];
 
   // title for the chart Data
   @Input() chartData:any;

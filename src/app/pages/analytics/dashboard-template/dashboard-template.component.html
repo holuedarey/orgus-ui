@@ -4,7 +4,8 @@
     </div>
     <div class="col-5">
         <div *ngIf="isButton else toggle">
-            <button class="button-title" nbButton status="primary" size="medium" routerLink="btnData.link">{{btnData.title}}</button>
+            <button class="button-title" nbButton status="primary" size="medium"
+                routerLink="btnData.link">{{btnData.title}}</button>
         </div>
 
         <ng-template #toggle>
@@ -58,7 +59,8 @@
                 </span>
             </div>
             <div class="col-8">
-                <input style="padding-right: 0px;" nbInput placeholder="Pick Date" [nbDatepicker]="formcontrol" [formControl]="formControl">
+                <input style="padding-right: 0px;" nbInput placeholder="Pick Date" [nbDatepicker]="formcontrol"
+                    [formControl]="formControl">
                 <nb-rangepicker #formcontrol></nb-rangepicker>
             </div>
         </div>
@@ -82,7 +84,7 @@
     <div class="col-sm-6 order-sm-1" *ngIf="isMobile" style="margin-top: 40px;">
         <div class="row">
             <div class="col-6">
-              
+
                 <nb-card>
                     <nb-card-body>
                         <p class="mobile-title">{{ cardTitle.titleOne }}</p>
@@ -97,15 +99,21 @@
                         <p class="mobile-description">{{energyCost}}</p>
                     </nb-card-body>
                 </nb-card>
-                
+
             </div>
         </div>
     </div>
 </div>
 <div class="row top-spacer">
     <div class="col-md-6">
-        <h5 class="chart-heading">ENERGY CONSUMPTION</h5>
         <nb-card>
+            <nb-card-header *ngIf="title">
+                <div class="col p-0">
+                    <span class="h5">
+                        ENERGY CONSUMPTION
+                    </span>
+                </div>
+            </nb-card-header>
             <nb-card-body>
                 <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
             </nb-card-body>
@@ -113,8 +121,14 @@
 
     </div>
     <div class="col-md-6">
-        <h5 class="chart-heading">ENERGY COST</h5>
         <nb-card>
+            <nb-card-header *ngIf="title">
+                <div class="col p-0">
+                    <span class="h5">
+                        ENERGY COST
+                    </span>
+                </div>
+            </nb-card-header>
             <nb-card-body>
                 <div *ngIf="!isMap else mapView">
                     <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
@@ -134,22 +148,10 @@
 
 </div>
 <div class="row">
-    <div class="row m-0">
-        <div class="col-12">
-            <nb-accordion>
-                <nb-accordion-item>
-                    <nb-accordion-item-header>Location Details </nb-accordion-item-header>
-                    <nb-accordion-item-body>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, consectetur atque
-                        tempore quisquam aspernatur hic fugit esse assumenda est ipsam, quo consequatur
-                        dolores, repudiandae rerum! Eum ad adipisci deserunt sint!
-                        <!-- <app-table  title="Load Points"
-                            [columns]="columns">
-                        </app-table> -->
-                    </nb-accordion-item-body>
-                </nb-accordion-item>
-            </nb-accordion>
+    <div class="col-12">
+        <app-table [showAdd]='false' [showEdit]='false' [title]="tableTitle" [data]="tableData" [columns]="tableColums">
+        </app-table>
 
-        </div>
     </div>
+
 </div>

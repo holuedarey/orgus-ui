@@ -4,6 +4,7 @@ import { GeneratingSetsService } from 'src/app/@core/data-services/generating-se
 import { GeneratingSetPerformanceDto } from 'src/app/@core/dtos/generating-set-performance.dto';
 import { Component, OnInit } from '@angular/core';
 import { SeoService } from 'src/app/@core/utils';
+import { GeneratingSetAnalyticsDto } from 'src/app/@core/dtos/generating-sets-analytics.dto';
 
 @Component({
   selector: 'app-generating-set-performance',
@@ -17,6 +18,29 @@ export class GeneratingSetPerformanceComponent implements OnInit {
     title: "Manage Generating Set",
     link: "./generating-set"
   }
+  tableTitle = "LOCATION DETAILS"
+
+  chartTitleOne="ENERGY CONSUMPTION";
+  chartTitleTwo = "ENERGY COST";
+
+  tabelColumns = {
+    location: {
+      title: 'Location',
+    },
+    from:{
+      title: 'From',
+    },
+    to: {
+      title: 'To',
+    },
+    energySupplied: {
+      title: 'Energy Supplied',
+    },
+    energyValue: {
+      title: 'Energy Value',
+    },
+  }
+
   chartData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
@@ -51,8 +75,14 @@ export class GeneratingSetPerformanceComponent implements OnInit {
 
   generatingSetLocations:any = [];
 
+  queryDate = new Date().toDateString;
+
+  isButton:boolean = true;
+
+  isMap:any = false;
+
   isLoadingData = true;
-  generatingSet: GeneratingSetPerformanceDto[] = [];
+  generatingSet: GeneratingSetAnalyticsDto[] = [];
   constructor(
     private seo: SeoService,
     private generatingSetService: GeneratingSetsService,
@@ -74,10 +104,6 @@ export class GeneratingSetPerformanceComponent implements OnInit {
           if (response.status) {
             
             this.generatingSetLocations = GetUniqueArray([...response.data?.itemList ?? []], [...this.generatingSetLocations]);
-            // for (let result of this.generatingSetLocations){
-            //   console.log(result.name);
-            //   this.generatingSetLocations = result.name
-            // }
 
           }
         },

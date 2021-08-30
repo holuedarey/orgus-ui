@@ -1,3 +1,4 @@
+import { TablesModule } from './../../../@tables/tables.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardTemplateComponent } from './dashboard-template.component';
@@ -27,7 +28,8 @@ import { MapsModule } from 'src/app/@maps/maps.module';
     NbAccordionModule,
     NbDatepickerModule.forRoot(),
     NbToggleModule,
-    MapsModule
+    MapsModule,
+    TablesModule
   ],
   exports:[DashboardTemplateComponent]
 })
