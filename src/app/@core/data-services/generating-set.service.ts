@@ -1,3 +1,4 @@
+import { GeneratingSetAnalyticsDto } from 'src/app/@core/dtos/generating-sets-analytics.dto';
 import { GeneratingSetResources } from './../../pages/assets/generating-set/generating-set-resources';
 import { GeneratingSetDto } from './../dtos/generating-set.dto';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -12,7 +13,6 @@ import { PermissionEnum } from '../enums/permission.enum';
 import { PermissionService } from '../utils/permission.service';
 import { PostGeneratingSetDto } from '../dtos/post-generating-set.dto';
 import { UpdateGeneratingSetDto } from '../dtos/update-generating-set.dto';
-import { GeneratingSetPerformanceDto } from '../dtos/generating-set-performance.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -57,12 +57,12 @@ export class GeneratingSetsService implements AccessControlContract {
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, null);
   }
 
-  getAllGeneratingSetPerformance(): Observable<ResponseDto<GeneratingSetPerformanceDto>> {
+  getAllGeneratingSetPerformance(): Observable<ResponseDto<GeneratingSetAnalyticsDto>> {
     const apiEndpoint = 'allGeneratingUnits/getAnalytics';
     //let params = new HttpParams();
     // params = params.set('startDate', startDate);
     // params = params.set('endDate', endDate);
-    return this.httpClient.get<ResponseDto<GeneratingSetPerformanceDto>>(`${environment.apiUrl}/${apiEndpoint}`);
+    return this.httpClient.get<ResponseDto<GeneratingSetAnalyticsDto>>(`${environment.apiUrl}/${apiEndpoint}`);
   }
 
 }
