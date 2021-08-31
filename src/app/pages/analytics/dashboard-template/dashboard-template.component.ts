@@ -63,7 +63,6 @@ export class DashboardTemplateComponent implements OnInit, OnChanges {
 
 
   onEventStartEndRange(ev:any){
-    // console.log("event :: ",ev);
     this.selectedDateRange.emit(ev)
   }
 

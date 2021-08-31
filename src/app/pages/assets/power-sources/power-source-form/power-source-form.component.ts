@@ -52,7 +52,6 @@ export class PowerSourceFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.powerSourceForUpdate);
     this.initCreateForm();
     if (this.isCreateRequest) {
     } else {

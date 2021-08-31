@@ -52,7 +52,6 @@ export class ServiceBandStatusToggleComponent implements OnInit {
   async onStatusChange(state: boolean) {
     this.isSubmitted = true;
     this.cd.detectChanges();
-    console.log(state)
     const confirmed = await this.dialogService.open(
       ConfirmationDialogComponent,
       {

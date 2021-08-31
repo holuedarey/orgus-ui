@@ -24,7 +24,7 @@ export class GenSetColumnComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.rowData);
+    console.log('');
   }
 
 
