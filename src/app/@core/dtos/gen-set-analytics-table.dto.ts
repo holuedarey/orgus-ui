@@ -1,7 +1,13 @@
-export interface GenSetAnalyticsTableDto{
-    location: string;
-    from: string;
-    to: string;
+export interface GenSetAnalyticsTableDto {
+    totalEnergySupplied: number;
+    totalEnergyValue: number;
+    tableData: TableData[]
+}
+
+interface TableData {
+    name: string;
     energySupplied: number;
     energyValue: number
+    from: string;
+    to: string;
 }

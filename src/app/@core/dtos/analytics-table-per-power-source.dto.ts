@@ -1,4 +1,4 @@
-export interface AnalyticsTablePerGenSetDto {
+export interface AnalyticsTablePerPowerSourceDto {
     totalEnergySupplied: number;
     totalEnergyValue: number;
     tableData: TableData[]
