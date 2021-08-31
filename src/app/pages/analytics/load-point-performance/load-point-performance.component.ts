@@ -5,6 +5,7 @@ import { isMobile } from 'mobile-device-detect';
 import { LoadPointService } from 'src/app/@core/data-services/load-point.service';
 import { LoadPointDto } from 'src/app/@core/dtos/load-point.dto';
 import { GetUniqueArray } from 'src/app/@core/functions/data-request.funtion';
+import { LoadPointPerformanceDto } from 'src/app/@core/dtos/loadpoint-performance.dto';
 
 @Component({
   selector: 'app-load-point-performance',
@@ -80,6 +81,7 @@ export class LoadPointPerformanceComponent implements OnInit {
 
   isLoadingData = true;
   loadPoints: LoadPointDto[] = [];
+  loadPointPerformance: LoadPointPerformanceDto[] = [];
   constructor(
     private seo: SeoService,
     private loadPointService: LoadPointService,
