@@ -1,10 +1,8 @@
 import { GetUniqueArray } from 'src/app/@core/functions/data-request.funtion';
-import { isMobile } from 'mobile-device-detect';
 import { GeneratingSetsService } from 'src/app/@core/data-services/generating-set.service';
-import { GeneratingSetPerformanceDto } from 'src/app/@core/dtos/generating-set-performance.dto';
 import { Component, OnInit } from '@angular/core';
 import { SeoService } from 'src/app/@core/utils';
-import { GeneratingSetAnalyticsDto } from 'src/app/@core/dtos/generating-sets-analytics.dto';
+import { GeneratingSetAnalyticsChartDto } from 'src/app/@core/dtos/generating-sets-analytics-chart.dto';
 
 @Component({
   selector: 'app-generating-set-performance',
@@ -82,7 +80,7 @@ export class GeneratingSetPerformanceComponent implements OnInit {
   isMap:any = false;
 
   isLoadingData = true;
-  generatingSet: GeneratingSetAnalyticsDto[] = [];
+  generatingSet: GeneratingSetAnalyticsChartDto[] = [];
   constructor(
     private seo: SeoService,
     private generatingSetService: GeneratingSetsService,
