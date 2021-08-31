@@ -43,6 +43,11 @@ export class TableComponent implements OnInit, OnDestroy {
   pageLength = 10;
 
   @Input()
+  hasCloseButton = false;
+  @Output() 
+  closed = new EventEmitter<any>();
+
+  @Input()
   public set config(v: TableConfig<any>[]) {
     this.#config = v;
   }

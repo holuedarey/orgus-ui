@@ -1,12 +1,19 @@
 <nb-card *ngIf="!tableOnly">
     <nb-card-header *ngIf="title">
-        <div class="col p-0">
-            <span class="h5">
-                {{title}}
-            </span>
-            <nb-spinner size="tiny" *ngIf="title && isLoading" status="primary" class="header-spinner ml-auto"
-                style="z-index: 1;" message="">
-            </nb-spinner>
+        <nb-spinner size="tiny" *ngIf="title && isLoading" status="primary" class="header-spinner ml-auto"
+            style="z-index: 1;" message="">
+        </nb-spinner>
+        <div class="row">
+            <div class="col-auto m-0 h5">
+                <span>
+                    {{title}}
+                </span>
+            </div>
+            <div *ngIf="hasCloseButton" class="col ml-auto text-right">
+                <button (click)="closed.emit()" class="p-1" nbButton ghost>
+                    <nb-icon icon="close"></nb-icon>
+                </button>
+            </div>
         </div>
     </nb-card-header>
     <nb-card-body class="my-3">
