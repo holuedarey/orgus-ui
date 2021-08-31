@@ -8,7 +8,7 @@ import { isMobile } from 'mobile-device-detect';
   styleUrls: ['./dashboard-template.component.scss']
 })
 export class DashboardTemplateComponent implements OnInit, OnChanges {
-
+  
   isMobile = isMobile;
   //output data from date range
   // Outputs
