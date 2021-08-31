@@ -30,6 +30,10 @@ export class DashboardTemplateComponent implements OnInit, OnChanges {
   @Input() locations: any;
   @Input() queryDate: any;
 
+  @Input() tableTitle:string = '';
+  @Input() tableData = <any>[];
+  @Input() tableColums = <any>[];
+
   // title for the chart Data
   @Input() chartData: any;
   @Input() chartConfig: any;

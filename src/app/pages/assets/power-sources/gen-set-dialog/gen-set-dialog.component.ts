@@ -11,6 +11,21 @@ import { PowerSourceGenSetDto } from 'src/app/@core/dtos/gen-set-details.dto';
 export class GenSetDialogComponent implements OnInit {
   @Input() powerSourceGenSet!: PowerSourceDto[];
 
+  columns = {
+    name: {
+      title: 'Name',
+      filter: false
+    },
+    meter:{
+      title: 'Meter Number',
+      filter: false
+    },
+    energySourceName: {
+      title: 'Energy Source',
+      filter: false
+    },
+  }
+
   constructor(
     public dialogRef: NbDialogRef<GenSetDialogComponent>,
   ) {}

@@ -24,7 +24,7 @@ export class GenSetColumnComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('');
+    console.log(this.rowData);
   }
 
 
@@ -33,15 +33,7 @@ export class GenSetColumnComponent implements OnInit {
     this.powerSourceService.getPowerSourceGeneratingSet(id)
       .subscribe(
         (response) => {
-          console.log(response.data);
           this.isLoadingData = false;
-          if (response.status) {
-
-            for(let result of response.data.itemList){
-              console.log(result.name);
-           }
-
-          };
           this.dialogService.open(GenSetDialogComponent, {
             closeOnBackdropClick: false,
             context: {

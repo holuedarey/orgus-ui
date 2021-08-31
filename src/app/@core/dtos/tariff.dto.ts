@@ -5,8 +5,6 @@ export interface TariffDto {
     rateClass: string;
     clientId: string;
     client: string;
-    serviceBandId: string;
-    serviceBand: string;
     status: string;
     modified: string
   }

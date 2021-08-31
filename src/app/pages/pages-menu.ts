@@ -39,7 +39,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Power Stations',
-        link: GlobalResources.get(PagesResources.PowerSourcesView)?.route,
+        link: GlobalResources.get(PagesResources.PowerStationsView)?.route,
         icon: 'wifi-outline',
       },
       {
@@ -48,6 +48,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'options-outline',
       },
     ]
+  },  
+  {
+    title: 'Tariff Management',
+    link: GlobalResources.get(PagesResources.TariffView)?.route,
+    icon: 'clipboard-outline'
   },
   {
     title: 'Analytics',
@@ -70,21 +75,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ]
   },
-  {
-    title: 'Tariff Management',
-    icon: 'shopping-bag-outline',
-    children: [
-      {
-        title: 'Service band',
-        link: GlobalResources.get(PagesResources.ServiceBandView)?.route,
-        icon: 'award-outline',
-      },
-      {
-        title: 'Tariff',
-        link: GlobalResources.get(PagesResources.TariffView)?.route,
-        icon: 'clipboard-outline',
-      },
-    ]
-  },
+
 
 ];

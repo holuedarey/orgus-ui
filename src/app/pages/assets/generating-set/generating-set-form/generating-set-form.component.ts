@@ -89,29 +89,7 @@ export class GeneratingSetFormComponent implements OnInit {
       energySource: ['', Validators.required],
     });
   }
-
-  validateLatitude(input: FormControl) {
-    const value = input.value;
-    const isValidlatitude = isLatitude(input.value);
-    if (isValidlatitude) {
-      return;
-    } else {
-      return {
-        invalidLatitude: `"${value}" is not a valid latitude`
-      }
-    }
-  }
-  validateLongitude(input: FormControl) {
-    const value = input.value;
-    const isValidLongitude = isLongitude(input.value);
-    if (isValidLongitude) {
-      return;
-    } else {
-      return {
-        invalidLongitude: `"${value}" is not a valid Longitude`
-      }
-    }
-  }
+  
   keyPressNumbersOnly(event: any) {
     var charCode = (event.which) ? event.which : event.keyCode;
     if (charCode != 46 && charCode > 31
