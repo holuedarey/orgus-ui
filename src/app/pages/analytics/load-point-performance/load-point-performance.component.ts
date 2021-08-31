@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SeoService } from 'src/app/@core/utils';
 import { isMobile } from 'mobile-device-detect';
 import { LoadPointService } from 'src/app/@core/data-services/load-point.service';
 import { LoadPointDto } from 'src/app/@core/dtos/load-point.dto';
 import { GetUniqueArray } from 'src/app/@core/functions/data-request.funtion';
+import { LoadPointPerformanceDto } from 'src/app/@core/dtos/loadpoint-performance.dto';
 
 @Component({
   selector: 'app-load-point-performance',
@@ -12,6 +13,9 @@ import { GetUniqueArray } from 'src/app/@core/functions/data-request.funtion';
   styleUrls: ['./load-point-performance.component.scss']
 })
 export class LoadPointPerformanceComponent implements OnInit {
+ 
+  startDate:any = new Date().toISOString().split('T')[0];;
+  endDate:any = new Date().toISOString().split('T')[0];;
   title = "LOADPOINT MANAGEMENT";
 
   cardTitle:any = {
@@ -77,10 +81,17 @@ export class LoadPointPerformanceComponent implements OnInit {
 
   isLoadingData = true;
   loadPoints: LoadPointDto[] = [];
+  loadPointPerformance: LoadPointPerformanceDto[] = [];
   constructor(
     private seo: SeoService,
     private loadPointService: LoadPointService,
     ) {   }
+
+
+  getDate(ev:any){
+    this.startDate = new Date(ev.start).toISOString().split('T')[0];
+    this.endDate = new Date(ev.end || this.startDate).toISOString().split('T')[0]; 
+  }
 
   ngOnInit(): void {
     this.LoadPoints()

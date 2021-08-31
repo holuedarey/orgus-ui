@@ -87,6 +87,17 @@ input{
     line-height: 11px;
  }
 
+ .dateRangeInput{
+    padding-right: 0px;
+    padding-left: 0px;
+    text-align: right;
+    position: absolute;
+    right: 3%;
+ }
+
+ .dateRangeInput::placeholder{
+     color: #074EE8;
+ }
  .mobile-description{
     font-size: 13px;
     color: red;
