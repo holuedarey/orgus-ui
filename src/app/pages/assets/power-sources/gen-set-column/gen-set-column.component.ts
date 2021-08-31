@@ -29,25 +29,16 @@ export class GenSetColumnComponent implements OnInit {
 
 
   viewGenSetModal(id: any) {
+    this.dialogService.open(GenSetDialogComponent, {
+      closeOnBackdropClick: false,
+      context: {
+        // powerSourceGenSet: (response.data?.itemList)
+        id: id
+      },
+      hasScroll: true,
+      closeOnEsc: false
+    });
     this.isLoadingData = true;
-    this.powerSourceService.getPowerSourceGeneratingSet(id)
-      .subscribe(
-        (response) => {
-          this.isLoadingData = false;
-          this.dialogService.open(GenSetDialogComponent, {
-            closeOnBackdropClick: false,
-            context: {
-              powerSourceGenSet: (response.data?.itemList)
-            },
-            hasScroll: true,
-            closeOnEsc: false
-          });
-
-        },
-        (err) => {
-          this.isLoadingData = false;
-        }
-      )
   }
 
 
