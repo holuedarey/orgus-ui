@@ -7,7 +7,6 @@ import { NbMenuModule } from '@nebular/theme';
 import { TranslateModule } from '@ngx-translate/core';
 import { ThemeModule } from '../@theme/theme.module';
 
-
 @NgModule({
   declarations: [PagesComponent],
   imports: [
@@ -15,7 +14,7 @@ import { ThemeModule } from '../@theme/theme.module';
     PagesRoutingModule,
     NbMenuModule,
     ThemeModule,
-    TranslateModule
+    TranslateModule,
   ]
 })
 export class PagesModule { }

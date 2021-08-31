@@ -1,3 +1,5 @@
+import { TariffService } from './../../../../@core/data-services/tariff.service';
+import { TariffDto } from './../../../../@core/dtos/tariff.dto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
@@ -31,6 +33,7 @@ export class MeterFormComponent implements OnInit {
   meterForm!: FormGroup
 
   meterManufacturer$: Observable<MeterManufaturerDto[]>;
+  tariff$!: Observable<TariffDto[]>;
 
   meterResources = MeterResources;
   isLive = true;
@@ -38,9 +41,11 @@ export class MeterFormComponent implements OnInit {
   constructor(
     public dialogRef: NbDialogRef<MeterFormComponent>,
     private formBuilder: FormBuilder,
-    private meterService: MeterService
+    private meterService: MeterService,
+    private tariffService: TariffService
   ) {
     this.meterManufacturer$ = this.meterService.getMeterManufacturer().pipe(map(d => d.data as MeterManufaturerDto[]));
+    this.tariff$ = this.tariffService.getTariff().pipe(map(d => d.data?.itemList as TariffDto[]));
   }
 
   ngOnInit(): void {
@@ -59,6 +64,15 @@ export class MeterFormComponent implements OnInit {
   confirm(): void {
     this.dialogRef.close(true);
   }
+  keyPressNumbersOnly(event: any) {
+    var charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode != 46 && charCode > 31
+      && (charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      return false;
+    }
+    return true;
+  }
 
   initCreateForm(): void {
     this.meterForm = this.formBuilder.group({
@@ -66,6 +80,7 @@ export class MeterFormComponent implements OnInit {
       phaseCount: [null, Validators.required],
       meterManufacturerId: [null, Validators.required],
       meterModel: ['', Validators.required],
+      tariffId: ['', Validators.required],
     });
   }
 
@@ -74,6 +89,7 @@ export class MeterFormComponent implements OnInit {
       phaseCount: [this.meterForUpdate.phaseCount, Validators.required],
       meterManufacturerId: [this.meterForUpdate.meterManufacturerId, Validators.required],
       meterModel: [this.meterForUpdate.meterModel, Validators.required],
+      tariffId: [this.meterForUpdate.tarriffId, Validators.required],
     });
   }
 
@@ -87,6 +103,7 @@ export class MeterFormComponent implements OnInit {
       phaseCount: (this.meterForm.get('phaseCount')?.value as number),
       meterManufacturer: (this.meterForm.get('meterManufacturerId')?.value as number),
       meterModel: (this.meterForm.get('meterModel')?.value as string).trim(),
+      tarriffId: (this.meterForm.get('tariffId')?.value as string).trim(),
     }
     this.meterService.postMeter(postMeterDto).subscribe(
       (result) => {
@@ -121,6 +138,7 @@ export class MeterFormComponent implements OnInit {
       phaseCount: (this.meterForm.get('phaseCount')?.value as number),
       meterManufacturer: (this.meterForm.get('meterManufacturerId')?.value as number),
       meterModel: (this.meterForm.get('meterModel')?.value as string).trim(),
+      tarriffId: (this.meterForm.get('tariffId')?.value as string).trim(),
       id: this.meterForUpdate.id
     }
 

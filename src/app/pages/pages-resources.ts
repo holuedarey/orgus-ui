@@ -7,7 +7,15 @@ export enum PagesResources {
     AssetsView = 'pages:assets-view',
     MetersView = 'pages:meters-view',
     LoadPointsView = 'pages:load-points-view',
-    PowerSourcesView = 'pages:power-sources-view',
+    PowerStationsView = 'pages:power-stations-view',
+    GeneratingSetView = 'pages:generating-units-view',
+    TariffModuleView = 'pages:tariff-management-view',
+    TariffView = 'pages:tarrif-view',
+    ServiceBandView = 'pages:service-band-view',
+    PerformanceModuleView = 'pages:performance-module-view',
+    PowerSourcePerformanceView = 'pages:power-source-performance-view',
+    GeneratingSetPerformanceView = 'pages:generating-set-performance-view',
+    LoadPointPerformanceView = 'pages:load-point-performance-view',
 }
 
 export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
@@ -54,10 +62,68 @@ export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
         }
     ],
     [
-        PagesResources.PowerSourcesView,
+        PagesResources.PowerStationsView,
         {
-            route: `/app/assets/power-sources`,
-            path: 'power-sources'
+            route: `/app/assets/power-stations`,
+            path: 'power-stations'
+        }
+    ],
+
+    [
+        PagesResources.GeneratingSetView,
+        {
+            route: `/app/assets/generating-units`,
+            path: 'generating-units'
+        }
+    ],
+    [
+        PagesResources.TariffModuleView,
+        {
+            route: `/app/tariff-management`,
+            path: 'tariff-management'
+        }
+    ],
+    [
+        PagesResources.TariffView,
+        {
+            route: `/app/tariff-management/tariff`,
+            path: 'tariff'
+        }
+    ],
+    [
+        PagesResources.ServiceBandView,
+        {
+            route: `/app/tariff-management/service-band`,
+            path: 'service-band'
+        }
+    ],
+    [
+        PagesResources.PerformanceModuleView,
+        {
+            route: `/app/performance-management`,
+            path: 'performance-management'
+        }
+    ],
+    [
+        PagesResources.PowerSourcePerformanceView,
+        {
+            route: `/app/performance-management/power-source-performance`,
+            path: 'power-source-performance'
+        }
+    ],
+    [
+        PagesResources.GeneratingSetPerformanceView,
+        {
+            route: `/app/performance-management/generating-set-performance`,
+            path: 'generating-set-performance'
+        }
+    ],
+
+    [
+        PagesResources.LoadPointPerformanceView,
+        {
+            route: `/app/performance-management/load-point-performance`,
+            path: 'load-point-performance'
         }
     ],
 ])

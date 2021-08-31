@@ -1,0 +1,157 @@
+<div class="row m-b-40">
+    <div class="col-7">
+        <h4 class="header-title">{{title}}</h4>
+    </div>
+    <div class="col-5">
+        <div *ngIf="isButton else toggle">
+            <button class="button-title" nbButton status="primary" size="medium"
+                routerLink="btnData.link">{{btnData.title}}</button>
+        </div>
+
+        <ng-template #toggle>
+            <nb-toggle></nb-toggle>
+        </ng-template>
+
+    </div>
+</div>
+<div class="row top-spacer">
+
+
+    <div class="col-sm-6 order-sm-12">
+
+        <div class="row select-card">
+            <div class="col-6">
+                <span class="select-card-icon">
+                    <nb-icon icon="flash"></nb-icon>
+                    ASSET TYPE
+                </span>
+            </div>
+            <div class="col-6 top-space">
+                <nb-select class="no-outline" fullWidth size="tiny" placeholder="Select Asset Type"
+                    [(selected)]="selectedItemLoadPoint" disabled>
+                    <nb-option *ngFor="let loadpoint of assetType" [value]="loadpoint.value">
+                        {{loadpoint.value }}
+                    </nb-option>
+                </nb-select>
+            </div>
+
+        </div>
+        <div class="row top-spacer select-card">
+            <div class="col-6">
+                <span class="select-card-icon">
+                    <nb-icon icon="map"></nb-icon>
+                    LOCATION
+                </span>
+            </div>
+            <div class="col-6 top-space">
+                <nb-select fullWidth size="tiny" placeholder="Select Location" [(selected)]="selectedItemLocation">
+                    <nb-option *ngFor="let location of locationData" [value]="location.name">
+                        {{location.name }}
+                    </nb-option>
+                </nb-select>
+            </div>
+        </div>
+        <div class="row top-spacer select-card m-b-20">
+            <div class="col-4">
+                <span class="select-card-icon">
+                    <nb-icon icon="flash"></nb-icon>
+                    DATE
+                </span>
+            </div>
+            <div class="col-8">
+                <input style="padding-right: 0px;" nbInput placeholder="Pick Date" [nbDatepicker]="formcontrol"
+                    [formControl]="formControl">
+                <nb-rangepicker #formcontrol></nb-rangepicker>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 order-sm-1" *ngIf="!isMobile">
+        <nb-card class="stat">
+            <nb-card-body>
+                <div class="row">
+                    <div class="col-6 pad">
+                        <h5 class="heading-stat">{{ cardTitle.titleOne }}</h5>
+                        <h5 class="description-stat">{{energyUsed}}</h5>
+                    </div>
+                    <div class="col-6 pad">
+                        <h5 class="heading-stat">{{ cardTitle.titleTwo }}</h5>
+                        <h5 class="description-stat">{{energyCost}}</h5>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-sm-6 order-sm-1" *ngIf="isMobile" style="margin-top: 40px;">
+        <div class="row">
+            <div class="col-6">
+
+                <nb-card>
+                    <nb-card-body>
+                        <p class="mobile-title">{{ cardTitle.titleOne }}</p>
+                        <p class="mobile-description">{{energyUsed}}</p>
+                    </nb-card-body>
+                </nb-card>
+            </div>
+            <div class="col-6">
+                <nb-card>
+                    <nb-card-body>
+                        <p class="mobile-title">{{ cardTitle.titleTwo }}</p>
+                        <p class="mobile-description">{{energyCost}}</p>
+                    </nb-card-body>
+                </nb-card>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row top-spacer">
+    <div class="col-md-6">
+        <nb-card>
+            <nb-card-header *ngIf="title">
+                <div class="col p-0">
+                    <span class="h5">
+                        ENERGY CONSUMPTION
+                    </span>
+                </div>
+            </nb-card-header>
+            <nb-card-body>
+                <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
+            </nb-card-body>
+        </nb-card>
+
+    </div>
+    <div class="col-md-6">
+        <nb-card>
+            <nb-card-header *ngIf="title">
+                <div class="col p-0">
+                    <span class="h5">
+                        ENERGY COST
+                    </span>
+                </div>
+            </nb-card-header>
+            <nb-card-body>
+                <div *ngIf="!isMap else mapView">
+                    <app-chart [data]="chartData" [config]="chartConfig"></app-chart>
+                </div>
+
+                <ng-template #mapView>
+                    <div class="col-12 col-lg-12 px-0">
+                        <div class="chart-container">
+                            <app-map [height]="isMobile ? '40vh' :'24vh'"></app-map>
+                        </div>
+                    </div>
+                </ng-template>
+            </nb-card-body>
+        </nb-card>
+
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-12">
+        <app-table [showAdd]='false' [showEdit]='false' [title]="tableTitle" [data]="tableData" [columns]="tableColums">
+        </app-table>
+
+    </div>
+
+</div>

@@ -47,10 +47,60 @@ const routes: Routes = [
               .then(m => m.LoadPointsModule),
           },
           {
-            path: PagesResourcesNavMap.get(PagesResources.PowerSourcesView)?.path,
+            path: PagesResourcesNavMap.get(PagesResources.PowerStationsView)?.path,
             loadChildren: () => import('./assets/power-sources/power-sources.module')
               .then(m => m.PowerSourcesModule),
+          },
+          
+          {
+            path: PagesResourcesNavMap.get(PagesResources.GeneratingSetView)?.path,
+            loadChildren: () => import('./assets/generating-set/generating-set.module')
+              .then(m => m.GeneratingSetModule),
           }
+        ]
+      },
+      {
+        path: PagesResourcesNavMap.get(PagesResources.TariffModuleView)?.path,
+        children: [
+          {
+            path: '',
+            redirectTo: PagesResourcesNavMap.get(PagesResources.TariffView)?.path,
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.TariffView)?.path,
+            loadChildren: () => import('./tariff-management/tariff/tariff.module')
+              .then(m => m.TariffModule),
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.ServiceBandView)?.path,
+            loadChildren: () => import('./tariff-management/service-band/service-band.module')
+              .then(m => m.ServiceBandModule),
+          },
+        ]
+      },
+      {
+        path: PagesResourcesNavMap.get(PagesResources.PerformanceModuleView)?.path,
+        children: [
+          {
+            path: '',
+            redirectTo: PagesResourcesNavMap.get(PagesResources.PowerSourcePerformanceView)?.path,
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.PowerSourcePerformanceView)?.path,
+            loadChildren: () => import('./analytics/power-source-performance/power-source-performance.module')
+              .then(m => m.PowerSourcePerformanceModule),
+          },
+
+          {
+            path: PagesResourcesNavMap.get(PagesResources.LoadPointPerformanceView)?.path,
+            loadChildren: () => import('./analytics/load-point-performance/load-point-performance.module')
+              .then(m => m.LoadPointPerformanceModule),
+          },
+          {
+            path: PagesResourcesNavMap.get(PagesResources.GeneratingSetPerformanceView)?.path,
+            loadChildren: () => import('./analytics/generating-set-performance/generating-set-performance.module')
+              .then(m => m.GeneratingSetPerformanceModule),
+          },
         ]
       },
     ]

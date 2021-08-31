@@ -3,4 +3,5 @@ export interface PostMeterDto {
     phaseCount: number;
     meterModel: string;
     meterManufacturer: number;
+    tarriffId: string
 }

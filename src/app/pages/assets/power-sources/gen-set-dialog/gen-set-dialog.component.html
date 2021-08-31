@@ -1,0 +1,18 @@
+<div style="width: 100vw;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 mx-auto xyz-in dialog" xyz="fade down-25%"
+                style="max-height: 100vh; overflow-y: auto;">
+                <div class="row">
+                    <div class="col ml-auto text-right" style="position: absolute; right: 3%; top: 5%;">
+                        <button (click)="close()" class="p-1" nbButton ghost>
+                            <nb-icon icon="close"></nb-icon>
+                        </button>
+                    </div>
+                </div>
+                <app-table [showAdd]='false' [showEdit]='false' title="Generating Units" [data]="powerSourceGenSet"
+                    [columns]="columns"></app-table>
+
+            </div>
+        </div>
+    </div>

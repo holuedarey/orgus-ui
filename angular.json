@@ -135,6 +135,7 @@
   },
   "defaultProject": "argus-front-end",
   "cli": {
+    "analytics": false,
     "defaultCollection": "@angular-eslint/schematics"
   }
 }

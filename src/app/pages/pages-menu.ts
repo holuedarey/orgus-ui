@@ -38,11 +38,43 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'code-download-outline',
       },
       {
-        title: 'Power Sources',
-        link: GlobalResources.get(PagesResources.PowerSourcesView)?.route,
+        title: 'Power Stations',
+        link: GlobalResources.get(PagesResources.PowerStationsView)?.route,
         icon: 'wifi-outline',
+      },
+      {
+        title: 'Generating Units',
+        link: GlobalResources.get(PagesResources.GeneratingSetView)?.route,
+        icon: 'options-outline',
+      },
+    ]
+  },  
+  {
+    title: 'Tariff Management',
+    link: GlobalResources.get(PagesResources.TariffView)?.route,
+    icon: 'clipboard-outline'
+  },
+  {
+    title: 'Analytics',
+    icon: 'briefcase-outline',
+    children: [
+      {
+        title: 'Power Station',
+        link: GlobalResources.get(PagesResources.PowerSourcePerformanceView)?.route,
+        icon: 'speaker-outline',
+      },
+      {
+        title: 'Load Point',
+        link: GlobalResources.get(PagesResources.LoadPointPerformanceView)?.route,
+        icon: 'speaker-outline',
+      },
+      {
+        title: 'Generating Unit',
+        link: GlobalResources.get(PagesResources.GeneratingSetPerformanceView)?.route,
+        icon: 'speaker-outline',
       },
     ]
   },
+
 
 ];

@@ -6,12 +6,20 @@ import * as Chart from 'chart.js';
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss']
 })
-export class ChartComponent {
+export class ChartComponent implements OnInit  {
 
   @Input() data: any;
   @Input() config: any;
   @Input() chartId = '';
+  type: string = 'line';
+
+  chartData:any = [];
+  chartConfig:any = {};
 
   constructor() { }
 
+  ngOnInit():void{
+    this.chartData = this.data || [];
+    this.chartConfig = this.config || {};
+  }
 }

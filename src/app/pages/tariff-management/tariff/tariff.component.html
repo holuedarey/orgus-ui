@@ -1,0 +1,12 @@
+<div class="container-fluid p-0 m-0">
+    <div class="row m-0">
+        <div class="col-12">
+            <app-table [isLoading]="isLoadingData" title="Tariff" [data]="tariffs" [columns]="columns"
+                [showEdit]="permissionService.canAccessByResource('update', tariffResources.UpdateTariff)"
+                (requestData)="requestData($event)" (optionsSelected)="updateTariff($event)"
+                [showAdd]="permissionService.canAccessByResource('create', tariffResources.CreateTariff)"
+                (addClicked)="handleCreateNewTariffClick()">
+            </app-table>
+        </div>
+    </div>
+</div>
