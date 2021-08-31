@@ -7,6 +7,7 @@ import { isMobile } from 'mobile-device-detect';
   templateUrl: './dashboard-template.component.html',
   styleUrls: ['./dashboard-template.component.scss']
 })
+
 export class DashboardTemplateComponent implements OnInit, OnChanges {
   
   isMobile = isMobile;
