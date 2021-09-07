@@ -5,13 +5,14 @@ import { NbAccordionModule, NbAlertModule, NbAutocompleteModule, NbButtonModule,
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadPointPerformanceComponent } from './load-point-performance.component';
 import { DashboardTemplateModule } from '../dashboard-template/dashboard-template.module';
+import { AnalyticsModule } from '../analytics.module';
 
 @NgModule({
   declarations: [LoadPointPerformanceComponent],
   imports: [
     CommonModule,
     LoadPointPerformanceRoutingModule,
-    DashboardTemplateModule
+    AnalyticsModule
   ]
 })
 export class LoadPointPerformanceModule { }

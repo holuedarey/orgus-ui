@@ -6,6 +6,7 @@ import { NbAccordionModule, NbAutocompleteModule, NbButtonModule, NbCardModule, 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'src/app/@charts/chart.module';
 import { MapsModule } from 'src/app/@maps/maps.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -26,10 +27,10 @@ import { MapsModule } from 'src/app/@maps/maps.module';
     ReactiveFormsModule,
     ChartsModule,
     NbAccordionModule,
-    NbDatepickerModule.forRoot(),
     NbToggleModule,
     MapsModule,
-    TablesModule
+    TablesModule,
+    RouterModule
   ],
   exports:[DashboardTemplateComponent]
 })

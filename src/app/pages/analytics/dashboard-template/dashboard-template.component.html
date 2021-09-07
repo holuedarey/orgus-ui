@@ -1,108 +1,125 @@
-<div class="row m-b-40">
-    <div class="col-7">
-        <h4 class="header-title">{{title}}</h4>
-    </div>
-    <div class="col-5">
-        <div *ngIf="isButton else toggle">
-            <button class="button-title" nbButton status="primary" size="medium"
-                routerLink="btnData.link">{{btnData.title}}</button>
-        </div>
-
-        <ng-template #toggle>
-            <nb-toggle></nb-toggle>
-        </ng-template>
-
-    </div>
-</div>
-<div class="row top-spacer">
-
-
-    <div class="col-sm-6 order-sm-12">
-
-        <div class="row select-card">
-            <div class="col-6">
-                <span class="select-card-icon">
-                    <nb-icon icon="flash-outline"></nb-icon>
-                    ASSET TYPE
-                </span>
-            </div>
-            <div class="col-6 top-space">
-                <nb-select class="no-outline" fullWidth size="tiny" placeholder="Select Asset Type"
-                    [(selected)]="selectedItemLoadPoint" disabled>
-                    <nb-option *ngFor="let loadpoint of assetType" [value]="loadpoint.value">
-                        {{loadpoint.value }}
-                    </nb-option>
-                </nb-select>
-            </div>
-
-        </div>
-        <div class="row top-spacer select-card">
-            <div class="col-6">
-                <span class="select-card-icon">
-                    <nb-icon icon="pin-outline"></nb-icon>
-                    LOCATION
-                </span>
-            </div>
-            <div class="col-6 top-space">
-                <nb-select fullWidth size="tiny" placeholder="Select Location" [(selected)]="selectedItemLocation">
-                    <nb-option *ngFor="let location of locationData" [value]="location.name">
-                        {{location.name }}
-                    </nb-option>
-                </nb-select>
-            </div>
-        </div>
-        <div class="row top-spacer select-card m-b-20">
-            <div class="col-5">
-                <span class="select-card-icon">
-                    <nb-icon icon="calendar-outline"></nb-icon>
-                    DATE
-                </span>
-            </div>
-            <div class="col-7">
-                <input class="dateRangeInput"  nbInput placeholder="Select a Date Range" [nbDatepicker]="formcontrol" [formControl]="formControl">
-                <nb-rangepicker #formcontrol (rangeChange)="onEventStartEndRange($event)"></nb-rangepicker>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6 order-sm-1" *ngIf="!isMobile">
-        <nb-card class="stat">
-            <nb-card-body>
-                <div class="row">
-                    <div class="col-6 pad">
-                        <h5 class="heading-stat">{{ cardTitle.titleOne }}</h5>
-                        <h5 class="description-stat">{{energyUsed}}</h5>
+<div class="container-fluid p-0 m-0">
+    <div class="row m-0">
+        <div class="col-12">
+            <nb-card>
+                <nb-card-body>
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <h5 class="mb-0">{{title}}</h5>
+                        </div>
+                        <div class="col-md-auto my-3 my-md-0">
+                            <div *ngIf="isButton">
+                                <button nbButton hero size="medium" (click)="configureForm()" fullWidth>
+                                    Configure
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-auto my-3 my-md-0">
+                            <div *ngIf="isButton">
+                                <button nbButton hero size="medium" fullWidth
+                                    [routerLink]="[btnData.link]">{{btnData.title}}</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-6 pad">
-                        <h5 class="heading-stat">{{ cardTitle.titleTwo }}</h5>
-                        <h5 class="description-stat">{{energyCost}}</h5>
-                    </div>
+                </nb-card-body>
+            </nb-card>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+
+        <div class="col-md-6">
+            <div class="row select-card">
+                <div class="col-6">
+                    <span class="select-card-icon">
+                        <nb-icon icon="flash-outline"></nb-icon>
+                        ASSET TYPE
+                    </span>
                 </div>
-            </nb-card-body>
-        </nb-card>
-    </div>
-    <div class="col-sm-6 order-sm-1" *ngIf="isMobile" style="margin-top: 40px;">
-        <div class="row">
-            <div class="col-6">
+                <div class="col-6">
+                    <nb-select class="no-outline" fullWidth size="tiny" placeholder="Select Asset Type"
+                        [(selected)]="selectedItemLoadPoint" disabled>
+                        <nb-option *ngFor="let loadpoint of assetType" [value]="loadpoint.value">
+                            {{loadpoint.value }}
+                        </nb-option>
+                    </nb-select>
+                </div>
 
-                <nb-card>
-                    <nb-card-body>
-                        <p class="mobile-title">{{ cardTitle.titleOne }}</p>
-                        <p class="mobile-description">{{energyUsed}}</p>
-                    </nb-card-body>
-                </nb-card>
             </div>
-            <div class="col-6">
-                <nb-card>
-                    <nb-card-body>
-                        <p class="mobile-title">{{ cardTitle.titleTwo }}</p>
-                        <p class="mobile-description">{{energyCost}}</p>
-                    </nb-card-body>
-                </nb-card>
+            <div class="row select-card">
+                <div class="col-6">
+                    <span class="select-card-icon">
+                        <nb-icon icon="pin-outline"></nb-icon>
+                        LOCATION
+                    </span>
+                </div>
+                <div class="col-6 ">
+                    <nb-select fullWidth size="tiny" placeholder="Select Location" [(selected)]="selectedItemLocation">
+                        <nb-option *ngFor="let location of locationData" [value]="location.name">
+                            {{location.name }}
+                        </nb-option>
+                    </nb-select>
+                </div>
+            </div>
+            <div class="row  m-b-20">
+                <div class="col-5">
+                    <span class="select-card-icon">
+                        <nb-icon icon="calendar-outline"></nb-icon>
+                        DATE
+                    </span>
+                </div>
+                <div class="col-7">
+                    <input class="dateRangeInput" nbInput placeholder="Select a Date Range" [nbDatepicker]="formcontrol"
+                        [formControl]="formControl">
+                    <nb-rangepicker #formcontrol (rangeChange)="onEventStartEndRange($event)"></nb-rangepicker>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 order-sm-1" *ngIf="!isMobile">
+            <nb-card class="stat">
+                <nb-card-body>
+                    <div class="row">
+                        <div class="col-6 pad">
+                            <h5 class="heading-stat">{{ cardTitle.titleOne }}</h5>
+                            <h5 class="description-stat">{{energyUsed}}</h5>
+                        </div>
+                        <div class="col-6 pad">
+                            <h5 class="heading-stat">{{ cardTitle.titleTwo }}</h5>
+                            <h5 class="description-stat">{{energyCost}}</h5>
+                        </div>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+        </div>
+        <div class="col-sm-6 order-sm-1" *ngIf="isMobile" style="margin-top: 40px;">
+            <div class="row">
+                <div class="col-6">
 
+                    <nb-card>
+                        <nb-card-body>
+                            <p class="mobile-title">{{ cardTitle.titleOne }}</p>
+                            <p class="mobile-description">{{energyUsed}}</p>
+                        </nb-card-body>
+                    </nb-card>
+                </div>
+                <div class="col-6">
+                    <nb-card>
+                        <nb-card-body>
+                            <p class="mobile-title">{{ cardTitle.titleTwo }}</p>
+                            <p class="mobile-description">{{energyCost}}</p>
+                        </nb-card-body>
+                    </nb-card>
+
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+
 <div class="row top-spacer">
     <div class="col-md-6">
         <nb-card>

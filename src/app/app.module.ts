@@ -5,6 +5,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
+  NbDatepickerModule,
   NbDialogModule,
   NbLayoutDirection,
   NbMenuModule,
@@ -56,6 +57,7 @@ const ls = new SecureLS({ encodingType: 'aes' });
       NbLayoutDirection.LTR),
     // Global Imports
     CoreModule.forRoot(),
+    NbDatepickerModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: NetworkInterceptor, multi: true }

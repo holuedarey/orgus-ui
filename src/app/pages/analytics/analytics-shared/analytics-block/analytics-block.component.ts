@@ -1,14 +1,15 @@
-import { Component, Input, EventEmitter, OnInit, SimpleChanges, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { NbDialogService } from '@nebular/theme';
 import { isMobile } from 'mobile-device-detect';
+import { AnalyticsConfigFormComponent } from '../analytics-config-form/analytics-config-form.component';
 
 @Component({
-  selector: 'app-dashboard-template',
-  templateUrl: './dashboard-template.component.html',
-  styleUrls: ['./dashboard-template.component.scss']
+  selector: 'app-analytics-block',
+  templateUrl: './analytics-block.component.html',
+  styleUrls: ['./analytics-block.component.scss']
 })
-
-export class DashboardTemplateComponent implements OnInit, OnChanges {
+export class AnalyticsBlockComponent implements OnInit {
 
   isMobile = isMobile;
   //output data from date range
@@ -55,7 +56,10 @@ export class DashboardTemplateComponent implements OnInit, OnChanges {
   selectedItemLocation: any = "";
 
 
-  constructor() { }
+  constructor(
+    private dialogService: NbDialogService,
+
+  ) { }
 
   ngOnInit(): void {
     console.log('')
@@ -66,14 +70,16 @@ export class DashboardTemplateComponent implements OnInit, OnChanges {
     this.selectedDateRange.emit(ev)
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (!changes.isLoading.currentValue) {
-      this.locationData = changes.locations.currentValue;
+  async configureForm() {
+    const config = await this.dialogService.open(AnalyticsConfigFormComponent, {
+      closeOnBackdropClick: false,
+      context: {  },
+      hasScroll: true,
+      closeOnEsc: false
+    }).onClose.toPromise();
+    if (config) {
     }
-    this.selectedItemLoadPoint = this.assetType[0].value || ""
   }
 
-  configureForm() {
-  }
 
 }
