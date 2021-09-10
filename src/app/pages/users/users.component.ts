@@ -95,7 +95,7 @@ export class UsersComponent implements OnInit {
             { value: 'InActive', title: 'Inactive' },
           ],
         },
-      },
+      },  
       filterFunction: (x: string, y: string) => x.toLowerCase() === y.toLowerCase()
     },
   }

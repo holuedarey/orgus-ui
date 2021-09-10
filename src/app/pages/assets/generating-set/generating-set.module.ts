@@ -8,13 +8,15 @@ import { GeneratingSetFormComponent } from './generating-set-form/generating-set
 import { GeneratingSetStatusToggleComponent } from './generating-set-status-toggle/generating-set-status-toggle.component';
 import { NbDialogModule, NbCardModule, NbIconModule, NbAlertModule, NbInputModule, NbSpinnerModule, NbButtonModule, NbSelectModule, NbFormFieldModule, NbThemeModule, NbAutocompleteModule, NbToggleModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GeneratingSetGisComponent } from './generating-set-gis/generating-set-gis.component';
 
 
 @NgModule({
   declarations: [
     GeneratingSetComponent,
     GeneratingSetFormComponent,
-    GeneratingSetStatusToggleComponent
+    GeneratingSetStatusToggleComponent,
+    GeneratingSetGisComponent
   ],
   imports: [
     CommonModule,
