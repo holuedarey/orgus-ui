@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { AnalyticsRoutingModule } from './analytics-routing.module';
-import { AnalyticsBlockComponent } from './analytics-shared/analytics-block/analytics-block.component';
-import { AnalyticsConfigFormComponent } from './analytics-shared/analytics-config-form/analytics-config-form.component';
+import { NbSelectModule, NbDatepickerModule, NbSpinnerModule, NbFormFieldModule } from '@nebular/theme';
 import { ChartsModule } from 'src/app/@charts/chart.module';
-import { ThemeModule } from 'src/app/@theme/theme.module';
 import { MapsModule } from 'src/app/@maps/maps.module';
 import { TablesModule } from 'src/app/@tables/tables.module';
-import { NbCalendarRangeModule, NbDatepickerModule, NbFormFieldModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
+import { ThemeModule } from 'src/app/@theme/theme.module';
+import { AnalyticsBlockComponent } from './analytics-block/analytics-block.component';
+import { AnalyticsConfigFormComponent } from './analytics-config-form/analytics-config-form.component';
+
 
 
 @NgModule({
   declarations: [AnalyticsBlockComponent, AnalyticsConfigFormComponent],
   imports: [
     CommonModule,
-    AnalyticsRoutingModule,
     ChartsModule,
     ThemeModule,
     MapsModule,
@@ -29,4 +27,4 @@ import { NbCalendarRangeModule, NbDatepickerModule, NbFormFieldModule, NbSelectM
     AnalyticsBlockComponent, AnalyticsConfigFormComponent
   ]
 })
-export class AnalyticsModule { }
+export class AnalyticsSharedModule { }
