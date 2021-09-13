@@ -9,7 +9,7 @@
                         </div>
                         <div class="col-md-auto my-3 my-md-0">
                             <div *ngIf="isButton">
-                                <button nbButton ghost status="primary" size="medium" (click)="configureForm()" fullWidth>
+                                <button nbButton outline status="primary" size="medium" (click)="configureForm()" fullWidth>
                                     <nb-icon icon="settings-2-outline"></nb-icon>
                                     Configure
                                 </button>
@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-md-auto my-3 my-md-0">
                             <div *ngIf="isButton">
-                                <button nbButton ghost size="medium" fullWidth
+                                <button nbButton outline size="medium" fullWidth
                                     [routerLink]="[btnData.link]">{{btnData.title}}</button>
                             </div>
                         </div>
@@ -27,7 +27,10 @@
         </div>
     </div>
 
-    <div class="row">
+    <ng-content #name></ng-content>
+    
+
+    <!-- <div class="row">
         <div class="col-sm-6">
             <nb-card class="stat">
                 <nb-card-body>
@@ -88,7 +91,7 @@
     
         </div>
     
-    </div>
+    </div> -->
 </div>
 
 

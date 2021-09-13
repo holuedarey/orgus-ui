@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
+import { AssetTypeEnum } from 'src/app/@core/enums/asset-type.enum copy';
 
 @Component({
   selector: 'app-analytics-config-form',
@@ -11,7 +12,7 @@ import { NbDialogRef } from '@nebular/theme';
 export class AnalyticsConfigFormComponent implements OnInit, OnDestroy {
 
   analyticsForm!: FormGroup;
-
+  assetType!: AssetTypeEnum;
   isLoading = false;
 
   constructor(
@@ -25,6 +26,10 @@ export class AnalyticsConfigFormComponent implements OnInit, OnDestroy {
       locationId: ['']
     })
     this.analyticsForm.get('dateRange')?.valueChanges.subscribe(console.log)
+  }
+
+  toggleLoadPointSelection() {
+    
   }
 
   close(): void {

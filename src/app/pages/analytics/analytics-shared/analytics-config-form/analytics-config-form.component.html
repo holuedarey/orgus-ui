@@ -1,7 +1,7 @@
 <div style="width: 100vw;">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-6 mx-auto">
+            <div class="col-12 col-lg-10 mx-auto">
                 <nb-card class="xyz-in dialog" xyz="fade down-25%" style="max-height: 100vh; overflow-y: auto;">
                     <nb-card-header class="font-weight-bold pb-1">
                         <div class="row">
@@ -17,7 +17,6 @@
 
                         <form [formGroup]="analyticsForm" #form="ngForm" class="my-3">
 
-                            <p class="font-weight-bold">Business</p>
                             <div class="form-control-group row my-3">
                                 <div class="col-sm-3">
                                     <label class="label" for="input-dateRange">Date Range:</label>
@@ -27,7 +26,7 @@
                                         placeholder="Date Range:" #dateRange [nbDatepicker]="datePicker"
                                         [status]="analyticsForm.controls['dateRange'].touched ? (analyticsForm.controls['dateRange'].invalid ? 'danger' : 'success') : 'basic'"
                                         formControlName="dateRange" autofocus>
-                                        <nb-rangepicker #datePicker></nb-rangepicker>
+                                    <nb-rangepicker #datePicker></nb-rangepicker>
                                     <div *ngIf="analyticsForm.controls['dateRange'].invalid && analyticsForm.controls['dateRange'].touched"
                                         class="text-danger xyz-in px-3 row">
                                         <small xyz="fade down" class="error-message"
@@ -38,16 +37,38 @@
                                 </div>
                             </div>
 
-
-
-
-                            <p class="font-weight-bold mt-4">Contact</p>
+                            <div class="form-control-group row my-3">
+                                <div class="col-sm-3">
+                                    <label class="label" for="input-locationId">Location:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <nb-form-field>
+                                        <input nbInput>
+                                        <button nbSuffix nbButton ghost (click)="toggleLoadPointSelection()">
+                                            <nb-icon [icon]="'eye-off-2-outline'" pack="eva">
+                                            </nb-icon>
+                                        </button>
+                                    </nb-form-field>
+                                    <input nbInput fullWidth name="locationId" id="input-locationId"
+                                        placeholder="Date Range:" #locationId [nbDatepicker]="datePicker"
+                                        [status]="analyticsForm.controls['locationId'].touched ? (analyticsForm.controls['locationId'].invalid ? 'danger' : 'success') : 'basic'"
+                                        formControlName="locationId" autofocus>
+                                    <nb-rangepicker #datePicker></nb-rangepicker>
+                                    <div *ngIf="analyticsForm.controls['locationId'].invalid && analyticsForm.controls['locationId'].touched"
+                                        class="text-danger xyz-in px-3 row">
+                                        <small xyz="fade down" class="error-message"
+                                            *ngIf="analyticsForm.controls['locationId'].errors?.required">
+                                            Business Name is required!
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
 
                         </form>
                     </nb-card-body>
                     <nb-card-footer>
-                        <button (click)="confirm()"
-                            nbButton fullWidth status="success" [disabled]="isLoading || !analyticsForm.valid">
+                        <button (click)="confirm()" nbButton fullWidth status="success"
+                            [disabled]="isLoading || !analyticsForm.valid">
                             Submit
                         </button>
                     </nb-card-footer>

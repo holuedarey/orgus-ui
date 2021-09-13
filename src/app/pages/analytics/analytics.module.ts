@@ -8,7 +8,7 @@ import { ChartsModule } from 'src/app/@charts/chart.module';
 import { ThemeModule } from 'src/app/@theme/theme.module';
 import { MapsModule } from 'src/app/@maps/maps.module';
 import { TablesModule } from 'src/app/@tables/tables.module';
-import { NbCalendarRangeModule, NbDatepickerModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
+import { NbCalendarRangeModule, NbDatepickerModule, NbFormFieldModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -22,7 +22,8 @@ import { NbCalendarRangeModule, NbDatepickerModule, NbSelectModule, NbSpinnerMod
     TablesModule,
     NbSelectModule,
     NbDatepickerModule,
-    NbSpinnerModule
+    NbSpinnerModule,
+    NbFormFieldModule
   ],
   exports: [
     AnalyticsBlockComponent, AnalyticsConfigFormComponent

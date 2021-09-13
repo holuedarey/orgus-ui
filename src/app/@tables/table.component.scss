@@ -45,3 +45,7 @@
     border-color: var(--input-basic-border-color);
     color: var(--input-basic-text-color);
 }
+
+::ng-deep td {
+    height: 50px !important;
+}

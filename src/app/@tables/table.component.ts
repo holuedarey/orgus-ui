@@ -25,6 +25,9 @@ export class TableComponent implements OnInit, OnDestroy {
   title!: string;
 
   @Input()
+  subTitle!: string;
+
+  @Input()
   isLoading = false;
 
   @Input()
