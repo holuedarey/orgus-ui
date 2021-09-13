@@ -79,6 +79,30 @@
                                 </div>
                             </div>
 
+                            <div class="form-control-group row mb-3">
+                                <div class="col-sm-3">
+                                    <label class="label" for="input-role">Power Station:</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <nb-select fullWidth
+                                        [status]="loadPointForm.controls['powerStation'].touched ? (loadPointForm.controls['powerStation'].invalid ? 'danger' : 'success') : 'basic'"
+                                        placeholder="Select Power Station" formControlName="powerStation">
+                                        <nb-option *ngFor="let role of powerStation$ | async; let i=count"
+                                            [value]="role.name">
+                                            {{role.name}}
+                                        </nb-option>
+                                    </nb-select>
+
+                                    <div *ngIf="loadPointForm.controls['powerStation'].invalid && loadPointForm.controls['powerStation'].touched"
+                                        class="text-danger xyz-in px-3 row">
+                                        <small xyz="fade down" class="error-message"
+                                            *ngIf="loadPointForm.controls['powerStation'].errors?.required">
+                                            Power Station is required!
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
                             <p class="font-weight-bold mt-4">GIS</p>
 
                             <div class="form-control-group row my-3">
