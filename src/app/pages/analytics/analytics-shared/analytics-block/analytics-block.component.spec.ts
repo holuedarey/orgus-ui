@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardTemplateComponent } from './dashboard-template.component';
+import { AnalyticsBlockComponent } from './analytics-block.component';
 
-describe('DashboardTemplateComponent', () => {
-  let component: DashboardTemplateComponent;
-  let fixture: ComponentFixture<DashboardTemplateComponent>;
+describe('AnalyticsBlockComponent', () => {
+  let component: AnalyticsBlockComponent;
+  let fixture: ComponentFixture<AnalyticsBlockComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardTemplateComponent ]
+      declarations: [ AnalyticsBlockComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardTemplateComponent);
+    fixture = TestBed.createComponent(AnalyticsBlockComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

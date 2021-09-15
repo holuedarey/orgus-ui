@@ -1,5 +1,6 @@
 import { NbMenuItem } from '@nebular/theme';
 import { GlobalResources } from '../@core/maps/global-resources';
+import { LoadPointAnalyticsResources } from './analytics/load-point-analytics/load-point-analytics-resources';
 import { PagesResources } from './pages-resources';
 
 export const MENU_ITEMS: NbMenuItem[] = [
@@ -60,17 +61,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Power Station',
-        link: GlobalResources.get(PagesResources.PowerSourcePerformanceView)?.route,
+        link: GlobalResources.get(PagesResources.PowerSourceAnalyticsView)?.route,
         icon: 'speaker-outline',
       },
       {
         title: 'Load Point',
-        link: GlobalResources.get(PagesResources.LoadPointPerformanceView)?.route,
+        link: GlobalResources.get(LoadPointAnalyticsResources.SummaryView)?.route,
         icon: 'speaker-outline',
       },
       {
         title: 'Generating Unit',
-        link: GlobalResources.get(PagesResources.GeneratingSetPerformanceView)?.route,
+        link: GlobalResources.get(PagesResources.GeneratingSetAnalyticsView)?.route,
         icon: 'speaker-outline',
       },
     ]

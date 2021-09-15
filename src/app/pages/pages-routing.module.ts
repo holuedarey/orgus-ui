@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AssetTypeEnum } from '../@core/enums/asset-type.enum';
 import { HasPermissionGuard } from '../@core/guards/has-permission.guard';
 import { PagesResources, PagesResourcesNavMap } from './pages-resources';
 import { PagesComponent } from './pages.component';
@@ -51,7 +52,7 @@ const routes: Routes = [
             loadChildren: () => import('./assets/power-sources/power-sources.module')
               .then(m => m.PowerSourcesModule),
           },
-          
+
           {
             path: PagesResourcesNavMap.get(PagesResources.GeneratingSetView)?.path,
             loadChildren: () => import('./assets/generating-set/generating-set.module')
@@ -79,28 +80,20 @@ const routes: Routes = [
         ]
       },
       {
-        path: PagesResourcesNavMap.get(PagesResources.PerformanceModuleView)?.path,
+        path: PagesResourcesNavMap.get(PagesResources.AnalyticsModuleView)?.path,
         children: [
           {
             path: '',
-            redirectTo: PagesResourcesNavMap.get(PagesResources.PowerSourcePerformanceView)?.path,
-          },
-          {
-            path: PagesResourcesNavMap.get(PagesResources.PowerSourcePerformanceView)?.path,
-            loadChildren: () => import('./analytics/power-source-performance/power-source-performance.module')
-              .then(m => m.PowerSourcePerformanceModule),
+            redirectTo: PagesResourcesNavMap.get(PagesResources.PowerSourceAnalyticsView)?.path,
           },
 
           {
-            path: PagesResourcesNavMap.get(PagesResources.LoadPointPerformanceView)?.path,
-            loadChildren: () => import('./analytics/load-point-performance/load-point-performance.module')
-              .then(m => m.LoadPointPerformanceModule),
+            path: PagesResourcesNavMap.get(PagesResources.LoadPointAnalyticsView)?.path,
+            data: { assetType: AssetTypeEnum.LOADPOINT },
+            loadChildren: () => import('./analytics/load-point-analytics/load-point-analytics.module')
+              .then(m => m.LoadPointAnalyticsModule),
           },
-          {
-            path: PagesResourcesNavMap.get(PagesResources.GeneratingSetPerformanceView)?.path,
-            loadChildren: () => import('./analytics/generating-set-performance/generating-set-performance.module')
-              .then(m => m.GeneratingSetPerformanceModule),
-          },
+
         ]
       },
     ]

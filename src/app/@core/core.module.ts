@@ -19,6 +19,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SortablejsModule } from 'ngx-sortablejs';
 import { RoleProvider } from './utils/role-provider.service';
 import { CustomTokenStorageModule } from './utils/custom-token-storage/custom-token-storage.module';
+import { NbDatepickerModule } from '@nebular/theme';
 
 const ls = new SecureLS({ encodingType: 'aes' });
 

@@ -8,6 +8,9 @@
                 <span>
                     {{title}}
                 </span>
+                <p *ngIf="subTitle" class="caption mb-0">
+                    {{subTitle}}
+                </p>
             </div>
             <div *ngIf="hasCloseButton" class="col ml-auto text-right">
                 <button (click)="closed.emit()" class="p-1" nbButton ghost>

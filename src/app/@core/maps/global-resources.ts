@@ -1,4 +1,5 @@
 import { AppResourcesNavMap } from "src/app/app-resources";
+import { LoadPointAnalyticsResourcesNavMap } from "src/app/pages/analytics/load-point-analytics/load-point-analytics-resources";
 import { AuthResourcesNavMap } from "src/app/pages/auth/auth-resources";
 import { ExceptionResourcesNavMap } from "src/app/pages/exceptions/exceptions-resources";
 import { PagesResourcesNavMap } from "src/app/pages/pages-resources";
@@ -9,4 +10,5 @@ export const GlobalResources = new Map<string, ResourceNavModel>([
     ...PagesResourcesNavMap,
     ...ExceptionResourcesNavMap,
     ...AuthResourcesNavMap,
+    ...LoadPointAnalyticsResourcesNavMap,
 ]);

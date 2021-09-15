@@ -1,7 +1,7 @@
 <div class="container-fluid p-0 m-0">
     <div class="row m-0">
         <div class="col-12">
-            <app-table [isLoading]="isLoadingData" title="Meters" [data]="meters" [columns]="columns"
+            <app-table [isLoading]="isLoadingData" title="Meters" subTitle="Manage all meters attached to the various assets on the platform." [data]="meters" [columns]="columns"
                 [showEdit]="permissionService.canAccessByResource('update', meterResources.UpdateMeter)"
                 (requestData)="requestData($event)" (optionsSelected)="updateMeter($event)"
                 [showAdd]="permissionService.canAccessByResource('create', meterResources.CreateMeter)"
