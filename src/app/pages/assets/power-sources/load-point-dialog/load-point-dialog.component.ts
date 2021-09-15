@@ -13,7 +13,7 @@ export class LoadPointDialogComponent implements OnInit {
 
   powerSourceLoadPoint: PowerSourceDto[] = [];
  
-  @Input() id!: any;
+  @Input() powerSourceRowData!: any;
 
   isLoadingData = true;
 
@@ -34,7 +34,7 @@ export class LoadPointDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.initTableData(this.id)
+    this.initTableData(this.powerSourceRowData.id)
   }
   initTableData(id: any){
     this.isLoadingData = true;

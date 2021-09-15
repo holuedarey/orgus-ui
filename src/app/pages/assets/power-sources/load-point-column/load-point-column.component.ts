@@ -26,12 +26,12 @@ export class LoadPointColumnComponent implements OnInit {
   }
 
 
-  viewLoadPointModal(id: any) {
+  viewLoadPointModal(rowData: any) {
     this.dialogService.open(LoadPointDialogComponent, {
       closeOnBackdropClick: false,
       context: {
         // powerSourceGenSet: (response.data?.itemList)
-        id: id
+        powerSourceRowData: rowData
       },
       hasScroll: true,
       closeOnEsc: false

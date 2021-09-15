@@ -13,7 +13,7 @@ import { PowerSourceGenSetDto } from 'src/app/@core/dtos/gen-set-details.dto';
 export class GenSetDialogComponent implements OnInit {
  powerSourceGenSet: PowerSourceDto[] = [];
  
-  @Input() id!: any;
+ @Input() powerSourceRowData!: any;
 
   isLoadingData = true;
 
@@ -38,7 +38,7 @@ export class GenSetDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.initTableData(this.id)
+    this.initTableData(this.powerSourceRowData.id)
   }
   initTableData(id: any){
     this.isLoadingData = true;
