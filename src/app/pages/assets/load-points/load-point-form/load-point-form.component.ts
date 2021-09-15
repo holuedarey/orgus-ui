@@ -153,8 +153,8 @@ export class LoadPointFormComponent implements OnInit {
         Validators.required,
         this.validateLongitude.bind(this)]],
       address: [this.loadPointForUpdate.address, Validators.required],
-      //powerSource: [this.loadPointForUpdate.powerSource, Validators.required],
-      //powerSourceId: [this.loadPointForUpdate.powerSourceId, Validators.required],
+      powerStation: [this.loadPointForUpdate.powerSource, Validators.required],
+      powerSourceId: [this.loadPointForUpdate.powerSourceId, Validators.required],
     });
 
     this.states$ = this.locationService.getStates({ countryId: this.loadPointForUpdate.countryId }).pipe(map((r) => r.data as LocationDto[]));
@@ -257,6 +257,7 @@ export class LoadPointFormComponent implements OnInit {
       latitude: (this.loadPointForm.get('latitude')?.value as number),
       longitude: (this.loadPointForm.get('longitude')?.value as number),
       address: (this.loadPointForm.get('address')?.value as string).trim(),
+      newPowerStationName:(this.loadPointForm.get('powerStation')?.value as string).trim(),
       id: this.loadPointForUpdate.id
     };
 

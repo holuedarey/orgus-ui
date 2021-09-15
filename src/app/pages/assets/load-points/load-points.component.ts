@@ -34,6 +34,9 @@ export class LoadPointsComponent implements OnInit {
     meter: {
       title: 'Meter Number',
     },
+    powerSource: {
+      title: 'Power Source',
+    },
     state: {
       title: 'State',
     },

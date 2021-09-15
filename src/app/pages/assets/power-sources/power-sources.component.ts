@@ -1,3 +1,4 @@
+import { LoadPointColumnComponent } from './load-point-column/load-point-column.component';
 import { GenSetColumnComponent } from './gen-set-column/gen-set-column.component';
 import { UserModel } from 'src/app/@core/models/user.model';
 import { GetUniqueArray } from 'src/app/@core/functions/data-request.funtion';
@@ -53,6 +54,12 @@ export class PowerSourcesComponent implements OnInit {
     genSetCount: {
       title: 'Generating Unit',
       renderComponent: GenSetColumnComponent,
+      type: 'custom',
+      filter: false
+    },
+    loadPointCount: {
+      title: 'Load Point',
+      renderComponent: LoadPointColumnComponent,
       type: 'custom',
       filter: false
     },
