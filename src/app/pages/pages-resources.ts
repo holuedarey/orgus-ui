@@ -12,10 +12,10 @@ export enum PagesResources {
     TariffModuleView = 'pages:tariff-management-view',
     TariffView = 'pages:tarrif-view',
     ServiceBandView = 'pages:service-band-view',
-    PerformanceModuleView = 'pages:performance-module-view',
-    PowerSourcePerformanceView = 'pages:power-source-performance-view',
-    GeneratingSetPerformanceView = 'pages:generating-set-performance-view',
-    LoadPointPerformanceView = 'pages:load-point-performance-view',
+    AnalyticsModuleView = 'pages:analytics-module-view',
+    PowerSourceAnalyticsView = 'pages:power-source-analytics-view',
+    GeneratingSetAnalyticsView = 'pages:generating-set-analytics-view',
+    LoadPointAnalyticsView = 'pages:load-point-analytics-view',
 }
 
 export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
@@ -98,32 +98,32 @@ export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
         }
     ],
     [
-        PagesResources.PerformanceModuleView,
+        PagesResources.AnalyticsModuleView,
         {
-            route: `/app/performance-management`,
-            path: 'performance-management'
+            route: `/app/analytics-management`,
+            path: 'analytics-management'
         }
     ],
     [
-        PagesResources.PowerSourcePerformanceView,
+        PagesResources.PowerSourceAnalyticsView,
         {
-            route: `/app/performance-management/power-source-performance`,
-            path: 'power-source-performance'
+            route: `/app/analytics-management/power-source-analytics`,
+            path: 'power-source-analytics'
         }
     ],
     [
-        PagesResources.GeneratingSetPerformanceView,
+        PagesResources.GeneratingSetAnalyticsView,
         {
-            route: `/app/performance-management/generating-set-performance`,
-            path: 'generating-set-performance'
+            route: `/app/analytics-management/generating-set-analytics`,
+            path: 'generating-set-analytics'
         }
     ],
 
     [
-        PagesResources.LoadPointPerformanceView,
+        PagesResources.LoadPointAnalyticsView,
         {
-            route: `/app/performance-management/load-point-performance`,
-            path: 'load-point-performance'
+            route: `/app/analytics-management/load-point-analytics`,
+            path: 'load-point-analytics'
         }
     ],
 ])

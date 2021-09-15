@@ -10,6 +10,7 @@ import { ExceptionResources } from "src/app/pages/exceptions/exceptions-resource
 import { PagesResources } from "src/app/pages/pages-resources";
 import { UsersResources } from "src/app/pages/users/users-resources";
 import { LoadPointResources } from 'src/app/pages/assets/load-points/load-point-resources';
+import { LoadPointAnalyticsResources } from 'src/app/pages/analytics/load-point-analytics/load-point-analytics-resources';
 
 export const AccessControl: NbAccessControl[] = [
     {
@@ -61,12 +62,14 @@ export const AccessControl: NbAccessControl[] = [
                 PagesResources.ServiceBandView,
 
                 //View Power Station performance
-                PagesResources.PowerSourcePerformanceView,
+                PagesResources.PowerSourceAnalyticsView,
 
                 //View generating unit performance
-                PagesResources.GeneratingSetPerformanceView,
+                PagesResources.GeneratingSetAnalyticsView,
                 //View Load Point  performance
-                PagesResources.LoadPointPerformanceView
+                PagesResources.LoadPointAnalyticsView,
+                LoadPointAnalyticsResources.SummaryView,
+                LoadPointAnalyticsResources.ExpandedView,
             ],
             update: [],
             delete: [],

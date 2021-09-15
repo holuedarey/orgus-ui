@@ -1,7 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { NbDialogService } from '@nebular/theme';
-import { isMobile } from 'mobile-device-detect';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Params, Router } from '@angular/router';
+import { NbDateService, NbDialogService } from '@nebular/theme';
+import { AnimationOptions } from 'ngx-lottie';
+import { filter, takeWhile } from 'rxjs/operators';
+import { GeneratingSetsService } from 'src/app/@core/data-services/generating-set.service';
+import { LoadPointService } from 'src/app/@core/data-services/load-point.service';
+import { PowerSourceService } from 'src/app/@core/data-services/power-source.service';
+import { AssetTypeEnum } from 'src/app/@core/enums/asset-type.enum';
+import { GlobalResources } from 'src/app/@core/maps/global-resources';
+import { LoadPointResources } from 'src/app/pages/assets/load-points/load-point-resources';
+import { PagesResources } from 'src/app/pages/pages-resources';
 import { AnalyticsConfigFormComponent } from '../analytics-config-form/analytics-config-form.component';
 
 @Component({
@@ -9,77 +17,136 @@ import { AnalyticsConfigFormComponent } from '../analytics-config-form/analytics
   templateUrl: './analytics-block.component.html',
   styleUrls: ['./analytics-block.component.scss']
 })
-export class AnalyticsBlockComponent implements OnInit {
+export class AnalyticsBlockComponent implements OnInit, OnDestroy {
 
-  isMobile = isMobile;
-  //output data from date range
+
+
   // Outputs
   @Output()
-  selectedDateRange: EventEmitter<any> = new EventEmitter();
-
-  // For header Section
-  @Input() title: string = "";
-  @Input() btnData: any = {};
-
-  //for STAT Session
-  formControl = new FormControl(new Date());
-  ngModelDate = new Date();
-  @Input() isLoading: any;
-  @Input() cardTitle: any;
-  @Input() energyUsed: any;
-  @Input() energyCost: any;
-  @Input() assetType: any;
-  @Input() locations: any;
-  @Input() queryDate: any;
-
-  @Input() tableTitle: string = '';
-  @Input() tableData = <any>[];
-  @Input() tableColums = <any>[];
-
-  // title for the chart Data
-  @Input() chartData: any;
-  @Input() chartConfig: any;
-
-  //chart Title Data
-  @Input() ChartTitleOne: any
-  @Input() ChartTitleTwo: any
+  selection: EventEmitter<any> = new EventEmitter();
 
 
-  //check for button or Toggle
-  @Input() isButton: any;
+  assetMap: Map<AssetTypeEnum, any>;
+  assetResources: any;
 
-  //check if to display map instead of second chart
-  @Input() isMap: any;
+  locationName!: string;
+  locationId!: string;
+  startDate!: string;
+  endDate!: string;
 
-  locationData = <any>[];
-  selectedItemLoadPoint: any = "";
-  selectedItemLocation: any = "";
+  canViewAnalytics = false;
 
+  options: AnimationOptions = {
+    path: '/assets/animations/36499-page-not-found.json',
+  };
+  isSummary!: boolean;
+  isLive = true;
+
+  get monthStart(): Date {
+    return this.dateService.getMonthStart(new Date());
+  }
+  get monthEnd(): Date {
+    return this.dateService.getMonthEnd(new Date());
+  }
 
   constructor(
     private dialogService: NbDialogService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private loadpointService: LoadPointService,
+    private genSetService: GeneratingSetsService,
+    private powerSourceService: PowerSourceService,
+    protected dateService: NbDateService<Date>,
+  ) {
+    this.assetMap = new Map<AssetTypeEnum, any>([
+      [
+        AssetTypeEnum.LOADPOINT,
+        {
+          assetRoute: GlobalResources.get(PagesResources.LoadPointsView)?.route,
+          service: this.loadpointService.getLoadPoints.bind(this),
+          title: 'Load Point',
+          subTitle: 'View insight into Load point asset performance though energy consumption and event metrics'
+        }
+      ],
+      [
+        AssetTypeEnum.GEN_SET,
+        {
+          assetRoute: GlobalResources.get(PagesResources.GeneratingSetView)?.route,
+          service: this.genSetService.getGeneratingSets.bind(this),
+          title: 'Generating Unit',
+          subTitle: 'View insight into Gen-Set asset performance though power delivery and event metrics'
+        }
+      ],
+      [
+        AssetTypeEnum.POWER_SOURCE,
+        {
+          assetRoute: GlobalResources.get(PagesResources.PowerStationsView)?.route,
+          service: this.powerSourceService.getPowerSource.bind(this),
+          title: 'Power Station',
+          subTitle: 'View insight into Power Station asset performance though power delivery and event metrics'
+        }
+      ],
+    ]);
 
-  ) { }
-
-  ngOnInit(): void {
-    console.log('')
+    this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd),
+      takeWhile(() => this.isLive)
+    ).subscribe((e) => {
+      this.isSummary = window.location.href.includes('summary');
+      console.log(this.isSummary, (e as NavigationEnd).url.split('?')[0])
+    });
   }
 
+  ngOnInit(): void {
 
-  onEventStartEndRange(ev: any) {
-    this.selectedDateRange.emit(ev)
+    this.assetResources = this.assetMap.get(this.route.snapshot.data.assetType);
+
+    this.startDate = this.route.snapshot.queryParams.startDate ?? this.monthStart;
+    this.endDate = this.route.snapshot.queryParams.endDate ?? this.monthEnd;
+    this.locationId = this.route.snapshot.queryParams.locationId;
+    this.locationName = this.route.snapshot.queryParams.locationName;
+    this.canViewAnalytics = (!!this.startDate && !!this.endDate && ((!!this.locationId && !!this.locationName) || this.isSummary));
+  }
+
+  ngOnDestroy() {
+    this.isLive = false;
   }
 
   async configureForm() {
     const config = await this.dialogService.open(AnalyticsConfigFormComponent, {
       closeOnBackdropClick: false,
-      context: {  },
+      context: { assetType: this.route.snapshot.data.assetType, isSummary: this.isSummary },
       hasScroll: true,
       closeOnEsc: false
     }).onClose.toPromise();
     if (config) {
+      const { locationId, locationName, date } = config;
+      this.locationName = locationName;
+      this.locationId = locationId;
+      this.startDate = (date.start as Date).toUTCString();
+      this.endDate = (date.end as Date).toUTCString();
+
+      this.canViewAnalytics = (!!this.startDate && !!this.endDate && ((!!this.locationId && !!this.locationName) || this.isSummary));
+
+      const queryParams: Params = {
+        locationName: this.locationName,
+        locationId: this.locationId,
+        startDate: this.startDate,
+        endDate: this.endDate
+      };
+
+      this.router.navigate(
+        [],
+        {
+          relativeTo: this.route,
+          queryParams: queryParams,
+          queryParamsHandling: 'merge',
+        }
+      );
+      this.selection.next(queryParams);
     }
   }
 
-
 }
+
+
