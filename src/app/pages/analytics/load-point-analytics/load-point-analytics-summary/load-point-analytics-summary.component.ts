@@ -10,6 +10,7 @@ export class LoadPointAnalyticsSummaryComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('')
   }
 
 }
