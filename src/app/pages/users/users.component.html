@@ -1,7 +1,7 @@
 <div class="container-fluid p-0 m-0">
     <div class="row m-0">
         <div class="col-12">
-            <app-table [isLoading]="isLoadingData" title="Users" [data]="users" [columns]="columns"
+            <app-table [isLoading]="isLoadingData" title="Users" subTitle="Manage all application users, roles and status" [data]="users" [columns]="columns"
                 (requestData)="requestData($event)" (optionsSelected)="updateUser($event)" (addClicked)="createUser()"
                 [showEdit]="permissionService.canAccessByResource('update', usersResources.UpdateUsers)"
                 [showAdd]="permissionService.canAccessByResource('create', usersResources.CreateUsers)">

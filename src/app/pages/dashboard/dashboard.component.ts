@@ -31,11 +31,6 @@ export class DashboardComponent implements OnInit {
     // private xlsx: XlsxService
   ) { }
 
-  requestData(d: any) {
-    console.log(d)
-  }
-
-
   async ngOnInit() {
     this.seo.setSeoData('Dashboard', 'Logged in user page analytics');
     this.testXlsx();

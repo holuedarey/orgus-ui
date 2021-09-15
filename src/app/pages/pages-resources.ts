@@ -7,7 +7,15 @@ export enum PagesResources {
     AssetsView = 'pages:assets-view',
     MetersView = 'pages:meters-view',
     LoadPointsView = 'pages:load-points-view',
-    PowerSourcesView = 'pages:power-sources-view',
+    PowerStationsView = 'pages:power-stations-view',
+    GeneratingSetView = 'pages:generating-units-view',
+    TariffModuleView = 'pages:tariff-management-view',
+    TariffView = 'pages:tarrif-view',
+    ServiceBandView = 'pages:service-band-view',
+    AnalyticsModuleView = 'pages:analytics-module-view',
+    PowerSourceAnalyticsView = 'pages:power-source-analytics-view',
+    GeneratingSetAnalyticsView = 'pages:generating-set-analytics-view',
+    LoadPointAnalyticsView = 'pages:load-point-analytics-view',
 }
 
 export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
@@ -54,10 +62,68 @@ export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
         }
     ],
     [
-        PagesResources.PowerSourcesView,
+        PagesResources.PowerStationsView,
         {
-            route: `/app/assets/power-sources`,
-            path: 'power-sources'
+            route: `/app/assets/power-stations`,
+            path: 'power-stations'
+        }
+    ],
+
+    [
+        PagesResources.GeneratingSetView,
+        {
+            route: `/app/assets/generating-units`,
+            path: 'generating-units'
+        }
+    ],
+    [
+        PagesResources.TariffModuleView,
+        {
+            route: `/app/tariff-management`,
+            path: 'tariff-management'
+        }
+    ],
+    [
+        PagesResources.TariffView,
+        {
+            route: `/app/tariff-management/tariff`,
+            path: 'tariff'
+        }
+    ],
+    [
+        PagesResources.ServiceBandView,
+        {
+            route: `/app/tariff-management/service-band`,
+            path: 'service-band'
+        }
+    ],
+    [
+        PagesResources.AnalyticsModuleView,
+        {
+            route: `/app/analytics-management`,
+            path: 'analytics-management'
+        }
+    ],
+    [
+        PagesResources.PowerSourceAnalyticsView,
+        {
+            route: `/app/analytics-management/power-source-analytics`,
+            path: 'power-source-analytics'
+        }
+    ],
+    [
+        PagesResources.GeneratingSetAnalyticsView,
+        {
+            route: `/app/analytics-management/generating-set-analytics`,
+            path: 'generating-set-analytics'
+        }
+    ],
+
+    [
+        PagesResources.LoadPointAnalyticsView,
+        {
+            route: `/app/analytics-management/load-point-analytics`,
+            path: 'load-point-analytics'
         }
     ],
 ])

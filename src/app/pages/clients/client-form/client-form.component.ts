@@ -123,7 +123,6 @@ export class ClientFormComponent implements OnInit, OnDestroy {
 
     this.clientService.postClient(postClientDto).subscribe(
       (result) => {
-        console.log(result);
         this.submitted = false;
         if (result.status) {
           this.messages = ['Client creation successful'];
@@ -169,7 +168,6 @@ export class ClientFormComponent implements OnInit, OnDestroy {
   }
 
   updateClient(): void {
-    console.log('Update User')
     this.errors = [];
     this.messages = [];
     this.submitted = true;

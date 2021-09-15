@@ -4,4 +4,5 @@ export interface UpdateMeterDto {
     meterModel: string;
     meterManufacturer: number;
     id: string;
+    tarriffId: string
 }

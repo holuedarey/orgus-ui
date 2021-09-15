@@ -1,1 +1,12 @@
-<p>power-sources works!</p>
+<div class="container-fluid p-0 m-0">
+    <div class="row m-0">
+        <div class="col-12">
+            <app-table [isLoading]="isLoadingData" title="Power Stations" subTitle="Manage on power station assets and attached Gen. Sets" [data]="powerSources" [columns]="columns"
+            (requestData)="requestData($event)" (optionsSelected)="updatePowerSource($event)"
+            [showEdit]="permissionService.canAccessByResource('update', powerSourcesResources.UpdatePowerSource)"
+            [showAdd]="permissionService.canAccessByResource('create', powerSourcesResources.CreatePowerSource)"
+            (addClicked)="handleCreateNewPowerSourceClick()">
+        </app-table>
+    </div>
+</div>
+</div>

@@ -1,3 +1,7 @@
+import { TariffResources } from './../app/pages/tariff-management/tariff/tariff-resources';
+import { ServiceBandResources } from './../app/pages/tariff-management/service-band/service-band-resources';
+import { GeneratingSetResources } from './../app/pages/assets/generating-set/generating-set-resources';
+import { PowerSourceResources } from 'src/app/pages/assets/power-sources/power-source-resources';
 import { MeterResources } from './../app/pages/assets/meters/meter-resources';
 import { NbAccessControl } from "@nebular/security";
 import { AuthResources } from "src/app/pages/auth/auth-resources";
@@ -6,6 +10,7 @@ import { ExceptionResources } from "src/app/pages/exceptions/exceptions-resource
 import { PagesResources } from "src/app/pages/pages-resources";
 import { UsersResources } from "src/app/pages/users/users-resources";
 import { LoadPointResources } from 'src/app/pages/assets/load-points/load-point-resources';
+import { LoadPointAnalyticsResources } from 'src/app/pages/analytics/load-point-analytics/load-point-analytics-resources';
 
 export const AccessControl: NbAccessControl[] = [
     {
@@ -45,7 +50,26 @@ export const AccessControl: NbAccessControl[] = [
                 PagesResources.LoadPointsView,
 
                 //View Power Sources
-                PagesResources.PowerSourcesView,
+                PagesResources.PowerStationsView,
+
+                //View Generating Set
+                PagesResources.GeneratingSetView,
+
+                //View Tariff 
+                PagesResources.TariffView,
+
+                //View Service Band
+                PagesResources.ServiceBandView,
+
+                //View Power Station performance
+                PagesResources.PowerSourceAnalyticsView,
+
+                //View generating unit performance
+                PagesResources.GeneratingSetAnalyticsView,
+                //View Load Point  performance
+                PagesResources.LoadPointAnalyticsView,
+                LoadPointAnalyticsResources.SummaryView,
+                LoadPointAnalyticsResources.ExpandedView,
             ],
             update: [],
             delete: [],
@@ -65,7 +89,13 @@ export const AccessControl: NbAccessControl[] = [
 
                 MeterResources.CreateMeter,
 
-                LoadPointResources.CreateLoadPoint
+                LoadPointResources.CreateLoadPoint,
+
+                GeneratingSetResources.CreateGeneratingSet,
+                PowerSourceResources.CreatePowerSource,
+
+                ServiceBandResources.CreateServiceBand,
+                TariffResources.CreateTariff
             ],
             update: [
                 UsersResources.UpdateUsers,
@@ -73,7 +103,13 @@ export const AccessControl: NbAccessControl[] = [
 
                 MeterResources.UpdateMeter,
 
-                LoadPointResources.UpdateLoadPoint
+                LoadPointResources.UpdateLoadPoint,
+
+                GeneratingSetResources.UpdateGeneratingSet,
+                PowerSourceResources.UpdatePowerSource,
+
+                ServiceBandResources.UpdateServiceBand,
+                TariffResources.UpdateTariff
             ],
         },
 
@@ -89,6 +125,12 @@ export const AccessControl: NbAccessControl[] = [
 
                 MeterResources.ViewClientColumn,
                 LoadPointResources.ViewClientColumn,
+                GeneratingSetResources.ViewClientColumn,
+                PowerSourceResources.ViewPowerSourceColumn,
+
+                TariffResources.ViewClientColumn,
+                ServiceBandResources.ViewClientColumn
+
             ],
         },
 

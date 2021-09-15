@@ -254,7 +254,6 @@ export class UserFormComponent implements OnInit, OnDestroy {
         ];
       }
     );
-    console.log(postUserDto, JSON.parse(this.tokenService.getPayload().sub));
   }
 
   updateUser(): void {

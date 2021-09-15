@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { takeWhile } from 'rxjs/operators';
+import { takeWhile, filter } from 'rxjs/operators';
 import { DataRequestTransformer } from '../@core/functions/data-request.funtion';
 
 export interface TableConfig<T> {
@@ -8,6 +8,7 @@ export interface TableConfig<T> {
   columns: {
     [Property in keyof T]: {
       title: string;
+      filter: boolean;
     }
   }
 }
@@ -22,6 +23,9 @@ export class TableComponent implements OnInit, OnDestroy {
   // Inputs
   @Input()
   title!: string;
+
+  @Input()
+  subTitle!: string;
 
   @Input()
   isLoading = false;
@@ -40,6 +44,11 @@ export class TableComponent implements OnInit, OnDestroy {
 
   @Input()
   pageLength = 10;
+
+  @Input()
+  hasCloseButton = false;
+  @Output() 
+  closed = new EventEmitter<any>();
 
   @Input()
   public set config(v: TableConfig<any>[]) {
