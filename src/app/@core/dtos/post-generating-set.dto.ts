@@ -3,4 +3,6 @@ export interface PostGeneratingSetDto {
     meterId: string;
     powerSourceId: string;
     energySource: number;
+    latitude: number;
+    longitude: number
 }

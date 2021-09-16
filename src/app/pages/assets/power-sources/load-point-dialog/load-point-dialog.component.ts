@@ -1,19 +1,19 @@
 import { GetUniqueArray } from 'src/app/@core/functions/data-request.funtion';
 import { PowerSourceService } from './../../../../@core/data-services/power-source.service';
-import { PowerSourceDto } from 'src/app/@core/dtos/power-source.dto';
 import { NbDialogRef } from '@nebular/theme';
-import { Component, OnInit, Input} from '@angular/core';
-import { PowerSourceGenSetDto } from 'src/app/@core/dtos/gen-set-details.dto';
+import { PowerSourceDto } from 'src/app/@core/dtos/power-source.dto';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-gen-set-dialog',
-  templateUrl: './gen-set-dialog.component.html',
-  styleUrls: ['./gen-set-dialog.component.scss'],
+  selector: 'app-load-point-dialog',
+  templateUrl: './load-point-dialog.component.html',
+  styleUrls: ['./load-point-dialog.component.scss']
 })
-export class GenSetDialogComponent implements OnInit {
- powerSourceGenSet: PowerSourceDto[] = [];
+export class LoadPointDialogComponent implements OnInit {
+
+  powerSourceLoadPoint: PowerSourceDto[] = [];
  
- @Input() powerSourceRowData!: any;
+  @Input() powerSourceRowData!: any;
 
   isLoadingData = true;
 
@@ -26,14 +26,10 @@ export class GenSetDialogComponent implements OnInit {
       title: 'Meter Number',
       filter: false
     },
-    energySourceName: {
-      title: 'Energy Source',
-      filter: false
-    },
   }
 
   constructor(
-    public dialogRef: NbDialogRef<GenSetDialogComponent>,
+    public dialogRef: NbDialogRef<LoadPointDialogComponent>,
     private powerSourceService: PowerSourceService
   ) {}
 
@@ -42,12 +38,12 @@ export class GenSetDialogComponent implements OnInit {
   }
   initTableData(id: any){
     this.isLoadingData = true;
-    this.powerSourceService.getPowerSourceGeneratingSet(id)
+    this.powerSourceService.getPowerSourceLoadPoint(id)
     .subscribe(
       (response) => {
         this.isLoadingData = false;
         if (response.status) {
-          this.powerSourceGenSet = GetUniqueArray([...response.data?.itemList ?? []], [...this.powerSourceGenSet]);
+          this.powerSourceLoadPoint = GetUniqueArray([...response.data?.itemList ?? []], [...this.powerSourceLoadPoint]);
         }
       },
       (err) => {

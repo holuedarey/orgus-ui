@@ -1,0 +1,7 @@
+<button  nbButton fullWidth [disabled]="!rowData?.loadPointCount"
+    (click)="viewLoadPointModal(rowData)" 
+    status="primary" 
+    size="small" outline> 
+    Unit{{(rowData?.loadPointCount ?? 0) >= 2 ? 's' : ''}} &nbsp;
+    ({{rowData?.loadPointCount}})
+</button>
