@@ -92,8 +92,7 @@ export class AnalyticsBlockComponent implements OnInit, OnDestroy {
       filter(e => e instanceof NavigationEnd),
       takeWhile(() => this.isLive)
     ).subscribe((e) => {
-      this.isSummary = window.location.href.includes('summary');
-      console.log(this.isSummary, (e as NavigationEnd).url.split('?')[0])
+      this.isSummary = window.location.href.split('?')[0].includes('summary');
     });
   }
 
@@ -114,10 +113,10 @@ export class AnalyticsBlockComponent implements OnInit, OnDestroy {
 
   async configureForm() {
     const config = await this.dialogService.open(AnalyticsConfigFormComponent, {
-      closeOnBackdropClick: false,
+      closeOnBackdropClick: true,
       context: { assetType: this.route.snapshot.data.assetType, isSummary: this.isSummary },
       hasScroll: true,
-      closeOnEsc: false
+      closeOnEsc: true
     }).onClose.toPromise();
     if (config) {
       const { locationId, locationName, date } = config;

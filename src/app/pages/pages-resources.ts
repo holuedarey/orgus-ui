@@ -100,21 +100,21 @@ export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
     [
         PagesResources.AnalyticsModuleView,
         {
-            route: `/app/analytics-management`,
-            path: 'analytics-management'
+            route: `/app/analytics`,
+            path: 'analytics'
         }
     ],
     [
         PagesResources.PowerSourceAnalyticsView,
         {
-            route: `/app/analytics-management/power-source-analytics`,
+            route: `/app/analytics/power-source-analytics`,
             path: 'power-source-analytics'
         }
     ],
     [
         PagesResources.GeneratingSetAnalyticsView,
         {
-            route: `/app/analytics-management/generating-set-analytics`,
+            route: `/app/analytics/generating-set-analytics`,
             path: 'generating-set-analytics'
         }
     ],
@@ -122,7 +122,7 @@ export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
     [
         PagesResources.LoadPointAnalyticsView,
         {
-            route: `/app/analytics-management/load-point-analytics`,
+            route: `/app/analytics/load-point-analytics`,
             path: 'load-point-analytics'
         }
     ],

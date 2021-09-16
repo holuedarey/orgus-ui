@@ -133,12 +133,14 @@ export class LoadPointFormComponent implements OnInit {
   }
 
   initUpdateForm(): void {
+    console.log(this.loadPointForUpdate.powerSourceId)
     this.loadPointForm = this.formBuilder.group({
       name: [this.loadPointForUpdate.name, Validators.required],
       countryId: [this.loadPointForUpdate.countryId, Validators.required],
       stateId: [this.loadPointForUpdate.stateId, Validators.required],
       lgaId: [this.loadPointForUpdate.lgaId, Validators.required],
       meterId: [this.loadPointForUpdate.meterId, Validators.required],
+      powerStation: [this.loadPointForUpdate.powerSourceId, Validators.required],
       meterNumber: [
         this.loadPointForUpdate.meter,
         [
@@ -153,8 +155,6 @@ export class LoadPointFormComponent implements OnInit {
         Validators.required,
         this.validateLongitude.bind(this)]],
       address: [this.loadPointForUpdate.address, Validators.required],
-      powerStation: [this.loadPointForUpdate.powerSource, Validators.required],
-      powerSourceId: [this.loadPointForUpdate.powerSourceId, Validators.required],
     });
 
     this.states$ = this.locationService.getStates({ countryId: this.loadPointForUpdate.countryId }).pipe(map((r) => r.data as LocationDto[]));
@@ -219,7 +219,7 @@ export class LoadPointFormComponent implements OnInit {
       latitude: (this.loadPointForm.get('latitude')?.value as number),
       longitude: (this.loadPointForm.get('longitude')?.value as number),
       address: (this.loadPointForm.get('address')?.value as string).trim(),
-      powerStation: (this.loadPointForm.get('powerStation')?.value as string).trim(),
+      powerStationId: (this.loadPointForm.get('powerStation')?.value as string).trim(),
     }
 
     this.loadPointService.postLoadPoint(postLoadPointDto).subscribe(
@@ -257,7 +257,7 @@ export class LoadPointFormComponent implements OnInit {
       latitude: (this.loadPointForm.get('latitude')?.value as number),
       longitude: (this.loadPointForm.get('longitude')?.value as number),
       address: (this.loadPointForm.get('address')?.value as string).trim(),
-      newPowerStationName:(this.loadPointForm.get('powerStation')?.value as string).trim(),
+      powerStationId: (this.loadPointForm.get('powerStation')?.value as string).trim(),
       id: this.loadPointForUpdate.id
     };
 

@@ -88,7 +88,7 @@
                                         [status]="loadPointForm.controls['powerStation'].touched ? (loadPointForm.controls['powerStation'].invalid ? 'danger' : 'success') : 'basic'"
                                         placeholder="Select Power Station" formControlName="powerStation">
                                         <nb-option *ngFor="let powerStation of powerStation$ | async; let i=count"
-                                            [value]="powerStation.name">
+                                            [value]="powerStation.id">
                                             {{powerStation.name}}
                                         </nb-option>
                                     </nb-select>

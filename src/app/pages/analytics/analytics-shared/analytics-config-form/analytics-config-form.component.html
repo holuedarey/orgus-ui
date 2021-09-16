@@ -41,11 +41,14 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <nb-form-field>
+                                        <nb-icon nbPrefix [icon]="'search-outline'" pack="eva">
+                                        </nb-icon>
                                         <input autocomplete="off" nbInput fullWidth name="location" id="input-location"
-                                            placeholder="Select Location:" [nbAutocomplete]="auto"
+                                            placeholder="Search for location" [nbAutocomplete]="auto"
                                             [status]="analyticsForm.controls['location'].touched ? (analyticsForm.controls['location'].invalid ? 'danger' : 'success') : 'basic'"
                                             formControlName="location" autofocus>
-                                        <button nbSuffix nbButton ghost type="button" (click)="clearLocationSelection()">
+                                        <button nbSuffix nbButton ghost type="button"
+                                            (click)="clearLocationSelection()">
                                             <nb-icon [icon]="'close-outline'" pack="eva">
                                             </nb-icon>
                                         </button>
