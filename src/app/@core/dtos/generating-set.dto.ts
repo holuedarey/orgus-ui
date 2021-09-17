@@ -10,6 +10,8 @@ export interface GeneratingSetDto {
     modified: string;
     energySource: number;
     powerSource: string;
-    powerSourceId: string,
-    energySourceName: string
+    powerSourceId: string;
+    energySourceName: string;
+    latitude: number;
+    longitude: number
 } 

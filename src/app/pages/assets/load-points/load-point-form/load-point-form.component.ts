@@ -1,3 +1,5 @@
+import { PowerSourceService } from './../../../../@core/data-services/power-source.service';
+import { PowerSourceDto } from './../../../../@core/dtos/power-source.dto';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
@@ -28,6 +30,8 @@ export class LoadPointFormComponent implements OnInit {
   @Input()
   loadPointForUpdate!: LoadPointDto;
 
+  powerStation$!: Observable<PowerSourceDto[]>;
+
   errors: string[] = [];
   messages: string[] = [];
   submitted = false;
@@ -46,11 +50,13 @@ export class LoadPointFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loadPointService: LoadPointService,
     private meterService: MeterService,
-    private locationService: LocationService
+    private locationService: LocationService,
+    private powerSourceService: PowerSourceService
   ) {
     this.countries$ = locationService.getCountries().pipe(map((r) => r.data as LocationDto[]));
     this.states$ = of([]);
     this.areas$ = of([]);
+    this.powerStation$ = this.powerSourceService.getPowerSource().pipe(map(d => d.data?.itemList as PowerSourceDto[]));
   }
 
   ngOnInit(): void {
@@ -77,6 +83,7 @@ export class LoadPointFormComponent implements OnInit {
       stateId: [null, Validators.required],
       lgaId: [null, Validators.required],
       meterId: [null, Validators.required],
+      powerStation: [null, Validators.required],
       meterNumber: [null,
         [
           Validators.required
@@ -126,12 +133,14 @@ export class LoadPointFormComponent implements OnInit {
   }
 
   initUpdateForm(): void {
+    console.log(this.loadPointForUpdate.powerSourceId)
     this.loadPointForm = this.formBuilder.group({
       name: [this.loadPointForUpdate.name, Validators.required],
       countryId: [this.loadPointForUpdate.countryId, Validators.required],
       stateId: [this.loadPointForUpdate.stateId, Validators.required],
       lgaId: [this.loadPointForUpdate.lgaId, Validators.required],
       meterId: [this.loadPointForUpdate.meterId, Validators.required],
+      powerStation: [this.loadPointForUpdate.powerSourceId, Validators.required],
       meterNumber: [
         this.loadPointForUpdate.meter,
         [
@@ -210,6 +219,7 @@ export class LoadPointFormComponent implements OnInit {
       latitude: (this.loadPointForm.get('latitude')?.value as number),
       longitude: (this.loadPointForm.get('longitude')?.value as number),
       address: (this.loadPointForm.get('address')?.value as string).trim(),
+      powerStationId: (this.loadPointForm.get('powerStation')?.value as string).trim(),
     }
 
     this.loadPointService.postLoadPoint(postLoadPointDto).subscribe(
@@ -247,6 +257,7 @@ export class LoadPointFormComponent implements OnInit {
       latitude: (this.loadPointForm.get('latitude')?.value as number),
       longitude: (this.loadPointForm.get('longitude')?.value as number),
       address: (this.loadPointForm.get('address')?.value as string).trim(),
+      powerStationId: (this.loadPointForm.get('powerStation')?.value as string).trim(),
       id: this.loadPointForUpdate.id
     };
 

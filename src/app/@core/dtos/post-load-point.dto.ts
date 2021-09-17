@@ -5,4 +5,5 @@ export interface PostLoadPointDto {
     latitude: number;
     longitude: number;
     address: string;
+    powerStationId: string;
 }

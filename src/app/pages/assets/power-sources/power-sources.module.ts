@@ -11,6 +11,8 @@ import { PowerSourceStatusToggleComponent } from './power-source-status-toggle/p
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GenSetColumnComponent } from './gen-set-column/gen-set-column.component';
 import { GenSetDialogComponent } from './gen-set-dialog/gen-set-dialog.component';
+import { LoadPointColumnComponent } from './load-point-column/load-point-column.component';
+import { LoadPointDialogComponent } from './load-point-dialog/load-point-dialog.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { GenSetDialogComponent } from './gen-set-dialog/gen-set-dialog.component
     PowerSourceGisComponent,
     PowerSourceStatusToggleComponent,
     GenSetColumnComponent,
-    GenSetDialogComponent
+    GenSetDialogComponent,
+    LoadPointColumnComponent,
+    LoadPointDialogComponent
   ],
   imports: [
     CommonModule,

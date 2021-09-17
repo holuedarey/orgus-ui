@@ -16,4 +16,6 @@ export interface LoadPointDto {
     status: string;
     client: string;
     clientId: string;
+    powerSource: string;
+    powerSourceId: string;
 }

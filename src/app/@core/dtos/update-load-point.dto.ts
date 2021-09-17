@@ -6,4 +6,5 @@ export interface UpdateLoadPointDto {
     latitude: number;
     longitude: number;
     address: string;
+    powerStationId: string;
 }

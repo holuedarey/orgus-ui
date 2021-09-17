@@ -10,6 +10,7 @@ import { SeoService } from 'src/app/@core/utils';
 import { OnlineStatService } from 'src/app/@core/utils/online-stat.service';
 import { PermissionService } from 'src/app/@core/utils/permission.service';
 import { TokenService } from 'src/app/@core/utils/token.service';
+import { LoadPointAnalyticsResources, LoadPointAnalyticsResourcesNavMap } from '../../analytics/load-point-analytics/load-point-analytics-resources';
 import { LoadPointFormComponent } from './load-point-form/load-point-form.component';
 import { LoadPointGisComponent } from './load-point-gis/load-point-gis.component';
 import { LoadPointResources } from './load-point-resources';
@@ -24,6 +25,7 @@ export class LoadPointsComponent implements OnInit {
 
   isLoadingData = true;
   loadPointResources = LoadPointResources;
+  loadPointAnalyticsLink = LoadPointAnalyticsResourcesNavMap.get(LoadPointAnalyticsResources.SummaryView)?.route;
 
   loadPoints: LoadPointDto[] = [];
 
@@ -33,6 +35,9 @@ export class LoadPointsComponent implements OnInit {
     },
     meter: {
       title: 'Meter Number',
+    },
+    powerSource: {
+      title: 'Power Source',
     },
     state: {
       title: 'State',
@@ -54,12 +59,6 @@ export class LoadPointsComponent implements OnInit {
       },
       hide: !this.permissionService.canAccessByResource(PermissionEnum.View, LoadPointResources.ViewClientColumn)
     },
-    gis: {
-      title: 'GIS',
-      renderComponent: LoadPointGisComponent,
-      type: 'custom',
-      filter: false
-    },
     status: {
       title: 'Status',
       renderComponent: LoadPointStatusToggleComponent,
@@ -75,6 +74,12 @@ export class LoadPointsComponent implements OnInit {
         },
       },
       filterFunction: (x: string, y: string) => x.toLowerCase() === y.toLowerCase()
+    },
+    actions: {
+      title: 'Actions',
+      renderComponent: LoadPointGisComponent,
+      type: 'custom',
+      filter: false
     },
   }
 

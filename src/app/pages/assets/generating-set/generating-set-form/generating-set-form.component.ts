@@ -87,7 +87,36 @@ export class GeneratingSetFormComponent implements OnInit {
       ],
       powerSourceId: [null, Validators.required],
       energySource: ['', Validators.required],
+      latitude: ['', [
+        Validators.required,
+        this.validateLatitude.bind(this)]],
+      longitude: ['', [
+        Validators.required,
+        this.validateLongitude.bind(this)]],
     });
+  }
+
+  validateLatitude(input: FormControl) {
+    const value = input.value;
+    const isValidlatitude = isLatitude(input.value);
+    if (isValidlatitude) {
+      return;
+    } else {
+      return {
+        invalidLatitude: `"${value}" is not a valid latitude`
+      }
+    }
+  }
+  validateLongitude(input: FormControl) {
+    const value = input.value;
+    const isValidLongitude = isLongitude(input.value);
+    if (isValidLongitude) {
+      return;
+    } else {
+      return {
+        invalidLongitude: `"${value}" is not a valid Longitude`
+      }
+    }
   }
   
   keyPressNumbersOnly(event: any) {
@@ -114,6 +143,12 @@ export class GeneratingSetFormComponent implements OnInit {
       powerSource: [this.generatingSetForUpdate.powerSource, Validators.required],
       powerSourceId: [this.generatingSetForUpdate.powerSourceId, Validators.required],
       energySource: [this.generatingSetForUpdate.energySource, Validators.required],
+      latitude: [this.generatingSetForUpdate.latitude, [
+        Validators.required,
+        this.validateLatitude.bind(this)]],
+      longitude: [this.generatingSetForUpdate.longitude, [
+        Validators.required,
+        this.validateLongitude.bind(this)]],
     });
 
   }
@@ -155,6 +190,8 @@ export class GeneratingSetFormComponent implements OnInit {
       meterId: (this.generatingSetForm.get('meterId')?.value as string).trim(),
       powerSourceId: (this.generatingSetForm.get('powerSourceId')?.value as string).trim(),
       energySource: (this.generatingSetForm.get('energySource')?.value as number),
+      latitude: (this.generatingSetForm.get('latitude')?.value as number),
+      longitude: (this.generatingSetForm.get('longitude')?.value as number),
     }
 
     this.generatingSetService.postGeneratingSet(postGeneratingSetDto).subscribe(
@@ -190,6 +227,8 @@ export class GeneratingSetFormComponent implements OnInit {
       energySource: (this.generatingSetForm.get('energySource')?.value as number),
       meterId: (this.generatingSetForm.get('meterId')?.value as string).trim(),
       powerSourceId: (this.generatingSetForm.get('powerSourceId')?.value as string).trim(),
+      latitude: (this.generatingSetForm.get('latitude')?.value as number),
+      longitude: (this.generatingSetForm.get('longitude')?.value as number),
       id: this.generatingSetForUpdate.id
     };
 

@@ -46,7 +46,6 @@ export class LoadPointAnalyticsSummaryComponent implements OnInit {
       .subscribe({
         next: config => {
           this.themeVariables = config.variables;
-          console.log("themeVariables :: ", this.themeVariables.chartjs)
           this.lineChartOptions = {
             responsive: true,
             maintainAspectRatio: true,
@@ -61,7 +60,7 @@ export class LoadPointAnalyticsSummaryComponent implements OnInit {
                 {
                   scaleLabel: {
                     display: true,
-                    labelString: 'Ping Attempts (N)',
+                    labelString: '',
                     fontColor: this.themeVariables.chartjs.textColor,
                   },
                   gridLines: {
@@ -144,7 +143,8 @@ export class LoadPointAnalyticsSummaryComponent implements OnInit {
 
   initLineChart(): void {
     const colors: any = this.themeVariables;
-
+    console.log("colors", colors);
+    
     this.lineChartData = {
       labels: [ "Jan", "Feb","Mar", "Apr", "May", "Jun","Juy", "Aug", "Sept", "Oct", "Nov", "Dec" ],
       datasets: [{
@@ -174,8 +174,8 @@ export class LoadPointAnalyticsSummaryComponent implements OnInit {
     this.DoughnutChart = {
       labels: ["Time", "Down", "Watt", "Energy"],
       datasets: [{
-        data: [60, 25],
-        backgroundColor: [colors.successLight, colors.dangerLight],
+        data: [60, 25,40,19],
+        backgroundColor: [colors.successLight, colors.dangerLight, colors.warningLight, colors.warning],
         borderColor: colors.border,
       }],
     };

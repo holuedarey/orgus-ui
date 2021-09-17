@@ -1,3 +1,4 @@
+import { GeneratingSetGisComponent } from './generating-set-gis/generating-set-gis.component';
 import { UserModel } from 'src/app/@core/models/user.model';
 import { GetUniqueArray } from 'src/app/@core/functions/data-request.funtion';
 import { GeneratingSetFormComponent } from './generating-set-form/generating-set-form.component';
@@ -51,6 +52,12 @@ export class GeneratingSetComponent implements OnInit {
       valuePrepareFunction: (d: string, r: any) => {
         return r.client
       },      hide: !this.permissionService.canAccessByResource(PermissionEnum.View, this.generatingSetResources.ViewClientColumn)
+    },
+    gis: {
+      title: 'GIS',
+      renderComponent: GeneratingSetGisComponent,
+      type: 'custom',
+      filter: false
     },
     status: {
       title: 'Status',

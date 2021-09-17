@@ -9,14 +9,14 @@ export const LoadPointAnalyticsResourcesNavMap = new Map<LoadPointAnalyticsResou
     [
         LoadPointAnalyticsResources.SummaryView,
         {
-            route: `/app/analytics-management/load-point-analytics/summary`,
+            route: `/app/analytics/load-point-analytics/summary`,
             path: 'summary'
         }
     ],
     [
         LoadPointAnalyticsResources.ExpandedView,
         {
-            route: `/app/analytics-management/load-point-analytics/expanded`,
+            route: `/app/analytics/load-point-analytics/expanded`,
             path: 'expanded'
         }
     ],

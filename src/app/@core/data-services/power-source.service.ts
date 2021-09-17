@@ -62,4 +62,12 @@ export class PowerSourceService implements AccessControlContract {
     }
     return this.httpClient.get<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, { params });
   }
+  getPowerSourceLoadPoint(id: any, filter: any = { page: 1, size: 5 }): Observable<ResponseDto<any>> {
+    const apiEndpoint = `PowerSources/get-powersource-loadpoints/${id}`;
+    let params = new HttpParams()
+    for (const key in filter) {
+      params = params.set(key, filter[key])
+    }
+    return this.httpClient.get<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, { params });
+  }
 }
