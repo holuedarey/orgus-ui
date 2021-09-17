@@ -1,11 +1,15 @@
-import { NbJSThemeOptions, DEFAULT_THEME as baseTheme } from '@nebular/theme';
+import { NbJSThemeOptions, DEFAULT_THEME as baseTheme, NbJSThemeVariable } from '@nebular/theme';
 
-const baseThemeVariables = baseTheme.variables;
+const baseThemeVariables = baseTheme.variables as NbJSThemeVariable;
 
 export const DEFAULT_THEME = {
   name: 'default',
   base: 'default',
   variables: {
+    chartjs: {
+      axisLineColor: baseThemeVariables.separator,
+      textColor: baseThemeVariables.fgText,
+    },
     maps: JSON.stringify([
       {
         "featureType": "administrative",

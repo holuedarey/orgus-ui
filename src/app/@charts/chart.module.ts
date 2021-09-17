@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartComponent } from './chart.component';
-import { ChartiComponent } from './chart-components/charti/charti.component';
-import { ChartiiComponent } from './chart-components/chartii/chartii.component';
 import { ThemeModule } from '../@theme/theme.module';
 import { ChartModule } from 'angular2-chartjs';
+import { DoughnutComponent } from './chart-components/doughnut-chart/doughnut-chart.component';
+import { LinechartComponent } from './chart-components/line-chart/line-chart.component';
+import { PiechartComponent } from './chart-components/pie-chart/pie-chart.component';
 
 
 @NgModule({
-  declarations: [ChartComponent, ChartiComponent, ChartiiComponent],
+  declarations: [ChartComponent, DoughnutComponent, LinechartComponent, PiechartComponent],
   imports: [
     CommonModule,
     ThemeModule,

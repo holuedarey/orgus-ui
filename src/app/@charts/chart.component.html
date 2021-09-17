@@ -1,8 +1,10 @@
-<!-- <ng-container [ngSwitch]="chartId">
-    <app-charti *ngSwitchCase="'chart-i'">
-    </app-charti>
-    <app-chartii *ngSwitchCase="'chart-ii'">
-    </app-chartii>
-</ng-container> -->
+<ng-container [ngSwitch]="chartId">
+    <app-doughnut-chart [data]="data" [config]="config" [chartId]="chartId" *ngSwitchCase="'doughnut'">
+    </app-doughnut-chart>
 
-<chart [type]="type" [data]="chartData" [options]="chartConfig"></chart>
+    <app-line-chart [data]="data" [config]="config" [chartId]="chartId" *ngSwitchCase="'line'">
+    </app-line-chart>
+
+    <app-pie-chart [data]="data" [config]="config" [chartId]="chartId" *ngSwitchCase="'pie'">
+    </app-pie-chart>
+</ng-container> 
