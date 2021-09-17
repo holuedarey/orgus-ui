@@ -6,6 +6,8 @@ import { LoadPointAnalyticsComponent } from './load-point-analytics.component';
 import { AnalyticsSharedModule } from '../analytics-shared/analytics-shared.module';
 import { LoadPointAnalyticsSummaryComponent } from './load-point-analytics-summary/load-point-analytics-summary.component';
 import { LoadPointAnalyticsExpandedComponent } from './load-point-analytics-expanded/load-point-analytics-expanded.component';
+import { ChartsModule } from 'src/app/@charts/chart.module';
+import { NbCardModule, NbThemeModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -16,6 +18,9 @@ import { LoadPointAnalyticsExpandedComponent } from './load-point-analytics-expa
   ],
   imports: [
     CommonModule,
+    ChartsModule,
+    NbThemeModule,
+    NbCardModule,
     LoadPointAnalyticsRoutingModule,
     AnalyticsSharedModule
   ]

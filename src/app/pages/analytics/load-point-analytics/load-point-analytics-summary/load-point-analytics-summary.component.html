@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-6">
+        <nb-card style="height: 295px;">
+            <nb-card-body>
+                <app-chart [data]="pieChartData" [config]="pieChartOptions" [chartId]="chartId1"></app-chart>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-6">
+        <nb-card style="height: 295px;">
+            <nb-card-body>
+                <app-chart [data]="lineChartData" [config]="lineChartOptions" [chartId]="chartId2"></app-chart>
+            </nb-card-body>
+        </nb-card>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-12">
+        <nb-card>
+            <nb-card-body style="height: 295px;">
+                <app-chart [data]="DoughnutChart" [config]="pieChartOptions" [chartId]="chartId3"></app-chart>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

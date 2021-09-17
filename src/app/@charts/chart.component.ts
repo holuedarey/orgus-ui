@@ -20,6 +20,6 @@ export class ChartComponent implements OnInit  {
   ngOnInit():void{
     this.chartData = this.data || [];
     this.chartConfig = this.config || {};
-    console.log("chartId new ::", this.chartId, "chartConfig ::", this.chartConfig, "chartData : ",this.chartData)
+    // console.log("chartId new ::", this.chartId, "chartConfig ::", this.chartConfig, "chartData : ",this.chartData)
   }
 }

@@ -24,8 +24,7 @@ $nb-themes: nb-register-theme(
         // menu-item-divider-width: 0,
         header-shadow: 0 0.5rem 1rem 0 rgb(218 224 235 / 60%),
         select-card-color: #fff,
-        separator:"2",
-        fgText:"3"
+        textColor:"#f90"
     ),
     default,
     default
@@ -49,8 +48,6 @@ $nb-themes: nb-register-theme(
         slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
         slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
         select-card-color: #000,
-        separator:"2",
-        fgText:"3"
     ),
     dark,
     dark
