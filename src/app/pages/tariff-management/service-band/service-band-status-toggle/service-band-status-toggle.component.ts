@@ -46,7 +46,7 @@ export class ServiceBandStatusToggleComponent implements OnInit {
   ngOnInit(): void {
     this.checked = this.value === 'Active' ? true : false;
     const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
-    this.isSameClient = this.rowData.clientId === userModel.clientId;
+    this.isSameClient = this.rowData.clientId === userModel.walletId;
   }
 
   async onStatusChange(state: boolean) {

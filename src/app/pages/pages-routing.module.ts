@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
-    canActivateChild: [HasPermissionGuard],
+    // canActivateChild: [HasPermissionGuard],
     children: [
       {
         path: '',

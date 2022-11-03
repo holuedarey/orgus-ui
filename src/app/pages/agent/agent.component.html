@@ -1,0 +1,227 @@
+<canvas id="landing-canvas"></canvas>
+<nb-layout class="m-0 p-0">
+    <nb-layout-header class="landing-header mx-md-5">
+        <div class="header-container pr-0 col mt-md-5">
+            <div class="logo-container">
+                <h3>
+                    <!-- <img src="assets/icons/logo.png" height="50px" alt=""> -->
+                    Spout
+                </h3>
+            </div>
+        </div>
+
+        <div class="header-container col-auto mt-md-5 ml-5">
+            <a [routerLink]="['/agent']" nbButton size="medium" status="success " outline>Agent Oboarding</a>
+            <a [routerLink]="['/auth/login']" nbButton size="medium" status="primary">Sign In</a>
+        </div>
+    </nb-layout-header>
+
+    <nb-layout-column>
+        <div>
+            <div class="container">
+                <div class="row mt-5">
+                <div class="offset-md-8">
+                    <nb-alert *ngIf="errors?.length && !submitted" outline="danger" role="alert">
+                        <p class="alert-title"><b>Oh snap!</b></p>
+                        <ul class="alert-message-list">
+                            <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+                        </ul>
+                    </nb-alert>
+                    
+                    <nb-alert *ngIf="messages?.length && !submitted" outline="success" role="alert">
+                        <p class="alert-title"><b>Hooray!</b></p>
+                        <ul class="alert-message-list">
+                            <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+                        </ul>
+                    </nb-alert>
+                </div>
+                    <nb-card [size]="'large'" accent="info" style="height:60%; z-index: 99999999;" class="offset-md-8">
+                        <nb-card-body>
+                            <div class="">
+                                <form [formGroup]="agentForm" #form="ngForm" class="my-0">
+
+                                    <p class="font-weight-bold">Business</p>
+                                    <div class="form-control-group row my-3">
+                                        <div class="col-sm-4">
+                                            <label class="label" for="input-firstName">First Name:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input nbInput fullWidth name="firstName" id="input-firstName"
+                                                placeholder="First Name" #firstName
+                                                [status]="agentForm.controls['firstName'].touched ? (agentForm.controls['firstName'].invalid ? 'danger' : 'success') : 'basic'"
+                                                formControlName="firstName" autofocus>
+    
+                                            <div *ngIf="agentForm.controls['firstName'].invalid && agentForm.controls['firstName'].touched"
+                                                class="text-danger xyz-in px-3 row">
+                                                <small xyz="fade down" class="error-message"
+                                                    *ngIf="agentForm.controls['firstName'].errors?.required">
+                                                    First Name is required!
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-control-group row my-3">
+                                        <div class="col-sm-4">
+                                            <label class="label" for="input-lastName">Last Name:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input nbInput fullWidth name="lastName" id="input-lastName"
+                                                placeholder="Last Name" #lastName
+                                                [status]="agentForm.controls['lastName'].touched ? (agentForm.controls['lastName'].invalid ? 'danger' : 'success') : 'basic'"
+                                                formControlName="lastName" autofocus>
+    
+                                            <div *ngIf="agentForm.controls['lastName'].invalid && agentForm.controls['lastName'].touched"
+                                                class="text-danger xyz-in px-3 row">
+                                                <small xyz="fade down" class="error-message"
+                                                    *ngIf="agentForm.controls['lastName'].errors?.required">
+                                                    Last Name is required!
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-control-group mb-3 row">
+                                        <div class="col-sm-4">
+                                            <label class="label" for="input-userName">User Name:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input nbInput fullWidth name="userName" id="input-userName"
+                                                placeholder="User Name"
+                                                [status]="agentForm.controls['userName'].touched ? (agentForm.controls['userName'].invalid ? 'danger' : 'success') : 'basic'"
+                                                formControlName="userName" autofocus>
+    
+                                            <div *ngIf="agentForm.controls['userName'].invalid && agentForm.controls['userName'].touched"
+                                                class="text-danger xyz-in px-3 row">
+                                                <small xyz="fade down" class="error-message"
+                                                    *ngIf="agentForm.controls['userName'].errors?.required">
+                                                    User Name is required!
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="font-weight-bold mt-4">Contact</p>
+    
+                                    <div class="form-control-group row mb-3">
+                                        <div class="col-sm-4">
+                                            <label class="label" for="input-contactEmail">Contact Email:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input nbInput fullWidth name="contactEmail" id="input-contactEmail"
+                                                placeholder="Contact Email"
+                                                [status]="agentForm.controls['contactEmail'].touched ? (agentForm.controls['contactEmail'].invalid ? 'danger' : 'success') : 'basic'"
+                                                formControlName="contactEmail" autofocus>
+    
+                                            <div *ngIf="agentForm.controls['contactEmail'].invalid && agentForm.controls['contactEmail'].touched"
+                                                class="text-danger xyz-in px-3 row">
+                                                <small xyz="fade down" class="error-message d-block"
+                                                    *ngIf="agentForm.controls['contactEmail'].errors?.required">
+                                                    Contact Email is required!
+                                                </small>
+                                                <small xyz="fade down" class="error-message d-block"
+                                                    *ngIf="!agentForm.controls['contactEmail'].errors?.required">
+                                                    {{agentForm.controls['contactEmail'].errors?.contactEmail}}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-control-group row mb-3">
+                                        <div class="col-sm-4">
+                                            <label class="label" for="input-phoneNumber">Contact Phone:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input nbInput fullWidth name="phoneNumber" id="input-phoneNumber"
+                                                placeholder="Phone number"
+                                                [status]="agentForm.controls['phoneNumber'].touched ? (agentForm.controls['phoneNumber'].invalid ? 'danger' : 'success') : 'basic'"
+                                                formControlName="phoneNumber" autofocus>
+    
+                                            <div *ngIf="agentForm.controls['phoneNumber'].invalid && agentForm.controls['phoneNumber'].touched"
+                                                class="text-danger xyz-in px-3 row">
+                                                <small xyz="fade down" class="error-message d-block"
+                                                    *ngIf="agentForm.controls['phoneNumber'].errors?.required">
+                                                    Phone number is required
+                                                </small>
+                                                <small class="error-message d-block"
+                                                    *ngIf="agentForm.controls['phoneNumber'].errors?.phoneNos && !agentForm.controls['phoneNumber'].errors?.required">
+                                                    {{agentForm.controls['phoneNumber'].errors?.phoneNos}}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-control-group mb-3 row">
+                                        <div class="col-sm-4">
+                                            <label class="label" for="input-password">Password:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <nb-form-field>
+                                            <input nbInput fullWidth name="password" id="input-password" placeholder="Password"
+                                                [type]="isPasswordHidden ? 'password' : 'text'"
+                                                [status]="agentForm.controls['password'].touched ? (agentForm.controls['password'].invalid ? 'danger' : 'success') : 'basic'"
+                                                formControlName="password" autofocus minlength="3">
+                                                <button nbSuffix nbButton ghost type="button" (click)="isPasswordHidden = !isPasswordHidden">
+                                                    <nb-icon [icon]="isPasswordHidden ? 'eye-outline' : 'eye-off-2-outline'" pack="eva"
+                                                        [attr.aria-label]="!isPasswordHidden ? 'hide password' : 'show password'">
+                                                    </nb-icon>
+                                                </button>
+                                            </nb-form-field>
+                                            <div *ngIf="agentForm.controls['password'].invalid && agentForm.controls['password'].touched"
+                                                class="text-danger xyz-in px-3 row">
+                                                <small xyz="fade down" class="error-message"
+                                                    *ngIf="agentForm.controls['password'].errors?.required">
+                                                    Password is required!
+                                                </small>
+                                                <small xyz="fade down" class="error-message"
+                                                    *ngIf="agentForm.controls['password'].errors?.minlength && !agentForm.controls['password'].errors?.required">
+                                                    Password must be atleast three letters!
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-control-group mb-3 row">
+                                        <div class="col-sm-4">
+                                            <label class="label" for="input-confirmPassword">Confirm Password:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <nb-form-field>
+                                            <input nbInput fullWidth name="confirmPassword" id="input-confirmPassword" placeholder="Confirm Password"
+                                                [type]="isPasswordHidden ? 'password' : 'text'"
+                                                [status]="agentForm.controls['confirmPassword'].touched ? (agentForm.controls['confirmPassword'].invalid ? 'danger' : 'success') : 'basic'"
+                                                formControlName="confirmPassword" autofocus minlength="3">
+                                                <button nbSuffix nbButton ghost type="button" (click)="isPasswordHidden = !isPasswordHidden">
+                                                    <nb-icon [icon]="isPasswordHidden ? 'eye-outline' : 'eye-off-2-outline'" pack="eva"
+                                                        [attr.aria-label]="!isPasswordHidden ? 'hide password' : 'show password'">
+                                                    </nb-icon>
+                                                </button>
+                                            </nb-form-field>
+                                            <div *ngIf="agentForm.controls['confirmPassword'].invalid && agentForm.controls['confirmPassword'].touched"
+                                                class="text-danger xyz-in px-3 row">
+                                                <small xyz="fade down" class="error-message"
+                                                    *ngIf="agentForm.controls['confirmPassword'].errors?.required">
+                                                    Password is required!
+                                                </small>
+                                                <small xyz="fade down" class="error-message"
+                                                    *ngIf="agentForm.controls['confirmPassword'].errors?.minlength && !agentForm.controls['confirmPassword'].errors?.required">
+                                                    Password must be atleast three letters!
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                        </nb-card-body>
+                        <nb-card-footer>
+                            <button (click)=saveClient() [nbSpinner]="submitted" nbButton fullWidth status="success"
+                                [disabled]="submitted || !agentForm.valid">
+                                Create Account
+                            </button>
+                        </nb-card-footer>
+                    </nb-card>
+                </div>
+            </div>
+        </div>
+
+    </nb-layout-column>
+
+</nb-layout>

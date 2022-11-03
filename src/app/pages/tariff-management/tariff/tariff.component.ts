@@ -114,7 +114,7 @@ export class TariffComponent implements OnInit {
 
   async updateTariff({ data }: { data: TariffDto }) {
     const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
-    const hasPermission = data.clientId === userModel.clientId;
+    const hasPermission = data.clientId === userModel.walletId;
     if (hasPermission) {
       const tariff: TariffDto = await this.dialogService.open(TariffFormComponent, {
         closeOnBackdropClick: false,

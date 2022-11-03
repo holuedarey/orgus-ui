@@ -3,7 +3,7 @@
     <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
-    <a class="logo font-weight-bold" href="#" (click)="navigateHome()">Argus</a>
+    <a class="logo font-weight-bold" href="#" (click)="navigateHome()">Spout</a>
   </div>
   <div *ngIf="!userPictureOnly" class="item-group">
     <button *ngIf="(canInstall$ | async)" (click)="installPwa()" class="square xyz-in" nbButton
@@ -28,7 +28,7 @@
     </nb-action>
     <nb-action class="user-action">
       <nb-user [nbContextMenu]="userMenu" nbContextMenuTag="user-menu" [onlyPicture]="userPictureOnly"
-        name="{{user.firstName}} {{user.lastName}}" [picture]="''">
+        name="{{user?.firstName || 'samuel'}} {{user?.lastName}}" [picture]="''">
       </nb-user>
     </nb-action>
   </nb-actions>

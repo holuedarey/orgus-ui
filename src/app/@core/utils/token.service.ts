@@ -33,6 +33,6 @@ export class TokenService {
 
   getPayload(): JwtPayloadModel {
     const token = this.secureLS.get<TokenExport>(LocalStorageKey.JWT.toString());
-    return helper.decodeToken(token.token) as JwtPayloadModel;
+    return helper.decodeToken(token.token);
   }
 }

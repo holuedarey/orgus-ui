@@ -130,7 +130,7 @@ export class LoadPointsComponent implements OnInit {
 
   async updateLoadPoint({ data }: { data: LoadPointDto }) {
     const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
-    const hasPermission = data.clientId === userModel.clientId;
+    const hasPermission = data.clientId === userModel.walletId;
     if (hasPermission) {
       const loadPoint: LoadPointDto = await this.dialogService.open(LoadPointFormComponent, {
         closeOnBackdropClick: false,

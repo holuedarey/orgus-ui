@@ -124,7 +124,7 @@ export class GeneratingSetComponent implements OnInit {
 
   async updateGeneratingSet({ data }: { data: GeneratingSetDto }) {
     const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
-    const hasPermission = data.clientId === userModel.clientId;
+    const hasPermission = data.clientId === userModel.walletId;
     if (hasPermission) {
       const generatingSet: GeneratingSetDto = await this.dialogService.open(GeneratingSetFormComponent, {
         closeOnBackdropClick: false,

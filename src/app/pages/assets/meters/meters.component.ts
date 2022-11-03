@@ -132,7 +132,7 @@ export class MetersComponent implements OnInit {
 
   async updateMeter({ data }: { data: MeterDto }) {
     const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
-    const hasPermission = data.clientId === userModel.clientId;
+    const hasPermission = data.clientId === userModel.walletId;
     if (hasPermission) {
       const meter: MeterDto = await this.dialogService.open(MeterFormComponent, {
         closeOnBackdropClick: false,

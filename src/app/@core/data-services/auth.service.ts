@@ -62,16 +62,16 @@ export class AuthService implements AccessControlContract {
   }
 
   authenticate(loginDto: LoginDto): Observable<ResponseDto<any>> {
-    const apiEndpoint = 'auth/login';
+    const apiEndpoint = 'auth/get-token';
     return this.httpClient.post<ResponseDto<any>>(
       `${environment.apiUrl}/${apiEndpoint}`,
       loginDto);
   }
 
-  getAuthenticatedUser(): UserModel | null {
+  getAuthenticatedUser(): any | null {
     const jwtPayload = this.tokenService.getPayload();
     try {
-      return (JSON.parse(jwtPayload.sub) as UserModel)
+      return jwtPayload
     } catch (error) {
       return null
     }

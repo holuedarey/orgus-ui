@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
     this.messages = [];
     this.submitted = true;
 
-    const loginDto: LoginDto = { email: this.user.email, password: this.user.password };
+    const loginDto: LoginDto = { login: this.user.email, password: this.user.password };
 
     this.service.authenticate(loginDto).subscribe(
       (result) => {
@@ -68,11 +68,11 @@ export class LoginComponent implements OnInit {
           this.messages = ['Login successful'];
           this.nbTokenService.set(
             new NbAuthJWTToken(
-              result.data.jwt,
+              result.token,
               'email',
             )
           );
-          this.ls.set(LocalStorageKey.REFRESH_TOKEN.toString(), result.data.refreshToken);
+          this.ls.set(LocalStorageKey.REFRESH_TOKEN.toString(), result.token);
           this.validateUserCache();
           setTimeout(() => {
             return this.router.navigateByUrl(AppResourcesNavMap.get(AppResources.AppView)?.route as string);

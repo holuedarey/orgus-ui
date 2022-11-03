@@ -114,7 +114,7 @@ export class ServiceBandComponent implements OnInit {
 
   async updateServiceBand({ data }: { data: ServiceBandDto }) {
     const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
-    const hasPermission = data.clientId === userModel.clientId;
+    const hasPermission = data.clientId === userModel.walletId;
     if (hasPermission) {
       const serviceBand: ServiceBandDto = await this.dialogService.open(ServiceBandFormComponent, {
         closeOnBackdropClick: false,

@@ -104,10 +104,6 @@ export class UserFormComponent implements OnInit, OnDestroy {
           this.validateSsoRole.bind(this)
         ]
       ],
-      clientId: [
-        this.permissionService.canAccessByResource('create', UsersResources.SetClient) ? '' : userModel.clientId
-        , Validators.required
-      ],
     });
 
     this.createUserForm.get('clientId')?.valueChanges
@@ -158,28 +154,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
 
     const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
     const clientId = this.createUserForm.get('clientId')?.value;
-    const ssoRole = userModel.ssoRole;
-    const signedInUserClientId = userModel.clientId;
     const emailHasVggSignature = (value as string).trim().toLowerCase().endsWith('@venturegardengroup.com');
-
-    // continue only if VGG staff is signed in
-    if (!ssoRole.trim().includes('vgg')) {
-      return;
-    }
-
-    // if VGG Client Selected, 
-    if (clientId === signedInUserClientId && !emailHasVggSignature) {
-      return {
-        email: `"${value}" is not a valid VGG email`
-      }
-    }
-
-    // if Non VGG Client is Selected
-    if (clientId !== signedInUserClientId && emailHasVggSignature) {
-      return {
-        email: `"${value}" cannot be used for client account`
-      }
-    }
     return;
   }
 
@@ -187,8 +162,6 @@ export class UserFormComponent implements OnInit, OnDestroy {
     const value = (input.value as string).trim();
     const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
     const clientId = this.createUserForm?.get('clientId')?.value;
-    const ssoRole = userModel.ssoRole;
-    const signedInUserClientId = userModel.clientId;
     const isVggSsoRole = value.includes('vgg');
 
     // continue only if VGG staff is signed in
@@ -196,24 +169,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // continue only if VGG staff is signed in
-    if (!ssoRole.trim().includes('vgg')) {
-      return;
-    }
-
-    // if VGG Client Selected, 
-    if (clientId === signedInUserClientId && !isVggSsoRole) {
-      return {
-        sso: `This role cannot be assigned to a VGG client account`
-      }
-    }
-
-    // if Non VGG Client is Selected
-    if (clientId !== signedInUserClientId && isVggSsoRole) {
-      return {
-        sso: `This role can only be assigned to a VGG client account`
-      }
-    }
+   
 
     return;
   }

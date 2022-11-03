@@ -44,12 +44,13 @@ export const NB_CORE_PROVIDERS = [
           class: NbAuthJWTToken,
           key: 'jwt',
           getter: (requestType: string, response: HttpResponse<any>) => {
-            ls.set(LocalStorageKey.REFRESH_TOKEN.toString(), response.body.data.refreshToken);
-            return response.body.data.jwt;
+            console.log("resp::: ", response.body.token)
+            ls.set(LocalStorageKey.REFRESH_TOKEN.toString(), response.body.token);
+            return response.body.token;
           }
         },
         login: {
-          endpoint: '/Auth/login',
+          endpoint: '/auth/get-token',
           method: 'post',
           redirect: {
             success: 'argus',
@@ -57,7 +58,7 @@ export const NB_CORE_PROVIDERS = [
           },
         },
         refreshToken: {
-          endpoint: '/Auth/refreshToken',
+          endpoint: '/auth/get-token',
           method: 'post',
           redirect: {
             success: 'argus',
@@ -65,7 +66,7 @@ export const NB_CORE_PROVIDERS = [
           },
         },
         requestPass: {
-          endpoint: '/Auth/resetPasswordEmail',
+          endpoint: '/auth/resetPasswordEmail',
           method: 'post',
           redirect: {
             success: null,
@@ -73,7 +74,7 @@ export const NB_CORE_PROVIDERS = [
           },
         },
         resetPass: {
-          endpoint: '/Auth/resetNewPassword',
+          endpoint: '/uth/resetNewPassword',
           method: 'post',
           redirect: {
             success: '/auth/login',

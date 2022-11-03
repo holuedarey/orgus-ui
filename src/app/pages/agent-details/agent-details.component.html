@@ -1,0 +1,457 @@
+<canvas id="landing-canvas"></canvas>
+<nb-layout class="m-0 p-0">
+    <nb-layout-header class="landing-header mx-md-5">
+        <div class="header-container pr-0 col mt-md-5">
+            <div class="logo-container">
+                <h3>
+                    <!-- <img src="assets/icons/logo.png" height="50px" alt=""> -->
+                    Spout
+                </h3>
+            </div>
+        </div>
+
+        <div class="header-container col-auto mt-md-5 ml-5">
+            <a [routerLink]="['/agent']" nbButton size="medium" status="success " outline>Agent Oboarding</a>
+            <a [routerLink]="['/auth/login']" nbButton size="medium" status="primary">Sign In</a>
+        </div>
+    </nb-layout-header>
+
+    <nb-layout-column>
+        <div>
+            <div class="container">
+                <div class="row mt-5">
+                    <div class="col-md-10 offset-md-1">
+                        <div class="offset-md-0">
+                            <nb-alert *ngIf="errors?.length && !submitted" outline="danger" role="alert">
+                                <p class="alert-title"><b>Oh snap!</b></p>
+                                <ul class="alert-message-list">
+                                    <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+                                </ul>
+                            </nb-alert>
+
+                            <nb-alert *ngIf="messages?.length && !submitted" outline="success" role="alert">
+                                <p class="alert-title"><b>Hooray!</b></p>
+                                <ul class="alert-message-list">
+                                    <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+                                </ul>
+                            </nb-alert>
+                        </div>
+                        <nb-card [size]="'large'" accent="info" style="height: 100%;">
+                            <nb-card-body>
+                                <div class="">
+                                    <form [formGroup]="updetailsForm" #form="ngForm" class="my-0">
+
+                                        <h4 class="font-weight-bold">Finalize Account Details</h4>
+                                        <hr>
+                                        <div class="row">
+                                            <p class="font-weight-bold col-md-12">Personal Information</p>
+
+                                            <div class="form-control-group col-md-6  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-bvn">BVN:</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="bvn" id="input-bvn"
+                                                        placeholder="Bvn" #bvn
+                                                        [status]="updetailsForm.controls['bvn'].touched ? (updetailsForm.controls['bvn'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="bvn">
+
+                                                    <div *ngIf="updetailsForm.controls['bvn'].invalid && updetailsForm.controls['bvn'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['bvn'].errors?.required">
+                                                            bvn is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-control-group  col-md-6 my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-dateOfBirth">Date Of Birth</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="dateOfBirth" id="input-dateOfBirth"
+                                                        placeholder="Date Of Birth" #dateOfBirth
+                                                        [status]="updetailsForm.controls['dateOfBirth'].touched ? (updetailsForm.controls['dateOfBirth'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="dateOfBirth">
+
+                                                    <div *ngIf="updetailsForm.controls['dateOfBirth'].invalid && updetailsForm.controls['dateOfBirth'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['dateOfBirth'].errors?.required">
+                                                            Date Of Birth is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-control-group col-md-6 my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-address">Address</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="address" id="input-address"
+                                                        placeholder="Address" #address
+                                                        [status]="updetailsForm.controls['address'].touched ? (updetailsForm.controls['address'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="address">
+
+                                                    <div *ngIf="updetailsForm.controls['address'].invalid && updetailsForm.controls['address'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['address'].errors?.required">
+                                                            Address is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-control-group col-md-6  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-businessName">Business Name</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="businessName" id="input-businessName"
+                                                        placeholder="Business Name" #businessName
+                                                        [status]="updetailsForm.controls['businessName'].touched ? (updetailsForm.controls['businessName'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="businessName">
+
+                                                    <div *ngIf="updetailsForm.controls['businessName'].invalid && updetailsForm.controls['businessName'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['businessName'].errors?.required">
+                                                            Business Name is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-control-group col-md-6 my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-officeAddress">Office
+                                                        Address</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="officeAddress"
+                                                        id="input-officeAddress" placeholder="Office Address"
+                                                        #officeAddress
+                                                        [status]="updetailsForm.controls['officeAddress'].touched ? (updetailsForm.controls['officeAddress'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="officeAddress">
+
+                                                    <div *ngIf="updetailsForm.controls['officeAddress'].invalid && updetailsForm.controls['officeAddress'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['officeAddress'].errors?.required">
+                                                            Office Address is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-control-group col-md-6  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-officeState">Office State</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="officeState" id="input-officeState"
+                                                        placeholder="Office State" #officeState
+                                                        [status]="updetailsForm.controls['officeState'].touched ? (updetailsForm.controls['officeState'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="officeState">
+
+                                                    <div *ngIf="updetailsForm.controls['officeState'].invalid && updetailsForm.controls['officeState'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['officeState'].errors?.required">
+                                                            Office State is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="form-control-group col-md-6 my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-gender">Office Lga</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="officeLga" id="input-officeLga"
+                                                        placeholder="office Lga" #officeLga
+                                                        [status]="updetailsForm.controls['officeLga'].touched ? (updetailsForm.controls['officeLga'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="officeLga">
+
+                                                    <div *ngIf="updetailsForm.controls['officeLga'].invalid && updetailsForm.controls['officeLga'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['officeLga'].errors?.required">
+                                                            Office Lga is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-control-group col-md-6 my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-officeLga">Gender</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="gender" id="input-gender"
+                                                        placeholder="Gender" #gender
+                                                        [status]="updetailsForm.controls['gender'].touched ? (updetailsForm.controls['gender'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="gender">
+
+                                                    <div *ngIf="updetailsForm.controls['gender'].invalid && updetailsForm.controls['gender'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['gender'].errors?.required">
+                                                            Gender Lga is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <p class="font-weight-bold">Next of Kin</p>
+
+                                        <div class="row">
+                                            <div class="form-control-group col-md-12  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-nokFullName">Next Of Kin
+                                                        FullName</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="nokFullName" id="input-nokFullName"
+                                                        placeholder="Next Of Kin FullName" #nokFullName
+                                                        [status]="updetailsForm.controls['nokFullName'].touched ? (updetailsForm.controls['nokFullName'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="nokFullName">
+
+                                                    <div *ngIf="updetailsForm.controls['nokFullName'].invalid && updetailsForm.controls['nokFullName'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['nokFullName'].errors?.required">
+                                                            Next Of Kin FullName is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-control-group col-md-6  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-nokPhone">Next Of Kin Phone</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="nokPhone" id="input-nokPhone"
+                                                        placeholder="Next Of Kin Phone" #nokPhone
+                                                        [status]="updetailsForm.controls['nokPhone'].touched ? (updetailsForm.controls['nokPhone'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="nokPhone">
+
+                                                    <div *ngIf="updetailsForm.controls['nokPhone'].invalid && updetailsForm.controls['nokPhone'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['nokPhone'].errors?.required">
+                                                            Next Of Kin Phone is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-control-group col-md-6 my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-nokEmail"> Next Of Kin Email</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="nokEmail" id="input-nokEmail"
+                                                        placeholder="Next Of Kin Email" #nokEmail
+                                                        [status]="updetailsForm.controls['nokEmail'].touched ? (updetailsForm.controls['nokEmail'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="nokEmail">
+
+                                                    <div *ngIf="updetailsForm.controls['nokEmail'].invalid && updetailsForm.controls['nokEmail'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['nokEmail'].errors?.required">
+                                                            Next Of Kin Email is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="font-weight-bold col-md-12">Guanrantor Details</p>
+
+                                        <div class="row">
+                                            <div class="form-control-group col-md-12 my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-guarantorsEmail">Guarantors
+                                                        Email</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="guarantorsEmail"
+                                                        id="input-guarantorsEmail" placeholder="Guarantors Email"
+                                                        #guarantorsEmail
+                                                        [status]="updetailsForm.controls['guarantorsEmail'].touched ? (updetailsForm.controls['guarantorsEmail'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="guarantorsEmail">
+
+                                                    <div *ngIf="updetailsForm.controls['guarantorsEmail'].invalid && updetailsForm.controls['guarantorsEmail'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['guarantorsEmail'].errors?.required">
+                                                            guarantors Email is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-control-group col-md-6 my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-guarantorsProfession">Guarantors
+                                                        Profession</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="guarantorsProfession"
+                                                        id="input-guarantorsProfession"
+                                                        placeholder="Guarantors Profession" #guarantorsProfession
+                                                        [status]="updetailsForm.controls['guarantorsProfession'].touched ? (updetailsForm.controls['guarantorsProfession'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="guarantorsProfession">
+
+                                                    <div *ngIf="updetailsForm.controls['guarantorsProfession'].invalid && updetailsForm.controls['guarantorsProfession'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['guarantorsProfession'].errors?.required">
+                                                            Guarantors Profession is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-control-group col-md-6  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-guarantorsFullName">Guarantors
+                                                        FullName</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="guarantorsFullName"
+                                                        id="input-guarantorsFullName" placeholder="Guarantors FullName"
+                                                        #guarantorsFullName
+                                                        [status]="updetailsForm.controls['guarantorsFullName'].touched ? (updetailsForm.controls['guarantorsFullName'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="guarantorsFullName">
+
+                                                    <div *ngIf="updetailsForm.controls['guarantorsFullName'].invalid && updetailsForm.controls['guarantorsFullName'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['guarantorsFullName'].errors?.required">
+                                                            Guarantors FullName is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-control-group col-md-6 my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-guarantorsResidence">Guarantors
+                                                        Residence</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="guarantorsResidence"
+                                                        id="input-guarantorsResidence"
+                                                        placeholder="Guarantors Residence" #guarantorsResidence
+                                                        [status]="updetailsForm.controls['guarantorsResidence'].touched ? (updetailsForm.controls['guarantorsResidence'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="guarantorsResidence">
+
+                                                    <div *ngIf="updetailsForm.controls['guarantorsResidence'].invalid && updetailsForm.controls['guarantorsResidence'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['guarantorsResidence'].errors?.required">
+                                                            Guarantors Residence is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-control-group col-md-6  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-guarantorsOffice">Guarantors
+                                                        Office</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="guarantorsOffice"
+                                                        id="input-guarantorsOffice" placeholder="Guarantors Office"
+                                                        #guarantorsOffice
+                                                        [status]="updetailsForm.controls['guarantorsOffice'].touched ? (updetailsForm.controls['guarantorsOffice'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="guarantorsOffice">
+
+                                                    <div *ngIf="updetailsForm.controls['guarantorsOffice'].invalid && updetailsForm.controls['guarantorsOffice'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['guarantorsOffice'].errors?.required">
+                                                            Guarantors Office is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-control-group col-md-6 my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-guarantorsPhone">Guarantors
+                                                        Phone</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="guarantorsPhone"
+                                                        id="input-guarantorsPhone" placeholder="Guarantors Phone"
+                                                        #guarantorsPhone
+                                                        [status]="updetailsForm.controls['guarantorsPhone'].touched ? (updetailsForm.controls['guarantorsPhone'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="guarantorsPhone">
+
+                                                    <div *ngIf="updetailsForm.controls['guarantorsPhone'].invalid && updetailsForm.controls['guarantorsPhone'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['guarantorsPhone'].errors?.required">
+                                                            Guarantors Phone is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-control-group col-md-6  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-guarantorsRelationship">Guarantors
+                                                        Relationship</label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input nbInput fullWidth name="guarantorsRelationship"
+                                                        id="input-guarantorsRelationship"
+                                                        placeholder="Guarantors Relationship" #guarantorsRelationship
+                                                        [status]="updetailsForm.controls['guarantorsRelationship'].touched ? (updetailsForm.controls['guarantorsRelationship'].invalid ? 'danger' : 'success') : 'basic'"
+                                                        formControlName="guarantorsRelationship">
+
+                                                    <div *ngIf="updetailsForm.controls['guarantorsRelationship'].invalid && updetailsForm.controls['guarantorsRelationship'].touched"
+                                                        class="text-danger xyz-in px-3 row">
+                                                        <small xyz="fade down" class="error-message"
+                                                            *ngIf="updetailsForm.controls['guarantorsRelationship'].errors?.required">
+                                                            Guarantors Relationship is required!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </nb-card-body>
+                            <nb-card-footer>
+                                <button (click)="updateDetails()" [nbSpinner]="submitted" nbButton fullWidth
+                                    status="success" [disabled]="submitted || !updetailsForm.valid">
+                                    Create Account
+                                </button>
+                            </nb-card-footer>
+                        </nb-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </nb-layout-column>
+
+</nb-layout>

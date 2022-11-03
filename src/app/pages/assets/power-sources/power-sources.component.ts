@@ -148,7 +148,7 @@ export class PowerSourcesComponent implements OnInit {
 
   async updatePowerSource({ data }: { data: PowerSourceDto }) {
     const userModel: UserModel = JSON.parse(this.tokenService.getPayload().sub);
-    const hasPermission = data.clientId === userModel.clientId;
+    const hasPermission = data.clientId === userModel.walletId;
     if (hasPermission) {
       const powerSource: PowerSourceDto = await this.dialogService.open(PowerSourceFormComponent, {
         closeOnBackdropClick: false,
