@@ -1,6 +1,3 @@
-import { PermissionService } from '../utils/permission.service';
-import { ClientResources } from '../../pages/clients/client-resources';
-import { PostClientDto } from '../dtos/post-client.dto';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ResponseDto } from '../dtos/response-dto';
@@ -8,9 +5,6 @@ import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { ListDto } from '../dtos/list.dto';
 import { ClientDto } from '../dtos/client.dto';
-import { UpdateClientDto } from '../dtos/update-client.dto';
-import { PermissionEnum } from '../enums/permission.enum';
-import { AccessControlContract } from '../data-contracts/access-control-contract';
 import { PostAgentDto } from '../dtos/post-agent.dto';
 import { PostAgentOtpDto } from '../dtos/post-agent-otp.dto';
 import { PostAgentTokenDto } from '../dtos/post-agent-token-resend.dto';

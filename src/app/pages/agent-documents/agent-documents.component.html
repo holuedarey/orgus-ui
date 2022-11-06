@@ -11,7 +11,7 @@
         </div>
 
         <div class="header-container col-auto mt-md-5 ml-5">
-            <a [routerLink]="['/agent']" nbButton size="medium" status="success " outline>Agent Oboarding</a>
+            <a [routerLink]="['/agent']" nbButton size="medium" status="success" outline>Agent Oboarding</a>
             <a [routerLink]="['/auth/login']" nbButton size="medium" status="primary">Sign In</a>
         </div>
     </nb-layout-header>
@@ -53,7 +53,7 @@
                                                         <label class="label" for="input-bvn">ID Card:</label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <ngx-dropzone  [multiple]="false" [disable] (change)="onSelect($event, 'filesId')"  accept="image/jpeg,image/jpg,image/png,image/gif">
+                                                        <ngx-dropzone  [multiple]="false" (change)="onSelect($event, 'filesId')"  accept="image/jpeg,image/jpg,image/png,image/gif">
                                                             <ngx-dropzone-label>ID Card</ngx-dropzone-label>
                                                             <ngx-dropzone-preview *ngFor="let f of filesId"
                                                                 [removable]="true" (removed)="onRemove(f, 'filesId')">

@@ -1,7 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MeterResources } from 'src/app/pages/assets/meters/meter-resources';
 import { environment } from 'src/environments/environment';
 import { AccessControlContract } from '../data-contracts/access-control-contract';
 import { HasAccess } from '../decorators/has-access.decorator';
@@ -38,25 +37,25 @@ export class MeterService implements AccessControlContract {
     return this.httpClient.get<ResponseDto<MeterDto>>(`${environment.apiUrl}/${apiEndpoint}/${meterNumber}`);
   }
 
-  @HasAccess(PermissionEnum.Create, MeterResources.CreateMeter)
+  // @HasAccess(PermissionEnum.Create, MeterResources.CreateMeter)
   postMeter(meter: PostMeterDto): Observable<ResponseDto<MeterDto>> {
     const apiEndpoint = 'meters';
     return this.httpClient.post<ResponseDto<MeterDto>>(`${environment.apiUrl}/${apiEndpoint}`, meter);
   }
 
-  @HasAccess(PermissionEnum.Update, MeterResources.UpdateMeter)
+  // @HasAccess(PermissionEnum.Update, MeterResources.UpdateMeter)
   updateMeter(meter: UpdateMeterDto): Observable<ResponseDto<any>> {
     const apiEndpoint = `meters/${meter.id}`;
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, meter);
   }
 
-  @HasAccess(PermissionEnum.Update, MeterResources.UpdateMeter)
+  // @HasAccess(PermissionEnum.Update, MeterResources.UpdateMeter)
   enableMeter(id: string): Observable<ResponseDto<any>> {
     const apiEndpoint = `meters/enable/${id}`;
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, null);
   }
 
-  @HasAccess(PermissionEnum.Update, MeterResources.UpdateMeter)
+  // @HasAccess(PermissionEnum.Update, MeterResources.UpdateMeter)
   disableMeter(id: string): Observable<ResponseDto<any>> {
     const apiEndpoint = `meters/disable/${id}`;
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, null);

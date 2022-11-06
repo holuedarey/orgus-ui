@@ -1,5 +1,4 @@
-import { GeneratingSetAnalyticsDto } from 'src/app/@core/dtos/generating-sets-analytics.dto';
-import { GeneratingSetResources } from './../../pages/assets/generating-set/generating-set-resources';
+
 import { GeneratingSetDto } from './../dtos/generating-set.dto';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -34,25 +33,25 @@ export class GeneratingSetsService implements AccessControlContract {
     return this.httpClient.get<ResponseDto<ListDto<GeneratingSetDto>>>(`${environment.apiUrl}/${apiEndpoint}`, { params });
   }
 
-  @HasAccess(PermissionEnum.Create, GeneratingSetResources.CreateGeneratingSet)
+  // @HasAccess(PermissionEnum.Create, GeneratingSetResources.CreateGeneratingSet)
   postGeneratingSet(generatingSets: PostGeneratingSetDto): Observable<ResponseDto<GeneratingSetDto>> {
     const apiEndpoint = 'generatingSet';
     return this.httpClient.post<ResponseDto<GeneratingSetDto>>(`${environment.apiUrl}/${apiEndpoint}`, generatingSets);
   }
 
-  @HasAccess(PermissionEnum.Update, GeneratingSetResources.UpdateGeneratingSet)
+  // @HasAccess(PermissionEnum.Update, GeneratingSetResources.UpdateGeneratingSet)
   updateGeneratingSet(generatingSets: UpdateGeneratingSetDto): Observable<ResponseDto<any>> {
     const apiEndpoint = `generatingSet/${generatingSets.id}`;
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, generatingSets);
   }
 
-  @HasAccess(PermissionEnum.Update, GeneratingSetResources.UpdateGeneratingSet)
+  // @HasAccess(PermissionEnum.Update, GeneratingSetResources.UpdateGeneratingSet)
   enableGeneratingSet(id: string): Observable<ResponseDto<any>> {
     const apiEndpoint = `generatingSet/enable/${id}`;
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, null);
   }
 
-  @HasAccess(PermissionEnum.Update, GeneratingSetResources.UpdateGeneratingSet)
+  // @HasAccess(PermissionEnum.Update, GeneratingSetResources.UpdateGeneratingSet)
   disableGeneratingSet(id: string): Observable<ResponseDto<any>> {
     const apiEndpoint = `generatingSet/disable/${id}`;
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, null);

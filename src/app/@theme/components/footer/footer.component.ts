@@ -5,9 +5,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
   template: `
     <span class="caption">
-      Created by <b><a href="https://venturegardengroup.sharepoint.com/sites/Powertech_Intranet" target="_blank">Powertech</a></b> 2021
+      Created by <b><a href="#" target="_blank">Spout Payments</a></b>  {{ currentYear }}
     </span>
   `,
+  
 })
 export class FooterComponent {
+  currentYear: number = new Date().getFullYear();
 }

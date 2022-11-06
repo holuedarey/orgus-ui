@@ -8,7 +8,6 @@ import { LoadPointService } from 'src/app/@core/data-services/load-point.service
 import { PowerSourceService } from 'src/app/@core/data-services/power-source.service';
 import { AssetTypeEnum } from 'src/app/@core/enums/asset-type.enum';
 import { GlobalResources } from 'src/app/@core/maps/global-resources';
-import { LoadPointResources } from 'src/app/pages/assets/load-points/load-point-resources';
 import { PagesResources } from 'src/app/pages/pages-resources';
 import { AnalyticsConfigFormComponent } from '../analytics-config-form/analytics-config-form.component';
 import * as Chart from 'chart.js';
@@ -68,24 +67,7 @@ export class AnalyticsBlockComponent implements OnInit, OnDestroy {
           subTitle: 'View insight into Load point asset performance though energy consumption and event metrics'
         }
       ],
-      [
-        AssetTypeEnum.GEN_SET,
-        {
-          assetRoute: GlobalResources.get(PagesResources.GeneratingSetView)?.route,
-          service: this.genSetService.getGeneratingSets.bind(this),
-          title: 'Generating Unit',
-          subTitle: 'View insight into Gen-Set asset performance though power delivery and event metrics'
-        }
-      ],
-      [
-        AssetTypeEnum.POWER_SOURCE,
-        {
-          assetRoute: GlobalResources.get(PagesResources.PowerStationsView)?.route,
-          service: this.powerSourceService.getPowerSource.bind(this),
-          title: 'Power Station',
-          subTitle: 'View insight into Power Station asset performance though power delivery and event metrics'
-        }
-      ],
+    
     ]);
 
     this.router.events.pipe(

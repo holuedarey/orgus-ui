@@ -96,7 +96,6 @@ export class AgentComponent implements OnInit, OnDestroy {
   }
 
   saveClient(): void {
-    console.log("sending------")
     this.errors = [];
     this.messages = [];
     this.submitted = true;

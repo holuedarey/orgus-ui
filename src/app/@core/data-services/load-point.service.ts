@@ -1,7 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoadPointResources } from 'src/app/pages/assets/load-points/load-point-resources';
 import { environment } from 'src/environments/environment';
 import { AccessControlContract } from '../data-contracts/access-control-contract';
 import { HasAccess } from '../decorators/has-access.decorator';
@@ -32,25 +31,25 @@ export class LoadPointService implements AccessControlContract {
     return this.httpClient.get<ResponseDto<ListDto<LoadPointDto>>>(`${environment.apiUrl}/${apiEndpoint}`, { params });
   }
 
-  @HasAccess(PermissionEnum.Create, LoadPointResources.CreateLoadPoint)
+  // @HasAccess(PermissionEnum.Create, LoadPointResources.CreateLoadPoint)
   postLoadPoint(loadPoint: PostLoadPointDto): Observable<ResponseDto<LoadPointDto>> {
     const apiEndpoint = 'loadPoints';
     return this.httpClient.post<ResponseDto<LoadPointDto>>(`${environment.apiUrl}/${apiEndpoint}`, loadPoint);
   }
 
-  @HasAccess(PermissionEnum.Update, LoadPointResources.UpdateLoadPoint)
+  // @HasAccess(PermissionEnum.Update, LoadPointResources.UpdateLoadPoint)
   updateLoadPoint(loadPoint: UpdateLoadPointDto): Observable<ResponseDto<any>> {
     const apiEndpoint = `loadPoints/${loadPoint.id}`;
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, loadPoint);
   }
 
-  @HasAccess(PermissionEnum.Update, LoadPointResources.UpdateLoadPoint)
+  // @HasAccess(PermissionEnum.Update, LoadPointResources.UpdateLoadPoint)
   enableLoadPoint(id: string): Observable<ResponseDto<any>> {
     const apiEndpoint = `loadPoints/enable/${id}`;
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, null);
   }
 
-  @HasAccess(PermissionEnum.Update, LoadPointResources.UpdateLoadPoint)
+  // @HasAccess(PermissionEnum.Update, LoadPointResources.UpdateLoadPoint)
   disableLoadPoint(id: string): Observable<ResponseDto<any>> {
     const apiEndpoint = `loadPoints/disable/${id}`;
     return this.httpClient.put<ResponseDto<any>>(`${environment.apiUrl}/${apiEndpoint}`, null);

@@ -1,5 +1,4 @@
 import { PermissionService } from './../utils/permission.service';
-import { ClientResources } from './../../pages/clients/client-resources';
 import { PostClientDto } from './../dtos/post-client.dto';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -33,13 +32,13 @@ export class ClientService implements AccessControlContract {
         return this.httpClient.get<ResponseDto<ListDto<ClientDto>>>(`${environment.apiUrl}/${apiEndpoint}`, { params });
     }
 
-    @HasAccess(PermissionEnum.Create, ClientResources.CreateClient)
+    // @HasAccess(PermissionEnum.Create, ClientResources.CreateClient)
     postClient(clients: PostClientDto): Observable<ResponseDto<ClientDto>> {
         const apiEndpoint = 'clients';
         return this.httpClient.post<ResponseDto<ClientDto>>(`${environment.apiUrl}/${apiEndpoint}`, clients);
     }
 
-    @HasAccess(PermissionEnum.Update, ClientResources.UpdateClient)
+    // @HasAccess(PermissionEnum.Update, ClientResources.UpdateClient)
     updateClient(client: UpdateClientDto): Observable<ResponseDto<ClientDto>> {
         const apiEndpoint = `clients/${client.clientId}`;
         return this.httpClient.put<ResponseDto<ClientDto>>(`${environment.apiUrl}/${apiEndpoint}`, client);

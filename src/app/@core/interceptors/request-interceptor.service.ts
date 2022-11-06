@@ -42,15 +42,19 @@ export class RequestInterceptorService implements HttpInterceptor {
         }
         if (token) {
             request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
-            // request = request.clone({ headers: request.headers.set('token', `${token}`) });
-            // console.log(`token value ${token}`);
         }
 
-        if (!request.headers.has('Content-Type')) {
-            // request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
+        console.log("file content", (request.body instanceof File))
+        if (!request.headers.has('Content-Type') && !(request.body instanceof File) ) {
+            console.log("got here ")
+           
+        }else{
+            console.log("file got here ")
+            request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
+            request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
         }
 
-        // request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
+       
 
         //start loading page with preloader
         // this.showLoader();
@@ -71,9 +75,6 @@ export class RequestInterceptorService implements HttpInterceptor {
                     reason: error && error.error && error.error.reason ? error.error.reason : '',
                     status: error.status
                 };
-                // this.errorDialogService.presentToast(data);
-                //end loading page with preloader if failed
-                // this.hideLoader();
                 return throwError(error);
             }));
     }
