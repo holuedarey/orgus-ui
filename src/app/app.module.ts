@@ -24,8 +24,6 @@ import { DARK_THEME } from './@theme/styles/theme.dark';
 import { LocalStorageKey } from './@core/enums/local-storage-key.enum';
 import * as SecureLS from 'secure-ls';
 import { NetworkInterceptor } from './@core/interceptors/network.interceptor';
-import { RequestInterceptorService } from './@core/interceptors/request-interceptor.service';
-import { NgxDropzoneModule } from 'ngx-dropzone';
 
 const ls = new SecureLS({ encodingType: 'aes' });
 
@@ -48,7 +46,6 @@ const ls = new SecureLS({ encodingType: 'aes' });
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot(),
     NbSidebarModule.forRoot(),
-    NgxDropzoneModule,
     // Theming
     NbThemeModule.forRoot(
       {
@@ -63,9 +60,8 @@ const ls = new SecureLS({ encodingType: 'aes' });
     NbDatepickerModule.forRoot(),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: NetworkInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptorService, multi: true }
-
+    { provide: HTTP_INTERCEPTORS, useClass: NetworkInterceptor, multi: true }
+    
   ],
   bootstrap: [AppComponent]
 })

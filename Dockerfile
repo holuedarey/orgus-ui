@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-RUN npm run build:prod
+RUN npm run build
 
 # Nginx Serve
 FROM nginx:1.18.0-alpine

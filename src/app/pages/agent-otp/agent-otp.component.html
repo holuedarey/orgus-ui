@@ -20,21 +20,28 @@
         <div>
             <div class="container">
                 <div class="row mt-5 m-autos">
-                <div class="offset-md-4">
-                    <nb-alert *ngIf="errors?.length && !submitted" outline="danger" role="alert">
-                        <p class="alert-title"><b>Oh snap!</b></p>
-                        <ul class="alert-message-list">
-                            <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
-                        </ul>
-                    </nb-alert>
-                    
-                    <nb-alert *ngIf="messages?.length && !submitted" outline="success" role="alert">
-                        <p class="alert-title"><b>Hooray!</b></p>
-                        <ul class="alert-message-list">
-                            <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
-                        </ul>
-                    </nb-alert>
-                </div>
+                    <div class="col-md-5 offset-md-4" style="padding-left: 0px;">
+                        <nb-alert *ngIf="errors?.length && !submitted" outline="danger" role="alert">
+                            <p class="alert-title"><b>Oh snap!</b></p>
+                            <ul class="alert-message-list">
+                                <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+                            </ul>
+                        </nb-alert>
+
+                        <nb-alert *ngIf="messages?.length && !submitted" outline="success" role="alert">
+                            <p class="alert-title"><b>Hooray!</b></p>
+                            <ul class="alert-message-list">
+                                <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+                            </ul>
+                        </nb-alert>
+
+                        <nb-alert *ngIf="!messages?.length && !submitted" outline="success" role="alert">
+                            <p class="alert-title"><b>Hooray!</b></p>
+                            <ul class="alert-message-list">
+                                <li class="alert-message">Check Mail for Code or resend the Code</li>
+                            </ul>
+                        </nb-alert>
+                    </div>
                     <nb-card [size]="'large'" accent="info" style="height:60%; z-index: 99999999;" class="offset-md-4">
                         <nb-card-body>
                             <div class="">
@@ -50,7 +57,7 @@
                                                 placeholder="One Time Pin" #otp
                                                 [status]="agentOtpForm.controls['otp'].touched ? (agentOtpForm.controls['otp'].invalid ? 'danger' : 'success') : 'basic'"
                                                 formControlName="otp" autofocus>
-    
+
                                             <div *ngIf="agentOtpForm.controls['otp'].invalid && agentOtpForm.controls['otp'].touched"
                                                 class="text-danger xyz-in px-3 row">
                                                 <small xyz="fade down" class="error-message"
@@ -69,7 +76,7 @@
                                                 placeholder="Transaction Pin" #pin
                                                 [status]="agentOtpForm.controls['pin'].touched ? (agentOtpForm.controls['pin'].invalid ? 'danger' : 'success') : 'basic'"
                                                 formControlName="pin" autofocus>
-    
+
                                             <div *ngIf="agentOtpForm.controls['pin'].invalid && agentOtpForm.controls['pin'].touched"
                                                 class="text-danger xyz-in px-3 row">
                                                 <small xyz="fade down" class="error-message"
@@ -88,7 +95,7 @@
                                                 placeholder="Confirm Transaction Pin" #confirmPin
                                                 [status]="agentOtpForm.controls['confirmPin'].touched ? (agentOtpForm.controls['confirmPin'].invalid ? 'danger' : 'success') : 'basic'"
                                                 formControlName="confirmPin" autofocus>
-    
+
                                             <div *ngIf="agentOtpForm.controls['confirmPin'].invalid && agentOtpForm.controls['confirmPin'].touched"
                                                 class="text-danger xyz-in px-3 row">
                                                 <small xyz="fade down" class="error-message"
@@ -99,11 +106,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-right">
-                                        <a (click)="resendOtp()" style="text-decoration: none; cursor: pointer;">Resend OTP</a>
+                                        <a (click)="resendOtp()" style="text-decoration: none; cursor: pointer;">Resend
+                                            OTP</a>
                                     </div>
                                 </form>
                             </div>
-                            
+
                         </nb-card-body>
                         <nb-card-footer>
                             <button (click)="verifyOtp()" [nbSpinner]="submitted" nbButton fullWidth status="success"

@@ -1,8 +1,10 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { getDeepFromObject, NbAuthJWTToken, NbTokenService, NB_AUTH_OPTIONS } from '@nebular/auth';
+import { AgentService } from 'src/app/@core/data-services/agent.service';
 import { AuthService } from 'src/app/@core/data-services/auth.service';
 import { LoginDto } from 'src/app/@core/dtos/login.dto';
+import { PostAgentTokenDto } from 'src/app/@core/dtos/post-agent-token-resend.dto';
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
 import { IndexedDbKey } from 'src/app/@core/enums/indexed-db-key.enum';
 import { LocalStorageKey } from 'src/app/@core/enums/local-storage-key.enum';
@@ -43,6 +45,7 @@ export class LoginComponent implements OnInit {
     private tokenService: TokenService,
     private nbTokenService: NbTokenService,
     private ls: SecureLocalStorageService,
+    private agentService:AgentService,
     private seo: SeoService
   ) {
     this.redirectDelay = this.getConfigValue('forms.login.redirectDelay');
@@ -74,9 +77,16 @@ export class LoginComponent implements OnInit {
           );
           this.ls.set(LocalStorageKey.REFRESH_TOKEN.toString(), result.token);
           this.validateUserCache();
-          setTimeout(() => {
-            return this.router.navigateByUrl(AppResourcesNavMap.get(AppResources.AppView)?.route as string);
-          }, this.redirectDelay);
+          if(result.message === 'Your Email has not Been Verified'){
+            console.log("got here to the errpr")
+            this.resendOtp();
+          }else{
+            setTimeout(() => {
+              return this.router.navigateByUrl(AppResourcesNavMap.get(AppResources.AppView)?.route as string);
+            }, this.redirectDelay);
+            // return this.router.navigateByUrl(AppResourcesNavMap.get(AppResources.AgentOtpView)?.route as string);
+          }
+         
           this.cd.detectChanges();
         } else {
           this.errors = [
@@ -84,10 +94,46 @@ export class LoginComponent implements OnInit {
           ];
         }
       },
-      (error: ResponseDto<string>) => {
+      (error:any) => {
         this.submitted = false;
+        if(error.error.message === 'Your Email has not Been Verified'){
+          this.resendOtp();
+        }
         this.errors = [
           'An Error occured while logging you in.',
+        ];
+      }
+    );
+  }
+
+  resendOtp(): void {
+    this.errors = [];
+    this.messages = [];
+    this.submitted = true;
+
+    const postAgenttTokenDto: PostAgentTokenDto = {
+      email: "holudare2076@gmail.com".trim(),
+    }
+
+    this.agentService.postResendEmail(postAgenttTokenDto).subscribe(
+      (result) => {
+        this.submitted = false;
+        console.log(result)
+
+        if (result.status) {
+          this.messages = [result.message || "Check your inbox for verification Code"];
+          this.router.navigate(['agent-otp'])
+        } else {
+          this.errors = [
+            result.message as string
+          ];
+        }
+      },
+      (error: any) => {
+        this.submitted = false;
+        console.log(error.error.errors)
+        this.errors = [
+          error.error.errors.email || 'An Error occured while creating client.',
         ];
       }
     );
