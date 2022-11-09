@@ -122,7 +122,7 @@ export class LoginComponent implements OnInit {
 
         if (result.status) {
           this.messages = [result.message || "Check your inbox for verification Code"];
-          this.router.navigate(['agent-otp'])
+          this.router.navigate(['agent-otp'], )
         } else {
           this.errors = [
             result.message as string
