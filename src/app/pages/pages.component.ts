@@ -32,7 +32,7 @@ export class PagesComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.setMenuPermissions(this.menu);
+    // this.setMenuPermissions(this.menu);
     this.onUserContextMenuClick();
   }
 

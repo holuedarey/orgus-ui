@@ -1,12 +1,9 @@
 <div class="container-fluid p-0 m-0">
-    <!-- <div class="row m-0">
-        <div class="col-12">
-            <app-map-card></app-map-card>
-        </div>
-    </div> -->
-    <div class="row m-0" [sortablejs]="items" [sortablejsOptions]="{ animation: 150, disabled: draggable }">
-        <div *ngFor="let item of items" [ngStyle]="{'cursor': !draggable ? 'grab' : ''}" class="col m-0">
-            <app-chart [chartId]="item"></app-chart>
-        </div>
-    </div>
+
+    <nb-card accent="info" size="'tiny'"> 
+        <nb-card-header>Welcome</nb-card-header>
+        <nb-card-body>
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus qui incidunt natus non vitae quibusdam pariatur tenetur veritatis, dolorum nam in autem delectus fugit nemo consequuntur voluptates voluptatibus obcaecati necessitatibus!
+        </nb-card-body>
+      </nb-card>
 </div>

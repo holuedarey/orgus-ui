@@ -39,6 +39,33 @@ export class UpdatePasswordComponent implements OnInit {
 
   ngOnInit() {
     this.seo.setSeoData('Update Password', 'Update application password');
+    this.sendResetToken()
+  }
+
+
+  sendResetToken(): void {
+    this.errors = this.messages = [];
+    // this.submitted = true;
+
+    this.service.resetTokenPin().subscribe(
+      (result) => {
+        // this.submitted = false;
+        if (result.status) {
+          this.messages = ['Enter the Pin sent to your email'];
+          this.cd.detectChanges();
+        } else {
+          this.errors = [
+            result.message as string
+          ];
+        }
+      },
+      (error: ResponseDto<string>) => {
+        // this.submitted = false;
+        this.errors = [
+          'An Error occured while changing your password'
+        ];
+      }
+    );
   }
 
   updatePass(): void {
@@ -47,6 +74,8 @@ export class UpdatePasswordComponent implements OnInit {
 
     this.service.updatePassword(this.pass).subscribe(
       (result) => {
+        console.log(result);
+        
         this.submitted = false;
         if (result.status) {
           this.messages = ['Your password was changed successfully'];

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import * as SecureLS from 'secure-ls';
 import { AuthResources } from 'src/app/pages/auth/auth-resources';
 import { environment } from 'src/environments/environment';
 import { AccessControlContract } from '../data-contracts/access-control-contract';
@@ -8,10 +9,12 @@ import { HasAccess } from '../decorators/has-access.decorator';
 import { LoginDto } from '../dtos/login.dto';
 import { ResponseDto } from '../dtos/response-dto';
 import { UpdatePasswordDto } from '../dtos/update-password.dto';
+import { LocalStorageKey } from '../enums/local-storage-key.enum';
 import { PermissionEnum } from '../enums/permission.enum';
 import { UserModel } from '../models/user.model';
 import { PermissionService } from '../utils/permission.service';
 import { TokenService } from '../utils/token.service';
+const ls = new SecureLS({ encodingType: 'aes' });
 
 
 @Injectable({
@@ -23,17 +26,33 @@ export class AuthService implements AccessControlContract {
     private httpClient: HttpClient,
     private tokenService: TokenService,
     public permissionService: PermissionService
-  ) { }
+  ) { 
 
-  @HasAccess(PermissionEnum.View, AuthResources.UpdatePasswordView)
+    console.log(ls.get(LocalStorageKey.JWT.toString()).payload['email']);
+  }
+
+  // @HasAccess(PermissionEnum.View, AuthResources.UpdatePasswordView)
   updatePassword(passwords: any): Observable<ResponseDto<any>> {
     const jwtPayload = this.tokenService.getPayload();
 
-    const apiEndpoint = 'auth/changePassword';
+    const apiEndpoint = 'auth/change-password';
     const passwordDto: UpdatePasswordDto = {
-      oldPassword: passwords.oldPassword,
-      newPassword: passwords.newPassword,
-      email: (JSON.parse(jwtPayload.sub) as UserModel).email
+      email:ls.get(LocalStorageKey.JWT.toString()).payload['email'],
+      password: passwords.newPassword,
+      password_confirmation:passwords.newPassword,
+      pin: passwords.pin,
+    };
+    return this.httpClient.post<ResponseDto<any>>(
+      `${environment.apiUrl}/${apiEndpoint}`,
+      passwordDto);
+  }
+
+  resetTokenPin(): Observable<ResponseDto<any>> {
+    const jwtPayload  = this.tokenService.getPayload();
+    console.log(jwtPayload.sub)
+    const apiEndpoint = 'auth/send-reset-code';
+    const passwordDto: any = {
+      email: ls.get(LocalStorageKey.JWT.toString()).payload['email']
     };
     return this.httpClient.post<ResponseDto<any>>(
       `${environment.apiUrl}/${apiEndpoint}`,

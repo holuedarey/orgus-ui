@@ -35,7 +35,7 @@ export class RequestInterceptorService implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         let token = ls.get(LocalStorageKey.JWT.toString()).token as string;
-        console.log("token service :", token);
+        // console.log("token service :", token);
         let state = this.auth.isAuthenticated();
         if (!state) {
             this.router.navigate(['/login']);
@@ -44,12 +44,12 @@ export class RequestInterceptorService implements HttpInterceptor {
             request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
         }
 
-        console.log("file content", (request.body instanceof File))
+        // console.log("file content", (request.body instanceof File))
         if (!request.headers.has('Content-Type') && !(request.body instanceof File) ) {
-            console.log("got here ")
+            // console.log("got here ")
            
         }else{
-            console.log("file got here ")
+            // console.log("file got here ")
             request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
             request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
         }

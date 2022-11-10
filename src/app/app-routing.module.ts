@@ -40,8 +40,8 @@ const routes: Routes = [
   {
     path: AppResourcesNavMap.get(AppResources.AuthView)?.path,
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
-    canActivate: [HasPermissionGuard],
-    canActivateChild: [HasPermissionGuard],
+    // canActivate: [],
+    // canActivateChild: [HasPermissionGuard],
   },
   {
     path: AppResourcesNavMap.get(AppResources.AppView)?.path,
