@@ -28,7 +28,6 @@ export class AuthService implements AccessControlContract {
     public permissionService: PermissionService
   ) { 
 
-    console.log(ls.get(LocalStorageKey.JWT.toString()).payload['email']);
   }
 
   // @HasAccess(PermissionEnum.View, AuthResources.UpdatePasswordView)
