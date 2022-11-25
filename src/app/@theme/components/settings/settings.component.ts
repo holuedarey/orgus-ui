@@ -22,6 +22,7 @@ export class SettingsComponent {
   isMobile = isMobile;
 
   changePasswordUrl = AuthResourcesNavMap.get(AuthResources.UpdatePasswordView)?.route;
+  changePinUrl = AuthResourcesNavMap.get(AuthResources.UpdatePinView)?.route;
 
   constructor(
     private userAuthService: AuthService,

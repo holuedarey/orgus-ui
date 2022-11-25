@@ -21,10 +21,11 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { RequestPasswordComponent } from './request-password/request-password.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { UpdatePinComponent } from './update-pin/update-pin.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, ResetPasswordComponent, RequestPasswordComponent, UpdatePasswordComponent],
+  declarations: [LoginComponent, ResetPasswordComponent, RequestPasswordComponent, UpdatePasswordComponent, UpdatePinComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

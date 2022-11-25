@@ -1,5 +1,5 @@
 export class UpdatePasswordDto {
-    email =  '';
+    email? =  '';
     password =  '';
     password_confirmation =  '';
     pin = '';

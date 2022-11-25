@@ -5,7 +5,7 @@
             <div class="logo-container">
                 <h3>
                     <!-- <img src="assets/icons/logo.png" height="50px" alt=""> -->
-                    Spout
+                    Spout Pay
                 </h3>
             </div>
         </div>
@@ -93,6 +93,25 @@
                                                 class="text-danger xyz-in px-3 row">
                                                 <small xyz="fade down" class="error-message"
                                                     *ngIf="agentForm.controls['userName'].errors?.required">
+                                                    User Name is required!
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-control-group mb-3 row">
+                                        <div class="col-sm-4">
+                                            <label class="label" for="input-aggregatorWallet">Aggregator Wallet:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input nbInput fullWidth name="aggregatorWallet" id="input-aggregatorWallet"
+                                                placeholder="Aggregator Wallet"
+                                                [status]="agentForm.controls['aggregatorWallet'].touched ? (agentForm.controls['aggregatorWallet'].invalid ? 'danger' : 'success') : 'basic'"
+                                                formControlName="aggregatorWallet" autofocus>
+    
+                                            <div *ngIf="agentForm.controls['aggregatorWallet'].invalid && agentForm.controls['aggregatorWallet'].touched"
+                                                class="text-danger xyz-in px-3 row">
+                                                <small xyz="fade down" class="error-message"
+                                                    *ngIf="agentForm.controls['aggregatorWallet'].errors?.required">
                                                     User Name is required!
                                                 </small>
                                             </div>

@@ -1,58 +1,76 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { getDeepFromObject, NB_AUTH_OPTIONS } from '@nebular/auth';
-import { ResetPasswordDto } from 'src/app/@core/dtos/reset-password.dto';
-import { ResponseDto } from 'src/app/@core/dtos/response-dto';
 import { AuthService } from 'src/app/@core/data-services/auth.service';
-import { of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { UpdatePasswordDto } from 'src/app/@core/dtos/update-password.dto';
-
+import { ResponseDto } from 'src/app/@core/dtos/response-dto';
+import { SeoService } from 'src/app/@core/utils';
 
 @Component({
-  selector: 'app-reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.scss']
+  selector: 'app-update-pin',
+  templateUrl: './update-pin.component.html',
+  styleUrls: ['./update-pin.component.scss']
 })
-export class ResetPasswordComponent {
+export class UpdatePinComponent implements OnInit {
 
   redirectDelay = 0;
   showMessages: any = {};
   strategy = '';
-  isPasswordHidden = true;
 
   submitted = false;
   errors: string[] = [];
   messages: string[] = [];
-  user: any = {};
-  isNewPassword: boolean;
+  pass: any = {};
+
+  isPasswordHidden = true;
 
   constructor(
     protected service: AuthService,
-    private cd: ChangeDetectorRef,
     @Inject(NB_AUTH_OPTIONS) protected options = {},
-    private router: Router,
-    private route: ActivatedRoute,
+    protected cd: ChangeDetectorRef,
+    protected router: Router,
+    private seo: SeoService
   ) {
     this.redirectDelay = this.getConfigValue('forms.resetPassword.redirectDelay');
     this.showMessages = this.getConfigValue('forms.resetPassword.showMessages');
     this.strategy = this.getConfigValue('forms.resetPassword.strategy');
-    this.isNewPassword = route.snapshot.data.isNewPassword;
+  }
+
+  ngOnInit() {
+    this.seo.setSeoData('Update Password', 'Update application password');
+    // this.sendResetToken()
   }
 
 
-  resetPass(): void {
+  sendResetToken(): void {
+    this.errors = this.messages = [];
+    // this.submitted = true;
+
+    this.service.resetTokenPin().subscribe(
+      (result) => {
+        // this.submitted = false;
+        if (result.status) {
+          this.messages = ['Enter the Pin sent to your email'];
+          this.cd.detectChanges();
+        } else {
+          this.errors = [
+            result.message as string
+          ];
+        }
+      },
+      (error: ResponseDto<string>) => {
+        // this.submitted = false;
+        this.errors = [
+          'An Error occured while changing your password'
+        ];
+      }
+    );
+  }
+
+  updatePass(): void {
     this.errors = this.messages = [];
     this.submitted = true;
 
-    const resetPasswordDto: UpdatePasswordDto = {
-      email: this.user.email||null,
-      password: this.user.password,
-      password_confirmation: this.user.confirmPassword,
-      pin: this.user.otp
-    };
-
-    this.service.updatePassword(resetPasswordDto).subscribe(
+    this.service.updatePassword(this.pass).subscribe(
       (result) => {
         console.log(result);
         
@@ -60,7 +78,7 @@ export class ResetPasswordComponent {
         if (result.status) {
           this.messages = ['Your password was changed successfully'];
           setTimeout(() => {
-            return this.router.navigateByUrl('/login');
+            return this.router.navigateByUrl('/');
           }, this.redirectDelay);
           this.cd.detectChanges();
         } else {
@@ -81,4 +99,5 @@ export class ResetPasswordComponent {
   getConfigValue(key: string): any {
     return getDeepFromObject(this.options, key, null);
   }
+
 }

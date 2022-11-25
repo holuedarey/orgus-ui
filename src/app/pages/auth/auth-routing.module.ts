@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RequestPasswordComponent } from './request-password/request-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
+import { UpdatePinComponent } from './update-pin/update-pin.component';
 
 const routes: Routes = [
   {
@@ -29,17 +30,21 @@ const routes: Routes = [
       {
         path: AuthResourcesNavMap.get(AuthResources.ResetPasswordView)?.path,
         component: ResetPasswordComponent,
-        canActivate: [HasPasswordResetTokenGuard]
+        // canActivate: [HasPasswordResetTokenGuard]
       },
       {
         path: AuthResourcesNavMap.get(AuthResources.NewPasswordView)?.path,
         component: ResetPasswordComponent,
-        canActivate: [HasPasswordResetTokenGuard],
+        // canActivate: [HasPasswordResetTokenGuard],
         data: { isNewPassword: true }
       },
       {
         path: AuthResourcesNavMap.get(AuthResources.UpdatePasswordView)?.path,
         component: UpdatePasswordComponent,
+      },
+      {
+        path: AuthResourcesNavMap.get(AuthResources.UpdatePinView)?.path,
+        component: UpdatePinComponent,
       },
     ]
   },

@@ -1,5 +1,5 @@
 export class ResetPasswordDto {
     newPassword = '';
-    token = '';
+    otp = '';
     tokenId = '';
 }

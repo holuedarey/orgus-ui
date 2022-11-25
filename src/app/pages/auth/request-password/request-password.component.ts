@@ -4,6 +4,7 @@ import { getDeepFromObject, NB_AUTH_OPTIONS } from '@nebular/auth';
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
 import { AuthService } from 'src/app/@core/data-services/auth.service';
 import { SeoService } from 'src/app/@core/utils';
+import { AuthResources, AuthResourcesNavMap } from '../auth-resources';
 
 
 @Component({
@@ -48,6 +49,9 @@ export class RequestPasswordComponent implements OnInit {
         if (result.status) {
           this.messages = ['Your email was submitted successfully'];
           this.cd.detectChanges();
+          this.router.navigate([AuthResourcesNavMap.get(AuthResources.UpdatePasswordView)?.route]);
+          localStorage.setItem("email",(this.user.get('email')?.value as string).trim())
+
         } else {
           this.errors = [
             result.message as string

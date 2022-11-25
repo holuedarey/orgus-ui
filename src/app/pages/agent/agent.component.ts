@@ -44,6 +44,7 @@ export class AgentComponent implements OnInit, OnDestroy {
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
       userName: ['', Validators.required],
+      aggregatorWallet:['', Validators.required],
       contactEmail: ['', [
         Validators.required,
         this.validateEmail.bind(this)
@@ -104,6 +105,7 @@ export class AgentComponent implements OnInit, OnDestroy {
       firstName: (this.agentForm.get('firstName')?.value as string).trim(),
       lastName: (this.agentForm.get('lastName')?.value as string).trim(),
       username: (this.agentForm.get('userName')?.value as string).trim(),
+      aggregatorWallet:(this.agentForm.get('aggregatorWallet')?.value as string).trim(),
       email: (this.agentForm.get('contactEmail')?.value as string).trim(),
       password: (this.agentForm.get('password')?.value as string).trim(),
       password_confirmation: (this.agentForm.get('confirmPassword')?.value as string).trim(),
