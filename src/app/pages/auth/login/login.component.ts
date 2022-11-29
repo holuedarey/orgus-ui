@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
     const postAgenttTokenDto: PostAgentTokenDto = {
-      email: "holudare2076@gmail.com".trim(),
+      email: this.user.email || localStorage.getItem('email'),
     }
 
     this.agentService.postResendEmail(postAgenttTokenDto).subscribe(
@@ -121,6 +121,7 @@ export class LoginComponent implements OnInit {
         console.log(result)
 
         if (result.status) {
+          localStorage.setItem("email", (this.user.email as string).trim())
           this.messages = [result.message || "Check your inbox for verification Code"];
           this.router.navigate(['agent-otp'], )
         } else {

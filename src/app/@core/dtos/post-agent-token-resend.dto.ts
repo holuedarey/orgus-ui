@@ -1,3 +1,3 @@
 export interface PostAgentTokenDto {
-    email: string;
+    email :any;
 }

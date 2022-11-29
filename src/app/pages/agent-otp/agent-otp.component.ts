@@ -129,7 +129,7 @@ export class AgentOtpComponent implements OnInit, OnDestroy {
     this.submitted = true;
 
     const postAgenttTokenDto: PostAgentTokenDto = {
-      email: "holudare2076@gmail.com".trim(),
+      email: localStorage.getItem('email'),
     }
 
     this.agentService.postResendEmail(postAgenttTokenDto).subscribe(

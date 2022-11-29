@@ -44,7 +44,7 @@ export class AgentComponent implements OnInit, OnDestroy {
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
       userName: ['', Validators.required],
-      aggregatorWallet:['', Validators.required],
+      aggregatorWallet:[''],
       contactEmail: ['', [
         Validators.required,
         this.validateEmail.bind(this)
