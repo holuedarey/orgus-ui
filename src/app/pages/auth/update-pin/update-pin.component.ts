@@ -37,7 +37,7 @@ export class UpdatePinComponent implements OnInit {
 
   ngOnInit() {
     this.seo.setSeoData('Reset Pin', 'Update application password');
-    // this.sendResetToken()
+    this.sendResetToken()
   }
 
 
