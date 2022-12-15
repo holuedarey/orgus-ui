@@ -26,19 +26,19 @@ export class AuthService implements AccessControlContract {
     private httpClient: HttpClient,
     private tokenService: TokenService,
     public permissionService: PermissionService
-  ) { 
+  ) {
 
   }
 
   // @HasAccess(PermissionEnum.View, AuthResources.UpdatePasswordView)
-  updatePassword(passwords: UpdatePasswordDto,): Observable<ResponseDto<any>> {
+  updatePassword(passwords: any,): Observable<ResponseDto<any>> {
     const jwtPayload = this.tokenService.getPayload();
 
     const apiEndpoint = 'auth/change-password';
     const passwordDto: UpdatePasswordDto = {
-      email:passwords?.email || ls.get(LocalStorageKey.JWT.toString()).payload['email'],
-      password: passwords.password,
-      password_confirmation:passwords.password_confirmation,
+      email: passwords?.email || ls.get(LocalStorageKey.JWT.toString()).payload['email'] || localStorage.getItem("email"),
+      password: passwords.oldPassword,
+      password_confirmation: passwords.newPassword,
       pin: passwords.pin,
     };
     return this.httpClient.post<ResponseDto<any>>(
@@ -46,12 +46,25 @@ export class AuthService implements AccessControlContract {
       passwordDto);
   }
 
-  resetTokenPin(email?:any): Observable<ResponseDto<any>> {
-    const jwtPayload  = this.tokenService.getPayload();
-    console.log(jwtPayload.sub)
+
+  // @HasAccess(PermissionEnum.View, AuthResources.UpdatePasswordView)
+  updatePin(passwords: any,): Observable<ResponseDto<any>> {
+    const apiEndpoint = 'auth/change-transaction-pin';
+    const passwordDto: any = {
+      pin: passwords.oldPassword,
+      pin_confirmation: passwords.newPassword,
+      resetPin: passwords.pin,
+    };
+    return this.httpClient.post<ResponseDto<any>>(
+      `${environment.apiUrl}/${apiEndpoint}`,
+      passwordDto);
+  }
+
+  resetTokenPin(email?: any): Observable<ResponseDto<any>> {
+    const jwtPayload = this.tokenService.getPayload();
     const apiEndpoint = 'auth/send-reset-code';
     const passwordDto: any = {
-      email:email || ls.get(LocalStorageKey.JWT.toString()).payload['email']
+      email: email || ls.get(LocalStorageKey.JWT.toString()).payload['email']
     };
     return this.httpClient.post<ResponseDto<any>>(
       `${environment.apiUrl}/${apiEndpoint}`,
@@ -59,7 +72,15 @@ export class AuthService implements AccessControlContract {
   }
 
   resetPassword(passwords: any): Observable<ResponseDto<any>> {
-    const apiEndpoint = 'auth/resetPassword';
+   console.log("passwords", passwords);
+   
+    const apiEndpoint = 'auth/change-password';
+    const passwordDto: any = {
+      email: localStorage.getItem("email") as string,
+      password: passwords.oldPassword,
+      password_confirmation: passwords.newPassword,
+      pin: passwords.pin,
+    };
     return this.httpClient.post<ResponseDto<any>>(
       `${environment.apiUrl}/${apiEndpoint}`,
       passwords);
@@ -73,6 +94,8 @@ export class AuthService implements AccessControlContract {
   }
 
   requestPassword(emailDto: any): Observable<ResponseDto<any>> {
+    console.log("email :", emailDto);
+    
     const apiEndpoint = 'auth/send-reset-code';
     return this.httpClient.post<ResponseDto<any>>(
       `${environment.apiUrl}/${apiEndpoint}`,

@@ -48,9 +48,10 @@ export class RequestPasswordComponent implements OnInit {
         this.submitted = false;
         if (result.status) {
           this.messages = ['Your email was submitted successfully'];
+          console.log(this.user['email'])
           this.cd.detectChanges();
-          this.router.navigate([AuthResourcesNavMap.get(AuthResources.UpdatePasswordView)?.route]);
-          localStorage.setItem("email",(this.user.get('email')?.value as string).trim())
+          this.router.navigate([AuthResourcesNavMap.get(AuthResources.ResetPasswordView)?.route]);
+          localStorage.setItem("email",(this.user['email'] as string).trim())
 
         } else {
           this.errors = [

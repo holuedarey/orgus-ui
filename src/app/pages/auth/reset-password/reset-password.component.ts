@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/@core/data-services/auth.service';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { UpdatePasswordDto } from 'src/app/@core/dtos/update-password.dto';
+import { AuthResources, AuthResourcesNavMap } from '../auth-resources';
 
 
 @Component({
@@ -46,13 +47,14 @@ export class ResetPasswordComponent {
     this.submitted = true;
 
     const resetPasswordDto: UpdatePasswordDto = {
-      email: this.user.email||null,
+      email: this.user.email||localStorage.getItem('email'),
       password: this.user.password,
       password_confirmation: this.user.confirmPassword,
       pin: this.user.otp
     };
+    console.log("resetPasswordDto", resetPasswordDto)
 
-    this.service.updatePassword(resetPasswordDto).subscribe(
+    this.service.resetPassword(resetPasswordDto).subscribe(
       (result) => {
         console.log(result);
         
@@ -60,7 +62,8 @@ export class ResetPasswordComponent {
         if (result.status) {
           this.messages = ['Your password was changed successfully'];
           setTimeout(() => {
-            return this.router.navigateByUrl('/login');
+           this.router.navigate([AuthResourcesNavMap.get(AuthResources.LoginView)?.route]);
+
           }, this.redirectDelay);
           this.cd.detectChanges();
         } else {

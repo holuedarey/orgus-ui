@@ -36,7 +36,7 @@ export class UpdatePinComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.seo.setSeoData('Update Password', 'Update application password');
+    this.seo.setSeoData('Reset Pin', 'Update application password');
     // this.sendResetToken()
   }
 
@@ -70,13 +70,13 @@ export class UpdatePinComponent implements OnInit {
     this.errors = this.messages = [];
     this.submitted = true;
 
-    this.service.updatePassword(this.pass).subscribe(
+    this.service.updatePin(this.pass).subscribe(
       (result) => {
         console.log(result);
         
         this.submitted = false;
         if (result.status) {
-          this.messages = ['Your password was changed successfully'];
+          this.messages = ['Your Pin was Reset successfully'];
           setTimeout(() => {
             return this.router.navigateByUrl('/');
           }, this.redirectDelay);
@@ -90,7 +90,7 @@ export class UpdatePinComponent implements OnInit {
       (error: ResponseDto<string>) => {
         this.submitted = false;
         this.errors = [
-          'An Error occured while changing your password'
+          'An Error occured while Reseting your Pin'
         ];
       }
     );

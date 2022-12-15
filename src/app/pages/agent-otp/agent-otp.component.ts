@@ -60,7 +60,6 @@ export class AgentOtpComponent implements OnInit, OnDestroy {
   }
 
   verifyOtp(): void {
-    console.log("sending------")
     this.errors = [];
     this.messages = [];
     this.submitted = true;
