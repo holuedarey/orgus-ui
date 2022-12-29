@@ -1,9 +1,11 @@
 <div class="container-fluid p-0 m-0">
 
-    <nb-card accent="info" size="'tiny'"> 
-        <nb-card-header>Welcome</nb-card-header>
-        <nb-card-body>
-         Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus qui incidunt natus non vitae quibusdam pariatur tenetur veritatis, dolorum nam in autem delectus fugit nemo consequuntur voluptates voluptatibus obcaecati necessitatibus!
-        </nb-card-body>
-      </nb-card>
+  <nb-card accent="info" size="'tiny'">
+    <nb-card-header>Welcome</nb-card-header>
+    <nb-card-body>
+      <div class=" col-auto">
+        <a  (click)="goToOnboarding()" nbButton size="medium" status="success" outline >Complete Onboarding</a>
+      </div>
+    </nb-card-body>
+  </nb-card>
 </div>

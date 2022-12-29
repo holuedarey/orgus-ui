@@ -7,6 +7,8 @@ import { PostAgentOtpDto } from 'src/app/@core/dtos/post-agent-otp.dto';
 import { PostAgentTokenDto } from 'src/app/@core/dtos/post-agent-token-resend.dto';
 import { ResponseDto } from 'src/app/@core/dtos/response-dto';
 import { SeoService } from 'src/app/@core/utils/seo.service';
+import { TokenService } from 'src/app/@core/utils/token.service';
+import { AppResources, AppResourcesNavMap } from 'src/app/app-resources';
 
 @Component({
   selector: 'app-agent-details',
@@ -18,6 +20,7 @@ export class AgentDetailsComponent implements OnInit, OnDestroy {
   constructor(private seo: SeoService,
     private formBuilder: FormBuilder,
     private _router: Router,
+    private tokenService: TokenService,
     private agentService: AgentService,) { }
   
   
@@ -28,13 +31,14 @@ export class AgentDetailsComponent implements OnInit, OnDestroy {
   userName: string = '';
   disableUserName = true;
   isPasswordHidden = true;
-
+  loginUser:any;
 
   showMessages: any = {};
 
   ngOnInit(): void {
     this.initCreateForm();
     this.seo.setSeoData('Agent Onboarding', 'Landing Page');
+    this.loginUser = this.tokenService.getPayload();
   }
 
 
@@ -99,7 +103,12 @@ export class AgentDetailsComponent implements OnInit, OnDestroy {
 
         if (result.status) {
           this.messages = [result.message || 'Agent Updated successful'];
-          this._router.navigate(['agent-documents'])
+          if(this.loginUser.documentsUpload == false){
+            this._router.navigate(['/agent-documents'])
+          }else{
+            this._router.navigateByUrl(AppResourcesNavMap.get(AppResources.AppView)?.route as string)
+          }
+        
         } else {
           this.errors = [
             result.message as string
