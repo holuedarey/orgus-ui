@@ -4,7 +4,7 @@
     <nb-card-header>Welcome</nb-card-header>
     <nb-card-body>
       <div class=" col-auto">
-        <a  (click)="goToOnboarding()" nbButton size="medium" status="success" outline >Complete Onboarding</a>
+        <a *ngIf="!loginUser.userDetails || !loginUser.documentsUpload" (click)="goToOnboarding()" nbButton size="medium" status="success" outline >Complete Onboarding</a>
       </div>
     </nb-card-body>
   </nb-card>
