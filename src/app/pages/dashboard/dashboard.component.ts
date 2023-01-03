@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
     if (!this.loginUser.userDetails) {
       this.router.navigateByUrl(AppResourcesNavMap.get(AppResources.AgentDetailsView)?.route as string);
     } else if (!this.loginUser.documentsUpload) {
-
+      this.router.navigateByUrl(AppResourcesNavMap.get(AppResources.AgentDocumentsView)?.route as string);
     }
   }
 
