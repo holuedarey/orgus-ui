@@ -1,4 +1,3 @@
-<canvas id="landing-canvas"></canvas>
 <nb-layout class="m-0 p-0">
     <nb-layout-header class="landing-header mx-md-5">
         <div class="header-container pr-0 col mt-md-5">
@@ -17,157 +16,154 @@
     </nb-layout-header>
 
     <nb-layout-column>
-        <div>
-            <div class="container">
-                <div class="row mt-5">
-                    <div class="col-md-12 offset-md-0">
-                        <div class="offset-md-0">
-                            <nb-alert *ngIf="errors?.length && !submitted" outline="danger" role="alert">
-                                <p class="alert-title"><b>Oh snap!</b></p>
-                                <ul class="alert-message-list">
-                                    <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
-                                </ul>
-                            </nb-alert>
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-12 offset-md-0">
+                    <div class="offset-md-0">
+                        <nb-alert *ngIf="errors?.length && !submitted" outline="danger" role="alert">
+                            <p class="alert-title"><b>Oh snap!</b></p>
+                            <ul class="alert-message-list">
+                                <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+                            </ul>
+                        </nb-alert>
 
-                            <nb-alert *ngIf="messages?.length && !submitted" outline="success" role="alert">
-                                <p class="alert-title"><b>Hooray!</b></p>
-                                <ul class="alert-message-list">
-                                    <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
-                                </ul>
-                            </nb-alert>
-                        </div>
-                        <nb-card [size]="'large'" accent="info" style="height: 100%;">
-                            <nb-card-body>
-                                <div class="">
-                                    <form #form="ngForm" class="my-0">
+                        <nb-alert *ngIf="messages?.length && !submitted" outline="success" role="alert">
+                            <p class="alert-title"><b>Hooray!</b></p>
+                            <ul class="alert-message-list">
+                                <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+                            </ul>
+                        </nb-alert>
+                    </div>
+                    <nb-card [size]="'large'" accent="info" style="height: 100%;">
+                        <nb-card-body>
+                            <div class="">
+                                <form #form="ngForm" class="my-0">
 
-                                        <h4 class="font-weight-bold">Finalize Account Details</h4>
-                                        <hr>
-                                        <div class="">
-                                            <p class="font-weight-bold col-md-12">Documents Upload</p>
+                                    <h4 class="font-weight-bold">Finalize Account Details</h4>
+                                    <hr>
+                                    <div class="">
+                                        <p class="font-weight-bold col-md-12">Documents Upload</p>
 
-                                            <div class="row">  
+                                        <div class="row">  
 
-                                                <div class="form-control-group col-md-6  my-1">
-                                                    <div class="col-sm-12">
-                                                        <label class="label" for="input-bvn">ID Card:</label>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <ngx-dropzone  [multiple]="false" (change)="onSelect($event, 'filesId')"  accept="image/jpeg,image/jpg,image/png,image/gif">
-                                                            <ngx-dropzone-label>ID Card</ngx-dropzone-label>
-                                                            <ngx-dropzone-preview *ngFor="let f of filesId"
-                                                                [removable]="true" (removed)="onRemove(f, 'filesId')">
-                                                                <ngx-dropzone-label>
-                                                                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [file]="f">
-                                                                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                                                                      </ngx-dropzone-image-preview>
-                                                                </ngx-dropzone-label>
-                                                            </ngx-dropzone-preview>
-                                                        </ngx-dropzone>
-                                                        
-                                                    </div>
+                                            <div class="form-control-group col-md-6  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-bvn">ID Card:</label>
                                                 </div>
-
-                                                <div class="form-control-group col-md-6  my-1">
-                                                    <div class="col-sm-12">
-                                                        <label class="label" for="input-bvn">Utility Bill:</label>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <ngx-dropzone (change)="onSelect($event, 'utilityBill')">
-                                                            <ngx-dropzone-label>Utility Bill</ngx-dropzone-label>
-                                                            <ngx-dropzone-preview *ngFor="let f of utilityBill"
-                                                                [removable]="true" (removed)="onRemove(f, 'utilityBill')">
-                                                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})
-                                                                </ngx-dropzone-label>
-                                                            </ngx-dropzone-preview>
-                                                        </ngx-dropzone>
-                                                    </div>
+                                                <div class="col-md-12">
+                                                    <ngx-dropzone  [multiple]="false" (change)="onSelect($event, 'filesId')"  accept="image/jpeg,image/jpg,image/png,image/gif">
+                                                        <ngx-dropzone-label>ID Card</ngx-dropzone-label>
+                                                        <ngx-dropzone-preview *ngFor="let f of filesId"
+                                                            [removable]="true" (removed)="onRemove(f, 'filesId')">
+                                                            <ngx-dropzone-label>
+                                                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [file]="f">
+                                                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                                                  </ngx-dropzone-image-preview>
+                                                            </ngx-dropzone-label>
+                                                        </ngx-dropzone-preview>
+                                                    </ngx-dropzone>
+                                                    
                                                 </div>
                                             </div>
-                                            <div class="row">   
-                                                <div class="form-control-group col-md-6  my-1">
-                                                    <div class="col-sm-12">
-                                                        <label class="label" for="input-bvn">Passport:</label>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <ngx-dropzone (change)="onSelect($event, 'passport')">
-                                                            <ngx-dropzone-label>Passport</ngx-dropzone-label>
-                                                            <ngx-dropzone-preview *ngFor="let f of passport"
-                                                                [removable]="true" (removed)="onRemove(f, 'passport')">
-                                                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})
-                                                                </ngx-dropzone-label>
-                                                            </ngx-dropzone-preview>
-                                                        </ngx-dropzone>
-                                                    </div>
-                                                </div>
 
-                                                <div class="form-control-group col-md-6  my-1">
-                                                    <div class="col-sm-12">
-                                                        <label class="label" for="input-bvn">CAC Document:</label>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <ngx-dropzone (change)="onSelect($event, 'cacDocument')">
-                                                            <ngx-dropzone-label>CAC Document</ngx-dropzone-label>
-                                                            <ngx-dropzone-preview *ngFor="let f of cacDocument"
-                                                                [removable]="true" (removed)="onRemove(f, 'cacDocument')">
-                                                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})
-                                                                </ngx-dropzone-label>
-                                                            </ngx-dropzone-preview>
-                                                        </ngx-dropzone>
-                                                    </div>
+                                            <div class="form-control-group col-md-6  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-bvn">Utility Bill:</label>
                                                 </div>
-                                            </div>
-                                            <div class="row">   
-                                                <div class="form-control-group col-md-6  my-1">
-                                                    <div class="col-sm-12">
-                                                        <label class="label" for="input-bvn">Guarantors Id:</label>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <ngx-dropzone (change)="onSelect($event, 'guarantorsId')">
-                                                            <ngx-dropzone-label>Guarantors Id</ngx-dropzone-label>
-                                                            <ngx-dropzone-preview *ngFor="let f of guarantorsId"
-                                                                [removable]="true" (removed)="onRemove(f,'guarantorsId')">
-                                                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})
-                                                                </ngx-dropzone-label>
-                                                            </ngx-dropzone-preview>
-                                                        </ngx-dropzone>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-control-group col-md-6  my-1">
-                                                    <div class="col-sm-12">
-                                                        <label class="label" for="input-bvn">Guarantors Passport:</label>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <ngx-dropzone (change)="onSelect($event, 'guarantorsPassport')">
-                                                            <ngx-dropzone-label>Guarantors Passport</ngx-dropzone-label>
-                                                            <ngx-dropzone-preview *ngFor="let f of guarantorsPassport"
-                                                                [removable]="true" (removed)="onRemove(f,'guarantorsPassport')">
-                                                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})
-                                                                </ngx-dropzone-label>
-                                                            </ngx-dropzone-preview>
-                                                        </ngx-dropzone>
-                                                        
-                                                    </div>
+                                                <div class="col-md-12">
+                                                    <ngx-dropzone (change)="onSelect($event, 'utilityBill')">
+                                                        <ngx-dropzone-label>Utility Bill</ngx-dropzone-label>
+                                                        <ngx-dropzone-preview *ngFor="let f of utilityBill"
+                                                            [removable]="true" (removed)="onRemove(f, 'utilityBill')">
+                                                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})
+                                                            </ngx-dropzone-label>
+                                                        </ngx-dropzone-preview>
+                                                    </ngx-dropzone>
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+                                        <div class="row">   
+                                            <div class="form-control-group col-md-6  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-bvn">Passport:</label>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <ngx-dropzone (change)="onSelect($event, 'passport')">
+                                                        <ngx-dropzone-label>Passport</ngx-dropzone-label>
+                                                        <ngx-dropzone-preview *ngFor="let f of passport"
+                                                            [removable]="true" (removed)="onRemove(f, 'passport')">
+                                                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})
+                                                            </ngx-dropzone-label>
+                                                        </ngx-dropzone-preview>
+                                                    </ngx-dropzone>
+                                                </div>
+                                            </div>
 
-                            </nb-card-body>
-                            <nb-card-footer>
-                                <button (click)="updateDetails()" [nbSpinner]="submitted" nbButton fullWidth
-                                    status="success" [disabled]="submitted || !(filesId.length && utilityBill.length && passport.length && cacDocument.length && guarantorsId.length && guarantorsPassport.length)">
-                                    Create Account
-                                </button>
-                            </nb-card-footer>
-                        </nb-card>
-                    </div>
+                                            <div class="form-control-group col-md-6  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-bvn">CAC Document:</label>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <ngx-dropzone (change)="onSelect($event, 'cacDocument')">
+                                                        <ngx-dropzone-label>CAC Document</ngx-dropzone-label>
+                                                        <ngx-dropzone-preview *ngFor="let f of cacDocument"
+                                                            [removable]="true" (removed)="onRemove(f, 'cacDocument')">
+                                                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})
+                                                            </ngx-dropzone-label>
+                                                        </ngx-dropzone-preview>
+                                                    </ngx-dropzone>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">   
+                                            <div class="form-control-group col-md-6  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-bvn">Guarantors Id:</label>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <ngx-dropzone (change)="onSelect($event, 'guarantorsId')">
+                                                        <ngx-dropzone-label>Guarantors Id</ngx-dropzone-label>
+                                                        <ngx-dropzone-preview *ngFor="let f of guarantorsId"
+                                                            [removable]="true" (removed)="onRemove(f,'guarantorsId')">
+                                                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})
+                                                            </ngx-dropzone-label>
+                                                        </ngx-dropzone-preview>
+                                                    </ngx-dropzone>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-control-group col-md-6  my-1">
+                                                <div class="col-sm-12">
+                                                    <label class="label" for="input-bvn">Guarantors Passport:</label>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <ngx-dropzone (change)="onSelect($event, 'guarantorsPassport')">
+                                                        <ngx-dropzone-label>Guarantors Passport</ngx-dropzone-label>
+                                                        <ngx-dropzone-preview *ngFor="let f of guarantorsPassport"
+                                                            [removable]="true" (removed)="onRemove(f,'guarantorsPassport')">
+                                                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})
+                                                            </ngx-dropzone-label>
+                                                        </ngx-dropzone-preview>
+                                                    </ngx-dropzone>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </nb-card-body>
+                        <nb-card-footer>
+                            <button (click)="updateDetails()" [nbSpinner]="submitted" nbButton fullWidth
+                                status="success" [disabled]="submitted || !(filesId.length && utilityBill.length && passport.length && cacDocument.length && guarantorsId.length && guarantorsPassport.length)">
+                                Create Account
+                            </button>
+                        </nb-card-footer>
+                    </nb-card>
                 </div>
             </div>
         </div>
-
     </nb-layout-column>
 
 </nb-layout>
