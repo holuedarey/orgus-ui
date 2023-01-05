@@ -74,10 +74,12 @@ export class AgentDetailsComponent implements OnInit, OnDestroy {
       //show dialog bix for email address
     }
 
+    const dateFormatter = (date:string) =>new Date(date).toISOString().split('T')[0];
+
     const postAgenttDetailsDto: PostAgentDetailsDto = {
      
       bvn:(this.updetailsForm.get('bvn')?.value as string).trim(),
-      dateOfBirth: (this.updetailsForm.get('dateOfBirth')?.value as string).trim(),
+      dateOfBirth: dateFormatter(this.updetailsForm.get('dateOfBirth')?.value as string),
       address:(this.updetailsForm.get('address')?.value as string).trim(),
       businessName:(this.updetailsForm.get('businessName')?.value as string).trim(),
       officeAddress: (this.updetailsForm.get('officeAddress')?.value as string).trim(),
@@ -95,6 +97,9 @@ export class AgentDetailsComponent implements OnInit, OnDestroy {
       guarantorsPhone: (this.updetailsForm.get('guarantorsPhone')?.value as string).trim(),
       guarantorsRelationship: (this.updetailsForm.get('guarantorsRelationship')?.value as string).trim(),
     }
+
+    console.log(postAgenttDetailsDto);
+    return;
 
     this.agentService.postAgentDetails(postAgenttDetailsDto).subscribe(
       (result) => {

@@ -27,6 +27,7 @@ import { AgentDetailsRoutingModule } from './agent-details-routing.module';
     NbAlertModule,
     NbEvaIconsModule,
     NbDatepickerModule.forRoot(),
+    
   ]
 })
 export class AgentDetailsModule { }
