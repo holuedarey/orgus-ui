@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LottieModule } from 'ngx-lottie';
-import { NbAlertModule, NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbSpinnerModule } from '@nebular/theme';
+import { NbAlertModule, NbButtonModule, NbCardModule, NbDatepickerModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbSpinnerModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { AgentDetailsComponent } from './agent-details.component';
@@ -25,7 +25,8 @@ import { AgentDetailsRoutingModule } from './agent-details-routing.module';
     NbCardModule,
     NbIconModule,
     NbAlertModule,
-    NbEvaIconsModule
+    NbEvaIconsModule,
+    NbDatepickerModule.forRoot(),
   ]
 })
 export class AgentDetailsModule { }

@@ -70,8 +70,12 @@
                                             <div class="col-sm-12">
                                                 <input nbInput fullWidth name="dateOfBirth" id="input-dateOfBirth"
                                                     placeholder="Date Of Birth" #dateOfBirth
+                                                    [nbDatepicker]="dateTimePicker"
                                                     [status]="updetailsForm.controls['dateOfBirth'].touched ? (updetailsForm.controls['dateOfBirth'].invalid ? 'danger' : 'success') : 'basic'"
                                                     formControlName="dateOfBirth">
+
+                                                    <!-- <input nbInput placeholder="Pick Date" > -->
+                                                    <nb-datepicker #dateTimePicker format="yyyy-MM-dd"></nb-datepicker>
         
                                                 <div *ngIf="updetailsForm.controls['dateOfBirth'].invalid && updetailsForm.controls['dateOfBirth'].touched"
                                                     class="text-danger xyz-in px-3 row">
