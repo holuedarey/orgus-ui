@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit {
           this.resendOtp();
         }
         this.errors = [
-          'An Error occured while logging you in.',
+          error.error.message  || 'An Error occured while logging you in.',
         ];
       }
     );

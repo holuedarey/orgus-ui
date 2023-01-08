@@ -3,6 +3,8 @@ import { ResourceNavModel } from "../@core/models/resource-nav.model";
 export enum PagesResources {
     DashboardView = 'pages:dashboard-view',
     UsersView = 'pages:users-view',
+    AgentDetailsView = 'pages:profile-agent-details-view',
+    AgentDocumentsView = 'pages:profile-agent-documents-view',
     ServiceBandView = 'pages:service-band-view',
     AnalyticsModuleView = 'pages:analytics-module-view',
     LoadPointAnalyticsView = 'pages:load-point-analytics-view',
@@ -22,6 +24,20 @@ export const PagesResourcesNavMap = new Map<PagesResources, ResourceNavModel>([
         {
             route: `/app/users`,
             path: 'users'
+        }
+    ],
+    [
+        PagesResources.AgentDetailsView,
+        {
+            route: `/app/agent-details`,
+            path: 'agent-details'
+        }
+    ],
+    [
+        PagesResources.AgentDocumentsView,
+        {
+            route: `/app/agent-documents`,
+            path: 'agent-documents'
         }
     ],
     [

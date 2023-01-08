@@ -9,6 +9,7 @@ import { ChartsModule } from 'src/app/@charts/chart.module';
 import { ThemeModule } from 'src/app/@theme/theme.module';
 import { TablesModule } from 'src/app/@tables/tables.module';
 import { MapsModule } from 'src/app/@maps/maps.module';
+import { AgentDetailsComponent } from '../agent-details/agent-details.component';
 
 
 @NgModule({

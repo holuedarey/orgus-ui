@@ -10,27 +10,27 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: GlobalResources.get(PagesResources.DashboardView)?.route,
     home: true,
   },
-  {
-    title: 'MODULES',
-    group: true,
-  },
-  {
-    title: 'Users',
-    link: GlobalResources.get(PagesResources.UsersView)?.route,
-    icon: 'people-outline',
-  },
+  // {
+  //   title: 'MODULES',
+  //   group: true,
+  // },
+  // {
+  //   title: 'Users',
+  //   link: GlobalResources.get(PagesResources.UsersView)?.route,
+  //   icon: 'people-outline',
+  // },
 
-  {
-    title: 'Analytics',
-    icon: 'briefcase-outline',
-    children: [
-      {
-        title: 'Load Point',
-        link: GlobalResources.get(LoadPointAnalyticsResources.SummaryView)?.route,
-        icon: 'speaker-outline',
-      },
-    ]
-  },
+  // {
+  //   title: 'Analytics',
+  //   icon: 'briefcase-outline',
+  //   children: [
+  //     {
+  //       title: 'Load Point',
+  //       link: GlobalResources.get(LoadPointAnalyticsResources.SummaryView)?.route,
+  //       icon: 'speaker-outline',
+  //     },
+  //   ]
+  // },
 
 
 ];

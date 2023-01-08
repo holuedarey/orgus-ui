@@ -26,6 +26,16 @@ const routes: Routes = [
           .then(m => m.UsersModule),
       },
       {
+        path: PagesResourcesNavMap.get(PagesResources.AgentDetailsView)?.path,
+        loadChildren: () => import('./profile-complete/profile-agent-details/profile-agent-details.module')
+          .then(m => m.AgentDetailsModule),
+      },
+      {
+        path: PagesResourcesNavMap.get(PagesResources.AgentDocumentsView)?.path,
+        loadChildren: () => import('./profile-complete/profile-agent-documents/profile-agent-documents.module')
+          .then(m => m.AgentDocumentsModule),
+      },
+      {
         path: PagesResourcesNavMap.get(PagesResources.AnalyticsModuleView)?.path,
         children: [
           {

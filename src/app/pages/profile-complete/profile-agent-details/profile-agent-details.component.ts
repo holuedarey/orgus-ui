@@ -6,11 +6,12 @@ import { PostAgentDetailsDto } from 'src/app/@core/dtos/post-agent-details.dto';
 import { SeoService } from 'src/app/@core/utils/seo.service';
 import { TokenService } from 'src/app/@core/utils/token.service';
 import { AppResources, AppResourcesNavMap } from 'src/app/app-resources';
+import { PagesResources, PagesResourcesNavMap } from '../../pages-resources';
 
 @Component({
-  selector: 'app-agent-details',
-  templateUrl: './agent-details.component.html',
-  styleUrls: ['./agent-details.component.scss']
+  selector: 'app-profile-agent-details',
+  templateUrl: './profile-agent-details.component.html',
+  styleUrls: ['./profile-agent-details.component.scss']
 })
 export class AgentDetailsComponent implements OnInit, OnDestroy {
 
@@ -96,7 +97,7 @@ export class AgentDetailsComponent implements OnInit, OnDestroy {
     }
 
     console.log(postAgenttDetailsDto);
-    return;
+    // return;
 
     this.agentService.postAgentDetails(postAgenttDetailsDto).subscribe(
       (result) => {
@@ -106,7 +107,7 @@ export class AgentDetailsComponent implements OnInit, OnDestroy {
         if (result.status) {
           this.messages = [result.message || 'Agent Updated successful'];
           if(this.loginUser.documentsUpload == false){
-            this._router.navigate(['/agent-documents'])
+            this._router.navigateByUrl(PagesResourcesNavMap.get(PagesResources.AgentDocumentsView)?.route as string);
           }else{
             this._router.navigateByUrl(AppResourcesNavMap.get(AppResources.AppView)?.route as string)
           }
