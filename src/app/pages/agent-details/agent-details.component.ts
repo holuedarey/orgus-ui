@@ -96,7 +96,7 @@ export class AgentDetailsComponent implements OnInit, OnDestroy {
     }
 
     console.log(postAgenttDetailsDto);
-    return;
+    // return;
 
     this.agentService.postAgentDetails(postAgenttDetailsDto).subscribe(
       (result) => {
