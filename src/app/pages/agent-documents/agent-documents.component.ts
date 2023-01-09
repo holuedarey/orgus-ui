@@ -115,7 +115,8 @@ export class AgentDocumentsComponent implements OnInit, OnDestroy {
         if (result.status) {
           this.messages = [result.message || 'Agent Document Updated successful'];
           // this._router.navigate(['agent-otp'])
-          return this._router.navigateByUrl(AppResourcesNavMap.get(AppResources.AppView)?.route as string);
+          localStorage.clear();
+          return this._router.navigateByUrl(AppResourcesNavMap.get(AppResources.LandingView)?.route as string);
         } else {
           this.errors = [
             result.message as string

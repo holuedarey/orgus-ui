@@ -105,8 +105,8 @@ export class AgentDetailsComponent implements OnInit, OnDestroy {
 
         if (result.status) {
           this.messages = [result.message || 'Agent Updated successful'];
-          if(this.loginUser.documentsUpload == false){
-            this._router.navigate(['/agent-documents'])
+          if(this.loginUser.documentsUpload == false || this.loginUser.documentsUpload == undefined || !this.loginUser.documentsUpload){
+            this._router.navigate(['/agent-documents']);
           }else{
             this._router.navigateByUrl(AppResourcesNavMap.get(AppResources.AppView)?.route as string)
           }

@@ -103,20 +103,7 @@ export class AgentDetailsComponent implements OnInit, OnDestroy {
       (result) => {
         this.submitted = false;
         console.log(result)
-
-        if (result.status) {
-          this.messages = [result.message || 'Agent Updated successful'];
-          if(this.loginUser.documentsUpload == false){
-            this._router.navigateByUrl(PagesResourcesNavMap.get(PagesResources.AgentDocumentsView)?.route as string);
-          }else{
-            this._router.navigateByUrl(AppResourcesNavMap.get(AppResources.AppView)?.route as string)
-          }
-        
-        } else {
-          this.errors = [
-            result.message as string
-          ];
-        }
+        this._router.navigateByUrl(PagesResourcesNavMap.get(PagesResources.AgentDocumentsView)?.route as string);        
       },
       (error: any) => {
         this.submitted = false;
