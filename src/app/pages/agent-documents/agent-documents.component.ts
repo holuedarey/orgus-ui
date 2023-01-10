@@ -111,22 +111,15 @@ export class AgentDocumentsComponent implements OnInit, OnDestroy {
       (result) : any => {
         this.submitted = false;
         console.log(result)
-
-        if (result.status) {
-          this.messages = [result.message || 'Agent Document Updated successful'];
-          // this._router.navigate(['agent-otp'])
-          localStorage.clear();
-          return this._router.navigateByUrl(AppResourcesNavMap.get(AppResources.LandingView)?.route as string);
-        } else {
-          this.errors = [
-            result.message as string
-          ];
-        }
+        this.messages = [result.message || 'Agent Document Updated successful'];
+        // this._router.navigate(['agent-otp'])
+        localStorage.clear();
+        return this._router.navigateByUrl(AppResourcesNavMap.get(AppResources.LandingView)?.route as string);
       },
       (error: any) => {
         this.submitted = false;
         this.errors = [
-          error.error.message || 'An Error occured while creating client.',
+          error.error.message || 'An Error occured while uploading document.',
         ];
       }
     );
